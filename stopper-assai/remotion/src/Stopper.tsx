@@ -23,6 +23,7 @@ export const Stopper: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: '#000'}}>
       {Array.from({length: 30}, (_, n) => {
+        if (!place[n] || !sizes[n]) return null;
         const [x, y, bs] = place[n];
         const [iw, ih] = sizes[n];
         const w = iw * bs, h = ih * bs;

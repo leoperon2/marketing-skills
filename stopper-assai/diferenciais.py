@@ -1,12 +1,12 @@
 """Cena 'Diferenciais': textos refeitos em tamanho grande (Montserrat) para caber legivel em 384 px de largura.
-Gera titulo (camada 20) e 9 itens (camadas 21..29) como PNGs com transparencia, ja no tamanho final (escala 1.0).
+Gera titulo (camada 20) e os itens (camadas 21..) como PNGs com transparencia, ja no tamanho final (escala 1.0).
 Para editar textos/tamanhos, mexa em ITEMS e nas constantes abaixo."""
 import os
 from PIL import Image, ImageDraw, ImageFont
 
 W = 384
-MARGIN = 18                      # margem lateral
-FS, FS_SUB, LH = 42, 32, 51      # tamanho do texto, do subtexto, altura da linha
+MARGIN = 14                      # margem lateral
+FS, FS_SUB, LH = 44, 34, 54      # tamanho do texto, do subtexto, altura da linha
 Y_TOP, Y_BOTTOM = 220, 1740      # faixa vertical (px) onde os 9 itens sao distribuidos
 YELLOW, BLUE, WHITE = (255, 200, 0), (20, 40, 215), (255, 255, 255)
 FONTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fonts')
@@ -14,14 +14,12 @@ FONTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fonts')
 # (texto, estilo): 'n' normal, 'h' destaque (caixa amarela + texto azul), 's' subtexto menor
 ITEMS = [
     [("Ingredientes ", 'n'), ("selecionados", 'h')],
-    [("Carne in natura ", 'h'), ("rica em aminoácidos", 'n')],
-    [("Proteína de alto valor", 'n')],
+    [("Carne in natura", 'h')],
     [("Energia ", 'h'), ("para brincar e treinar", 'n')],
     [("Ideal para treinos ", 'h'), ("e recompensas", 'n')],
     [("Sem corantes nem conservantes", 'n')],
     [("Sem glúten ", 'n'), ("mais digestível", 's')],
     [("Sem transgênicos", 'n')],
-    [("Sabor diferenciado ", 'h'), ("+ preço competitivo", 'h')],
 ]
 
 def _font(w, size): return ImageFont.truetype(f"{FONTS}/Montserrat-{w}.ttf", size)
