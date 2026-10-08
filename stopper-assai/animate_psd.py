@@ -7,7 +7,7 @@ import glob, math, os, subprocess, sys, tempfile
 from PIL import Image
 from psd_tools import PSDImage
 
-W, H, FPS, T = 384, 1920, 30, 4.0
+W, H, FPS, T = 384, 1920, 30, 15.0
 
 def export_layers(psd_path, outdir):
     i = 0
@@ -64,6 +64,11 @@ PLACE = {
  14: group((-111, -93)), 15: group((75, 71)), 13: group((64, 154)), 16: group((85, 182)),
  11: group((108, 240)), 12: group((137, 253)), 17: group((100, 96)), 18: group((347, 129)), 19: group((63, 356)),
 }
+def pulse(t, t0, period, dur):
+    # pulso periodico: 0 -> 1 -> 0 durante `dur` s, repetido a cada `period` s a partir de t0
+    if t < t0: return 0.0
+    u = (t - t0) % period
+    return math.sin(math.pi * u / dur) if u < dur else 0.0
 def clamp(x): return max(0, min(1, x))
 def out_cubic(t): return 1-(1-t)**3
 def out_back(t, c=1.70158):
@@ -96,7 +101,9 @@ def run(layerdir, out):
                 if n == 3: dy += 5*math.sin(ph+1)
                 if n == 4: dy += 5*math.sin(ph)
                 if n == 7: s *= 1+.012*math.sin(ph)
-                if n == 17: s *= 1+.03*math.sin(ph*1.5)
+                if n == 7: s *= 1+.05*pulse(t, 4.0, 3.0, .7)
+                if n == 17: s *= 1+.03*math.sin(ph*1.5)+.08*pulse(t, 5.5, 3.0, .7)
+                if n == 8: s *= 1+.07*pulse(t, 6.0, 4.0, .8)
             if n == 14 and t > 1.5: a *= .6+.4*math.sin(t*2*math.pi/1.3)**2
             if n == 0: s = 1+.05*t/T
             if a <= 0: continue

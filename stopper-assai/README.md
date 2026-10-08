@@ -1,6 +1,6 @@
 # Stopper Digital Assaí — animação a partir do PSD
 
-Saída: `stopper_384x1920.mp4` (384x1920, 4 s, 30 fps, H.264, sem áudio).
+Saída: `stopper_384x1920.mp4` (384x1920, 15 s, 30 fps, H.264, sem áudio).
 
 Para rodar na sua máquina (Windows):
 
