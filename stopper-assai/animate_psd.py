@@ -4,6 +4,7 @@ Requer: pip install psd-tools scipy numpy pillow   e   ffmpeg no PATH.
 O PSD original e 1080x1920; aqui as camadas sao REPOSICIONADAS num layout vertical 384x1920.
 O mapeamento vale para o PSD 01.psd (20 camadas, ordem de baixo para cima)."""
 import glob, math, os, subprocess, sys, tempfile
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PIL import Image
 from psd_tools import PSDImage
 
@@ -61,6 +62,8 @@ PLACE = {
  1: (-193, 1400, .4),            # tabua/calabresa
  3: (10, 1090, .5),              # pack calabresa
  8: (48, 1790, .85),             # logo
+ 20: (25, 110, .55),                                 # titulo "Diferenciais Competitivos"
+ **{21 + i: (8, 330 + i*150, .39) for i in range(9)},   # itens 1..9
  14: group((-111, -93)), 15: group((75, 71)), 13: group((64, 154)), 16: group((85, 182)),
  11: group((108, 240)), 12: group((137, 253)), 17: group((100, 96)), 18: group((347, 129)), 19: group((63, 356)),
 }
@@ -79,7 +82,10 @@ A = {1:(.5,.8,300,0,1,out_cubic), 2:(.15,.7,-250,0,1,out_cubic), 3:(.6,.8,-150,2
  9:(0,.5,0,0,1,out_cubic), 10:(0,.5,0,0,1,out_cubic),
  17:(.9,.4,0,0,.3,out_back), 15:(1.0,.4,-150,0,1,out_cubic), 13:(1.15,.4,-150,0,1,out_cubic), 16:(1.3,.4,-150,0,1,out_cubic),
  11:(1.45,.4,-150,0,1,out_cubic), 12:(1.55,.35,0,0,.5,out_back), 18:(1.2,.4,120,0,1,out_cubic), 19:(1.6,.4,-120,0,1,out_cubic), 14:(1.0,.5,0,0,.6,out_cubic)}
-FADE = {5,6,7,8,9,10,17,15,13,16,11,12,18,19,14}
+S1_OUT = (6.0, .6)   # cena 1 (produtos) sai em 6,0 s; fundo (0) e logo (8) permanecem
+SCENE1 = {1,2,3,4,5,6,7,11,12,13,15,16,17,18,19}
+A.update({20: (6.5,.5,0,30,.9,out_cubic), **{21+i: (7.2+i*.65,.4,-40,0,1,out_cubic) for i in range(9)}})
+FADE = {20,21,22,23,24,25,26,27,28,29,5,6,7,8,9,10,17,15,13,16,11,12,18,19,14}
 
 def run(layerdir, out):
     img = {int(os.path.basename(f)[:2]): Image.open(f).convert('RGBA') for f in sorted(glob.glob(layerdir+'/*.png'))}
@@ -106,6 +112,7 @@ def run(layerdir, out):
                 if n == 8: s *= 1+.07*pulse(t, 6.0, 4.0, .8)
             if n == 14 and t > 1.5: a *= .6+.4*math.sin(t*2*math.pi/1.3)**2
             if n == 0: s = 1+.05*t/T
+            if n in SCENE1: a *= 1 - clamp((t - S1_OUT[0]) / S1_OUT[1])
             if a <= 0: continue
             sc = bs*s
             im2 = im.resize((max(1, int(im.width*sc)), max(1, int(im.height*sc))), Image.BILINEAR)
@@ -120,8 +127,12 @@ def run(layerdir, out):
     p.stdin.close(); p.wait()
 
 if __name__ == "__main__":
-    psd, out = sys.argv[1], sys.argv[2]
+    # uso: animate_psd.py produtos.psd [diferenciais.psd] saida.mp4
+    psd, out = sys.argv[1], sys.argv[-1]
     tmp = tempfile.mkdtemp()
     n = export_layers(psd, tmp)
     assert n == 20, f"esperava 20 camadas, achei {n}; o mapeamento foi feito para o PSD 01.psd"
+    if len(sys.argv) == 4:
+        import diferenciais
+        diferenciais.export(sys.argv[2], tmp)
     run(tmp, out)

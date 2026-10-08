@@ -5,7 +5,7 @@ Saída: `stopper_384x1920.mp4` (384x1920, 15 s, 30 fps, H.264, sem áudio).
 Para rodar na sua máquina (Windows):
 
     pip install psd-tools scipy numpy pillow
-    python animate_psd.py "D:\_JOBS\Videos Stopper Digital Assai\01.psd" saida.mp4
+    python animate_psd.py produtos.psd diferenciais.psd saida.mp4   # 2o PSD (diferenciais) e opcional
 
 Requer ffmpeg no PATH. O PSD é 1080x1920; as camadas são reposicionadas num layout vertical 384x1920.
 Ajustes de posição/tempo ficam nos dicionários `PLACE` e `A` no topo do script.

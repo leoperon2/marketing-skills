@@ -22,7 +22,7 @@ export const Stopper: React.FC = () => {
   const t = frame / cfg.FPS;
   return (
     <AbsoluteFill style={{backgroundColor: '#000'}}>
-      {Array.from({length: 20}, (_, n) => {
+      {Array.from({length: 30}, (_, n) => {
         const [x, y, bs] = place[n];
         const [iw, ih] = sizes[n];
         const w = iw * bs, h = ih * bs;
@@ -43,6 +43,7 @@ export const Stopper: React.FC = () => {
           if (n === 8) s *= 1 + 0.07 * pulse(t, 6, 4, 0.8);
         }
         if (n === 0) s = 1 + (0.05 * t) / cfg.T;
+        if (cfg.scene1.includes(n)) a *= 1 - clamp((t - cfg.s1out[0]) / cfg.s1out[1]);
         if (a <= 0 || n === 9 || n === 10 || n === 14) return null;
         return (
           <Img
