@@ -16,7 +16,8 @@ Atenção: a área útil de comunicação do desenho do Assaí ainda não foi ap
     cd remotion
     npm install
     npm run dev        # abre o Remotion Studio em http://localhost:3000 (composição "Stopper")
-    npm run render        # grava em D:\_JOBS\Videos Stopper Digital Assai\_RENDER\stopper_384x1920.mp4
+    npm run render        # usa a GPU (se disponivel; senao CPU) e grava em D:\_JOBS\Videos Stopper Digital Assai\_RENDER\stopper_384x1920.mp4
+    npm run render:cpu    # mesmo destino, so CPU
     npm run render:local  # grava em remotion/out/ (alternativa)
 
 Posições e tempos ficam em `remotion/src/layers.json`; a animação em `remotion/src/Stopper.tsx`.
