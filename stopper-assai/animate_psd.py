@@ -62,8 +62,6 @@ PLACE = {
  1: (-193, 1400, .4),            # tabua/calabresa
  3: (10, 1090, .5),              # pack calabresa
  8: (48, 1790, .85),             # logo
- 20: (25, 110, .55),                                 # titulo "Diferenciais Competitivos"
- **{21 + i: (8, 330 + i*150, .39) for i in range(9)},   # itens 1..9
  14: group((-111, -93)), 15: group((75, 71)), 13: group((64, 154)), 16: group((85, 182)),
  11: group((108, 240)), 12: group((137, 253)), 17: group((100, 96)), 18: group((347, 129)), 19: group((63, 356)),
 }
@@ -127,12 +125,12 @@ def run(layerdir, out):
     p.stdin.close(); p.wait()
 
 if __name__ == "__main__":
-    # uso: animate_psd.py produtos.psd [diferenciais.psd] saida.mp4
+    # uso: animate_psd.py produtos.psd saida.mp4   (a cena 'Diferenciais' e gerada por diferenciais.py)
     psd, out = sys.argv[1], sys.argv[-1]
     tmp = tempfile.mkdtemp()
     n = export_layers(psd, tmp)
     assert n == 20, f"esperava 20 camadas, achei {n}; o mapeamento foi feito para o PSD 01.psd"
-    if len(sys.argv) == 4:
-        import diferenciais
-        diferenciais.export(sys.argv[2], tmp)
+    import diferenciais
+    place, _ = diferenciais.build(tmp)
+    PLACE.update(place)
     run(tmp, out)
