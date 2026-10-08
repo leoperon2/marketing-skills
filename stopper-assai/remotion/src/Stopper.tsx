@@ -24,7 +24,12 @@ export const Stopper: React.FC = () => {
     <AbsoluteFill style={{backgroundColor: '#000'}}>
       {Array.from({length: 30}, (_, n) => {
         if (!place[n] || !sizes[n]) return null;
-        const [x, y, bs] = place[n];
+        let [x, y, bs] = place[n];
+        const mv = (cfg.move as unknown as Record<string, number[]>)[n];
+        if (mv) {
+          let k = clamp((t - cfg.moveT[0]) / cfg.moveT[1]); k = k * k * (3 - 2 * k);
+          x += (mv[0] - x) * k; y += (mv[1] - y) * k; bs += (mv[2] - bs) * k;
+        }
         const [iw, ih] = sizes[n];
         const w = iw * bs, h = ih * bs;
         let s = 1, dx = 0, dy = 0, a = 1;

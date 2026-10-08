@@ -1,83 +1,60 @@
-"""Cena 'Diferenciais': textos refeitos em tamanho grande (Montserrat) para caber legivel em 384 px de largura.
-Gera titulo (camada 20) e os itens (camadas 21..) como PNGs com transparencia, ja no tamanho final (escala 1.0).
-Para editar textos/tamanhos, mexa em ITEMS e nas constantes abaixo."""
+"""Cena 'Diferenciais': textos refeitos em Montserrat, cada frase no MAIOR tamanho que cabe em 384 px.
+Gera os itens (camadas 21..) como PNGs com transparencia, ja no tamanho final (escala 1.0).
+Para editar textos, mexa em ITEMS: cada item = lista de linhas; cada linha = lista de (texto, estilo).
+Estilos: 'n' texto branco, 'h' destaque (caixa amarela + texto azul)."""
 import os
 from PIL import Image, ImageDraw, ImageFont
 
 W = 384
-MARGIN = 14                      # margem lateral
-FS, FS_SUB, FS_M, LH, LH_M = 48, 34, 36, 58, 50      # tamanho do texto, do subtexto, altura da linha
-Y_TOP, Y_BOTTOM = 220, 1740      # faixa vertical (px) onde os 9 itens sao distribuidos
+MARGIN = 14                        # margem lateral
+PAD = 6                            # folga lateral da caixa amarela
+MAX_FS, LH_RATIO = 76, 1.2         # maior fonte permitida; altura de linha = fonte * 1.2
+Y_TOP, Y_BOTTOM, MAX_GAP = 530, 1510, 100   # faixa vertical dos textos (px) e espaco maximo entre itens
 YELLOW, BLUE, WHITE = (255, 200, 0), (20, 40, 215), (255, 255, 255)
 FONTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fonts')
 
-# (texto, estilo): 'n' normal, 'h' destaque (caixa amarela + texto azul), 's' subtexto menor
-# estilos: 'n' normal, 'h' destaque, 's' subtexto, 'm' bloco compacto (cabe "Sem conservantes" em 1 linha), 'br' quebra de linha
 ITEMS = [
-    [("Ingredientes ", 'n'), ("selecionados", 'h')],
-    [("Carne in natura", 'h')],
-    [("+ Energia", 'h')],
-    [("Ideal para treinos ", 'h'), ("e recompensas", 'n')],
-    [("Sem corantes", 'm'), ("", 'br'), ("Sem conservantes", 'm'), ("", 'br'), ("Sem glúten", 'm'), ("", 'br'), ("Sem transgênicos", 'm')],
+    [[("Ingredientes", 'n')], [("selecionados", 'h')]],
+    [[("Carne", 'h')], [("in natura", 'h')]],
+    [[("+ Energia", 'h')]],
+    [[("Ideal para", 'h')], [("treinos", 'h')], [("e recompensas", 'n')]],
+    [[("Sem corantes", 'n')], [("Sem conservantes", 'n')], [("Sem glúten", 'n')], [("Sem transgênicos", 'n')]],
 ]
+WEIGHT = {'n': 'SemiBold', 'h': 'Bold'}
 
-def _font(w, size): return ImageFont.truetype(f"{FONTS}/Montserrat-{w}.ttf", size)
-FONT = {'n': _font('SemiBold', FS), 'h': _font('Bold', FS), 's': _font('SemiBold', FS_SUB), 'm': _font('SemiBold', FS_M)}
+def _font(st, size): return ImageFont.truetype(f"{FONTS}/Montserrat-{WEIGHT[st]}.ttf", size)
 
-def _layout(runs, maxw):
-    """Quebra as palavras em linhas: cada linha = lista de (palavra, estilo, x)."""
-    items = []
-    for txt, st in runs:
-        if st == 'br': items.append(None)
-        else: items += [(w, st) for w in txt.split()]
-    lines, cur, x = [], [], 0
-    for it in items:
-        if it is None:
-            lines.append(cur); cur, x = [], 0; continue
-        w, st = it; wl = FONT[st].getlength(w)
-        if cur and (x + wl > maxw or (st == 's' and cur[-1][1] != 's')):
-            lines.append(cur); cur, x = [], 0
-        cur.append((w, st, x)); x += wl + FONT[st].getlength(' ')
-    lines.append(cur)
-    return lines
+def _line_width(line, size):
+    return sum(_font(st, size).getlength(t) for t, st in line)
 
-def _render_item(runs, S=2):
-    maxw = W - 2*MARGIN
-    lines = _layout(runs, maxw)
-    lhs = [LH_M if all(st == 'm' for _, st, _ in ln) else LH for ln in lines]
-    h = sum(lhs) + 8
+def _fit(lines):
+    """Maior tamanho de fonte (px) em que a linha mais larga ainda cabe."""
+    avail = W - 2*MARGIN - 2*PAD
+    size = MAX_FS
+    while size > 12 and max(_line_width(l, size) for l in lines) > avail: size -= 1
+    return size
+
+def _render_item(lines, S=2):
+    size = _fit(lines); lh = round(size * LH_RATIO); h = lh * len(lines) + 8
     im = Image.new('RGBA', (W*S, h*S), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
-    y = 4
     for li, line in enumerate(lines):
-        lh = lhs[li]
-        i = 0
-        while i < len(line):                                   # caixa de destaque contigua por linha
-            if line[i][1] == 'h':
-                j = i
-                while j + 1 < len(line) and line[j+1][1] == 'h': j += 1
-                x0 = line[i][2]; x1 = line[j][2] + FONT['h'].getlength(line[j][0])
-                d.rectangle([(MARGIN + x0 - 6)*S, (y + 2)*S, (MARGIN + x1 + 6)*S, (y + lh - 2)*S], fill=YELLOW)
-                i = j + 1
-            else: i += 1
-        for w, st, x in line:
-            col = BLUE if st == 'h' else WHITE
-            dy = 5 if st == 's' else (3 if st == 'm' else 0)
-            f = ImageFont.truetype(FONT[st].path, FONT[st].size * S)
-            d.text(((MARGIN + x)*S, (y + 3 + dy)*S), w, font=f, fill=col)
-        y += lh
-    return im.resize((W, h), Image.LANCZOS)
+        y = 4 + li * lh
+        x = MARGIN + PAD
+        for t, st in line:
+            f = _font(st, size * S); w = f.getlength(t) / S
+            if st == 'h':
+                d.rectangle([(x - PAD)*S, (y + 2)*S, (x + w + PAD)*S, (y + lh - 2)*S], fill=YELLOW)
+            d.text((x*S, (y + (lh - size)/2 - size*0.12)*S), t, font=f, fill=BLUE if st == 'h' else WHITE)
+            x += w
+    return im.resize((W, h), Image.LANCZOS), size
 
 def build(outdir):
-    """Grava 20.png..29.png e devolve {camada: (x, y, escala)} para o PLACE."""
-    S = 2
-    title = Image.new('RGBA', (W*S, 100*S), (0, 0, 0, 0)); d = ImageDraw.Draw(title)
-    f = _font('ExtraBold', 56*S); tw = f.getlength("Diferenciais")
-    d.text(((W*S - tw)/2, 8*S), "Diferenciais", font=f, fill=WHITE)
-    d.rectangle([(W*S/2 - 50*S), 86*S, (W*S/2 + 50*S), 92*S], fill=YELLOW)
-    title.resize((W, 100), Image.LANCZOS).save(f"{outdir}/20.png")
-    items = [_render_item(r) for r in ITEMS]
-    gap = (Y_BOTTOM - Y_TOP - sum(i.height for i in items)) / (len(items) - 1)
-    place, y = {20: (0, 70, 1.0)}, Y_TOP
-    for k, im in enumerate(items):
+    """Grava 21.png.. e devolve ({camada: (x, y, escala)}, [tamanhos de fonte])."""
+    rend = [_render_item(it) for it in ITEMS]
+    total = sum(im.height for im, _ in rend)
+    gap = min(MAX_GAP, (Y_BOTTOM - Y_TOP - total) / (len(rend) - 1))
+    y = Y_TOP + ((Y_BOTTOM - Y_TOP) - (total + gap * (len(rend) - 1))) / 2
+    place = {}
+    for k, (im, size) in enumerate(rend):
         im.save(f"{outdir}/{21+k}.png"); place[21 + k] = (0, round(y), 1.0); y += im.height + gap
-    return place, gap
+    return place, [s for _, s in rend]

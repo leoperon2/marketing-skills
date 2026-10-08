@@ -81,9 +81,11 @@ A = {1:(.5,.8,300,0,1,out_cubic), 2:(.15,.7,-250,0,1,out_cubic), 3:(.6,.8,-150,2
  17:(.9,.4,0,0,.3,out_back), 15:(1.0,.4,-150,0,1,out_cubic), 13:(1.15,.4,-150,0,1,out_cubic), 16:(1.3,.4,-150,0,1,out_cubic),
  11:(1.45,.4,-150,0,1,out_cubic), 12:(1.55,.35,0,0,.5,out_back), 18:(1.2,.4,120,0,1,out_cubic), 19:(1.6,.4,-120,0,1,out_cubic), 14:(1.0,.5,0,0,.6,out_cubic)}
 S1_OUT = (6.0, .6)   # cena 1 (produtos) sai em 6,0 s; fundo (0) e logo (8) permanecem
-SCENE1 = {1,2,3,4,5,6,7,11,12,13,15,16,17,18,19}
-A.update({20: (6.5,.5,0,30,.9,out_cubic), **{21+i: (7.2+i*.65,.4,-40,0,1,out_cubic) for i in range(9)}})
-FADE = {20,21,22,23,24,25,26,27,28,29,5,6,7,8,9,10,17,15,13,16,11,12,18,19,14}
+SCENE1 = {3,5,6,7,11,12,13,15,16,17,18,19}   # somem na troca de cena; 1,2,4 (embalagem/tabuas) se movem
+MOVE_T = (6.0, .8)   # inicio e duracao da transicao das embalagens/tabuas para a cena 2
+MOVE = {4: (18, 10, .44), 2: (-50, 330, .36), 1: (-150, 1540, .42)}   # destino (x, y, escala) na cena 2
+A.update({21+i: (7.2+i*.65,.4,-40,0,1,out_cubic) for i in range(9)})
+FADE = {21,22,23,24,25,26,27,28,29,5,6,7,8,9,10,17,15,13,16,11,12,18,19,14}
 
 def run(layerdir, out):
     img = {int(os.path.basename(f)[:2]): Image.open(f).convert('RGBA') for f in sorted(glob.glob(layerdir+'/*.png'))}
@@ -94,6 +96,9 @@ def run(layerdir, out):
         cv = Image.new('RGBA', (W, H), (0, 0, 0, 255))
         for n in sorted(img):
             im = img[n]; x, y, bs = PLACE[n]
+            if n in MOVE:
+                k = clamp((t - MOVE_T[0]) / MOVE_T[1]); k = k*k*(3 - 2*k)
+                x, y, bs = (x + (MOVE[n][0]-x)*k, y + (MOVE[n][1]-y)*k, bs + (MOVE[n][2]-bs)*k)
             w, h = im.size; w, h = w*bs, h*bs
             s = 1.0; dx = dy = 0; a = 1.0
             if n in A:
