@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "remotion studio",
-    "render": "remotion render Stopper out/stopper_384x1920.mp4"
+    "render": "remotion render Stopper \"D:\\_JOBS\\Videos Stopper Digital Assai\\_RENDER\\stopper_384x1920.mp4\"",
+    "render:local": "remotion render Stopper out/stopper_384x1920.mp4"
   },
   "dependencies": {
     "@remotion/cli": "4.0.250",
