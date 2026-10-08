@@ -54,14 +54,14 @@ def group(src, s=.62, ox=-10, oy=32):  # grupo NOVO: posicao original -> canvas
 PLACE = {
  0: (0, 0, 1.0),                # fundo montado
  10: (0, 0, 1.0), 9: (0, 0, 1.0),  # absorvidos no fundo
- 2: (-60, 540, .34),             # carne
+ 2: (-40, 600, .44),             # tabua com carne (sangra na direita)
  4: (10, 300, .46),              # pack barbecue
- 6: (30, 760, .5),               # CANISTER
- 7: (6, 800, .48),               # BIFINHOS
- 5: (60, 950, .75),              # tagline
- 1: (-193, 1400, .4),            # tabua/calabresa
- 3: (10, 1090, .5),              # pack calabresa
- 8: (48, 1790, .85),             # logo
+ 6: (30, 835, .5),               # CANISTER
+ 7: (6, 875, .48),               # BIFINHOS
+ 5: (60, 1025, .75),             # tagline
+ 1: (-205, 1410, .46),            # tabua/calabresa (sangra na direita)
+ 3: (10, 1120, .5),              # pack calabresa
+ 8: (48, 1810, .85),             # logo
  14: group((-111, -93)), 15: group((75, 71)), 13: group((64, 154)), 16: group((85, 182)),
  11: group((108, 240)), 12: group((137, 253)), 17: group((100, 96)), 18: group((347, 129)), 19: group((63, 356)),
 }
