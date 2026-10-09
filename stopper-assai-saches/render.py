@@ -16,4 +16,4 @@ async def main():
 srv=subprocess.Popen([sys.executable,'-m','http.server','8765','--bind','127.0.0.1','--directory',str(D)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL); time.sleep(1)
 try: asyncio.run(main())
 finally: srv.terminate()
-subprocess.run(["ffmpeg","-y","-v","error","-framerate",str(FPS),"-i",str(OUT/"f%04d.png"),"-an","-c:v","libx264","-profile:v","high","-pix_fmt","yuv420p","-crf","16",str(D/"Stopper_Saches_V6_384x1920_15s.mp4")],check=True)
+subprocess.run(["ffmpeg","-y","-v","error","-framerate",str(FPS),"-i",str(OUT/"f%04d.png"),"-an","-c:v","libx264","-profile:v","high","-pix_fmt","yuv420p","-crf","16",str(D/"Stopper_Saches_V7_384x1920_15s.mp4")],check=True)
