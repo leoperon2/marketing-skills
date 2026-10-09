@@ -12,10 +12,6 @@ html,body{margin:0;background:#000}
 .pk{position:absolute;width:300px;filter:drop-shadow(0 18px 18px rgba(0,0,0,.6))}
 #c{left:22px;top:650px;width:296px}
 #g{left:44px;top:1120px;width:288px}
-.badge{z-index:5;position:absolute;width:104px;height:104px;border-radius:50%;background:#fff;color:#1a1a1a;font:400 30px/1.05 "Bebas Neue";text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 5px 12px rgba(0,0,0,.5);letter-spacing:.5px}
-.badge small{font:400 19px "Bebas Neue";color:#d6101c;letter-spacing:1px}
-#bc{left:270px;top:1010px}
-#bg{left:30px;top:1490px}
 #ben{top:1650px;font:900 22px/1.25 Nunito;color:#f3dc9a;text-shadow:0 3px 8px rgba(0,0,0,.8)}
 #ben b{color:#fff}
 #logo{left:36px;top:1768px;width:312px}
@@ -29,9 +25,7 @@ html,body{margin:0;background:#000}
  <div id="t3" class="a tl">PREMIUM</div>
  <div id="tag" class="a">MAIS SABOR PARA O SEU PET</div>
  <img id="c" class="pk" src="assets/saches_cao.png">
- <div id="bc" class="badge"><small>PARA CÃES</small>100 g</div>
  <img id="g" class="pk" src="assets/saches_gato.png">
- <div id="bg" class="badge"><small>PARA GATOS</small>85 g</div>
  <div id="ben" class="a"><b>Sem corantes</b><br>com vitaminas e minerais</div>
  <img id="logo" class="a" src="assets/logo_canister.png">
 </div>
@@ -51,11 +45,9 @@ window.setTime=function(t){
   // sachê cão
   p=prog(t,2.2,.9);let f=Math.sin(t*1.5)*7;
   set($('c'),cl(p*4),(1-outBack(p))*-380,(p>=1?f:0),1,-7+(1-p)*-25+(p>=1?Math.sin(t*1.5)*1.5:0));
-  p=prog(t,3.2,.45);set($('bc'),cl(p*3),0,(p>=1?f*.5:0),.2+.8*outBack(p),8);
   // sachê gato
   p=prog(t,4.2,.9);f=Math.sin(t*1.5+2)*7;
   set($('g'),cl(p*4),(1-outBack(p))*380,(p>=1?f:0),1,7+(1-p)*25+(p>=1?Math.sin(t*1.5+2)*1.5:0));
-  p=prog(t,5.2,.45);set($('bg'),cl(p*3),0,(p>=1?f*.5:0),.2+.8*outBack(p),-8);
   p=prog(t,6.5,.6);set($('ben'),p,0,(1-outCubic(p))*25);
   p=prog(t,7.2,.5);set($('logo'),cl(p*3),0,0,.6+.4*outBack(p));
   if(t>9){const k=1+.045*Math.max(0,Math.sin((t-9)*3.2));$('logo').style.transform+=` scale(${k})`}
@@ -83,7 +75,12 @@ function layout(){
   });
   const k=firstFs/132, img=document.querySelector('.e img');
   img.style.width=(24*k)+'px'; img.style.left='calc(50% - '+(14.5*k)+'px)'; img.style.top=(-21*k)+'px';
-  $('tag').style.top=(window.blockBottom+36)+'px';
+  const tg=$('tag'), pr=document.createElement('span');
+  pr.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;font:400 100px "Bebas Neue";letter-spacing:10px';
+  pr.textContent=tg.textContent; document.body.appendChild(pr);
+  const tw=pr.getBoundingClientRect().width-10; pr.remove();
+  const tf=100*BLOCK_W/tw; tg.style.fontSize=tf+'px'; tg.style.letterSpacing=(tf*.1)+'px'; tg.style.textIndent=(tf*.1)+'px';
+  tg.style.top=(window.blockBottom+30)+'px';
 }
 document.fonts.ready.then(()=>{layout();window.ready=true});
 </script></body></html>

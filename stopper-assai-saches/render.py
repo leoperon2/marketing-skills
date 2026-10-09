@@ -14,4 +14,4 @@ async def main():
             await pg.locator("#s").screenshot(path=str(OUT/f"f{i:04d}.png"))
         await b.close()
 asyncio.run(main())
-subprocess.run(["ffmpeg","-y","-v","error","-framerate",str(FPS),"-i",str(OUT/"f%04d.png"),"-an","-c:v","libx264","-profile:v","high","-pix_fmt","yuv420p","-crf","16",str(D/"Stopper_Saches_V2_384x1920_15s.mp4")],check=True)
+subprocess.run(["ffmpeg","-y","-v","error","-framerate",str(FPS),"-i",str(OUT/"f%04d.png"),"-an","-c:v","libx264","-profile:v","high","-pix_fmt","yuv420p","-crf","16",str(D/"Stopper_Saches_V3_384x1920_15s.mp4")],check=True)
