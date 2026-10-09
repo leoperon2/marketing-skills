@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mente do Pet · Roteiro e prompts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#F6F1EC; --surface:#FFFFFF; --ink:#241B19; --muted:#6B5D58; --line:#E2D8D0;
+  --red:#B3202B; --red-ink:#FFFFFF; --wood:#8A5A35; --ok:#2F7D4F;
+  --real-a:#D9B995; --real-b:#8A5A35;
+  --fant-a:#F2A23A; --fant-b:#2A8C8C;
+  --code-bg:#F1EAE3;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1B1514; --surface:#262020; --ink:#F4ECE6; --muted:#B9A9A1; --line:#3A302E;
+    --red:#D9414C; --red-ink:#FFFFFF; --ok:#5FBF86; --code-bg:#1F1919;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1B1514; --surface:#262020; --ink:#F4ECE6; --muted:#B9A9A1; --line:#3A302E;
+  --red:#D9414C; --red-ink:#FFFFFF; --ok:#5FBF86; --code-bg:#1F1919;
+}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 88px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5}
+h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;font-weight:700;margin:0;line-height:1.1}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 80px}
+
+/* cabeçalho */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0 12px;margin:0 -16px 20px;padding-left:16px;padding-right:16px}
+.top-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}
+h1{font-size:30px;letter-spacing:.2px}
+.tabs{display:flex;gap:8px}
+.tab{border:2px solid var(--ink);background:transparent;border-radius:999px;padding:7px 18px;font-weight:600}
+.tab[aria-selected="true"]{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.sub{margin:4px 0 0;color:var(--muted);font-size:15px}
+
+/* filmstrip */
+.strip-wrap{margin:0 0 6px}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:thin}
+.frame{flex:0 0 auto;width:46px;aspect-ratio:9/16;border-radius:6px;border:2px solid transparent;position:relative;padding:0;color:#fff;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:17px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.frame.real{background:linear-gradient(160deg,var(--real-a),var(--real-b))}
+.frame.fant{background:linear-gradient(160deg,var(--fant-a),var(--fant-b))}
+body[data-pet="cao"] .frame.fant{background:linear-gradient(160deg,#E0453A,#F5D9A8)}
+.frame.pdv{border-color:var(--ink)}
+.frame.done:after{content:"✓";position:absolute;top:2px;right:3px;font-size:13px;color:#fff;background:var(--ok);width:16px;height:16px;border-radius:50%;display:grid;place-items:center;text-shadow:none}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--muted);margin:0 0 14px}
+.legend i{display:inline-block;width:12px;height:18px;border-radius:3px;vertical-align:-4px;margin-right:6px}
+.legend .l-real{background:linear-gradient(160deg,var(--real-a),var(--real-b))}
+.legend .l-fant{background:linear-gradient(160deg,var(--fant-a),var(--fant-b))}
+.legend .l-pdv{border:2px solid var(--ink)}
+
+/* barra de ferramentas */
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 18px}
+.progress{flex:1 1 200px;min-width:180px}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>div{height:100%;background:var(--ok);width:0;transition:width .25s}
+.progress small{color:var(--muted);font-size:14px}
+.btn{border:1.5px solid var(--ink);background:var(--surface);border-radius:8px;padding:8px 14px;font-weight:500}
+.btn.primary{background:var(--red);border-color:var(--red);color:var(--red-ink)}
+.toggle{display:flex;align-items:center;gap:8px;font-size:15px;cursor:pointer}
+.toggle input{width:18px;height:18px;accent-color:var(--red)}
+
+/* blocos fixos */
+details.fixed{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin:0 0 22px}
+details.fixed summary{padding:12px 16px;font-weight:600;cursor:pointer}
+.fixed-body{padding:0 16px 16px;display:grid;gap:12px}
+.fx{background:var(--code-bg);border-radius:8px;padding:10px 12px}
+.fx b{display:block;font-size:14px;margin-bottom:2px}
+.fx code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;word-break:break-word;display:block;margin-bottom:8px}
+
+/* cenas */
+.scenes{display:grid;gap:14px}
+.scene{display:grid;grid-template-columns:96px 1fr;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.scene.done{border-color:var(--ok)}
+.thumb{aspect-ratio:9/16;border-radius:8px;display:flex;flex-direction:column;justify-content:space-between;padding:8px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.thumb.real{background:linear-gradient(160deg,var(--real-a),var(--real-b))}
+.thumb.fant{background:linear-gradient(160deg,var(--fant-a),var(--fant-b))}
+body[data-pet="cao"] .thumb.fant{background:linear-gradient(160deg,#E0453A,#F5D9A8)}
+.thumb .n{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:38px;line-height:1}
+.thumb .t{font-size:13px;font-weight:600}
+.head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.head h3{font-size:24px}
+.badge{font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;border:1.5px solid var(--ink)}
+.badge.pdv{background:var(--ink);color:var(--bg)}
+.desc{margin:6px 0 10px;color:var(--ink)}
+.prompt{background:var(--code-bg);border-radius:8px;padding:10px 12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.5;word-break:break-word;max-height:160px;overflow:auto}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.copied{color:var(--ok);font-weight:600;font-size:14px}
+.check{margin-left:auto}
+
+.notes{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.notes h2{font-size:24px;margin-bottom:8px}
+.notes ul{margin:0;padding-left:20px;display:grid;gap:6px}
+
+@media (max-width:560px){
+  h1{font-size:26px}
+  .scene{grid-template-columns:1fr}
+  .thumb{aspect-ratio:auto;flex-direction:row;align-items:center;padding:8px 12px}
+  .thumb .n{font-size:28px}
+}
+@media (prefers-reduced-motion:reduce){.bar>div{transition:none}}
+</style>
+</head>
+<body data-pet="gato">
+<div class="wrap">
+
+  <header class="top">
+    <div class="top-row">
+      <div>
+        <h1>Mente do Pet</h1>
+        <p class="sub" id="sub"></p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Escolher vídeo">
+        <button class="tab" role="tab" id="tab-gato" aria-selected="true" data-pet="gato">Gato</button>
+        <button class="tab" role="tab" id="tab-cao" aria-selected="false" data-pet="cao">Cão</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="strip-wrap">
+    <div class="strip" id="strip" aria-label="Linha do tempo das cenas"></div>
+    <div class="legend">
+      <span><i class="l-real"></i>Vida real</span>
+      <span><i class="l-fant"></i>Mundo de fantasia</span>
+      <span><i class="l-pdv"></i>Entra no corte de PDV (15s)</span>
+    </div>
+  </div>
+
+  <div class="tools">
+    <div class="progress">
+      <div class="bar"><div id="barfill"></div></div>
+      <small id="progtext"></small>
+    </div>
+    <label class="toggle"><input type="checkbox" id="onlyPdv"> Mostrar só as cenas do PDV</label>
+    <button class="btn primary" id="copyAll">Copiar todos os prompts</button>
+  </div>
+
+  <details class="fixed">
+    <summary>Blocos fixos de estilo e personagem</summary>
+    <div class="fixed-body" id="fixedBody"></div>
+  </details>
+
+  <main class="scenes" id="scenes"></main>
+
+  <section class="notes">
+    <h2>Observações</h2>
+    <ul>
+      <li><b>Packshot e logo:</b> geradores de imagem erram texto. Os prompts pedem espaço vazio e "no text, no logo". A embalagem real e a marca Canister entram na edição.</li>
+      <li><b>Consistência do pet:</b> use a primeira imagem aprovada como referência nas cenas seguintes e mantenha o texto do personagem idêntico.</li>
+      <li><b>Animação:</b> as imagens são quadros-chave. Para virar vídeo, use um gerador de imagem para vídeo, cena a cena, e monte na edição com o beat da música.</li>
+      <li><b>PDV sem som:</b> no corte de 15s, troque o silêncio de meio segundo por um flash ou freeze visual e antecipe o packshot.</li>
+      <li><b>Assinatura:</b> a embalagem traz "Seu Pet Merece!", "Sem corantes" e "Vitaminas & Minerais". Não acrescente outros apelos.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+(function(){
+  var STYLE = {
+    real: "photorealistic, cinematic commercial photography, soft natural window light, shallow depth of field, warm cozy tones, 85mm lens, sharp focus on the pet, highly detailed fur, vertical 9:16, no text, no logo, no watermark",
+    fant: "stylized 3D animation, vibrant saturated colors, glossy appetizing textures, whimsical surreal fantasy world, volumetric light, magical sparkles, cinematic, ultra detailed, vertical 9:16, no text, no logo, no watermark"
+  };
+
+  var PETS = {
+    gato: {
+      sub: "Vídeo 1 · Sachê Carne ao Molho · 30s para redes, 15s para PDV",
+      char: "tuxedo cat, black and white, white chest and muzzle, black ears, yellow-green eyes, fluffy fur",
+      scenes: [
+        {t:"0-3s", pdv:true, s:"real", title:"De bobeira", d:"Gato sentado, imóvel, quase entediado, observando. Luz natural, fundo desfocado de sala aconchegante.", p:"{P} sitting calmly on a rustic wooden table, relaxed bored expression, looking slightly off camera, blurred cozy kitchen background, wide medium shot"},
+        {t:"3-6s", pdv:false, s:"real", title:"O sachê", d:"Mãos da tutora (sem rosto) espremendo o molho com pedaços de carne na tigela de madeira.", p:"close-up of a woman's hands squeezing a pouch, rich brown meat chunks in glossy sauce falling into a dark wooden bowl on a rustic wooden table, motion blur on the sauce, cat's ears blurred in the background"},
+        {t:"6-8s", pdv:false, s:"real", title:"Primeira mordida", d:"Close no focinho, primeira mordida.", p:"{P}, extreme close-up of the muzzle taking a first bite of a meat chunk in sauce from a wooden bowl, whiskers sharp, sauce on the chin"},
+        {t:"8-9s", pdv:true, s:"real", title:"O espanto", d:"Congelado, olhos arregalados, comida na boca. Meio segundo de silêncio total (nas redes).", p:"{P}, frozen mid-chew, eyes wide open in shock, pupils dilated, front close-up, wooden bowl in the foreground, dramatic stillness"},
+        {t:"9-10s", pdv:true, s:"fant", title:"O portal", d:"Super close na pupila, com o mundo de fantasia refletido. O som da mordida vira o primeiro beat.", p:"extreme macro of a cat's yellow-green eye, the dilated black pupil reflecting a magical world of rivers of glossy brown sauce and floating meat clouds, glowing"},
+        {t:"10-14s", pdv:true, s:"fant", title:"Mundo de molho", d:"Plano aéreo da paisagem feita de molho e carne.", p:"aerial view of a fantasy landscape made of food: waterfalls and rivers of glossy brown meat sauce, floating clouds shaped like tender meat chunks, warm caramel and deep red palette with a teal sky for contrast, magical sparkles"},
+        {t:"14-17s", pdv:false, s:"fant", title:"O primeiro passo", d:"Gatinho minúsculo no meio da paisagem dá o primeiro passo de dança e os clones começam a surgir.", p:"{P}, small cat standing on a rock beside a sauce river, striking a dance pose, a few identical clones appearing around it, low angle, fantasy food landscape"},
+        {t:"17-20s", pdv:true, s:"fant", title:"O flash mob", d:"Plano zenital, dezenas de clones em formação sincronizada.", p:"top-down view of dozens of identical tuxedo cats dancing in perfectly synchronized circular formation on a ground of glossy sauce and tender meat chunks, flash mob choreography, symmetrical"},
+        {t:"20-23s", pdv:false, s:"fant", title:"Patinhas no beat", d:"Detalhe das patas e dos respingos de molho.", p:"low angle close-up of cat paws stepping in sync, splashes of glossy brown sauce flying up with each step, many identical cats blurred in the background"},
+        {t:"23s", pdv:true, s:"fant", title:"O drop", d:"Todos pulam ao mesmo tempo, em câmera lenta.", p:"dozens of identical tuxedo cats jumping in the air at the same instant, slow motion, arcs of glossy sauce suspended around them, epic wide frontal shot, golden backlight"},
+        {t:"23-27s", pdv:true, s:"real", title:"Volta à realidade", d:"Close do rosto, olhos semicerrados, satisfação total. Plano emocional do vídeo.", p:"{P}, close-up face, eyes half-closed in deep satisfaction, a little sauce on the muzzle, gentle smile-like expression, soft warm light, wooden bowl blurred in the foreground"},
+        {t:"27-30s", pdv:true, s:"real", title:"Assinatura", d:"Cena limpa com espaço para o packshot do sachê e a marca Canister.", p:"rustic wooden table with a dark wooden bowl filled with meat chunks in sauce, tuxedo cat sitting happily behind it, dark moody background, large empty space on the left for product placement"}
+      ]
+    },
+    cao: {
+      sub: "Vídeo 2 · Sachê Almôndega ao Pomodoro · 30s para redes, 15s para PDV · o cão começa agitado e congela na mordida",
+      char: "border collie, blue merle and white coat, amber eyes, white chest and muzzle, fluffy ears",
+      scenes: [
+        {t:"0-3s", pdv:true, s:"real", title:"Agitação", d:"Cão balançando o corpo todo, ansioso, com o rabo em movimento.", p:"{P}, excited, tail blurred from wagging, front paws on a rustic wooden table, tongue out, looking at the camera, blurred cozy kitchen background, motion blur"},
+        {t:"3-6s", pdv:false, s:"real", title:"O sachê", d:"Mãos do tutor (sem rosto) espremendo almôndegas com molho de tomate na tigela de madeira.", p:"close-up of a man's hands squeezing a pouch, small meatballs and bright red tomato sauce falling into a dark wooden bowl on a rustic wooden table, dog's nose blurred in the foreground"},
+        {t:"6-8s", pdv:false, s:"real", title:"Primeira mordida", d:"Close no focinho, primeira mordida na almôndega.", p:"{P}, close-up of the muzzle taking a first bite of a meatball in tomato sauce, red sauce on the nose, wooden bowl in foreground"},
+        {t:"8-9s", pdv:true, s:"real", title:"Congela", d:"A agitação para de uma vez. Orelhas em pé, olhos arregalados.", p:"{P}, frozen mid-chew, ears shot straight up, eyes wide in shock, sudden stillness, front close-up, tomato sauce on the muzzle"},
+        {t:"9-10s", pdv:true, s:"fant", title:"O portal", d:"Super close na pupila, com o mundo de fantasia refletido.", p:"extreme macro of a dog's amber eye, dilated pupil reflecting a fantasy world of tomato sauce rivers and giant meatballs, glowing"},
+        {t:"10-14s", pdv:true, s:"fant", title:"A cantina fantástica", d:"Plano aéreo: rios de molho de tomate, almôndegas gigantes rolando como bolas de boliche, folhas de salsa flutuando.", p:"aerial view of a fantasy landscape: rivers and waterfalls of bright red tomato sauce, giant meatballs rolling like bowling balls, floating fresh parsley leaves, warm red and orange palette with a soft cream sky, magical sparkles"},
+        {t:"14-17s", pdv:false, s:"fant", title:"O primeiro passo", d:"Cãozinho em cima de uma almôndega gigante dá o primeiro passo de dança e os clones surgem.", p:"{P}, small dog standing on top of a giant meatball, striking a dance pose, a few identical clones appearing around, tomato sauce river below, low angle"},
+        {t:"17-20s", pdv:true, s:"fant", title:"O flash mob", d:"Plano zenital, dezenas de clones em formação sincronizada, com almôndegas como cenário.", p:"top-down view of dozens of identical border collies dancing in synchronized formation on glossy tomato sauce ground, meatballs scattered like set pieces, flash mob choreography, symmetrical"},
+        {t:"20-23s", pdv:false, s:"fant", title:"Patas no beat", d:"Detalhe das patas e dos respingos de molho.", p:"low angle close-up of dog paws stepping in sync, splashes of red tomato sauce flying up, many identical dogs blurred in the background"},
+        {t:"23s", pdv:true, s:"fant", title:"O drop", d:"Todos pulam ao mesmo tempo, em câmera lenta, com almôndegas voando.", p:"dozens of identical border collies jumping in the air at the same instant, slow motion, arcs of tomato sauce and flying meatballs suspended around them, epic wide frontal shot, golden backlight"},
+        {t:"23-27s", pdv:true, s:"real", title:"Volta à realidade", d:"Close do rosto, língua de fora, olhos serenos, satisfação total.", p:"{P}, close-up face, tongue out, eyes soft and happy, tomato sauce on the nose, warm light, wooden bowl blurred in the foreground"},
+        {t:"27-30s", pdv:true, s:"real", title:"Assinatura", d:"Cena limpa com espaço para o packshot do sachê e a marca Canister.", p:"rustic wooden table with a dark wooden bowl of meatballs in tomato sauce, border collie sitting happily behind it, dark moody background, large empty space on the left for product placement"}
+      ]
+    }
+  };
+
+  var KEY = "mente-pet-feitas-v1";
+  var state = {pet:"gato", onlyPdv:false, done:{gato:{}, cao:{}}};
+
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || "null"); if(saved && saved.gato && saved.cao){ state.done = saved; } } catch(e){}
+  function persist(){ try { localStorage.setItem(KEY, JSON.stringify(state.done)); } catch(e){} }
+
+  function fullPrompt(pet, i){
+    var sc = PETS[pet].scenes[i];
+    var body = sc.p.replace("{P}", PETS[pet].char);
+    return body + ", " + STYLE[sc.s];
+  }
+
+  function copyText(text, onOk){
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand("copy"); } catch(e){}
+      document.body.removeChild(ta); if(ok) onOk();
+    }
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(onOk, fallback);
+      } else { fallback(); }
+    } catch(e){ fallback(); }
+  }
+
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!=null) e.innerHTML=html; return e; }
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function render(){
+    var pet = state.pet, data = PETS[pet], done = state.done[pet];
+    document.body.setAttribute("data-pet", pet);
+    document.getElementById("sub").textContent = data.sub;
+    ["gato","cao"].forEach(function(p){ document.getElementById("tab-"+p).setAttribute("aria-selected", String(p===pet)); });
+
+    // filmstrip
+    var strip = document.getElementById("strip"); strip.innerHTML = "";
+    data.scenes.forEach(function(sc,i){
+      var b = el("button","frame "+sc.s+(sc.pdv?" pdv":"")+(done[i]?" done":""), String(i+1));
+      b.setAttribute("aria-label","Ir para a cena "+(i+1)+": "+sc.title);
+      b.addEventListener("click", function(){
+        var target = document.getElementById("cena-"+i);
+        if(target){ if(target.style.display==="none"){ state.onlyPdv=false; document.getElementById("onlyPdv").checked=false; render(); target=document.getElementById("cena-"+i);} target.scrollIntoView({behavior:"smooth",block:"start"}); }
+      });
+      strip.appendChild(b);
+    });
+
+    // progresso
+    var n = Object.keys(done).filter(function(k){return done[k];}).length;
+    document.getElementById("barfill").style.width = (n/data.scenes.length*100)+"%";
+    document.getElementById("progtext").textContent = n+" de "+data.scenes.length+" imagens geradas";
+
+    // blocos fixos
+    var fb = document.getElementById("fixedBody"); fb.innerHTML = "";
+    [["Estilo real (cenas de vida real)", STYLE.real],["Estilo fantasia (mundo da mente)", STYLE.fant],["Personagem ("+(pet==="gato"?"gato":"cão")+")", data.char]].forEach(function(x){
+      var box = el("div","fx"); box.innerHTML = "<b>"+x[0]+"</b><code>"+esc(x[1])+"</code>";
+      var c = el("button","btn","Copiar"); 
+      c.addEventListener("click", function(){ copyText(x[1], function(){ c.textContent="Copiado"; setTimeout(function(){c.textContent="Copiar";},1400); }); });
+      box.appendChild(c); fb.appendChild(box);
+    });
+
+    // cenas
+    var wrap = document.getElementById("scenes"); wrap.innerHTML = "";
+    data.scenes.forEach(function(sc,i){
+      var card = el("article","scene"+(done[i]?" done":"")); card.id = "cena-"+i;
+      if(state.onlyPdv && !sc.pdv) card.style.display = "none";
+
+      var th = el("div","thumb "+sc.s, "<span class='n'>"+(i+1)+"</span><span class='t'>"+sc.t+"</span>");
+      var main = el("div");
+      var head = el("div","head");
+      head.appendChild(el("h3",null,esc(sc.title)));
+      head.appendChild(el("span","badge", sc.s==="real" ? "Vida real" : "Fantasia"));
+      if(sc.pdv) head.appendChild(el("span","badge pdv","PDV"));
+      main.appendChild(head);
+      main.appendChild(el("p","desc",esc(sc.d)));
+      var pr = el("div","prompt", esc(fullPrompt(pet,i)));
+      main.appendChild(pr);
+
+      var act = el("div","actions");
+      var cp = el("button","btn primary","Copiar prompt");
+      var msg = el("span","copied","");
+      cp.addEventListener("click", function(){ copyText(fullPrompt(pet,i), function(){ msg.textContent="Copiado"; setTimeout(function(){msg.textContent="";},1400); }); });
+      act.appendChild(cp); act.appendChild(msg);
+
+      var lab = el("label","toggle check");
+      var cb = document.createElement("input"); cb.type="checkbox"; cb.checked = !!done[i];
+      cb.addEventListener("change", function(){ state.done[pet][i] = cb.checked; persist(); render(); });
+      lab.appendChild(cb); lab.appendChild(document.createTextNode("Imagem gerada"));
+      act.appendChild(lab);
+      main.appendChild(act);
+
+      card.appendChild(th); card.appendChild(main); wrap.appendChild(card);
+    });
+  }
+
+  document.querySelectorAll(".tab").forEach(function(t){
+    t.addEventListener("click", function(){ state.pet = t.getAttribute("data-pet"); render(); window.scrollTo({top:0}); });
+  });
+  document.getElementById("onlyPdv").addEventListener("change", function(e){ state.onlyPdv = e.target.checked; render(); });
+  document.getElementById("copyAll").addEventListener("click", function(){
+    var btn = this, pet = state.pet, out = [];
+    PETS[pet].scenes.forEach(function(sc,i){
+      if(state.onlyPdv && !sc.pdv) return;
+      out.push("CENA "+(i+1)+" - "+sc.title+" ("+sc.t+")\n"+fullPrompt(pet,i));
+    });
+    copyText(out.join("\n\n"), function(){ var old=btn.textContent; btn.textContent="Copiado"; setTimeout(function(){btn.textContent=old;},1500); });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
