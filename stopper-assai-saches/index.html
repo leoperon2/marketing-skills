@@ -69,7 +69,6 @@ const DUST=[];for(let i=0;i<16;i++){const r=(n)=>{const x=Math.sin(i*97.1+n*13.7
 function buildFx(){
   const d=$('dust'),st=$('stars');
   DUST.forEach(p=>{const e=document.createElement('div');e.className='dust';e.style.width=e.style.height=p.sz+'px';d.appendChild(e);p.el=e});
-  STARS.forEach(p=>{const e=document.createElement('div');e.className='star';e.style.left=p[0]+'px';e.style.top=p[1]+'px';st.appendChild(e);p.el=e});
 }
 function fx(t){
   // background: slow push-in + drift, plus rising warm dust
@@ -86,9 +85,6 @@ function fx(t){
     const ph=((t-t0)%4+4)%4/1.2, X=(t<t0?100:ph<1?100-85*ph:100);
     document.querySelector('#'+id+' .psh').style.backgroundPosition=X+'% 0';
   });
-  // twinkling stars
-  STARS.forEach(p=>{const q=((t-p[3])%2.6+2.6)%2.6/2.6, a=t<1.6?0:Math.pow(Math.max(0,Math.sin(q*Math.PI)),3);
-    p.el.style.opacity=a; p.el.style.transform=`scale(${p[2]*(.3+.9*a)}) rotate(${q*40}deg)`});
 }
 
 const BLOCK_W=332, TRACK=.025, GAP_K=.245, TOP=222;
