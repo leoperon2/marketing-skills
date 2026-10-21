@@ -176,7 +176,7 @@ function mais(n) { // arredonda para baixo, sempre verdadeiro
   return "mais de " + Math.floor(n / f) * f;
 }
 function sugerido(l) {
-  const h = hash(l.key), p = (a) => a[h % a.length], q = (a, m) => a[(h >> m) % a.length];
+  const h = hash(l.key), p = (a) => a[h % a.length], q = (a, m) => a[(h >>> m) % a.length];
   const nota = l.nota >= 4.95 ? "nota 5" : "nota " + fmtNota(l.nota), n = mais(l.aval);
   const abre = p([`Oi, equipe da ${l.nome}, tudo bem?`, `Olá, equipe da ${l.nome}! Tudo bem?`, `Oi, pessoal da ${l.nome}, tudo bem?`]);
   const elogio = q([
@@ -184,9 +184,9 @@ function sugerido(l) {
     `Reparei na ${nota} de vocês no Google, com ${n} avaliações. Isso diz muito do trabalho de vocês.`,
     `${nota[0].toUpperCase() + nota.slice(1)} no Google com ${n} avaliações é um resultado e tanto, parabéns.`], 3);
   const site = q([
-    `Percebi que ainda não têm um site e, por conta própria, montei uma proposta de site com as fotos e as informações do perfil de vocês.`,
-    `Notei que vocês ainda não têm site, então montei por conta própria uma proposta com as fotos e as informações do perfil de vocês.`,
-    `Vi que ainda não existe um site de vocês e, por iniciativa própria, montei uma proposta usando as fotos e as informações do perfil.`], 6);
+    `Eu crio sites para negócios locais e percebi que vocês ainda não têm um, então montei por conta própria uma proposta com as fotos e as informações do perfil de vocês.`,
+    `Trabalho criando sites para negócios locais e notei que vocês ainda não têm site. Por iniciativa própria, montei uma proposta usando as fotos e as informações do perfil de vocês.`,
+    `Eu faço sites para negócios locais e vi que ainda não existe um de vocês, então montei por conta própria uma proposta com as fotos e as informações do perfil.`], 6);
   const pergunta = q([`Posso te mandar o link para você dar uma olhada? Sem compromisso nenhum.`, `Posso te mandar o link pra você dar uma olhada? Sem compromisso nenhum.`], 9);
   return [abre, elogio, site, pergunta].join(" ");
 }
