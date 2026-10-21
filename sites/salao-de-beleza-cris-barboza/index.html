@@ -189,6 +189,26 @@
   @media (max-width: 820px) { .seal { width: 96px; height: 96px; left: -6px; bottom: -26px; } .seal b { font-size: 28px; } .seal span { font-size: 9px; } }
   h1,h2,h3{font-weight:500}
   </style>
+<!--vary:start--><link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet"><style>
+  /* variação: font=3,accent=6,hero=0,frame=4,header=0,gallery=2,heading=3,shape=0,proof=2,stripe=1,info=2,about=3,order=0,anim=0 */
+  :root { --font-display: "Italiana", Georgia, serif; } h1, h2, h3, .brand, .big, .svc b, .pull, .score strong, .seal b, footer strong { font-weight: 400 !important; }
+  :root { --accent: #2c7a3f; --accent-ink: #ffffff; --salmon: #e3c76b; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #58c773; --accent-ink: #0c150e; --salmon: #b39a40; } } :root[data-theme="dark"] { --accent: #58c773; --accent-ink: #0c150e; --salmon: #b39a40; }
+  @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
+  :root { --hrad: 0px; }
+  .hero > figure > img:first-child { border: 0; box-shadow: -14px 14px 0 var(--accent); }
+  
+  .mosaic { gap: 12px; grid-auto-rows: 220px; } .tile { border-radius: 18px; } @media (max-width: 820px) { .mosaic { gap: 8px; grid-auto-rows: 176px; } }
+  h2::before { content: ''; display: block; width: 56px; height: 6px; background: var(--accent); margin-bottom: 14px; } .final h2::before { margin-inline: auto; }
+  .proof { background: var(--accent); color: var(--accent-ink); } .proof .eyebrow, blockquote cite { color: var(--accent-ink); opacity: .85; } .fill { background: var(--accent-ink); } .reply { color: var(--accent-ink); }
+  .stripe { height: 6px; }
+  .info:not(.single) { grid-template-columns: 1fr; max-width: 680px; margin-inline: auto; }
+  .about:not(.one) { grid-template-columns: 1fr; } .about > .pull { order: -1; text-align: center; border: 0; padding: 0 0 8px; font-size: clamp(26px, 4vw, 40px); max-width: 24ch; margin-inline: auto; }
+</style><!--vary:end-->
+
+
+
+
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">

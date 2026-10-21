@@ -189,6 +189,29 @@
   @media (max-width: 820px) { .seal { width: 96px; height: 96px; left: -6px; bottom: -26px; } .seal b { font-size: 28px; } .seal span { font-size: 9px; } }
   h1,h2,h3{letter-spacing:.02em} .hero h1{font-size:clamp(46px,8vw,92px)}
   </style>
+<!--vary:start--><link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet"><style>
+  /* variação: font=3,accent=4,hero=4,frame=2,header=1,gallery=0,heading=1,shape=2,proof=0,stripe=1,info=1,about=1,order=0,anim=3 */
+  :root { --font-display: "Rye", Georgia, serif; } h1, h2, h3, .brand, .big, .svc b, .pull, .score strong, .seal b, footer strong { font-weight: 400 !important; }
+  :root { --accent: #c2570c; --accent-ink: #ffffff; --salmon: #e9d27a; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #f2873a; --accent-ink: #1a0f06; --salmon: #b79a3a; } } :root[data-theme="dark"] { --accent: #f2873a; --accent-ink: #1a0f06; --salmon: #b79a3a; }
+  @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
+  :root { --hrad: 0px; }
+  .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
+  .hero > figure > img:first-child { border: 10px solid #fff; border-bottom-width: 38px; box-shadow: 0 14px 30px -10px rgba(0,0,0,.4); transform: rotate(-2.2deg); }
+  .hero { grid-template-columns: 1fr; gap: 56px; padding-top: 28px; } .hero > figure { order: -1; margin-bottom: 8px; }
+ .hero > figure > img:first-child { aspect-ratio: 21 / 9; } @media (max-width: 820px) { .hero > figure > img:first-child { aspect-ratio: 4 / 3; } }
+ .hero > div:first-child { max-width: 760px; } .hero h1 { font-size: clamp(36px, 6vw, 62px); }
+  header.bar { background: var(--surface); color: var(--ink); border-bottom: 2px solid var(--line); } body::before { background: var(--surface); }
+  h2 { text-transform: uppercase; letter-spacing: .05em; font-size: clamp(26px, 4vw, 36px); } h2::after { content: ''; display: block; width: 64px; height: 4px; background: var(--accent); margin-top: 14px; }
+  .stripe { height: 6px; }
+  .card { border: 0; box-shadow: 0 14px 34px -16px rgba(0,0,0,.35); }
+  .about:not(.one) > .pull { order: -1; }
+  .js .rv { transform: translateY(72px); filter: blur(8px); transition: opacity .8s ease, transform 1s cubic-bezier(.2, .7, .2, 1), filter .8s; } .js .rv.in { filter: none; }
+</style><!--vary:end-->
+
+
+
+
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">

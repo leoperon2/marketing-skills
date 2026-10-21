@@ -189,6 +189,26 @@
   @media (max-width: 820px) { .seal { width: 96px; height: 96px; left: -6px; bottom: -26px; } .seal b { font-size: 28px; } .seal span { font-size: 9px; } }
   h1,h2,h3{letter-spacing:.02em} .hero h1{font-size:clamp(46px,8vw,92px)}
   </style>
+<!--vary:start--><link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet"><style>
+  /* variação: font=3,accent=3,hero=0,frame=4,header=0,gallery=3,heading=0,shape=0,proof=3,stripe=1,info=2,about=2,order=1,anim=0 */
+  :root { --font-display: "Rye", Georgia, serif; } h1, h2, h3, .brand, .big, .svc b, .pull, .score strong, .seal b, footer strong { font-weight: 400 !important; }
+  :root { --accent: #3b4fc4; --accent-ink: #ffffff; --salmon: #f2c14e; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #8a9bff; --accent-ink: #0e1022; --salmon: #b8922e; } } :root[data-theme="dark"] { --accent: #8a9bff; --accent-ink: #0e1022; --salmon: #b8922e; }
+  @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
+  :root { --hrad: 0px; }
+  .hero > figure > img:first-child { border: 0; box-shadow: -14px 14px 0 var(--accent); }
+  
+  .mosaic { gap: 18px; } .tile { outline: 5px solid var(--surface); outline-offset: -5px; box-shadow: 0 6px 0 var(--salmon); } @media (max-width: 820px) { .mosaic { gap: 12px; } }
+  .quotes { grid-template-columns: 1fr; max-width: 760px; } blockquote { border: 0; border-left: 5px solid var(--salmon); padding: 6px 0 6px 22px; } blockquote p { font-size: 19px; }
+  .stripe { height: 6px; }
+  .info:not(.single) { grid-template-columns: 1fr; max-width: 680px; margin-inline: auto; }
+  .services { grid-template-columns: 1fr; } .svc { min-height: 0; flex-direction: row; align-items: center; border-top: 1px solid var(--line); border-left: 5px solid var(--accent); }
+  main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
+</style><!--vary:end-->
+
+
+
+
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">

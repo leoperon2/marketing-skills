@@ -189,6 +189,27 @@
   @media (max-width: 820px) { .seal { width: 96px; height: 96px; left: -6px; bottom: -26px; } .seal b { font-size: 28px; } .seal span { font-size: 9px; } }
   .hero h1{font-size:clamp(36px,6.4vw,66px)}
   </style>
+<!--vary:start--><style>
+  /* variação: font=0,accent=0,hero=4,frame=2,header=0,gallery=2,heading=3,shape=1,proof=3,stripe=0,info=1,about=1,order=1,anim=2 */
+  @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
+  :root { --hrad: 0px; }
+  .btn { border-radius: 999px; } .card, .svc, blockquote { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }
+  .hero > figure > img:first-child { border: 10px solid #fff; border-bottom-width: 38px; box-shadow: 0 14px 30px -10px rgba(0,0,0,.4); transform: rotate(-2.2deg); }
+  .hero { grid-template-columns: 1fr; gap: 56px; padding-top: 28px; } .hero > figure { order: -1; margin-bottom: 8px; }
+ .hero > figure > img:first-child { aspect-ratio: 21 / 9; } @media (max-width: 820px) { .hero > figure > img:first-child { aspect-ratio: 4 / 3; } }
+ .hero > div:first-child { max-width: 760px; } .hero h1 { font-size: clamp(36px, 6vw, 62px); }
+  .mosaic { gap: 12px; grid-auto-rows: 220px; } .tile { border-radius: 18px; } @media (max-width: 820px) { .mosaic { gap: 8px; grid-auto-rows: 176px; } }
+  h2::before { content: ''; display: block; width: 56px; height: 6px; background: var(--accent); margin-bottom: 14px; } .final h2::before { margin-inline: auto; }
+  .quotes { grid-template-columns: 1fr; max-width: 760px; } blockquote { border: 0; border-left: 5px solid var(--salmon); padding: 6px 0 6px 22px; } blockquote p { font-size: 19px; }
+  .card { border: 0; box-shadow: 0 14px 34px -16px rgba(0,0,0,.35); }
+  .about:not(.one) > .pull { order: -1; }
+  main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
+  html { overflow-x: clip; } body { overflow-x: clip; } .js .rv { transform: translateX(calc(var(--dir, -1) * 48px)); } .js .rv:nth-child(even) { --dir: 1; }
+</style><!--vary:end-->
+
+
+
+
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">

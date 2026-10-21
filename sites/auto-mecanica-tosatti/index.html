@@ -189,6 +189,33 @@
   @media (max-width: 820px) { .seal { width: 96px; height: 96px; left: -6px; bottom: -26px; } .seal b { font-size: 28px; } .seal span { font-size: 9px; } }
   h1,h2,h3{text-transform:uppercase;letter-spacing:.015em} body{font-size:18px}
   </style>
+<!--vary:start--><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"><style>
+  /* variação: font=2,accent=5,hero=2,frame=0,header=1,gallery=0,heading=3,shape=2,proof=1,stripe=0,info=1,about=0,order=1,anim=1 */
+  :root { --font-display: "Bebas Neue", Impact, sans-serif; } h1, h2, h3, .brand, .big, .svc b, .pull, .score strong, .seal b, footer strong { font-weight: 400 !important; }
+  :root { --accent: #b0287d; --accent-ink: #ffffff; --salmon: #f0b6d6; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #ee6fba; --accent-ink: #1c0d16; --salmon: #a86190; } } :root[data-theme="dark"] { --accent: #ee6fba; --accent-ink: #1c0d16; --salmon: #a86190; }
+  @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
+  :root { --hrad: 0px; }
+  .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
+  .hero { position: relative; display: block; min-height: clamp(500px, 62vw, 640px); padding: 0; margin-top: 28px; }
+ .hero > figure { position: absolute; inset: 0; margin: 0; border-radius: var(--hrad); }
+ .hero > figure > img:first-child { width: 100%; height: 100%; aspect-ratio: auto; border:0; box-shadow:none; outline:0; transform:none; border-radius: var(--hrad); filter: brightness(.5) saturate(1.1); }
+ .hero > div:first-child { position: relative; z-index: 2; min-height: inherit; max-width: 640px; padding: clamp(28px, 6vw, 64px); display: flex; flex-direction: column; justify-content: flex-end; color: #fff; }
+ .hero h1 { color: #fff; } .hero .eyebrow, .hero .lede, .hero .score { color: rgba(255,255,255,.88); } .hero .score strong { color: #fff; } .hero .stars { color: var(--salmon); }
+ .hero .btn.ghost { color: #fff; border-color: #fff; }
+ .hero img.logo-stamp, .hero .seal { left: auto; right: 28px; bottom: -30px; }
+ @media (max-width: 820px) { .hero { min-height: 540px; } .hero img.logo-stamp, .hero .seal { right: 14px; } }
+  header.bar { background: var(--surface); color: var(--ink); border-bottom: 2px solid var(--line); } body::before { background: var(--surface); }
+  h2::before { content: ''; display: block; width: 56px; height: 6px; background: var(--accent); margin-bottom: 14px; } .final h2::before { margin-inline: auto; }
+  .proof { background: var(--surface); color: var(--ink); border-block: 1px solid var(--line); } .proof .eyebrow, blockquote cite { color: var(--accent); } .fill { background: var(--accent); } .track { background: var(--line); } blockquote { border-color: var(--line); background: var(--bg); } .reply { color: var(--ink-soft); border-color: var(--line); }
+  .card { border: 0; box-shadow: 0 14px 34px -16px rgba(0,0,0,.35); }
+  main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
+  .js .rv { transform: scale(.92); }
+</style><!--vary:end-->
+
+
+
+
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">

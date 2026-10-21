@@ -583,3 +583,4 @@ if __name__ == "__main__":
         manifest.append(m)
         print(f'{m["slug"]:46s} {m["kind"]:7s} hero={int(m["hero"])} gal={m["gallery"]} q={m["quotes"]} cards={m["cards"]} hrs={int(m["hours"])} cta={m["cta"]}')
     json.dump(manifest, open(os.path.join(HERE, "manifest.json" if not want else "manifest.partial.json"), "w"), ensure_ascii=False, indent=1)
+    import vary; vary.run(want or None)  # variação de layout por ramo (idempotente)

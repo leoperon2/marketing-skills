@@ -189,6 +189,28 @@
   @media (max-width: 820px) { .seal { width: 96px; height: 96px; left: -6px; bottom: -26px; } .seal b { font-size: 28px; } .seal span { font-size: 9px; } }
   h1,h2,h3{font-weight:500}
   </style>
+<!--vary:start--><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+  /* variação: font=2,accent=6,hero=5,frame=1,header=2,gallery=0,heading=2,shape=0,proof=2,stripe=1,info=2,about=2,order=1,anim=1 */
+  :root { --font-display: "DM Serif Display", Georgia, serif; } h1, h2, h3, .brand, .big, .svc b, .pull, .score strong, .seal b, footer strong { font-weight: 400 !important; }
+  :root { --accent: #2c7a3f; --accent-ink: #ffffff; --salmon: #e3c76b; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #58c773; --accent-ink: #0c150e; --salmon: #b39a40; } } :root[data-theme="dark"] { --accent: #58c773; --accent-ink: #0c150e; --salmon: #b39a40; }
+  @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
+  :root { --hrad: 0px; }
+  .hero > figure > img:first-child { border: 0; border-radius: 22px; box-shadow: 0 22px 44px -18px rgba(0,0,0,.45); }
+  
+  header.bar { background: var(--accent); color: var(--accent-ink); } body::before { background: var(--accent); } .bar .btn { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); } .brand img { border-color: var(--accent-ink); }
+  #fotos h2, #fotos .sub, #horarios h2, .proof h2, .proof .eyebrow { text-align: center; margin-inline: auto; } #fotos h2::after, #horarios h2::after, .proof h2::after { content: ''; display: block; width: 48px; height: 3px; background: var(--accent); margin: 14px auto 0; } .proof-top { justify-content: center; }
+  .proof { background: var(--accent); color: var(--accent-ink); } .proof .eyebrow, blockquote cite { color: var(--accent-ink); opacity: .85; } .fill { background: var(--accent-ink); } .reply { color: var(--accent-ink); }
+  .stripe { height: 6px; }
+  .info:not(.single) { grid-template-columns: 1fr; max-width: 680px; margin-inline: auto; }
+  .services { grid-template-columns: 1fr; } .svc { min-height: 0; flex-direction: row; align-items: center; border-top: 1px solid var(--line); border-left: 5px solid var(--accent); }
+  main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
+  .js .rv { transform: scale(.92); }
+</style><!--vary:end-->
+
+
+
+
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
