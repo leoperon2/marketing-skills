@@ -177,18 +177,18 @@ function mais(n) { // arredonda para baixo, sempre verdadeiro
 }
 function sugerido(l) {
   const h = hash(l.key), p = (a) => a[h % a.length], q = (a, m) => a[(h >>> m) % a.length];
-  const nota = l.nota >= 4.95 ? "nota 5" : "nota " + fmtNota(l.nota), n = mais(l.aval);
-  const abre = p([`Oi, equipe da ${l.nome}, tudo bem?`, `Olá, equipe da ${l.nome}! Tudo bem?`, `Oi, pessoal da ${l.nome}, tudo bem?`]);
+  const max = l.nota >= 4.95, num = fmtNota(l.nota), n = mais(l.aval);
+  const abre = p([`Oi, pessoal da ${l.nome}, tudo bem?`, `Olá, equipe da ${l.nome}! Tudo bem?`, `Oi, equipe da ${l.nome}, tudo bem?`]);
   const elogio = q([
-    `Vi que vocês têm ${nota} no Google com ${n} avaliações, que resultado lindo.`,
-    `Reparei na ${nota} de vocês no Google, com ${n} avaliações. Isso diz muito do trabalho de vocês.`,
-    `${nota[0].toUpperCase() + nota.slice(1)} no Google com ${n} avaliações é um resultado e tanto, parabéns.`], 3);
+    `${max ? "Nota máxima" : num} no Google com ${n} avaliações é um resultado e tanto, parabéns!`,
+    `Reparei na ${max ? "nota máxima" : "nota " + num} de vocês no Google, com ${n} avaliações. Parabéns pelo resultado!`,
+    `Vi a ${max ? "nota máxima" : "nota " + num} no Google com ${n} avaliações, que resultado lindo!`], 3);
   const site = q([
-    `Eu crio sites para negócios locais e percebi que vocês ainda não têm um, então montei por conta própria uma proposta com as fotos e as informações do perfil de vocês.`,
-    `Trabalho criando sites para negócios locais e notei que vocês ainda não têm site. Por iniciativa própria, montei uma proposta usando as fotos e as informações do perfil de vocês.`,
-    `Eu faço sites para negócios locais e vi que ainda não existe um de vocês, então montei por conta própria uma proposta com as fotos e as informações do perfil.`], 6);
-  const pergunta = q([`Posso te mandar o link para você dar uma olhada? Sem compromisso nenhum.`, `Posso te mandar o link pra você dar uma olhada? Sem compromisso nenhum.`], 9);
-  return [abre, elogio, site, pergunta].join(" ");
+    `Eu faço sites para negócios locais, então montei por conta própria uma proposta com as fotos e as informações do perfil de vocês.`,
+    `Trabalho criando sites para negócios locais e, por iniciativa própria, montei uma proposta com as fotos e as informações do perfil de vocês.`,
+    `Eu crio sites para negócios locais e montei, por conta própria, uma proposta usando as fotos e as informações do perfil de vocês.`], 6);
+  const pergunta = q([`Posso te mandar o link pra você dar uma olhada? Sem compromisso nenhum.`, `Posso te mandar o link para você dar uma olhada? Sem compromisso nenhum.`], 9);
+  return abre + "\n\n" + [elogio, site, pergunta].join(" ");
 }
 const textoDe = (l) => (S[l.key] && typeof S[l.key].text === "string") ? S[l.key].text : sugerido(l);
 
@@ -347,7 +347,7 @@ Regras de tom:
 - 2 a 4 frases, no máximo uma pergunta, sempre levando a conversa ao próximo passo (mandar o link, marcar uma conversa rápida, fechar).
 - ${precoRegra()}
 - Se a pessoa resistir ("não preciso de site", "já uso Instagram"), responda sem pressão: valorize o que ela já tem e mostre que o site complementa (aparece nas buscas do Google e dá credibilidade a quem pesquisa o nome). Não insista mais de uma vez.
-- Se a pessoa não quiser, agradeça com elegância e termine com uma linha separada: "AVISO PARA MIM: sugiro marcar como descartado."
+- Se a pessoa recusar de forma clara ("não tenho interesse", "não quero"), NÃO envie o link e não tente convencer: agradeça com elegância em uma frase curta e termine com uma linha separada: "AVISO PARA MIM: sugiro marcar como descartado."
 - Nunca invente dados sobre o negócio.
 
 Contexto do negócio:
