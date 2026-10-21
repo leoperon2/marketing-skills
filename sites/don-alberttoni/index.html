@@ -1,0 +1,308 @@
+<title>Don Alberttoni Barbearia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Barbearia clássica no Bom Retiro, Curitiba. Corte, barba e sobrancelha com hora marcada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: sinalização retrô de barbearia. Faixa azul-piscina e rosa-salmão como as paredes do salão,
+     madeira escura como o balcão, vermelho de couro das cadeiras como único acento. */
+  :root {
+    --bg: #dfeaee;
+    --surface: #f3f8fa;
+    --ink: #2a1b14;
+    --ink-soft: #5a4a41;
+    --wood: #3a2418;
+    --wood-ink: #f3e9e1;
+    --accent: #9b2c1f;
+    --accent-ink: #fff6f2;
+    --salmon: #e7b3a0;
+    --line: #b9ced6;
+    --font-display: "Alfa Slab One", "Rockwell", "Georgia", serif;
+    --font-body: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b130f; --surface: #26190f; --ink: #f1e7df; --ink-soft: #c2b0a3;
+      --wood: #0f0a07; --wood-ink: #f1e7df; --accent: #e0654f; --accent-ink: #1b130f;
+      --salmon: #b9735f; --line: #4a3628; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b130f; --surface: #26190f; --ink: #f1e7df; --ink-soft: #c2b0a3;
+    --wood: #0f0a07; --wood-ink: #f1e7df; --accent: #e0654f; --accent-ink: #1b130f;
+    --salmon: #b9735f; --line: #4a3628; color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 400 17px/1.6 var(--font-body);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--wood); }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.08; margin: 0; text-wrap: balance; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  .proposal { background: var(--salmon); color: #2a1b14; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: 6px 16px; font-size: 13px; text-align: center; }
+
+  header.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); background: var(--wood); color: var(--wood-ink); }
+  .bar-in { max-width: 1080px; margin: 0 auto; padding: 10px max(16px, env(safe-area-inset-left, 0px)); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { font-family: var(--font-display); font-size: 19px; text-decoration: none; letter-spacing: .02em; white-space: nowrap; }
+  nav { display: flex; gap: 22px; font-size: 15px; }
+  nav a { text-decoration: none; opacity: .85; }
+  nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 22px; border-radius: 3px; background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; border: 2px solid var(--accent); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn.ghost { background: transparent; color: inherit; border-color: currentColor; }
+  .bar .btn { min-height: 38px; padding: 0 16px; font-size: 15px; }
+
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding-block: 56px 48px; }
+  .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; margin: 0 0 14px; }
+  .hero h1 { font-size: clamp(40px, 7vw, 74px); }
+  .hero .lede { font-size: 19px; color: var(--ink-soft); max-width: 46ch; margin: 20px 0 28px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .score { display: flex; align-items: center; gap: 14px; margin-top: 30px; font-size: 15px; color: var(--ink-soft); }
+  .score strong { font-family: var(--font-display); font-weight: 400; font-size: 34px; color: var(--ink); line-height: 1; }
+  .stars { color: var(--accent); letter-spacing: 3px; font-size: 17px; }
+  .hero figure { margin: 0; position: relative; }
+  .hero img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border: 8px solid var(--surface); box-shadow: 10px 10px 0 var(--salmon); }
+
+  .stripe { height: 14px; background: repeating-linear-gradient(115deg, var(--accent) 0 26px, var(--surface) 26px 52px, #5f93aa 52px 78px, var(--surface) 78px 104px); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); }
+
+  section { padding-block: 64px; }
+  h2 { font-size: clamp(30px, 4.5vw, 44px); margin-bottom: 18px; }
+  .sub { color: var(--ink-soft); max-width: 58ch; margin: 0 0 32px; }
+
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .about p { margin: 0 0 16px; }
+  .pull { align-self: center; font-family: var(--font-display); font-size: clamp(24px, 3.2vw, 34px); line-height: 1.2; border-left: 6px solid var(--accent); padding-left: 20px; margin: 0; }
+  .services { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .services li { background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; font-weight: 500; }
+  .services small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 14px; }
+
+  .gallery { columns: 3 240px; column-gap: 14px; }
+  .gallery figure { margin: 0 0 14px; break-inside: avoid; background: var(--surface); border: 6px solid var(--surface); box-shadow: 0 1px 0 var(--line); }
+  .gallery img { display: block; width: 100%; height: auto; }
+  .gallery figcaption { font-size: 14px; padding: 8px 4px 4px; color: var(--ink-soft); }
+
+  .proof { background: var(--wood); color: var(--wood-ink); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+  .proof .eyebrow { color: var(--salmon); }
+  .proof-top { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; margin-bottom: 44px; }
+  .big { font-family: var(--font-display); font-size: clamp(72px, 12vw, 120px); line-height: 1; }
+  .bars { display: grid; gap: 7px; font-size: 14px; font-variant-numeric: tabular-nums; max-width: 460px; }
+  .bar-row { display: grid; grid-template-columns: 30px 1fr 38px; align-items: center; gap: 10px; }
+  .track { height: 10px; background: color-mix(in srgb, var(--wood-ink) 18%, transparent); }
+  .fill { height: 100%; background: var(--salmon); }
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  blockquote { margin: 0; padding: 22px; border: 1px solid color-mix(in srgb, var(--wood-ink) 25%, transparent); min-width: 0; }
+  blockquote p { margin: 0 0 14px; font-size: 17px; }
+  blockquote cite { font-style: normal; font-size: 14px; color: var(--salmon); }
+  .reply { margin-top: 14px; padding-top: 12px; border-top: 1px dashed color-mix(in srgb, var(--wood-ink) 30%, transparent); font-size: 14px; color: color-mix(in srgb, var(--wood-ink) 78%, transparent); }
+  .src { margin-top: 26px; font-size: 13px; opacity: .7; }
+
+  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .card { background: var(--surface); border: 1px solid var(--line); padding: 28px; min-width: 0; }
+  .card h3 { font-size: 22px; margin-bottom: 16px; }
+  .hours { list-style: none; margin: 0; padding: 0; font-variant-numeric: tabular-nums; }
+  .hours li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .hours li.today { font-weight: 600; color: var(--accent); }
+  .hours .closed { color: var(--ink-soft); }
+  .status { display: inline-block; margin-bottom: 14px; padding: 4px 12px; font-size: 14px; font-weight: 600; background: var(--ink); color: var(--bg); }
+  .status.open { background: #2f7a4a; color: #fff; }
+  address { font-style: normal; margin-bottom: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .tags li { border: 1px solid var(--line); padding: 4px 12px; font-size: 14px; }
+  .copy { font: inherit; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+
+  .final { text-align: center; padding-block: 72px; }
+  .final h2 { margin-inline: auto; max-width: 18ch; }
+  .final .cta { justify-content: center; margin-top: 26px; }
+  footer { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); background: var(--wood); color: var(--wood-ink); padding: 28px max(16px, env(safe-area-inset-left, 0px)); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+  footer p { margin: 0; opacity: .8; }
+
+  @media (max-width: 820px) {
+    nav { display: none; }
+    .hero, .about, .info { grid-template-columns: 1fr; gap: 32px; }
+    .hero { padding-block: 36px; }
+    .proof-top { grid-template-columns: 1fr; gap: 20px; }
+    section { padding-block: 48px; }
+  }
+  @media (max-width: 460px) { .services { grid-template-columns: 1fr; } .brand { font-size: 16px; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<div class="proposal">Proposta de site para a Don Alberttoni Barbearia. Fotos de avaliações públicas do Google; uso final sujeito à autorização do proprietário.</div>
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#topo">Don Alberttoni</a>
+    <nav aria-label="Seções">
+      <a href="#casa">A casa</a><a href="#fotos">Fotos</a><a href="#clientes">Clientes</a><a href="#horarios">Horários</a>
+    </nav>
+    <a class="btn" href="https://avec.app/barbeariadonalberttoni/" target="_blank" rel="noopener">Agendar</a>
+  </div>
+</header>
+
+<main id="topo" class="wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Barbearia clássica · Bom Retiro, Curitiba</p>
+      <h1>Don Alberttoni Barbearia</h1>
+      <p class="lede">Corte, barba e sobrancelha com hora marcada, café na mão, vinil rodando e xadrez no tabuleiro de pedra.</p>
+      <div class="cta">
+        <a class="btn" href="https://avec.app/barbeariadonalberttoni/" target="_blank" rel="noopener">Agendar online</a>
+        <a class="btn ghost" href="https://wa.me/5541988250519" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+      <div class="score" aria-label="Nota 4,8 de 5 no Google, 279 avaliações">
+        <strong>4,8</strong>
+        <div><span class="stars" aria-hidden="true">★★★★★</span><br>279 avaliações no Google</div>
+      </div>
+    </div>
+    <figure><img src="img/salao.jpg" alt="Salão da Don Alberttoni com bancada de madeira, espelhos e cadeiras antigas de barbeiro" width="1200" height="900"></figure>
+  </div>
+</main>
+<div class="stripe" aria-hidden="true"></div>
+
+<main class="wrap">
+  <section id="casa">
+    <div class="about">
+      <div>
+        <h2>Uma casa feita de detalhes</h2>
+        <p>A Don Alberttoni é uma barbearia clássica com atendimento personalizado e profissionais que amam o que fazem. O que oferecem, antes de tudo, é respeito pelo cliente e por um ambiente de trabalho onde os detalhes fazem a diferença.</p>
+        <p>Quem passa por aqui conta de corte de cabelo, barba e sobrancelha, e também de pai que leva o filho de 6 anos para cortar com paciência.</p>
+        <ul class="services">
+          <li>Corte de cabelo</li>
+          <li>Barba</li>
+          <li>Sobrancelha</li>
+          <li>Corte infantil</li>
+        </ul>
+        <p class="sub" style="margin:14px 0 0;font-size:15px">Valores e profissionais disponíveis aparecem no agendamento online.</p>
+      </div>
+      <p class="pull">“Não é só sobre cortar cabelo. É sobre entender a vontade do cliente.”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">Lucas, em avaliação no Google</span></p>
+    </div>
+  </section>
+
+  <section id="fotos" style="padding-top:0">
+    <h2>Por dentro</h2>
+    <p class="sub">Cadeiras antigas, sinuca, violão e um cafezinho esperando. Fotos enviadas por clientes.</p>
+    <div class="gallery">
+      <figure><img src="img/cadeiras.jpg" alt="Cadeiras de barbeiro de couro e metal azul diante dos espelhos" loading="lazy"><figcaption>As cadeiras</figcaption></figure>
+      <figure><img src="img/xadrez.jpg" alt="Tabuleiro de xadrez com peças de madeira e o salão ao fundo" loading="lazy"><figcaption>Tabuleiro de xadrez</figcaption></figure>
+      <figure><img src="img/lounge.jpg" alt="Sala de espera com sofá de couro, violão e mesa de centro" loading="lazy"><figcaption>Sala de espera</figcaption></figure>
+      <figure><img src="img/sinuca.jpg" alt="Mesa de sinuca no salão, com quadros na parede" loading="lazy"><figcaption>Mesa de sinuca</figcaption></figure>
+      <figure><img src="img/cafe.jpg" alt="Café servido numa xícara sobre mesa de madeira, ao lado de um cinzeiro de cristal" loading="lazy"><figcaption>O cafezinho</figcaption></figure>
+      <figure><img src="img/espelhos.jpg" alt="Bancada com espelhos e cadeiras vermelhas" loading="lazy"></figure>
+      <figure><img src="img/violao.jpg" alt="Violão encostado no salão, com as cadeiras ao fundo" loading="lazy"></figure>
+      <figure><img src="img/cachorro.jpg" alt="Poodle cinza deitado numa cadeira de barbeiro" loading="lazy"></figure>
+      <figure><img src="img/letreiro.jpg" alt="Letreiro luminoso da Don Alberttoni Barbearia" loading="lazy"></figure>
+    </div>
+  </section>
+</main>
+
+<div class="proof" id="clientes">
+  <div class="wrap">
+    <section>
+      <p class="eyebrow">Avaliações no Google</p>
+      <h2>O que os clientes dizem</h2>
+      <div class="proof-top">
+        <div class="big">4,8</div>
+        <div class="bars" role="img" aria-label="258 avaliações de 5 estrelas, 11 de 4, 3 de 3, 1 de 2 e 6 de 1">
+          <div class="bar-row"><span>5 ★</span><div class="track"><div class="fill" style="width:92.5%"></div></div><span>258</span></div>
+          <div class="bar-row"><span>4 ★</span><div class="track"><div class="fill" style="width:3.9%"></div></div><span>11</span></div>
+          <div class="bar-row"><span>3 ★</span><div class="track"><div class="fill" style="width:1.1%"></div></div><span>3</span></div>
+          <div class="bar-row"><span>2 ★</span><div class="track"><div class="fill" style="width:.4%"></div></div><span>1</span></div>
+          <div class="bar-row"><span>1 ★</span><div class="track"><div class="fill" style="width:2.2%"></div></div><span>6</span></div>
+        </div>
+      </div>
+      <div class="quotes">
+        <blockquote><p>Cortar o cabelo depois de um cafezinho e um xadrez num tabuleiro de pedra, ouvindo vinil, trocando ideia e ainda ir embora com um corte 10/10 é uma raridade.</p><cite>Daniel S.</cite></blockquote>
+        <blockquote><p>A barbearia mais clássica do Brasil. Com o devido profissionalismo e requinte de qualidade no atendimento.</p><cite>Luiz Américo C.</cite><div class="reply"><strong>Resposta da barbearia:</strong> Vlw Américo, você é e sempre será bem-vindo entre nós, forte abraço!</div></blockquote>
+        <blockquote><p>Levei meu filho de 6 anos para cortar, e o atendimento foi ótimo. Super paciente e muito tranquilo, além de bater um papo com ele.</p><cite>Camille N.</cite></blockquote>
+        <blockquote><p>O homem mudou de casa, e sabe o que parece? Parece que nada mudou! O local novo é super aconchegante, sensação de ter ido na casa dele cortar.</p><cite>Lucas V.</cite></blockquote>
+        <blockquote><p>Com 42 anos eu aprendi como pentear o cabelo!</p><cite>Rafael R.</cite></blockquote>
+      </div>
+      <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
+    </section>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="horarios">
+    <h2>Horários e endereço</h2>
+    <div class="info">
+      <div class="card">
+        <h3>Horário</h3>
+        <span class="status" id="status" hidden></span>
+        <ul class="hours" id="hours">
+          <li data-d="2"><span>Terça</span><span>11h às 20h</span></li>
+          <li data-d="3"><span>Quarta</span><span>11h às 20h</span></li>
+          <li data-d="4"><span>Quinta</span><span>11h às 20h</span></li>
+          <li data-d="5"><span>Sexta</span><span>11h às 20h</span></li>
+          <li data-d="6"><span>Sábado</span><span>11h às 20h</span></li>
+          <li data-d="0"><span>Domingo</span><span class="closed">Fechado</span></li>
+          <li data-d="1"><span>Segunda</span><span class="closed">Fechado</span></li>
+        </ul>
+        <ul class="tags">
+          <li>Hora marcada recomendada</li>
+          <li>Cartão de crédito e débito</li>
+          <li>Pagamento por aproximação</li>
+          <li>Bom para ir com crianças</li>
+          <li>Espaço acolhedor LGBTQ+</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Onde estamos</h3>
+        <address>R. Tapajós, 990<br>Bom Retiro, Curitiba, PR<br>CEP 80520-260</address>
+        <p style="margin:0 0 18px"><a href="https://www.google.com/maps/search/?api=1&query=Don%20Alberttoni%20Barbearia&query_place_id=ChIJ1YYK-Q3k3JQRNVvmybiaERk" target="_blank" rel="noopener">Abrir no Google Maps</a></p>
+        <h3 style="margin-top:26px">Contato</h3>
+        <p style="margin:0 0 6px">WhatsApp: <button class="copy" id="copy" type="button">(41) 98825-0519</button> <span id="copied" aria-live="polite" style="font-size:14px;color:var(--ink-soft)"></span></p>
+        <p style="margin:0"><a href="https://instagram.com/barbeariadonalberttoni" target="_blank" rel="noopener">@barbeariadonalberttoni</a> no Instagram</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Sua cadeira está reservada?</h2>
+    <p class="sub" style="margin-inline:auto">Escolha o profissional e o horário no agendamento online ou fale com a equipe no WhatsApp.</p>
+    <div class="cta">
+      <a class="btn" href="https://avec.app/barbeariadonalberttoni/" target="_blank" rel="noopener">Agendar online</a>
+      <a class="btn ghost" href="https://wa.me/5541988250519" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong style="font-family:var(--font-display);font-weight:400">Don Alberttoni Barbearia</strong>
+    <p>R. Tapajós, 990 · Bom Retiro · Curitiba</p>
+    <p>Terça a sábado, 11h às 20h</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // horário de Curitiba, independente do fuso do visitante
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Sao_Paulo", weekday: "short", hour: "numeric", minute: "numeric", hour12: false }).formatToParts(new Date());
+  var get = function (t) { return parts.filter(function (p) { return p.type === t; })[0].value; };
+  var dow = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[get("weekday")];
+  var mins = (parseInt(get("hour"), 10) % 24) * 60 + parseInt(get("minute"), 10);
+  var li = document.querySelector('#hours li[data-d="' + dow + '"]');
+  if (li) li.classList.add("today");
+  var open = dow >= 2 && dow <= 6 && mins >= 11 * 60 && mins < 20 * 60;
+  var s = document.getElementById("status");
+  s.hidden = false;
+  s.textContent = open ? "Aberto agora" : "Fechado agora";
+  s.classList.toggle("open", open);
+
+  var btn = document.getElementById("copy"), out = document.getElementById("copied");
+  btn.addEventListener("click", function () {
+    var ok = function () { out.textContent = "copiado"; setTimeout(function () { out.textContent = ""; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText("(41) 98825-0519").then(ok, function () {});
+  });
+})();
+</script>
