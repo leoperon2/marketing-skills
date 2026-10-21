@@ -215,44 +215,60 @@ LAY = {
 TARGET = {"tall": 0.62, "sq": 1.0, "wide": 1.45}
 MAXGAL = 18
 
-def lay_for(n):
-    """Une blocos de LAY (cada um com até 9 fotos), deslocando as linhas do bloco seguinte."""
-    out, row, rest = [], 0, n
-    while rest > 0:
-        k = min(9, rest)
-        last = 0
-        for c, r, t in LAY[k]:
-            a, b = (r.split("/") + [None])[:2]
-            rr = f"{int(a) + row}/{int(b) + row}" if b else str(int(a) + row)
-            out.append((c, rr, t))
-            last = max(last, (int(b) - 1) if b else int(a))
-        row += last
-        rest -= k
-    return out
+SPAN = {"s": (1, 1), "v": (1, 2), "b": (2, 2), "w": (2, 1)}
 
-def valid_n(n):
-    return n >= 3 and (n % 9 == 0 or n % 9 >= 3)
+def holes(types, cols):
+    """Simula o auto-posicionamento 'dense' do CSS grid e conta células vazias."""
+    grid = []
+    for t in types:
+        w, h = SPAN[t]; w = min(w, cols)
+        r = 0
+        while True:
+            while len(grid) < r + h: grid.append([False] * cols)
+            hit = next((c for c in range(cols - w + 1) if all(not grid[r + i][c + j] for i in range(h) for j in range(w))), None)
+            if hit is not None:
+                for i in range(h):
+                    for j in range(w): grid[r + i][hit + j] = True
+                break
+            r += 1
+    return sum(1 for row in grid for x in row if not x)
+
+def plan_mosaic(photos, seed):
+    """Sorteia o formato de cada foto (vertical, dobro, panorâmica, pequena) até encaixar sem buracos em 4 e 2 colunas."""
+    import random
+    n = len(photos)
+    rnd = random.Random(seed)
+    def allowed(p):
+        a = p["aspect"]
+        if a < 0.78: return ["v", "v", "v", "s", "b"]
+        if a > 1.5: return ["w", "s", "b"]
+        return ["s", "s", "b"] + (["v"] if a < 1.0 else []) + (["w"] if a > 1.2 else [])
+    for need_b in (True, False):
+        for _ in range(9000):
+            order = list(range(n)); rnd.shuffle(order)
+            types = [rnd.choice(allowed(photos[i])) for i in order]
+            nb = types.count("b")
+            if nb > max(1, n // 5) or (need_b and nb == 0) or types[0] == "w": continue
+            if holes(types, 4) == 0 and holes(types, 2) == 0:
+                return [(types[k], photos[order[k]]) for k in range(n)]
+    return None
 
 def choose_photos(slug):
     base = os.path.join(HERE, slug)
     meta = json.load(open(os.path.join(base, "photos.json"))) if os.path.exists(os.path.join(base, "photos.json")) else []
-    vet = json.load(open(os.path.join(HERE, "vetoes.json"))).get(slug, [])
-    meta = [m for i, m in enumerate(meta, 1) if i not in vet and not m.get("veto")]
+    vh = json.load(open(os.path.join(HERE, "vetoes_hash.json"))).get(slug, []) if os.path.exists(os.path.join(HERE, "vetoes_hash.json")) else []
+    ham = lambda a, b: sum(x != y for x, y in zip(a, b))
+    meta = [m for m in meta if not any(ham(m.get("hash", ""), v) < 7 for v in vh)]
+    strict = [m for m in meta if not (m.get("tf", 0) > 0.02 or m.get("tn", 0) >= 2)]
+    meta = strict if len(strict) >= 14 else [m for m in meta if not (m.get("tf", 0) > 0.04 or m.get("tn", 0) >= 4)]
     if not meta: return None, []
     pool = sorted(meta, key=lambda m: -m["q"])
     hero = next((m for m in pool if 0.95 <= m["aspect"] <= 1.9), pool[0])
     rest = [m for m in pool if m is not hero][:MAXGAL]
-    n = len(rest)
-    while n and not valid_n(n): n -= 1
-    rest = rest[:n]
-    slots = lay_for(n) if n else []
-    import math
-    order = sorted(range(len(slots)), key=lambda i: {"tall": 0, "wide": 1, "sq": 2}[slots[i][2]])
-    assign, left = {}, list(rest)
-    for i in order:
-        best = min(left, key=lambda m: abs(math.log(m["aspect"] / TARGET[slots[i][2]])) - 0.15 * m["q"])
-        assign[i] = best; left.remove(best)
-    return hero, [(slots[i], assign[i]) for i in range(len(slots))]
+    for n in range(len(rest), 2, -1):
+        pl = plan_mosaic(rest[:n], slug)
+        if pl: return hero, pl
+    return hero, []
 
 # ---------------------------------------------------------------- página
 def build(place, idx):
@@ -275,6 +291,8 @@ def build(place, idx):
     if os.path.isdir(tmp): shutil.rmtree(tmp)
     os.makedirs(tmp)
     for dst, src in keep.items(): shutil.copy(os.path.join(src_dir, os.path.basename(src)), os.path.join(tmp, dst))
+    has_logo = os.path.exists(os.path.join(src_dir, "logo.jpg"))
+    if has_logo: shutil.copy(os.path.join(src_dir, "logo.jpg"), os.path.join(tmp, "logo.jpg"))
     if os.path.isdir(img_dir): shutil.rmtree(img_dir)
     os.rename(tmp, img_dir)
 
@@ -327,7 +345,9 @@ def build(place, idx):
     nav.append('<a href="#horarios">Contato</a>' if not hours else '<a href="#horarios">Horários</a>')
 
     seal = f'<div class="seal" id="stamp" aria-label="Nota {notas} no Google"><b>{notas}</b><span>no Google</span></div>'
-    hero_html = (f'<figure><img src="img/hero.jpg" alt="Foto enviada por cliente de {esc(nome)}" width="{hero["w"]}" height="{hero["h"]}">{seal}</figure>' if hero else "")
+    stamp = f'<img class="logo-stamp" id="stamp" src="img/logo.jpg" alt="Logo de {esc(nome)}" width="136" height="136">' if has_logo else seal
+    hero_html = (f'<figure><img src="img/hero.jpg" alt="Foto de {esc(nome)}" width="{hero["w"]}" height="{hero["h"]}">{stamp}</figure>' if hero else "")
+    badge = f'<img class="logo-badge" src="img/logo.jpg" alt="Logo de {esc(nome)}" width="96" height="96">' if (has_logo and not hero) else ""
 
     about_paras = ""
     if owner:
@@ -361,15 +381,15 @@ def build(place, idx):
     sec_gal = ""
     if gal:
         tiles = "".join(
-            f'      <button class="tile t{k}" type="button" aria-label="Ampliar foto {k}"><span class="ph"><img src="img/g{k}.jpg" alt="{esc(credit(m["who"]))}" loading="lazy"></span><span class="cap">{esc(credit(m["who"]))}</span></button>\n'
-            for k, (_, m) in enumerate(gal, 1))
+            f'      <button class="tile {t}" type="button" aria-label="Ampliar foto {k}"><span class="ph"><img src="img/g{k}.jpg" alt="Foto de {esc(nome)}" loading="lazy"></span><span class="cap"></span></button>\n'
+            for k, (t, m) in enumerate(gal, 1))
         sec_gal = f'''<section id="fotos" style="padding-top:0">
     <h2>{esc(cp["gal"])}</h2>
     <p class="sub">{esc(cp["gsub"])} Toque numa foto para ampliar e passe de uma para outra.</p>
     <div class="mosaic" id="mosaic">
 {tiles}    </div>
   </section>'''
-    lay_css = "@media (min-width: 821px) {\n" + "".join(f"    .mosaic .t{k} {{ grid-column: {c}; grid-row: {r}; }}\n" for k, ((c, r, _), _) in enumerate(gal, 1)) + "  }\n" if gal else ""
+    lay_css = ""
 
     sec_proof = ""
     if quotes:
@@ -425,11 +445,23 @@ def build(place, idx):
 
     css = CSS_MAIN
     css = re.sub(r"  \.stripe \{ height: 14px; background: repeating[^\n]*\n", "  .stripe { height: 14px; background: var(--stripe-bg); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); }\n", css)
-    css = css.replace("    .mosaic .t-a { grid-column: span 2; grid-row: span 2; }", "    .mosaic .tile:first-child { grid-column: span 2; grid-row: span 2; }\n    .mosaic .tile:last-child:nth-child(even) { grid-column: span 2; }")
+    css = css.replace("    .mosaic .t-a { grid-column: span 2; grid-row: span 2; }", "")
     css = css.replace("  .hero img.stamp {", "  .hero img.stamp-unused {")
     seal_css = '''  .seal { position: absolute; left: -22px; bottom: -34px; width: 124px; height: 124px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-content: center; text-align: center; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
   .seal b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: 1; }
   .seal span { font: 600 11px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+  .hero img.logo-stamp { position: absolute; left: -22px; bottom: -34px; width: 136px; height: 136px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: #fff; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
+  .logo-badge { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin: 0 0 18px; border: 4px solid var(--surface); box-shadow: 0 4px 0 var(--salmon); }
+  .brand img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--salmon); background: #fff; }
+  .tile .cap { display: none; }
+  .lb figcaption:empty { display: none; }
+  @media (max-width: 820px) { .hero img.logo-stamp { width: 104px; height: 104px; left: -6px; bottom: -28px; } }
+  .mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 230px; grid-auto-flow: dense; gap: 14px; }
+  .mosaic .tile { grid-column: span 1; grid-row: span 1; }
+  .mosaic .tile.v { grid-row: span 2; }
+  .mosaic .tile.b { grid-column: span 2; grid-row: span 2; }
+  .mosaic .tile.w { grid-column: span 2; }
+  @media (max-width: 820px) { .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 188px; gap: 10px; } }
   .about.one { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
   .info.single { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .hero:not(:has(figure)) { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
@@ -475,7 +507,7 @@ def build(place, idx):
 
 {lb}<header class="bar">
   <div class="bar-in">
-    <a class="brand" href="#topo">{esc(nome if len(nome) <= 24 else nome[:22].rsplit(" ", 1)[0])}</a>
+    <a class="brand" href="#topo">{'<img src="img/logo.jpg" alt="" width="40" height="40">' if has_logo else ""}{esc(nome if len(nome) <= 24 else nome[:22].rsplit(" ", 1)[0])}</a>
     <nav aria-label="Seções">{"".join(nav)}</nav>
     <a class="btn" href="{esc(nav_cta[1])}" target="_blank" rel="noopener">{esc("Agendar" if nav_cta[0] == "Agendar online" else nav_cta[0].replace("Chamar no WhatsApp", "WhatsApp"))}</a>
   </div>
@@ -484,6 +516,7 @@ def build(place, idx):
 <main id="topo" class="wrap">
   <div class="hero">
     <div>
+      {badge}
       <p class="eyebrow">{esc(cat)}{" · " + esc(bairro) + ", " + esc(cidade) if bairro else " · " + esc(cidade)}</p>
       <h1>{esc(nome)}</h1>
       <p class="lede">{esc(lede)}</p>
@@ -512,7 +545,7 @@ def build(place, idx):
 
 <footer>
   <div class="wrap">
-    <strong style="font-family:var(--font-display);font-weight:400">{esc(nome)}</strong>
+    <span style="display:flex;align-items:center;gap:12px">{'<img src="img/logo.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--salmon)">' if has_logo else ""}<strong style="font-family:var(--font-display);font-weight:400">{esc(nome)}</strong></span>
     <p>{esc(foot_addr)}</p>
     <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps e do Instagram. Protótipo sujeito à autorização do estabelecimento. <a href="{LEOSUMIU}?site={slug}" target="_blank" rel="noopener">Plano B do seu site</a></p>
   </div>
@@ -534,9 +567,12 @@ def tags_html(place):
     return '<ul class="tags">' + "".join(f"<li>{esc(i)}</li>" for i in items) + "</ul>" if items else ""
 
 if __name__ == "__main__":
-    places = []
-    for f in sorted(glob.glob(os.path.join(HERE, "_data", "*.json"))):
-        places += json.load(open(f, encoding="utf-8"))
+    byslug = {}
+    for name in ["b1", "b2", "test", "more_a", "more_b", "more_c", "more_d"]:
+        f = os.path.join(HERE, "_data", name + ".json")
+        if os.path.exists(f):
+            for p in json.load(open(f, encoding="utf-8")): byslug[slugify(clean_name(p["title"]))] = p
+    places = list(byslug.values())
     want = set(sys.argv[1:])
     manifest = []
     for i, p in enumerate(places):

@@ -162,8 +162,7 @@
     section { padding-block: 48px; }
     .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 168px; gap: 10px; }
     .mosaic .tile { grid-column: auto; grid-row: auto; }
-    .mosaic .tile:first-child { grid-column: span 2; grid-row: span 2; }
-    .mosaic .tile:last-child:nth-child(even) { grid-column: span 2; }
+
     .hero img.stamp-unused { width: 104px; height: 104px; left: -6px; bottom: -28px; }
     .lb-p, .lb-n { top: auto; bottom: max(14px, env(safe-area-inset-bottom, 0px)); }
   }
@@ -172,6 +171,18 @@
   .seal { position: absolute; left: -22px; bottom: -34px; width: 124px; height: 124px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-content: center; text-align: center; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
   .seal b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: 1; }
   .seal span { font: 600 11px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+  .hero img.logo-stamp { position: absolute; left: -22px; bottom: -34px; width: 136px; height: 136px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: #fff; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
+  .logo-badge { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin: 0 0 18px; border: 4px solid var(--surface); box-shadow: 0 4px 0 var(--salmon); }
+  .brand img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--salmon); background: #fff; }
+  .tile .cap { display: none; }
+  .lb figcaption:empty { display: none; }
+  @media (max-width: 820px) { .hero img.logo-stamp { width: 104px; height: 104px; left: -6px; bottom: -28px; } }
+  .mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 230px; grid-auto-flow: dense; gap: 14px; }
+  .mosaic .tile { grid-column: span 1; grid-row: span 1; }
+  .mosaic .tile.v { grid-row: span 2; }
+  .mosaic .tile.b { grid-column: span 2; grid-row: span 2; }
+  .mosaic .tile.w { grid-column: span 2; }
+  @media (max-width: 820px) { .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 188px; gap: 10px; } }
   .about.one { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
   .info.single { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .hero:not(:has(figure)) { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
@@ -188,8 +199,8 @@
 </div>
 <header class="bar">
   <div class="bar-in">
-    <a class="brand" href="#topo">Barbearia Larusso</a>
-    <nav aria-label="Seções"><a href="#casa">Sobre</a><a href="#clientes">Clientes</a><a href="#horarios">Horários</a></nav>
+    <a class="brand" href="#topo"><img src="img/logo.jpg" alt="" width="40" height="40">Barbearia Larusso</a>
+    <nav aria-label="Seções"><a href="#casa">Sobre</a><a href="#fotos">Fotos</a><a href="#horarios">Horários</a></nav>
     <a class="btn" href="https://wa.me/5541995938804" target="_blank" rel="noopener">WhatsApp</a>
   </div>
 </header>
@@ -197,6 +208,7 @@
 <main id="topo" class="wrap">
   <div class="hero">
     <div>
+      
       <p class="eyebrow">Barbearia · Santa Felicidade, Curitiba</p>
       <h1>Barbearia Larusso</h1>
       <p class="lede">Cortes, barba e estilo Avenida Manoel Ribas n° 7295 Santa Felicidade Seu novo visual começa ⏳estamos disponíveis para agendamento</p>
@@ -206,50 +218,38 @@
         <div><span class="stars" aria-hidden="true">★★★★★</span><br>77 avaliações no Google</div>
       </div>
     </div>
-    <figure><img src="img/hero.jpg" alt="Foto enviada por cliente de Barbearia Larusso" width="1051" height="1400"><div class="seal" id="stamp" aria-label="Nota 5,0 no Google"><b>5,0</b><span>no Google</span></div></figure>
+    <figure><img src="img/hero.jpg" alt="Foto de Barbearia Larusso" width="787" height="1400"><img class="logo-stamp" id="stamp" src="img/logo.jpg" alt="Logo de Barbearia Larusso" width="136" height="136"></figure>
   </div>
 </main>
 <div class="stripe" aria-hidden="true"></div>
 
 <main class="wrap">
   <section id="casa">
-    <div class="about">
+    <div class="about one">
       <div>
         <h2>Conheça Barbearia Larusso</h2>
         <p>Cortes, barba e estilo Avenida Manoel Ribas n° 7295 Santa Felicidade Seu novo visual começa
 ⏳estamos disponíveis para agendamento</p>
-        <ul class="services"><li class="svc"><b>Ambiente</b><span>Ambiente super agradável e aconchegante, e sem falar do meu barbeiro Alemão que sempre renova meu visual.</span></li><li class="svc"><b>Equipe</b><span>Me tornei cliente mensal e, com toda certeza, indico o trabalho dele e de toda a equipe.</span></li><li class="svc"><b>Corte</b><span>Os cortes muito bom, Valores ótimos</span></li><li class="svc"><b>Música</b><span>Muito boa barbearia, moderna, aconchegante, bom ambiente, com televisão e música.</span></li></ul><p class="sub" style="margin:14px 0 0;font-size:15px">Temas mais citados pelos clientes nas avaliações do Google.</p>
+        <ul class="services"><li class="svc"><b>Ambiente</b><span>citado em 23 avaliações</span></li><li class="svc"><b>Equipe</b><span>citado em 9 avaliações</span></li><li class="svc"><b>Corte</b><span>citado em 5 avaliações</span></li><li class="svc"><b>Música</b><span>citado em 4 avaliações</span></li></ul><p class="sub" style="margin:14px 0 0;font-size:15px">Temas mais citados pelos clientes nas avaliações do Google.</p>
       </div>
-      <p class="pull">“Ambiente super agradável e aconchegante, e sem falar do meu barbeiro Alemão que sempre renova meu visual.”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">O&#x27;Alexandre N., em avaliação no Google</span></p>
+      
     </div>
   </section>
-  
+  <section id="fotos" style="padding-top:0">
+    <h2>Por dentro</h2>
+    <p class="sub">Fotos enviadas por clientes no Google Maps. Toque numa foto para ampliar e passe de uma para outra.</p>
+    <div class="mosaic" id="mosaic">
+      <button class="tile v" type="button" aria-label="Ampliar foto 1"><span class="ph"><img src="img/g1.jpg" alt="Foto de Barbearia Larusso" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 2"><span class="ph"><img src="img/g2.jpg" alt="Foto de Barbearia Larusso" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 3"><span class="ph"><img src="img/g3.jpg" alt="Foto de Barbearia Larusso" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 4"><span class="ph"><img src="img/g4.jpg" alt="Foto de Barbearia Larusso" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 5"><span class="ph"><img src="img/g5.jpg" alt="Foto de Barbearia Larusso" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 6"><span class="ph"><img src="img/g6.jpg" alt="Foto de Barbearia Larusso" loading="lazy"></span><span class="cap"></span></button>
+    </div>
+  </section>
 </main>
 
-<div class="proof" id="clientes">
-  <div class="wrap">
-    <section>
-      <p class="eyebrow">Avaliações no Google</p>
-      <h2>O que os clientes dizem</h2>
-      <div class="proof-top">
-        <div class="big">5,0</div>
-        <div class="bars" role="img" aria-label="Distribuição das 77 avaliações por estrelas"><div class="bar-row"><span>5 ★</span><div class="track"><div class="fill" style="width:100.0%"></div></div><span>77</span></div><div class="bar-row"><span>4 ★</span><div class="track"><div class="fill" style="width:0.0%"></div></div><span>0</span></div><div class="bar-row"><span>3 ★</span><div class="track"><div class="fill" style="width:0.0%"></div></div><span>0</span></div><div class="bar-row"><span>2 ★</span><div class="track"><div class="fill" style="width:0.0%"></div></div><span>0</span></div><div class="bar-row"><span>1 ★</span><div class="track"><div class="fill" style="width:0.0%"></div></div><span>0</span></div></div>
-      </div>
-      <div class="quotes"><blockquote><p>Fui mega hiper super bem atendido pelo Alemão.. corte, limpeza de pele show de bola, barbearia bem cuidada, lugar super tranquilo, sempre voltarei na Larusso! Suuper recomendo. Se vc quer um corte bom , barba, limpeza de pele, eu garanto que na Larusso é confiança total...Venham pra Larusso!! 😉😊❤️</p><cite>Gian C.</cite></blockquote><blockquote><p>Atendimento excelente!!
-Barbeiro Alemão, extremamente experiente, muito gentil e atencioso!
-Ambiente agradável, moderno e bonito!
-Super recomendo!! Meu filho adora cortar com ele, e sai de lá se sentindo muito estiloso rs 🤭
-Muito top 👏🏻</p><cite>Karinne B.</cite></blockquote><blockquote><p>Melhor barbeiro do Sul do mundo.
 
-Profissionalmente, conhece e domina a técnica tanto no cabelo e barba!
-
-No pessoal, tem um coração e humildade como poucos!
-
-Enfim, fica a dica pra quem busca um bom profissional com preço justo!</p><cite>Wagner D.</cite></blockquote><blockquote><p>Fiquei muito satisfeito com a experiência na Barbearia Larusso. Atendimento rápido, profissionais competentes e muito simpáticos. O corte ficou excelente e o ambiente é moderno, limpo e aconchegante. Voltarei com certeza.</p><cite>Budél</cite></blockquote><blockquote><p>Primeira vez na Barbearia Larusso e já virei cliente. Atendimento excelente, profissionais muito cuidadosos e um resultado impecável. Gostei muito do ambiente, que é confortável e muito bem organizado. Estão de parabéns!</p><cite>Boto M.</cite></blockquote></div>
-      <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
-    </section>
-  </div>
-</div>
 
 <main class="wrap">
   <section id="horarios"><h2>Horários e endereço</h2><div class="info"><div class="card"><h3>Horário</h3><span class="status" id="status" hidden></span><ul class="hours" id="hours"><li data-d="1"><span>Segunda</span><span>9h às 20h</span></li><li data-d="2"><span>Terça</span><span>9h às 20h</span></li><li data-d="3"><span>Quarta</span><span>9h às 20h</span></li><li data-d="4"><span>Quinta</span><span>9h às 20h</span></li><li data-d="5"><span>Sexta</span><span>9h às 20h</span></li><li data-d="6"><span>Sábado</span><span>9h às 20h</span></li><li data-d="0"><span>Domingo</span><span class="closed">Fechado</span></li></ul><ul class="tags"><li>Banheiro</li><li>É recomendado marcar hora</li><li>Cartão de crédito</li><li>Cartão de débito</li><li>Pagamentos por dispositivo móvel via NFC</li><li>Bom para ir com crianças</li></ul></div><div class="card"><h3>Onde estamos</h3><address>Av. Manoel Ribas, 7295 - Santa Felicidade, Curitiba - PR, 82400-000, Brasil</address><p style="margin:0 0 18px"><a href="https://www.google.com/maps/search/?api=1&amp;query=Barbearia%20Larusso&amp;query_place_id=ChIJ58h_LufGOkYRrWbb1bRzIvA" target="_blank" rel="noopener">Abrir no Google Maps</a></p><h3 style="margin-top:26px">Contato</h3><p style="margin:0 0 6px">WhatsApp: <button class="copy" id="copy" type="button">(41) 99593-8804</button> <span id="copied" aria-live="polite" style="font-size:14px;color:var(--ink-soft)"></span></p><p style="margin:0"><a href="https://www.instagram.com/barbearia_larusso" target="_blank" rel="noopener">@barbearia_larusso</a> no Instagram</p></div></div></section>
@@ -262,9 +262,9 @@ Enfim, fica a dica pra quem busca um bom profissional com preço justo!</p><cite
 
 <footer>
   <div class="wrap">
-    <strong style="font-family:var(--font-display);font-weight:400">Barbearia Larusso</strong>
+    <span style="display:flex;align-items:center;gap:12px"><img src="img/logo.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--salmon)"><strong style="font-family:var(--font-display);font-weight:400">Barbearia Larusso</strong></span>
     <p>Av. Manoel Ribas, 7295 · Santa Felicidade · Curitiba</p>
-    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps. Protótipo sujeito à autorização do estabelecimento.</p>
+    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps e do Instagram. Protótipo sujeito à autorização do estabelecimento. <a href="https://leoperon2.github.io/vintage-riders-prototipo/leosumiu?site=barbearia-larusso" target="_blank" rel="noopener">Plano B do seu site</a></p>
   </div>
 </footer>
 

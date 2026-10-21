@@ -162,8 +162,7 @@
     section { padding-block: 48px; }
     .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 168px; gap: 10px; }
     .mosaic .tile { grid-column: auto; grid-row: auto; }
-    .mosaic .tile:first-child { grid-column: span 2; grid-row: span 2; }
-    .mosaic .tile:last-child:nth-child(even) { grid-column: span 2; }
+
     .hero img.stamp-unused { width: 104px; height: 104px; left: -6px; bottom: -28px; }
     .lb-p, .lb-n { top: auto; bottom: max(14px, env(safe-area-inset-bottom, 0px)); }
   }
@@ -172,6 +171,18 @@
   .seal { position: absolute; left: -22px; bottom: -34px; width: 124px; height: 124px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-content: center; text-align: center; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
   .seal b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: 1; }
   .seal span { font: 600 11px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+  .hero img.logo-stamp { position: absolute; left: -22px; bottom: -34px; width: 136px; height: 136px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: #fff; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
+  .logo-badge { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin: 0 0 18px; border: 4px solid var(--surface); box-shadow: 0 4px 0 var(--salmon); }
+  .brand img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--salmon); background: #fff; }
+  .tile .cap { display: none; }
+  .lb figcaption:empty { display: none; }
+  @media (max-width: 820px) { .hero img.logo-stamp { width: 104px; height: 104px; left: -6px; bottom: -28px; } }
+  .mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 230px; grid-auto-flow: dense; gap: 14px; }
+  .mosaic .tile { grid-column: span 1; grid-row: span 1; }
+  .mosaic .tile.v { grid-row: span 2; }
+  .mosaic .tile.b { grid-column: span 2; grid-row: span 2; }
+  .mosaic .tile.w { grid-column: span 2; }
+  @media (max-width: 820px) { .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 188px; gap: 10px; } }
   .about.one { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
   .info.single { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .hero:not(:has(figure)) { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
@@ -188,8 +199,8 @@
 </div>
 <header class="bar">
   <div class="bar-in">
-    <a class="brand" href="#topo">Barbearia Camões</a>
-    <nav aria-label="Seções"><a href="#casa">Sobre</a><a href="#clientes">Clientes</a><a href="#horarios">Horários</a></nav>
+    <a class="brand" href="#topo"><img src="img/logo.jpg" alt="" width="40" height="40">Barbearia Camões</a>
+    <nav aria-label="Seções"><a href="#casa">Sobre</a><a href="#fotos">Fotos</a><a href="#clientes">Clientes</a><a href="#horarios">Horários</a></nav>
     <a class="btn" href="https://wa.me/5541998658412" target="_blank" rel="noopener">WhatsApp</a>
   </div>
 </header>
@@ -197,6 +208,7 @@
 <main id="topo" class="wrap">
   <div class="hero">
     <div>
+      
       <p class="eyebrow">Barbearia · Hugo Lange, Curitiba</p>
       <h1>Barbearia Camões</h1>
       <p class="lede">Barbearia Camões fundada em 13/11/2019 Objetivo principal é elevar a autoestima dos nossos clientes com um serviço de qualidade, ótimo atendimento e claro contando com preços justos.</p>
@@ -206,7 +218,7 @@
         <div><span class="stars" aria-hidden="true">★★★★★</span><br>157 avaliações no Google</div>
       </div>
     </div>
-    
+    <figure><img src="img/hero.jpg" alt="Foto de Barbearia Camões" width="1400" height="1050"><img class="logo-stamp" id="stamp" src="img/logo.jpg" alt="Logo de Barbearia Camões" width="136" height="136"></figure>
   </div>
 </main>
 <div class="stripe" aria-hidden="true"></div>
@@ -222,10 +234,33 @@ Objetivo principal é elevar a autoestima dos nossos clientes com um serviço de
 Há três anos atrás, uma pequena barbearia abriu suas portas em um bairro movimentado da cidade. Desde então, a barbearia se tornou um local popular para homens que procuram um corte de cabelo ou uma barba bem feita. A barbearia tem uma decoração vintage e clássica, com espelhos antigos e poltronas de couro confortáveis, criando uma atmosfera acolhedora e relaxante. Os barbeiros da barbearia são experientes e habilidosos, oferecendo um serviço personalizado para cada cliente.</p>
         <ul class="services"><li class="svc"><b>Preço</b><span>Ótimo atendimento, trabalho excelente e preço justo.</span></li><li class="svc"><b>Ambiente</b><span>Muito bom o atendimento, ambiente sempre positivo.</span></li><li class="svc"><b>Simpatia</b><span>Me atenderam na maior simpatia durante o horário de almoço.</span></li><li class="svc"><b>Equipe</b><span>O serviço é excelente, equipe simpática e preço super justo.</span></li></ul><p class="sub" style="margin:14px 0 0;font-size:15px">Temas mais citados pelos clientes nas avaliações do Google.</p>
       </div>
-      <p class="pull">“Ótimos profissionais, atendimento excelente, voltaria com certeza!”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">HENRIQUE G., em avaliação no Google</span></p>
+      <p class="pull">“LUGAR EXCELENTE, MELHOR BARBEARIA DE CWB, ÓTIMOS BARBEIROS E ATENDIMENTO EXTRAORDINÁRIO!”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">Gustavo G., em avaliação no Google</span></p>
     </div>
   </section>
-  
+  <section id="fotos" style="padding-top:0">
+    <h2>Por dentro</h2>
+    <p class="sub">Fotos enviadas por clientes no Google Maps. Toque numa foto para ampliar e passe de uma para outra.</p>
+    <div class="mosaic" id="mosaic">
+      <button class="tile v" type="button" aria-label="Ampliar foto 1"><span class="ph"><img src="img/g1.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 2"><span class="ph"><img src="img/g2.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 3"><span class="ph"><img src="img/g3.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 4"><span class="ph"><img src="img/g4.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 5"><span class="ph"><img src="img/g5.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 6"><span class="ph"><img src="img/g6.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile b" type="button" aria-label="Ampliar foto 7"><span class="ph"><img src="img/g7.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 8"><span class="ph"><img src="img/g8.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 9"><span class="ph"><img src="img/g9.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 10"><span class="ph"><img src="img/g10.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 11"><span class="ph"><img src="img/g11.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 12"><span class="ph"><img src="img/g12.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 13"><span class="ph"><img src="img/g13.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile b" type="button" aria-label="Ampliar foto 14"><span class="ph"><img src="img/g14.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 15"><span class="ph"><img src="img/g15.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 16"><span class="ph"><img src="img/g16.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 17"><span class="ph"><img src="img/g17.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 18"><span class="ph"><img src="img/g18.jpg" alt="Foto de Barbearia Camões" loading="lazy"></span><span class="cap"></span></button>
+    </div>
+  </section>
 </main>
 
 <div class="proof" id="clientes">
@@ -237,7 +272,8 @@ Há três anos atrás, uma pequena barbearia abriu suas portas em um bairro movi
         <div class="big">4,9</div>
         <div class="bars" role="img" aria-label="Distribuição das 157 avaliações por estrelas"><div class="bar-row"><span>5 ★</span><div class="track"><div class="fill" style="width:93.0%"></div></div><span>146</span></div><div class="bar-row"><span>4 ★</span><div class="track"><div class="fill" style="width:3.8%"></div></div><span>6</span></div><div class="bar-row"><span>3 ★</span><div class="track"><div class="fill" style="width:0.6%"></div></div><span>1</span></div><div class="bar-row"><span>2 ★</span><div class="track"><div class="fill" style="width:0.6%"></div></div><span>1</span></div><div class="bar-row"><span>1 ★</span><div class="track"><div class="fill" style="width:1.9%"></div></div><span>3</span></div></div>
       </div>
-      <div class="quotes"><blockquote><p>Me atenderam na maior simpatia durante o horário de almoço. Trabalho de qualidade e preço justo.</p><cite>Robson S.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Nossa equipe agradece sua avaliação amigo, obrigado por escolher a gente ! sempre que precisar dá aquela escapadinha para cortar o cabelo, pode contar conosco ! </div></blockquote><blockquote><p>Dupla super profissional. O serviço é excelente, equipe simpática e preço super justo.</p><cite>Eduardo N.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Obrigado patrão e parceiro da barbearia Camões por confiar em nossos procedimentos 💈💈✂️✌🤙</div></blockquote><blockquote><p>Ótimos profissionais, atendimento excelente, voltaria com certeza!</p><cite>HENRIQUE G.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigado 🙏 nós equipe barbearia Camões agradecemos pela preferência 💈💈✂️✂️</div></blockquote><blockquote><p>Ótimo atendimento, trabalho excelente e preço justo.</p><cite>Mauricio H.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Obrigado patrão por confiar em nossos procedimentos 💈💈✂️✌</div></blockquote><blockquote><p>Excelente trabalho do Edinei! Custo beneficio muito bom. Há 32 anos minha mãe que tem salão de beleza curtou meu cabelo. Edinei foi aquele que se aproximou mais do que eu estava acostumado. Recomendo!</p><cite>Rômulo P.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Ô parceiro muito obrigado Pela oportunidade e à preferência e confiar no meu trabalho 💈✂️✂️😘</div></blockquote></div>
+      <div class="quotes"><blockquote><p>Me atenderam na maior simpatia durante o horário de almoço. Trabalho de qualidade e preço justo.</p><cite>Robson S.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Nossa equipe agradece sua avaliação amigo, obrigado por escolher a gente ! sempre que precisar dá aquela escapadinha para cortar o cabelo, pode contar conosco ! </div></blockquote><blockquote><p>LUGAR EXCELENTE, MELHOR BARBEARIA DE CWB, ÓTIMOS BARBEIROS E ATENDIMENTO EXTRAORDINÁRIO!</p><cite>Gustavo G.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> obrigado meu patrão, nossa equipe fica muito feliz com esse feedback e só temos a agradecer por termos clientes e amigos tão bons quanto você ! um forte abraço...</div></blockquote><blockquote><p>Dupla super profissional. O serviço é excelente, equipe simpática e preço super justo.</p><cite>Eduardo N.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Obrigado patrão e parceiro da barbearia Camões por confiar em nossos procedimentos 💈💈✂️✌🤙</div></blockquote><blockquote><p>Ótimos profissionais, atendimento excelente, voltaria com certeza!</p><cite>HENRIQUE G.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigado 🙏 nós equipe barbearia Camões agradecemos pela preferência 💈💈✂️✂️</div></blockquote><blockquote><p>Sempre corto cabelo e barba aqui e recomendo, atendimento de 1*</p><cite>Guilherme K.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Obrigado por confiar em nossos procedimentos patrão. 💈 💈✂️✂️✌️
+</div></blockquote></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>
@@ -254,9 +290,9 @@ Há três anos atrás, uma pequena barbearia abriu suas portas em um bairro movi
 
 <footer>
   <div class="wrap">
-    <strong style="font-family:var(--font-display);font-weight:400">Barbearia Camões</strong>
+    <span style="display:flex;align-items:center;gap:12px"><img src="img/logo.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--salmon)"><strong style="font-family:var(--font-display);font-weight:400">Barbearia Camões</strong></span>
     <p>R. Camões, 1493 · Hugo Lange · Curitiba</p>
-    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps. Protótipo sujeito à autorização do estabelecimento.</p>
+    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps e do Instagram. Protótipo sujeito à autorização do estabelecimento. <a href="https://leoperon2.github.io/vintage-riders-prototipo/leosumiu?site=barbearia-camoes" target="_blank" rel="noopener">Plano B do seu site</a></p>
   </div>
 </footer>
 

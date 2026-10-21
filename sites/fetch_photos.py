@@ -8,8 +8,8 @@ import cv2, numpy as np
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FACE = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
-PROFILE = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_profileface.xml")
+FACE = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml") if hasattr(cv2, "CascadeClassifier") else None
+PROFILE = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_profileface.xml") if hasattr(cv2, "CascadeClassifier") else None
 
 
 def clean_name(t):
@@ -47,20 +47,22 @@ def analyse(im):
     small = cv2.cvtColor(np.asarray(im.resize((max(1, int(w * s)), max(1, int(h * s))))), cv2.COLOR_RGB2GRAY)
     sharp = cv2.Laplacian(small, cv2.CV_64F).var()
     bright = float(small.mean())
-    faces = list(FACE.detectMultiScale(small, 1.15, 5, minSize=(40, 40))) + list(PROFILE.detectMultiScale(small, 1.15, 6, minSize=(40, 40)))
+    faces = (list(FACE.detectMultiScale(small, 1.15, 5, minSize=(40, 40))) + list(PROFILE.detectMultiScale(small, 1.15, 6, minSize=(40, 40)))) if FACE is not None else []
     face_frac = max([fw / small.shape[1] for (_, _, fw, _) in faces] or [0])
     return sharp, bright, face_frac, len(faces)
 
 
 def process(place):
     slug = slugify(clean_name(place["title"]))
-    out = os.path.join(HERE, slug, "img")
+    out = os.path.join(HERE, slug, "_src")
     os.makedirs(out, exist_ok=True)
+    for f in os.listdir(out):
+        if f.startswith("p"): os.remove(os.path.join(out, f))
     cands = []
     for r in sorted(place.get("reviews") or [], key=lambda r: -(r.get("likesCount") or 0)):
         for u in r.get("reviewImageUrls") or []:
             cands.append((u, r.get("name") or "cliente"))
-    cands = cands[:34]
+    cands = cands[:70]
     with ThreadPoolExecutor(8) as ex:
         ims = list(ex.map(lambda c: fetch(c[0]), cands))
     kept, hashes = [], []
@@ -71,20 +73,20 @@ def process(place):
         if any((hh != o).sum() < 7 for o in hashes):
             continue
         sharp, bright, ff, nf = analyse(im)
-        if bright < 38 or sharp < 25 or ff > 0.09:
+        if bright < 38 or sharp < 25:
             continue
         hashes.append(hh)
-        q = min(sharp, 600) / 600 * 0.6 + min(min(im.size), 1400) / 1400 * 0.4 - ff * 2
-        kept.append(dict(im=im, who=who, q=q, faces=nf))
+        q = min(sharp, 600) / 600 * 0.6 + min(min(im.size), 1400) / 1400 * 0.4
+        kept.append(dict(im=im, who=who, q=q, faces=nf, h="".join("1" if b else "0" for b in hh)))
     kept.sort(key=lambda k: -k["q"])
-    kept = kept[:12]
+    kept = kept[:30]
     meta = []
     for i, k in enumerate(kept, 1):
         im = k["im"]
         im.thumbnail((1400, 1400))
         fn = f"p{i:02d}.jpg"
         im.save(os.path.join(out, fn), quality=78, optimize=True, progressive=True)
-        meta.append(dict(file=f"img/{fn}", who=k["who"], aspect=round(im.size[0] / im.size[1], 3), q=round(k["q"], 3), faces=k["faces"], w=im.size[0], h=im.size[1]))
+        meta.append(dict(file=f"img/{fn}", hash=k["h"], who=k["who"], aspect=round(im.size[0] / im.size[1], 3), q=round(k["q"], 3), faces=k["faces"], w=im.size[0], h=im.size[1]))
     json.dump(meta, open(os.path.join(HERE, slug, "photos.json"), "w"), ensure_ascii=False, indent=1)
     return slug, len(cands), len(meta)
 

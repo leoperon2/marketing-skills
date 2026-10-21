@@ -162,8 +162,7 @@
     section { padding-block: 48px; }
     .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 168px; gap: 10px; }
     .mosaic .tile { grid-column: auto; grid-row: auto; }
-    .mosaic .tile:first-child { grid-column: span 2; grid-row: span 2; }
-    .mosaic .tile:last-child:nth-child(even) { grid-column: span 2; }
+
     .hero img.stamp-unused { width: 104px; height: 104px; left: -6px; bottom: -28px; }
     .lb-p, .lb-n { top: auto; bottom: max(14px, env(safe-area-inset-bottom, 0px)); }
   }
@@ -172,17 +171,24 @@
   .seal { position: absolute; left: -22px; bottom: -34px; width: 124px; height: 124px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-content: center; text-align: center; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
   .seal b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: 1; }
   .seal span { font: 600 11px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+  .hero img.logo-stamp { position: absolute; left: -22px; bottom: -34px; width: 136px; height: 136px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: #fff; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
+  .logo-badge { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin: 0 0 18px; border: 4px solid var(--surface); box-shadow: 0 4px 0 var(--salmon); }
+  .brand img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--salmon); background: #fff; }
+  .tile .cap { display: none; }
+  .lb figcaption:empty { display: none; }
+  @media (max-width: 820px) { .hero img.logo-stamp { width: 104px; height: 104px; left: -6px; bottom: -28px; } }
+  .mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 230px; grid-auto-flow: dense; gap: 14px; }
+  .mosaic .tile { grid-column: span 1; grid-row: span 1; }
+  .mosaic .tile.v { grid-row: span 2; }
+  .mosaic .tile.b { grid-column: span 2; grid-row: span 2; }
+  .mosaic .tile.w { grid-column: span 2; }
+  @media (max-width: 820px) { .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 188px; gap: 10px; } }
   .about.one { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
   .info.single { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .hero:not(:has(figure)) { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
   @media (max-width: 820px) { .seal { width: 96px; height: 96px; left: -6px; bottom: -26px; } .seal b { font-size: 28px; } .seal span { font-size: 9px; } }
   h1,h2,h3{text-transform:uppercase;letter-spacing:.015em} body{font-size:18px}
-  @media (min-width: 821px) {
-    .mosaic .t1 { grid-column: 1/4; grid-row: 1/4; }
-    .mosaic .t2 { grid-column: 4/7; grid-row: 1/3; }
-    .mosaic .t3 { grid-column: 4/7; grid-row: 3; }
-  }
-</style>
+  </style>
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
@@ -193,7 +199,7 @@
 </div>
 <header class="bar">
   <div class="bar-in">
-    <a class="brand" href="#topo">Auto Mecânica Tosatti</a>
+    <a class="brand" href="#topo"><img src="img/logo.jpg" alt="" width="40" height="40">Auto Mecânica Tosatti</a>
     <nav aria-label="Seções"><a href="#casa">Sobre</a><a href="#fotos">Fotos</a><a href="#clientes">Clientes</a><a href="#horarios">Horários</a></nav>
     <a class="btn" href="https://wa.me/5531992329991" target="_blank" rel="noopener">Pedir orçamento</a>
   </div>
@@ -202,6 +208,7 @@
 <main id="topo" class="wrap">
   <div class="hero">
     <div>
+      
       <p class="eyebrow">Serviços de usinagem automotiva · Santa Amelia, Belo Horizonte</p>
       <h1>Auto Mecânica Tosatti</h1>
       <p class="lede">Há mais de 8 anos oferecendo serviços de qualidade, empresa especializada em resolver o seu problema no ramo automotivo.</p>
@@ -211,7 +218,7 @@
         <div><span class="stars" aria-hidden="true">★★★★★</span><br>154 avaliações no Google</div>
       </div>
     </div>
-    <figure><img src="img/hero.jpg" alt="Foto enviada por cliente de Auto Mecânica Tosatti" width="1400" height="788"><div class="seal" id="stamp" aria-label="Nota 4,9 no Google"><b>4,9</b><span>no Google</span></div></figure>
+    <figure><img src="img/hero.jpg" alt="Foto de Auto Mecânica Tosatti" width="1393" height="1400"><img class="logo-stamp" id="stamp" src="img/logo.jpg" alt="Logo de Auto Mecânica Tosatti" width="136" height="136"></figure>
   </div>
 </main>
 <div class="stripe" aria-hidden="true"></div>
@@ -231,9 +238,24 @@
     <h2>Na oficina</h2>
     <p class="sub">Fotos enviadas por clientes no Google Maps. Toque numa foto para ampliar e passe de uma para outra.</p>
     <div class="mosaic" id="mosaic">
-      <button class="tile t1" type="button" aria-label="Ampliar foto 1"><span class="ph"><img src="img/g1.jpg" alt="Foto enviada por Daniel, cliente" loading="lazy"></span><span class="cap">Foto de Daniel</span></button>
-      <button class="tile t2" type="button" aria-label="Ampliar foto 2"><span class="ph"><img src="img/g2.jpg" alt="Foto enviada por Daniel, cliente" loading="lazy"></span><span class="cap">Foto de Daniel</span></button>
-      <button class="tile t3" type="button" aria-label="Ampliar foto 3"><span class="ph"><img src="img/g3.jpg" alt="Foto enviada por Daniel, cliente" loading="lazy"></span><span class="cap">Foto de Daniel</span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 1"><span class="ph"><img src="img/g1.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile b" type="button" aria-label="Ampliar foto 2"><span class="ph"><img src="img/g2.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile w" type="button" aria-label="Ampliar foto 3"><span class="ph"><img src="img/g3.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 4"><span class="ph"><img src="img/g4.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 5"><span class="ph"><img src="img/g5.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 6"><span class="ph"><img src="img/g6.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile w" type="button" aria-label="Ampliar foto 7"><span class="ph"><img src="img/g7.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 8"><span class="ph"><img src="img/g8.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 9"><span class="ph"><img src="img/g9.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 10"><span class="ph"><img src="img/g10.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 11"><span class="ph"><img src="img/g11.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile w" type="button" aria-label="Ampliar foto 12"><span class="ph"><img src="img/g12.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 13"><span class="ph"><img src="img/g13.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 14"><span class="ph"><img src="img/g14.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile v" type="button" aria-label="Ampliar foto 15"><span class="ph"><img src="img/g15.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 16"><span class="ph"><img src="img/g16.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 17"><span class="ph"><img src="img/g17.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
+      <button class="tile s" type="button" aria-label="Ampliar foto 18"><span class="ph"><img src="img/g18.jpg" alt="Foto de Auto Mecânica Tosatti" loading="lazy"></span><span class="cap"></span></button>
     </div>
   </section>
 </main>
@@ -268,9 +290,9 @@ A equipe é realmente competente e sempre que preciso dos serviços da oficina t
 
 <footer>
   <div class="wrap">
-    <strong style="font-family:var(--font-display);font-weight:400">Auto Mecânica Tosatti</strong>
+    <span style="display:flex;align-items:center;gap:12px"><img src="img/logo.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--salmon)"><strong style="font-family:var(--font-display);font-weight:400">Auto Mecânica Tosatti</strong></span>
     <p>Av. Dep. Anuar Menhem, 772 · Santa Amelia · Belo Horizonte</p>
-    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps. Protótipo sujeito à autorização do estabelecimento.</p>
+    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps e do Instagram. Protótipo sujeito à autorização do estabelecimento. <a href="https://leoperon2.github.io/vintage-riders-prototipo/leosumiu?site=auto-mecanica-tosatti" target="_blank" rel="noopener">Plano B do seu site</a></p>
   </div>
 </footer>
 

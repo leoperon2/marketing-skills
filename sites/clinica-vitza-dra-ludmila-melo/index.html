@@ -162,8 +162,7 @@
     section { padding-block: 48px; }
     .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 168px; gap: 10px; }
     .mosaic .tile { grid-column: auto; grid-row: auto; }
-    .mosaic .tile:first-child { grid-column: span 2; grid-row: span 2; }
-    .mosaic .tile:last-child:nth-child(even) { grid-column: span 2; }
+
     .hero img.stamp-unused { width: 104px; height: 104px; left: -6px; bottom: -28px; }
     .lb-p, .lb-n { top: auto; bottom: max(14px, env(safe-area-inset-bottom, 0px)); }
   }
@@ -172,6 +171,18 @@
   .seal { position: absolute; left: -22px; bottom: -34px; width: 124px; height: 124px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-content: center; text-align: center; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
   .seal b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: 1; }
   .seal span { font: 600 11px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+  .hero img.logo-stamp { position: absolute; left: -22px; bottom: -34px; width: 136px; height: 136px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: #fff; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
+  .logo-badge { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin: 0 0 18px; border: 4px solid var(--surface); box-shadow: 0 4px 0 var(--salmon); }
+  .brand img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--salmon); background: #fff; }
+  .tile .cap { display: none; }
+  .lb figcaption:empty { display: none; }
+  @media (max-width: 820px) { .hero img.logo-stamp { width: 104px; height: 104px; left: -6px; bottom: -28px; } }
+  .mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 230px; grid-auto-flow: dense; gap: 14px; }
+  .mosaic .tile { grid-column: span 1; grid-row: span 1; }
+  .mosaic .tile.v { grid-row: span 2; }
+  .mosaic .tile.b { grid-column: span 2; grid-row: span 2; }
+  .mosaic .tile.w { grid-column: span 2; }
+  @media (max-width: 820px) { .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 188px; gap: 10px; } }
   .about.one { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
   .info.single { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .hero:not(:has(figure)) { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
@@ -197,6 +208,7 @@
 <main id="topo" class="wrap">
   <div class="hero">
     <div>
+      
       <p class="eyebrow">Centro de saúde e beleza · Jardim Atlântico, Belo Horizonte</p>
       <h1>Clínica Vitza - Dra Ludmila Melo</h1>
       <p class="lede">Vitza é uma Clínica de Estética Avançada (Corporal, Facial e Capilar)que preza por valores além da beleza.</p>
@@ -258,9 +270,9 @@ Recomendo e com certeza voltarei!</p><cite>Eliane R.</cite></blockquote></div>
 
 <footer>
   <div class="wrap">
-    <strong style="font-family:var(--font-display);font-weight:400">Clínica Vitza - Dra Ludmila Melo</strong>
+    <span style="display:flex;align-items:center;gap:12px"><strong style="font-family:var(--font-display);font-weight:400">Clínica Vitza - Dra Ludmila Melo</strong></span>
     <p>Av. Portugal, 2090 - Sl 230 · Jardim Atlântico · Belo Horizonte</p>
-    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps. Protótipo sujeito à autorização do estabelecimento.</p>
+    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps e do Instagram. Protótipo sujeito à autorização do estabelecimento. <a href="https://leoperon2.github.io/vintage-riders-prototipo/leosumiu?site=clinica-vitza-dra-ludmila-melo" target="_blank" rel="noopener">Plano B do seu site</a></p>
   </div>
 </footer>
 
