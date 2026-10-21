@@ -236,7 +236,7 @@ function build(l) {
           <button class="btn small b-voltar" type="button">Voltar ao texto sugerido</button>
           <button class="btn small b-enviei" type="button">Registrar que enviei o texto inicial</button>
         </div>
-        <p class="hint">O botão do WhatsApp abre a conversa com o texto salvo aqui. Só mande o link do site depois que a pessoa disser que quer ver.</p>
+        <p class="hint">O botão do WhatsApp abre a conversa com o texto salvo aqui. Mande o link do site na mensagem seguinte, assim que a pessoa responder sem recusar.</p>
       </div>
       <div class="blk">
         <h4>Resposta da empresa</h4>
@@ -343,7 +343,7 @@ Regras de tom:
 - Informal de alto nível: caloroso, direto e elegante, sem parecer vendedor nem robô.
 - Chame a pessoa pelo primeiro nome se aparecer na conversa; senão, trate pelo nome da empresa.
 - Não fale de ferramentas, inteligência artificial, SEO nem termos técnicos.
-- Só envie o link do site de demonstração depois que a pessoa disser que quer ver. Quando ela quiser ver, envie este link: ${l.demo || "(sem link cadastrado, avise-me com uma linha começando com AVISO PARA MIM:)"}
+- A primeira mensagem dele já explicou a proposta e pediu licença para mandar o link. Se a pessoa respondeu de forma neutra ou positiva (cumprimento, "pode", "sim", "quem é?", "do que se trata?"), mande o link do site de demonstração já nesta mensagem, com uma frase curta apresentando e convidando a olhar com calma. Se houver dúvida a responder, responda primeiro e envie o link na mesma mensagem. Só não envie se a pessoa recusou. Link a enviar: ${l.demo || "(sem link cadastrado, avise-me com uma linha começando com AVISO PARA MIM:)"}
 - 2 a 4 frases, no máximo uma pergunta, sempre levando a conversa ao próximo passo (mandar o link, marcar uma conversa rápida, fechar).
 - ${precoRegra()}
 - Se a pessoa resistir ("não preciso de site", "já uso Instagram"), responda sem pressão: valorize o que ela já tem e mostre que o site complementa (aparece nas buscas do Google e dá credibilidade a quem pesquisa o nome). Não insista mais de uma vez.
