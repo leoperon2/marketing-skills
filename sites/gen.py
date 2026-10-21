@@ -8,6 +8,7 @@ from fetch_photos import clean_name, slugify
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 esc = lambda s: html.escape(str(s), quote=True)
+LEOSUMIU = "https://leoperon2.github.io/vintage-riders-prototipo/leosumiu"
 DON = open(os.path.join(HERE, "don-alberttoni", "index.html"), encoding="utf-8").read()
 CSS_MAIN = DON[DON.index("  * { box-sizing"):DON.index("</style>")]
 JS_GALLERY = DON[DON.index("<script>\n(function () {\n  var reduce"):]
@@ -85,6 +86,9 @@ EMOJI = re.compile("[\U0001F000-\U0001FFFF\u2600-\u27BF\uFE0F\u200d\u2B50\u2B06\
 
 def nemoji(t):
     return re.sub(r"\s{2,}", " ", EMOJI.sub("", t or "")).strip()
+
+def credit(who):
+    return f"Instagram {who}" if (who or "").startswith("@") else f"Foto de {first_name(who)}"
 
 def first_name(n):
     p = (n or "").split()
@@ -209,22 +213,42 @@ LAY = {
  3: [("1/4","1/4","sq"),("4/7","1/3","wide"),("4/7","3","wide")],
 }
 TARGET = {"tall": 0.62, "sq": 1.0, "wide": 1.45}
+MAXGAL = 18
+
+def lay_for(n):
+    """Une blocos de LAY (cada um com até 9 fotos), deslocando as linhas do bloco seguinte."""
+    out, row, rest = [], 0, n
+    while rest > 0:
+        k = min(9, rest)
+        last = 0
+        for c, r, t in LAY[k]:
+            a, b = (r.split("/") + [None])[:2]
+            rr = f"{int(a) + row}/{int(b) + row}" if b else str(int(a) + row)
+            out.append((c, rr, t))
+            last = max(last, (int(b) - 1) if b else int(a))
+        row += last
+        rest -= k
+    return out
+
+def valid_n(n):
+    return n >= 3 and (n % 9 == 0 or n % 9 >= 3)
 
 def choose_photos(slug):
     base = os.path.join(HERE, slug)
     meta = json.load(open(os.path.join(base, "photos.json"))) if os.path.exists(os.path.join(base, "photos.json")) else []
     vet = json.load(open(os.path.join(HERE, "vetoes.json"))).get(slug, [])
-    meta = [m for i, m in enumerate(meta, 1) if i not in vet]
+    meta = [m for i, m in enumerate(meta, 1) if i not in vet and not m.get("veto")]
     if not meta: return None, []
     pool = sorted(meta, key=lambda m: -m["q"])
     hero = next((m for m in pool if 0.95 <= m["aspect"] <= 1.9), pool[0])
-    rest = [m for m in pool if m is not hero]
-    n = min(9, len(rest)) if len(rest) >= 3 else 0
+    rest = [m for m in pool if m is not hero][:MAXGAL]
+    n = len(rest)
+    while n and not valid_n(n): n -= 1
     rest = rest[:n]
-    slots = LAY.get(n, [])
+    slots = lay_for(n) if n else []
+    import math
     order = sorted(range(len(slots)), key=lambda i: {"tall": 0, "wide": 1, "sq": 2}[slots[i][2]])
     assign, left = {}, list(rest)
-    import math
     for i in order:
         best = min(left, key=lambda m: abs(math.log(m["aspect"] / TARGET[slots[i][2]])) - 0.15 * m["q"])
         assign[i] = best; left.remove(best)
@@ -337,7 +361,7 @@ def build(place, idx):
     sec_gal = ""
     if gal:
         tiles = "".join(
-            f'      <button class="tile t{k}" type="button" aria-label="Ampliar foto {k}"><span class="ph"><img src="img/g{k}.jpg" alt="Foto enviada por {esc(first_name(m["who"]))}, cliente" loading="lazy"></span><span class="cap">Foto de {esc(first_name(m["who"]))}</span></button>\n'
+            f'      <button class="tile t{k}" type="button" aria-label="Ampliar foto {k}"><span class="ph"><img src="img/g{k}.jpg" alt="{esc(credit(m["who"]))}" loading="lazy"></span><span class="cap">{esc(credit(m["who"]))}</span></button>\n'
             for k, (_, m) in enumerate(gal, 1))
         sec_gal = f'''<section id="fotos" style="padding-top:0">
     <h2>{esc(cp["gal"])}</h2>
@@ -490,7 +514,7 @@ def build(place, idx):
   <div class="wrap">
     <strong style="font-family:var(--font-display);font-weight:400">{esc(nome)}</strong>
     <p>{esc(foot_addr)}</p>
-    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps. Protótipo sujeito à autorização do estabelecimento.</p>
+    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps e do Instagram. Protótipo sujeito à autorização do estabelecimento. <a href="{LEOSUMIU}?site={slug}" target="_blank" rel="noopener">Plano B do seu site</a></p>
   </div>
 </footer>
 
