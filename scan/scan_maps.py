@@ -91,7 +91,8 @@ def score(p):
 
 def rank(a):
     seen, rows = set(), []
-    for p in fetch(a.dataset):
+    items = [p for d in a.dataset.split(",") for p in fetch(d.strip())]
+    for p in items:
         pid = p.get("placeId") or p.get("url")
         if pid in seen or p.get("permanentlyClosed") or p.get("temporarilyClosed"):
             continue
@@ -110,6 +111,8 @@ def rank(a):
         with open(name, "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=list(rows[0]) if rows else ["score"])
             w.writeheader(); w.writerows(subset)
+    from collections import Counter
+    print("por categoria:", Counter(r["categoria"] for r in rows).most_common(8))
     print(f"{len(seen)} únicos | {len(rows)} candidatos qualificados | top {a.top} em top50.csv")
 
 
