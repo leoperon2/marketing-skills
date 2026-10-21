@@ -1,0 +1,449 @@
+<title>Prospecção de Sites</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: mesa de trabalho diária. Prontos primeiro, fila depois; cada ficha abre uma conversa. Verde-tinta como acento único; cores de status só para estado. */
+  :root {
+    --bg: #edf0ee; --surface: #fbfcfb; --ink: #17211c; --soft: #55635b; --line: #d5dcd7;
+    --accent: #0a6b4f; --accent-ink: #ffffff; --accent-bg: #d9efe4;
+    --warn: #7a4f00; --warn-bg: #fbecc8; --info: #1d5fa8; --info-bg: #dbe8f7;
+    --bad: #9a2d2d; --bad-bg: #f6dcdc; --violet: #5a3d9a; --violet-bg: #e6e0f5; --mute-bg: #e3e7e4;
+    --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+    --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101512; --surface: #181f1b; --ink: #e7eee9; --soft: #9fb0a6; --line: #2b362f;
+      --accent: #3fc08f; --accent-ink: #0b130f; --accent-bg: #163226;
+      --warn: #e9b94f; --warn-bg: #3a2f10; --info: #7db4ee; --info-bg: #14263b;
+      --bad: #ee8a8a; --bad-bg: #3a1b1b; --violet: #b49df0; --violet-bg: #2a2142; --mute-bg: #232c27; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101512; --surface: #181f1b; --ink: #e7eee9; --soft: #9fb0a6; --line: #2b362f;
+    --accent: #3fc08f; --accent-ink: #0b130f; --accent-bg: #163226;
+    --warn: #e9b94f; --warn-bg: #3a2f10; --info: #7db4ee; --info-bg: #14263b;
+    --bad: #ee8a8a; --bad-bg: #3a1b1b; --violet: #b49df0; --violet-bg: #2a2142; --mute-bg: #232c27; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.5 var(--font-body); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 56px; }
+  .wrap { max-width: 880px; margin: 0 auto; display: grid; gap: 22px; }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(28px, 6vw, 38px); }
+  h2 { font-size: 21px; display: flex; align-items: baseline; gap: 10px; }
+  h2 small { font: 500 14px var(--font-body); color: var(--soft); }
+  a { color: var(--accent); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  button, select, input, textarea { font: inherit; color: inherit; }
+
+  .top { display: grid; gap: 16px; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+  .stat b { display: block; font: 700 26px/1 var(--font-display); font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 13px; color: var(--soft); }
+  .tools { display: grid; gap: 10px; }
+  .search { width: 100%; min-height: 46px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-size: 14px; }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .aviso { border: 1px solid var(--warn); background: var(--warn-bg); color: var(--warn); border-radius: 10px; padding: 12px 14px; font-size: 14px; display: grid; gap: 4px; }
+  .aviso strong { font-weight: 600; }
+  .aviso.alto { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+  .list { display: grid; gap: 12px; }
+  .lead { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+  .lead.is-ready { border-color: var(--accent); }
+  .lead.is-off .head { opacity: .92; }
+  .lead[data-status="descartado"] { opacity: .6; }
+  .head { display: grid; grid-template-columns: 108px minmax(0, 1fr); gap: 12px; align-items: start; }
+  .thumb { width: 108px; height: 72px; border-radius: 8px; overflow: hidden; background: var(--mute-bg); display: grid; place-items: center; font: 700 22px var(--font-display); color: var(--soft); }
+  .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .id { min-width: 0; display: grid; gap: 3px; }
+  .id h3 { font-size: 19px; overflow-wrap: anywhere; }
+  .meta, .rate { margin: 0; font-size: 14px; color: var(--soft); overflow-wrap: anywhere; }
+  .rate b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .badge { font-size: 12px; font-weight: 600; letter-spacing: .02em; padding: 3px 9px; border-radius: 999px; background: var(--mute-bg); color: var(--soft); white-space: nowrap; }
+  .badge.pronto { background: var(--accent-bg); color: var(--accent); }
+  .badge.s-contatado { background: var(--info-bg); color: var(--info); }
+  .badge.s-respondeu { background: var(--warn-bg); color: var(--warn); }
+  .badge.s-negociando { background: var(--violet-bg); color: var(--violet); }
+  .badge.s-fechado { background: var(--accent-bg); color: var(--accent); }
+  .badge.s-descartado { background: var(--bad-bg); color: var(--bad); }
+  .badge.espera { background: var(--warn-bg); color: var(--warn); }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: var(--ink); font-weight: 500; cursor: pointer; text-align: center; }
+  .btn:hover { border-color: var(--ink); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .btn.small { min-height: 38px; padding: 0 12px; font-size: 14px; }
+  .btn.off, .btn[disabled] { opacity: .45; cursor: not-allowed; pointer-events: none; }
+  select.btn { padding-right: 8px; }
+  .tel { font-size: 13px; color: var(--soft); margin: 0; }
+
+  .panel { border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 18px; }
+  .blk { display: grid; gap: 8px; min-width: 0; }
+  .blk h4 { margin: 0; font: 600 13px var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
+  textarea { width: 100%; min-height: 96px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); resize: vertical; line-height: 1.45; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hint { margin: 0; font-size: 13px; color: var(--soft); }
+  .thread { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .msg { padding: 9px 12px; border-radius: 10px; background: var(--mute-bg); max-width: 92%; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 15px; }
+  .msg.eu { background: var(--accent-bg); justify-self: end; }
+  .msg time { display: block; font-size: 12px; color: var(--soft); margin-top: 3px; }
+  .vazio { color: var(--soft); font-size: 14px; margin: 0; }
+  .mais { justify-self: center; }
+  details.cfg { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  details.cfg summary { cursor: pointer; font-weight: 600; }
+  .cfg-grid { display: grid; gap: 10px; margin-top: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .cfg-grid label { display: grid; gap: 4px; font-size: 14px; color: var(--soft); }
+  .cfg-grid input { min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+  #toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 14px; z-index: 20; max-width: min(92vw, 420px); }
+  .foot { font-size: 13px; color: var(--soft); }
+  @media (max-width: 520px) {
+    .head { grid-template-columns: 88px minmax(0, 1fr); }
+    .thumb { width: 88px; height: 59px; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .actions .btn { flex: 1 1 100%; }
+    .actions select.btn, .actions .btn.small { flex: 1 1 calc(50% - 4px); }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main class="wrap">
+  <header class="top">
+    <h1>Prospecção de Sites</h1>
+    <div class="stats" id="stats"></div>
+    <div class="aviso" id="aviso"></div>
+    <div class="tools">
+      <input class="search" id="busca" type="search" placeholder="Buscar por nome, categoria ou cidade" aria-label="Buscar leads" autocomplete="off">
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por status"></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Prontos para contato <small id="n-prontos"></small></h2>
+    <div class="list" id="L1" style="margin-top:12px"></div>
+    <p class="vazio" id="v1" hidden style="margin-top:12px">Nenhum lead pronto com esse filtro.</p>
+  </section>
+
+  <section>
+    <h2>Em andamento <small id="n-and"></small></h2>
+    <div class="list" id="L2" style="margin-top:12px"></div>
+    <p class="vazio" id="v2" hidden style="margin-top:12px">Nenhum lead em andamento com esse filtro.</p>
+    <div style="display:grid;margin-top:12px"><button class="btn mais" id="mais" type="button" hidden></button></div>
+  </section>
+
+  <details class="cfg" id="cfg">
+    <summary>Preço (só o Claude usa, nas respostas)</summary>
+    <div class="cfg-grid">
+      <label>Valor do site<input id="p-site" type="text" placeholder="Ainda não definido"></label>
+      <label>Domínio e hospedagem<input id="p-dom" type="text" placeholder="Ainda não definido"></label>
+    </div>
+    <p class="hint" style="margin-top:10px">Em branco, o Claude não cita valor: diz que passa uma proposta depois que a pessoa ver o site e avisa você.</p>
+  </details>
+
+  <p class="foot" id="foot"></p>
+</main>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+const LEADS = __LEADS__;
+const STATUS = [["novo", "Novo"], ["contatado", "Contatado"], ["respondeu", "Respondeu"], ["negociando", "Negociando"], ["fechado", "Fechado"], ["descartado", "Descartado"]];
+const STLABEL = Object.fromEntries(STATUS);
+const PAGE = 20, ESPERA_DIAS = 4, LIMITE_DIA = 10;
+const S = {};                 // estado por lead (espelho do db)
+const CFG = { site: "", dominio: "" };
+let db = null, sampleFn = null, filtro = "todos", busca = "", limite = PAGE;
+const $ = (s, r) => (r || document).querySelector(s);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const norm = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const fmtNota = (n) => n.toFixed(1).replace(".", ",");
+const hash = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; };
+const dtf = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+const stOf = (k) => (S[k] && S[k].status) || "novo";
+const isReady = (l) => (S[l.key] && typeof S[l.key].pronto === "boolean") ? S[l.key].pronto : l.pronto;
+const threadOf = (k) => (S[k] && Array.isArray(S[k].thread)) ? S[k].thread : [];
+const rrank = [...LEADS].sort((a, b) => b.aval - a.aval || a.ord - b.ord).map((l) => l.key);
+
+function toast(t) { const e = $("#toast"); e.textContent = t; e.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { e.hidden = true; }, 3200); }
+
+/* ---------- texto inicial ---------- */
+function mais(n) { // arredonda para baixo, sempre verdadeiro
+  const f = n >= 300 ? 100 : n >= 100 ? 50 : 10;
+  return "mais de " + Math.floor(n / f) * f;
+}
+function sugerido(l) {
+  const h = hash(l.key), p = (a) => a[h % a.length], q = (a, m) => a[(h >> m) % a.length];
+  const nota = l.nota >= 4.95 ? "nota 5" : "nota " + fmtNota(l.nota), n = mais(l.aval);
+  const abre = p([`Oi, equipe da ${l.nome}, tudo bem?`, `Olá, equipe da ${l.nome}! Tudo bem?`, `Oi, pessoal da ${l.nome}, tudo bem?`]);
+  const elogio = q([
+    `Vi que vocês têm ${nota} no Google com ${n} avaliações, que resultado lindo.`,
+    `Reparei na ${nota} de vocês no Google, com ${n} avaliações. Isso diz muito do trabalho de vocês.`,
+    `${nota[0].toUpperCase() + nota.slice(1)} no Google com ${n} avaliações é um resultado e tanto, parabéns.`], 3);
+  const site = q([
+    `Percebi que ainda não têm um site e, por conta própria, montei uma proposta de site com as fotos e as informações do perfil de vocês.`,
+    `Notei que vocês ainda não têm site, então montei por conta própria uma proposta com as fotos e as informações do perfil de vocês.`,
+    `Vi que ainda não existe um site de vocês e, por iniciativa própria, montei uma proposta usando as fotos e as informações do perfil.`], 6);
+  const pergunta = q([`Posso te mandar o link para você dar uma olhada? Sem compromisso nenhum.`, `Posso te mandar o link pra você dar uma olhada? Sem compromisso nenhum.`], 9);
+  return [abre, elogio, site, pergunta].join(" ");
+}
+const textoDe = (l) => (S[l.key] && typeof S[l.key].text === "string") ? S[l.key].text : sugerido(l);
+
+/* ---------- persistência ---------- */
+const fila = {};
+function persist(l) {
+  if (!db) return;
+  const doc = Object.assign({}, S[l.key], { nome: l.nome, categoria: l.cat, cidade: l.cidade, bairro: l.bairro || "", nota: l.nota, avaliacoes: l.aval, telefone: l.tel || "", demo: l.demo || "", pronto: isReady(l), status: stOf(l.key) });
+  fila[l.key] = (fila[l.key] || Promise.resolve()).then(() => db.collection("leads").doc(l.key).set(doc)).catch((e) => toast("Não consegui salvar: " + ((e && e.message) || "erro")));
+}
+function save(l, patch) { S[l.key] = Object.assign({}, S[l.key], patch); persist(l); refresh(l); layout(); }
+
+/* ---------- fichas ---------- */
+const cards = {};
+function build(l) {
+  const a = document.createElement("article");
+  a.className = "lead"; a.dataset.k = l.key;
+  const ini = l.nome.split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+  const local = [l.cat, l.bairro ? l.bairro + ", " + l.cidade : l.cidade].join(" · ");
+  a.innerHTML = `
+    <div class="head">
+      <div class="thumb">${l.img ? `<img src="${l.img}" alt="" width="216" height="144">` : esc(ini)}</div>
+      <div class="id">
+        <h3>${esc(l.nome)}</h3>
+        <p class="meta">${esc(local)}</p>
+        <p class="rate"><b>${fmtNota(l.nota)}</b> ★ · ${l.aval} avaliações no Google · <a href="${esc(l.maps)}" target="_blank" rel="noopener">Perfil no Maps</a></p>
+        <div class="badges"></div>
+      </div>
+    </div>
+    <div class="actions">
+      ${l.demo ? `<a class="btn" href="${esc(l.demo)}" target="_blank" rel="noopener">Ver site de demonstração</a>` : `<span class="btn off">sem link</span>`}
+      <a class="btn primary wa" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      <select class="btn small st" aria-label="Status de ${esc(l.nome)}">${STATUS.map(([v, t]) => `<option value="${v}">${t}</option>`).join("")}</select>
+      <button class="btn small tg" type="button"></button>
+      <button class="btn small ex" type="button" aria-expanded="false">Abrir conversa</button>
+    </div>
+    <p class="tel">${l.tel ? esc(l.tel) : "sem telefone"}${l.wa ? "" : (l.tel ? " · sem link de WhatsApp (telefone fixo)" : "")}</p>
+    <div class="panel" hidden>
+      <div class="blk">
+        <h4>Texto inicial</h4>
+        <textarea class="t-ini" rows="5" aria-label="Texto inicial"></textarea>
+        <div class="row">
+          <button class="btn small b-salvar" type="button">Salvar texto</button>
+          <button class="btn small b-copiar" type="button">Copiar</button>
+          <button class="btn small b-voltar" type="button">Voltar ao texto sugerido</button>
+          <button class="btn small b-enviei" type="button">Registrar que enviei o texto inicial</button>
+        </div>
+        <p class="hint">O botão do WhatsApp abre a conversa com o texto salvo aqui. Só mande o link do site depois que a pessoa disser que quer ver.</p>
+      </div>
+      <div class="blk">
+        <h4>Resposta da empresa</h4>
+        <textarea class="t-resp" rows="3" placeholder="Cole aqui o que a empresa escreveu" aria-label="Resposta da empresa"></textarea>
+        <div class="row">
+          <button class="btn small b-sug" type="button">Sugerir resposta</button>
+          <button class="btn small b-reg" type="button">Só registrar a resposta</button>
+        </div>
+        <div class="blk sug-blk" hidden>
+          <h4>Resposta sugerida</h4>
+          <textarea class="t-sug" rows="4" aria-label="Resposta sugerida"></textarea>
+          <div class="row">
+            <button class="btn small b-csug" type="button">Copiar resposta</button>
+            <button class="btn small b-env" type="button">Marcar como enviada</button>
+          </div>
+        </div>
+      </div>
+      <div class="blk">
+        <h4>Histórico da conversa</h4>
+        <ul class="thread"></ul>
+        <p class="vazio th-vazio">Nada registrado ainda.</p>
+      </div>
+      <div class="blk">
+        <h4>Anotações</h4>
+        <textarea class="t-notas" rows="3" placeholder="Anotações livres" aria-label="Anotações"></textarea>
+        <div class="row"><button class="btn small b-notas" type="button">Salvar anotações</button></div>
+      </div>
+    </div>`;
+  cards[l.key] = a;
+  return a;
+}
+function setVal(ta, v) { if (document.activeElement !== ta && ta.value !== v) ta.value = v; }
+function refresh(l) {
+  const a = cards[l.key], s = S[l.key] || {}, k = l.key, st = stOf(k), ready = isReady(l);
+  a.dataset.status = st;
+  a.classList.toggle("is-ready", ready); a.classList.toggle("is-off", !ready);
+  const th = threadOf(k), respondeu = th.some((m) => m.de === "empresa");
+  const dias = s.sentAt ? Math.floor((Date.now() - s.sentAt) / 864e5) : null;
+  let b = ready ? `<span class="badge pronto">Pronto para contato</span>` : `<span class="badge">Em andamento</span>`;
+  if (st !== "novo") b += `<span class="badge s-${st}">${STLABEL[st]}</span>`;
+  if (dias !== null) b += `<span class="badge">Texto inicial enviado ${dias === 0 ? "hoje" : "há " + dias + (dias === 1 ? " dia" : " dias")}</span>`;
+  if (dias !== null && !respondeu && dias < ESPERA_DIAS && st === "contatado") b += `<span class="badge espera">Aguarde antes de insistir</span>`;
+  $(".badges", a).innerHTML = b;
+  const wa = $(".wa", a), pode = ready && l.wa;
+  if (pode) { wa.href = l.wa + "?text=" + encodeURIComponent(textoDe(l)); wa.removeAttribute("aria-disabled"); wa.classList.remove("off"); wa.textContent = "Chamar no WhatsApp"; }
+  else { wa.removeAttribute("href"); wa.setAttribute("aria-disabled", "true"); wa.classList.add("off"); wa.textContent = !l.wa ? "sem WhatsApp" : "Chamar no WhatsApp"; wa.title = !ready ? "Marque como pronto para liberar" : ""; }
+  $(".st", a).value = st;
+  $(".tg", a).textContent = ready ? "Voltar para em andamento" : "Marcar como pronto";
+  setVal($(".t-ini", a), textoDe(l));
+  setVal($(".t-notas", a), s.notes || "");
+  setVal($(".t-sug", a), s.suggestion || "");
+  $(".sug-blk", a).hidden = !s.suggestion;
+  const ul = $(".thread", a);
+  ul.innerHTML = th.map((m) => `<li class="msg ${m.de === "eu" ? "eu" : ""}">${esc(m.texto)}<time>${m.de === "eu" ? "Eu" : "Empresa"} · ${dtf.format(new Date(m.em))}</time></li>`).join("");
+  $(".th-vazio", a).hidden = th.length > 0;
+}
+
+/* ---------- lista, filtros, contadores ---------- */
+function casa(l) {
+  if (filtro !== "todos" && stOf(l.key) !== filtro) return false;
+  return !busca || norm([l.nome, l.cat, l.cidade, l.bairro].join(" ")).includes(busca);
+}
+function layout() {
+  const prontos = LEADS.filter(isReady).sort((a, b) => rrank.indexOf(a.key) - rrank.indexOf(b.key));
+  const resto = LEADS.filter((l) => !isReady(l)).sort((a, b) => a.ord - b.ord);
+  const L1 = $("#L1"), L2 = $("#L2");
+  let vis1 = 0; prontos.forEach((l) => { const c = casa(l); cards[l.key].hidden = !c; if (c) vis1++; L1.appendChild(cards[l.key]); });
+  const casam = resto.filter(casa), lim = busca || filtro !== "todos" ? Infinity : limite;
+  const mostrados = new Set(casam.slice(0, lim).map((l) => l.key));
+  resto.forEach((l) => { cards[l.key].hidden = !mostrados.has(l.key); L2.appendChild(cards[l.key]); });
+  $("#v1").hidden = vis1 > 0; $("#v2").hidden = casam.length > 0;
+  $("#n-prontos").textContent = prontos.length + (vis1 !== prontos.length ? " (" + vis1 + " no filtro)" : "");
+  $("#n-and").textContent = resto.length + (casam.length !== resto.length ? " (" + casam.length + " no filtro)" : "");
+  const falta = casam.length - mostrados.size, bt = $("#mais");
+  bt.hidden = falta <= 0; bt.textContent = "Mostrar mais (" + falta + " restantes)";
+  const sentHoje = LEADS.filter((l) => S[l.key] && S[l.key].sentAt && new Date(S[l.key].sentAt).toDateString() === new Date().toDateString()).length;
+  const cont = LEADS.filter((l) => S[l.key] && (S[l.key].sentAt || ["contatado", "respondeu", "negociando", "fechado"].includes(stOf(l.key)))).length;
+  const resp = LEADS.filter((l) => ["respondeu", "negociando", "fechado"].includes(stOf(l.key)) || threadOf(l.key).some((m) => m.de === "empresa")).length;
+  const fech = LEADS.filter((l) => stOf(l.key) === "fechado").length;
+  $("#stats").innerHTML = [["Prontos", prontos.length], ["Contatados", cont], ["Responderam", resp], ["Fechados", fech]].map(([t, n]) => `<div class="stat"><b>${n}</b><span>${t}</span></div>`).join("");
+  const av = $("#aviso");
+  av.classList.toggle("alto", sentHoje >= LIMITE_DIA);
+  av.innerHTML = `<strong>Poucas mensagens por dia, espaçadas.</strong><span>Mensagem fria no WhatsApp pode ser denunciada como spam. Não repita o envio para quem não respondeu em menos de ${ESPERA_DIAS} dias. Textos iniciais registrados hoje: <b>${sentHoje}</b>${sentHoje >= LIMITE_DIA ? ". Já passou de " + (LIMITE_DIA - 1) + ", pare por hoje." : "."}</span>`;
+}
+function chips() {
+  $("#chips").innerHTML = [["todos", "Todos"], ...STATUS].map(([v, t]) => `<button class="chip" type="button" data-f="${v}" aria-pressed="${v === filtro}">${t}</button>`).join("");
+}
+
+/* ---------- ações ---------- */
+async function copiar(ta, ok) {
+  try { await navigator.clipboard.writeText(ta.value); toast(ok); }
+  catch (e) { ta.focus(); ta.select(); toast("Não consegui copiar sozinho. O texto está selecionado, use Ctrl+C."); }
+}
+function precoRegra() {
+  return (CFG.site || CFG.dominio)
+    ? `Se a pessoa perguntar preço, responda com estes valores e nada além: valor do site: ${CFG.site || "(não definido)"}; domínio e hospedagem: ${CFG.dominio || "(não definido)"}. O que estiver "não definido" você não cita, diz que passa uma proposta clara depois de ela ver o site.`
+    : `O preço ainda não foi definido. Se a pessoa perguntar valor, diga que passa uma proposta clara depois de ela ver o site e, depois da resposta, acrescente uma linha separada começando com "AVISO PARA MIM:" lembrando que o preço precisa ser definido. Nunca invente valor.`;
+}
+function prompt(l) {
+  const th = threadOf(l.key).map((m) => (m.de === "eu" ? "EU: " : "EMPRESA: ") + m.texto).join("\n") || "(sem histórico)";
+  return `Você ajuda um profissional autônomo a conversar por WhatsApp com donos de negócios locais. Ele criou, por conta própria, um site de demonstração para cada negócio (usando fotos e informações públicas do Google Maps e do Instagram) e está oferecendo a criação do site. Escreva a PRÓXIMA mensagem dele, em português do Brasil.
+
+Regras de tom:
+- Informal de alto nível: caloroso, direto e elegante, sem parecer vendedor nem robô.
+- Chame a pessoa pelo primeiro nome se aparecer na conversa; senão, trate pelo nome da empresa.
+- Não fale de ferramentas, inteligência artificial, SEO nem termos técnicos.
+- Só envie o link do site de demonstração depois que a pessoa disser que quer ver. Quando ela quiser ver, envie este link: ${l.demo || "(sem link cadastrado, avise-me com uma linha começando com AVISO PARA MIM:)"}
+- 2 a 4 frases, no máximo uma pergunta, sempre levando a conversa ao próximo passo (mandar o link, marcar uma conversa rápida, fechar).
+- ${precoRegra()}
+- Se a pessoa resistir ("não preciso de site", "já uso Instagram"), responda sem pressão: valorize o que ela já tem e mostre que o site complementa (aparece nas buscas do Google e dá credibilidade a quem pesquisa o nome). Não insista mais de uma vez.
+- Se a pessoa não quiser, agradeça com elegância e termine com uma linha separada: "AVISO PARA MIM: sugiro marcar como descartado."
+- Nunca invente dados sobre o negócio.
+
+Contexto do negócio:
+- Nome: ${l.nome} (${l.cat}, ${l.bairro ? l.bairro + ", " : ""}${l.cidade})
+- Nota no Google: ${fmtNota(l.nota)} com ${l.aval} avaliações
+- Texto inicial salvo: ${textoDe(l)}
+- Texto inicial já foi enviado: ${S[l.key] && S[l.key].sentAt ? "sim" : "não"}
+- Status atual: ${STLABEL[stOf(l.key)]}
+- Anotações: ${(S[l.key] && S[l.key].notes) || "(nenhuma)"}
+
+Conversa até aqui:
+${th}
+
+Responda somente com o texto da mensagem para enviar (sem aspas, sem markdown, sem explicações). Se precisar me avisar de algo, use uma linha final começando com "AVISO PARA MIM:".`;
+}
+function registrarResposta(l, texto) {
+  const th = threadOf(l.key).concat([{ de: "empresa", texto, em: Date.now() }]);
+  const st = stOf(l.key);
+  save(l, { thread: th, status: ["novo", "contatado"].includes(st) ? "respondeu" : st });
+}
+async function sugerir(l, bt) {
+  const a = cards[l.key], ta = $(".t-resp", a), texto = ta.value.trim();
+  if (!texto) { toast("Cole primeiro a resposta da empresa."); ta.focus(); return; }
+  if (!sampleFn) { toast("Sugestões indisponíveis nesta visualização."); return; }
+  registrarResposta(l, texto); ta.value = "";
+  const sug = $(".t-sug", a); $(".sug-blk", a).hidden = false; sug.value = "Pensando…";
+  bt.disabled = true;
+  try {
+    const r = await sampleFn(prompt(l), { cache: false, onText: ({ text }) => { sug.value = text; } });
+    save(l, { suggestion: (r.text || "").trim() });
+  } catch (e) {
+    sug.value = ""; $(".sug-blk", a).hidden = !(S[l.key] && S[l.key].suggestion);
+    toast(e && e.code === "rate_limited" ? "Muitas chamadas seguidas. Espere um pouco." : e && e.code === "not_granted" ? "Sugestões não autorizadas para esta página." : "Não consegui gerar a sugestão. A resposta da empresa ficou registrada.");
+  } finally { bt.disabled = false; }
+}
+document.addEventListener("click", (ev) => {
+  const chip = ev.target.closest(".chip");
+  if (chip) { filtro = chip.dataset.f; chips(); layout(); return; }
+  if (ev.target.id === "mais") { limite += PAGE; layout(); return; }
+  const bt = ev.target.closest("button"), a = ev.target.closest(".lead");
+  if (!bt || !a) return;
+  const l = LEADS.find((x) => x.key === a.dataset.k), c = (s) => bt.classList.contains(s);
+  if (c("ex")) { const p = $(".panel", a); p.hidden = !p.hidden; bt.setAttribute("aria-expanded", String(!p.hidden)); bt.textContent = p.hidden ? "Abrir conversa" : "Fechar conversa"; }
+  else if (c("tg")) save(l, { pronto: !isReady(l) });
+  else if (c("b-salvar")) { save(l, { text: $(".t-ini", a).value }); toast("Texto salvo."); }
+  else if (c("b-copiar")) copiar($(".t-ini", a), "Texto copiado.");
+  else if (c("b-voltar")) { const s = Object.assign({}, S[l.key]); delete s.text; S[l.key] = s; persist(l); $(".t-ini", a).value = sugerido(l); refresh(l); toast("Voltou ao texto sugerido."); }
+  else if (c("b-enviei")) {
+    const texto = $(".t-ini", a).value.trim(); if (!texto) return;
+    const th = threadOf(l.key).concat([{ de: "eu", texto, em: Date.now() }]);
+    save(l, { text: texto, thread: th, sentAt: (S[l.key] && S[l.key].sentAt) || Date.now(), status: stOf(l.key) === "novo" ? "contatado" : stOf(l.key) }); toast("Envio registrado.");
+  }
+  else if (c("b-sug")) sugerir(l, bt);
+  else if (c("b-reg")) { const ta = $(".t-resp", a), t = ta.value.trim(); if (!t) { toast("Cole primeiro a resposta da empresa."); return; } registrarResposta(l, t); ta.value = ""; toast("Resposta registrada."); }
+  else if (c("b-csug")) copiar($(".t-sug", a), "Resposta copiada.");
+  else if (c("b-env")) {
+    const t = $(".t-sug", a).value.trim(); if (!t) return;
+    save(l, { thread: threadOf(l.key).concat([{ de: "eu", texto: t, em: Date.now() }]), suggestion: "" }); toast("Resposta marcada como enviada.");
+  }
+  else if (c("b-notas")) { save(l, { notes: $(".t-notas", a).value }); toast("Anotações salvas."); }
+});
+document.addEventListener("change", (ev) => {
+  if (!ev.target.classList.contains("st")) return;
+  const l = LEADS.find((x) => x.key === ev.target.closest(".lead").dataset.k);
+  save(l, { status: ev.target.value });
+});
+document.addEventListener("focusout", (ev) => {
+  if (!ev.target.classList.contains("t-notas")) return;
+  const l = LEADS.find((x) => x.key === ev.target.closest(".lead").dataset.k);
+  if (ev.target.value !== ((S[l.key] && S[l.key].notes) || "")) save(l, { notes: ev.target.value });
+});
+$("#busca").addEventListener("input", (e) => { busca = norm(e.target.value.trim()); layout(); });
+["#p-site", "#p-dom"].forEach((id) => $(id).addEventListener("change", () => {
+  CFG.site = $("#p-site").value.trim(); CFG.dominio = $("#p-dom").value.trim();
+  if (db) db.collection("config").doc("precos").set({ site: CFG.site, dominio: CFG.dominio }).then(() => toast("Preço salvo."), () => toast("Não consegui salvar o preço."));
+}));
+
+/* ---------- início ---------- */
+chips();
+LEADS.forEach((l) => { build(l); refresh(l); });
+layout();
+$("#foot").textContent = "Dados: Google Maps e Instagram públicos. Os status e textos ficam salvos na coleção leads (um documento por empresa), onde o Claude também lê a conversa.";
+(async () => {
+  const c = window.claude && window.claude.use;
+  if (!c) { $("#foot").textContent += " Salvamento indisponível nesta visualização."; return; }
+  sampleFn = await window.claude.use("sample");
+  if (!sampleFn) document.querySelectorAll(".b-sug").forEach((b) => { b.disabled = true; b.title = "Indisponível"; });
+  db = await window.claude.use("db");
+  if (!db) { $("#foot").textContent += " Você não está com o salvamento ativo: o que mudar aqui não será guardado."; return; }
+  db.collection("leads").onSnapshot((snap) => {
+    snap.docs.forEach((d) => { S[d.id] = d.data() || {}; });
+    LEADS.forEach(refresh); layout();
+  }, () => toast("Não consegui ler os leads salvos."));
+  db.collection("config").doc("precos").onSnapshot((d) => {
+    const v = d.exists ? d.data() : {}; CFG.site = v.site || ""; CFG.dominio = v.dominio || "";
+    setVal($("#p-site"), CFG.site); setVal($("#p-dom"), CFG.dominio);
+  });
+})();
+</script>
