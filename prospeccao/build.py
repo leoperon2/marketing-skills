@@ -52,8 +52,12 @@ for i, r in enumerate(rows):
     leads.append(dict(key=slugify(nome + " " + r["cidade"]), ord=i, nome=nome, nomeCompleto=r["negocio"], nicho=r["nicho"], cat=NICHO.get(r["nicho"], r["nicho"]),
         cidade=r["cidade"], bairro=bairro(slug), nota=float(r["nota"]), aval=int(r["avaliacoes"]), maps=r["maps"], wa=wa, tel=r["telefone"],
         demo=r["link_prototipo"], insta=r["instagram"] if "/invites" not in r["instagram"] else "", pronto=(r["site_versao_final"] == "sim"), img=thumb(slug)))
+_u = os.path.join(HERE, "urls.json")  # URLs públicas, geradas por publish.py
+if os.path.exists(_u):
+    for l in leads: l["demo"] = json.load(open(_u)).get(l["key"], "")
 chaves = [l["key"] for l in leads]; assert len(set(chaves)) == len(chaves), "chave duplicada"
-js = json.dumps(leads, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-out = open(os.path.join(HERE, "template.html"), encoding="utf-8").read().replace("__LEADS__", js)
-open(os.path.join(HERE, "prospeccao.html"), "w", encoding="utf-8").write(out)
-print(len(leads), "leads;", sum(l["pronto"] for l in leads), "prontos;", "sem miniatura:", [l["nome"] for l in leads if not l["img"]], "| sem WhatsApp:", [l["nome"] for l in leads if not l["wa"]], "| bytes:", len(out.encode()))
+if __name__ == "__main__":
+    js = json.dumps(leads, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    out = open(os.path.join(HERE, "template.html"), encoding="utf-8").read().replace("__LEADS__", js)
+    open(os.path.join(HERE, "prospeccao.html"), "w", encoding="utf-8").write(out)
+    print(len(leads), "leads;", sum(l["pronto"] for l in leads), "prontos;", "sem miniatura:", [l["nome"] for l in leads if not l["img"]], "| sem WhatsApp:", [l["nome"] for l in leads if not l["wa"]], "| bytes:", len(out.encode()))

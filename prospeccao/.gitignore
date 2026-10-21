@@ -1,3 +1,5 @@
 prospeccao.csv
 prospeccao.html
 __pycache__/
+.salt
+urls.json
