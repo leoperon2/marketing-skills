@@ -1,0 +1,29 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Rayanne Reis",
+  "aspect": 0.8,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1120,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Ana Carolina Moreira",
+  "aspect": 0.562,
+  "q": 0.944,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Rayanne Reis",
+  "aspect": 0.562,
+  "q": 0.934,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ }
+]

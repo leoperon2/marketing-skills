@@ -1,0 +1,29 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "O'Alexandre Nunes",
+  "aspect": 0.751,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1051,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "O'Alexandre Nunes",
+  "aspect": 0.751,
+  "q": 0.94,
+  "faces": 0,
+  "w": 1052,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "O'Alexandre Nunes",
+  "aspect": 0.751,
+  "q": 0.906,
+  "faces": 0,
+  "w": 1052,
+  "h": 1400
+ }
+]

@@ -1,0 +1,74 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Rodrigo Dresch",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "David Ouriques Dutra",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "David Ouriques Dutra",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Rafael Klein - Gsx750F Mickey na Estrada",
+  "aspect": 0.462,
+  "q": 1.0,
+  "faces": 0,
+  "w": 647,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Kelli Silva",
+  "aspect": 0.562,
+  "q": 0.857,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Everton Alvares",
+  "aspect": 0.75,
+  "q": 0.604,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "MR GARAGE Mecânica e funilaria",
+  "aspect": 1.0,
+  "q": 0.464,
+  "faces": 0,
+  "w": 720,
+  "h": 720
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Daiane Bairros",
+  "aspect": 0.75,
+  "q": 0.383,
+  "faces": 0,
+  "w": 960,
+  "h": 1280
+ }
+]

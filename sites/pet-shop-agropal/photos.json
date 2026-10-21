@@ -1,0 +1,92 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Fernanda Kunzler",
+  "aspect": 0.852,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1193,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Elisandra Letícia",
+  "aspect": 0.449,
+  "q": 1.0,
+  "faces": 0,
+  "w": 629,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Elisandra Letícia",
+  "aspect": 0.449,
+  "q": 1.0,
+  "faces": 0,
+  "w": 629,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Elisandra Letícia",
+  "aspect": 1.333,
+  "q": 0.9,
+  "faces": 0,
+  "w": 1400,
+  "h": 1050
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Daisy Erig",
+  "aspect": 0.75,
+  "q": 0.756,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Elisandra Letícia",
+  "aspect": 0.449,
+  "q": 0.674,
+  "faces": 0,
+  "w": 629,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Daniela Miranda",
+  "aspect": 0.75,
+  "q": 0.453,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Lucimara Rosado",
+  "aspect": 0.75,
+  "q": 0.411,
+  "faces": 0,
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "Karla Alves",
+  "aspect": 0.562,
+  "q": 0.391,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "Karla Alves",
+  "aspect": 0.938,
+  "q": 0.314,
+  "faces": 0,
+  "w": 594,
+  "h": 633
+ }
+]

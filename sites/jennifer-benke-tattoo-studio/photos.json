@@ -1,0 +1,110 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Ter. Ocupacional Ane Levorci",
+  "aspect": 1.013,
+  "q": 0.995,
+  "faces": 0,
+  "w": 1400,
+  "h": 1382
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Gabi Barcellos",
+  "aspect": 1.268,
+  "q": 0.915,
+  "faces": 0,
+  "w": 1400,
+  "h": 1104
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Marcelle santos",
+  "aspect": 1.0,
+  "q": 0.753,
+  "faces": 0,
+  "w": 1400,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Cibele Martinez",
+  "aspect": 0.75,
+  "q": 0.722,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Ana Paula Duarte",
+  "aspect": 0.75,
+  "q": 0.701,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "AGaby Ganzer",
+  "aspect": 0.562,
+  "q": 0.687,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "AGaby Ganzer",
+  "aspect": 0.562,
+  "q": 0.609,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Raquel do Amaral",
+  "aspect": 0.45,
+  "q": 0.59,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "AGaby Ganzer",
+  "aspect": 0.562,
+  "q": 0.564,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "AGaby Ganzer",
+  "aspect": 0.562,
+  "q": 0.528,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p11.jpg",
+  "who": "AGaby Ganzer",
+  "aspect": 0.562,
+  "q": 0.486,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p12.jpg",
+  "who": "Cibele Martinez",
+  "aspect": 0.751,
+  "q": 0.477,
+  "faces": 0,
+  "w": 1052,
+  "h": 1400
+ }
+]

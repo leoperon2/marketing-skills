@@ -1,0 +1,65 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Gustavo Farias",
+  "aspect": 0.666,
+  "q": 1.0,
+  "faces": 0,
+  "w": 933,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Gustavo Farias",
+  "aspect": 0.666,
+  "q": 1.0,
+  "faces": 0,
+  "w": 933,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "itamar junior",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Regisjunior19@gmail.com Alves",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Joel De Oliveira",
+  "aspect": 0.461,
+  "q": 0.909,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Joel De Oliveira",
+  "aspect": 0.562,
+  "q": 0.909,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Ivete Teixeira Grossini",
+  "aspect": 0.799,
+  "q": 0.907,
+  "faces": 0,
+  "w": 1076,
+  "h": 1347
+ }
+]

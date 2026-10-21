@@ -1,0 +1,110 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Nico Fabris",
+  "aspect": 0.806,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1128,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Maurício",
+  "aspect": 0.45,
+  "q": 1.0,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Maurício",
+  "aspect": 0.45,
+  "q": 1.0,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Maurício",
+  "aspect": 0.45,
+  "q": 1.0,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Bruno",
+  "aspect": 0.461,
+  "q": 1.0,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Sílvio Luís de Freitas Marques",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Maria Eduarda",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Bruno",
+  "aspect": 0.461,
+  "q": 0.928,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "Bia Harder",
+  "aspect": 0.75,
+  "q": 0.926,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "Gustavo Santos",
+  "aspect": 0.75,
+  "q": 0.882,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p11.jpg",
+  "who": "Gustavo Santos",
+  "aspect": 1.333,
+  "q": 0.874,
+  "faces": 0,
+  "w": 1400,
+  "h": 1050
+ },
+ {
+  "file": "img/p12.jpg",
+  "who": "Gustavo Santos",
+  "aspect": 0.75,
+  "q": 0.867,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

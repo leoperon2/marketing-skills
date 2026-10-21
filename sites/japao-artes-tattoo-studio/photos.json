@@ -1,0 +1,38 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "luh Barbosa",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Camilla Martins do fotonasala",
+  "aspect": 0.751,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1051,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Alexandre Costa",
+  "aspect": 0.451,
+  "q": 0.723,
+  "faces": 0,
+  "w": 631,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Alexandre Costa",
+  "aspect": 2.219,
+  "q": 0.536,
+  "faces": 0,
+  "w": 1400,
+  "h": 631
+ }
+]

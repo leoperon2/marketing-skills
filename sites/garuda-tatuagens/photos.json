@@ -1,0 +1,110 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Luís Felipe Freire Guilarducci",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Karliane Pedroso Ramos",
+  "aspect": 0.461,
+  "q": 1.0,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Bruno Cevidanes",
+  "aspect": 0.474,
+  "q": 0.959,
+  "faces": 0,
+  "w": 663,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Eric Brito",
+  "aspect": 0.45,
+  "q": 0.949,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Danillo Vilela",
+  "aspect": 1.701,
+  "q": 0.835,
+  "faces": 0,
+  "w": 1400,
+  "h": 823
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Jhony de Paula",
+  "aspect": 1.0,
+  "q": 0.821,
+  "faces": 0,
+  "w": 774,
+  "h": 774
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "ledisley silva",
+  "aspect": 2.219,
+  "q": 0.78,
+  "faces": 0,
+  "w": 1400,
+  "h": 631
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "André Luis Soares Alves",
+  "aspect": 0.75,
+  "q": 0.75,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "ledisley silva",
+  "aspect": 0.75,
+  "q": 0.702,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "André Luis Soares Alves",
+  "aspect": 1.333,
+  "q": 0.651,
+  "faces": 0,
+  "w": 1400,
+  "h": 1050
+ },
+ {
+  "file": "img/p11.jpg",
+  "who": "André Luis Soares Alves",
+  "aspect": 0.75,
+  "q": 0.535,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p12.jpg",
+  "who": "ledisley silva",
+  "aspect": 2.377,
+  "q": 0.283,
+  "faces": 0,
+  "w": 1400,
+  "h": 589
+ }
+]

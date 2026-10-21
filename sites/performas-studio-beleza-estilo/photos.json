@@ -1,0 +1,92 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Brunna Martins",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Anna Laura Mendes",
+  "aspect": 0.563,
+  "q": 0.969,
+  "faces": 0,
+  "w": 788,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Anna Laura Mendes",
+  "aspect": 0.563,
+  "q": 0.969,
+  "faces": 0,
+  "w": 788,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Marcela Silva",
+  "aspect": 0.45,
+  "q": 0.909,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "HELLEN ETERNA DE OLIVEIRA SILVA",
+  "aspect": 0.75,
+  "q": 0.882,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Viviane Quenia Silva Alves Vivi",
+  "aspect": 0.75,
+  "q": 0.843,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Welika Santos",
+  "aspect": 0.461,
+  "q": 0.806,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Suzana Gomes",
+  "aspect": 0.75,
+  "q": 0.702,
+  "faces": 0,
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "Lorena Jube",
+  "aspect": 0.75,
+  "q": 0.655,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "Marcela Silva",
+  "aspect": 0.45,
+  "q": 0.472,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ }
+]

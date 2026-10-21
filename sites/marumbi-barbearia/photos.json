@@ -1,0 +1,20 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Lucian Maschio",
+  "aspect": 0.981,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1374,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Daiane Buzzatto",
+  "aspect": 0.562,
+  "q": 0.909,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ }
+]

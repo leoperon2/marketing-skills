@@ -1,0 +1,110 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Ricardo Rodrigues",
+  "aspect": 0.461,
+  "q": 1.0,
+  "faces": 0,
+  "w": 645,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Ricardo Rodrigues",
+  "aspect": 0.461,
+  "q": 1.0,
+  "faces": 0,
+  "w": 645,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Ricardo Rodrigues",
+  "aspect": 0.461,
+  "q": 1.0,
+  "faces": 0,
+  "w": 645,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Tressê Store",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Tressê Store",
+  "aspect": 0.75,
+  "q": 0.965,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "vitoria salerme",
+  "aspect": 0.562,
+  "q": 0.955,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "vitoria salerme",
+  "aspect": 0.562,
+  "q": 0.955,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Daiane Rocha",
+  "aspect": 0.562,
+  "q": 0.909,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "Daiane Rocha",
+  "aspect": 0.562,
+  "q": 0.909,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "Magna Gonçalves",
+  "aspect": 0.75,
+  "q": 0.886,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p11.jpg",
+  "who": "Joyce Elizabeth",
+  "aspect": 0.562,
+  "q": 0.871,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p12.jpg",
+  "who": "michelle oliveira",
+  "aspect": 0.562,
+  "q": 0.857,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ }
+]

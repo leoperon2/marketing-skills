@@ -1,0 +1,38 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Patricia Faria",
+  "aspect": 0.562,
+  "q": 0.839,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Silviane Rubia Alves de Faria",
+  "aspect": 0.562,
+  "q": 0.735,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Gabrielly Vitória",
+  "aspect": 0.75,
+  "q": 0.572,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Karla Amanda Santos Ataídes",
+  "aspect": 0.75,
+  "q": 0.54,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

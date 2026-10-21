@@ -1,0 +1,38 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Daniel Souza",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Daniel Souza",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Gilcimar Vieira",
+  "aspect": 1.777,
+  "q": 0.825,
+  "faces": 0,
+  "w": 1400,
+  "h": 788
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Daniel Souza",
+  "aspect": 0.75,
+  "q": 0.698,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

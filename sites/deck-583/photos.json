@@ -1,0 +1,110 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Solange DAUFEMBACH ESSER",
+  "aspect": 0.486,
+  "q": 1.0,
+  "faces": 0,
+  "w": 681,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Solange DAUFEMBACH ESSER",
+  "aspect": 0.486,
+  "q": 1.0,
+  "faces": 0,
+  "w": 681,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Solange DAUFEMBACH ESSER",
+  "aspect": 0.486,
+  "q": 1.0,
+  "faces": 0,
+  "w": 681,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Sergio Spier",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Sergio Spier",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Sergio Spier",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Sergio Spier",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Sergio Spier",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "Rafael R.A",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "Sergio Spier",
+  "aspect": 0.75,
+  "q": 0.92,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p11.jpg",
+  "who": "Sergio Spier",
+  "aspect": 0.562,
+  "q": 0.762,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p12.jpg",
+  "who": "Dayane Menezes",
+  "aspect": 0.75,
+  "q": 0.76,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

@@ -1,0 +1,362 @@
+<title>Mr. Dohms Barbearia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Barbearia em Mercês. 247 clientes avaliaram no Google, com nota média 4,9.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* barber: identidade própria por nicho; layout-base do modelo Don Alberttoni */
+:root {
+    --bg: #dfeaee;
+    --surface: #f3f8fa;
+    --ink: #2a1b14;
+    --ink-soft: #5a4a41;
+    --wood: #3a2418;
+    --wood-ink: #f3e9e1;
+    --accent: #9b2c1f;
+    --accent-ink: #fff6f2;
+    --salmon: #e7b3a0;
+    --line: #b9ced6;
+    --font-display: "Alfa Slab One", "Rockwell", Georgia, serif;
+    --font-body: "Work Sans", system-ui, sans-serif;
+    --stripe-bg: repeating-linear-gradient(115deg, var(--accent) 0 26px, var(--surface) 26px 52px, var(--salmon) 52px 78px, var(--surface) 78px 104px);
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #1b130f; --surface: #26190f; --ink: #f1e7df; --ink-soft: #c2b0a3; --wood: #0f0a07; --wood-ink: #f1e7df; --accent: #e0654f; --accent-ink: #1b130f; --salmon: #b9735f; --line: #4a3628; color-scheme: dark; } }
+  :root[data-theme="dark"] { --bg: #1b130f; --surface: #26190f; --ink: #f1e7df; --ink-soft: #c2b0a3; --wood: #0f0a07; --wood-ink: #f1e7df; --accent: #e0654f; --accent-ink: #1b130f; --salmon: #b9735f; --line: #4a3628; color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 400 17px/1.6 var(--font-body);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--wood); }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.08; margin: 0; text-wrap: balance; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+
+  header.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); background: var(--wood); color: var(--wood-ink); }
+  .bar-in { max-width: 1080px; margin: 0 auto; padding: 10px max(16px, env(safe-area-inset-left, 0px)); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { font-family: var(--font-display); font-size: 19px; text-decoration: none; letter-spacing: .02em; white-space: nowrap; }
+  nav { display: flex; gap: 22px; font-size: 15px; }
+  nav a { text-decoration: none; opacity: .85; }
+  nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 22px; border-radius: 3px; background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; border: 2px solid var(--accent); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn.ghost { background: transparent; color: inherit; border-color: currentColor; }
+  .bar .btn { min-height: 38px; padding: 0 16px; font-size: 15px; }
+
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding-block: 56px 48px; }
+  .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; margin: 0 0 14px; }
+  .hero h1 { font-size: clamp(40px, 7vw, 74px); }
+  .hero .lede { font-size: 19px; color: var(--ink-soft); max-width: 46ch; margin: 20px 0 28px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .score { display: flex; align-items: center; gap: 14px; margin-top: 30px; font-size: 15px; color: var(--ink-soft); }
+  .score strong { font-family: var(--font-display); font-weight: 400; font-size: 34px; color: var(--ink); line-height: 1; }
+  .stars { color: var(--accent); letter-spacing: 3px; font-size: 17px; }
+  .hero figure { margin: 0; position: relative; }
+  .hero img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border: 8px solid var(--surface); box-shadow: 10px 10px 0 var(--salmon); }
+
+  .stripe { height: 14px; background: var(--stripe-bg); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); }
+
+  section { padding-block: 64px; }
+  h2 { font-size: clamp(30px, 4.5vw, 44px); margin-bottom: 18px; }
+  .sub { color: var(--ink-soft); max-width: 58ch; margin: 0 0 32px; }
+
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .about p { margin: 0 0 16px; }
+  .pull { align-self: center; font-family: var(--font-display); font-size: clamp(24px, 3.2vw, 34px); line-height: 1.2; border-left: 6px solid var(--accent); padding-left: 20px; margin: 0; }
+  .services { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .svc { background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--accent); padding: 20px 18px; min-height: 124px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
+  .svc b { font-family: var(--font-display); font-weight: 400; font-size: 21px; line-height: 1.15; }
+  .svc span { font-size: 14px; color: var(--ink-soft); line-height: 1.4; }
+
+  /* logo */
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--salmon); background: #a9cbe6; }
+  .hero img.stamp-unused { position: absolute; left: -22px; bottom: -34px; width: 136px; height: 136px; aspect-ratio: 1; border-radius: 50%; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
+  .progress { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; height: 3px; z-index: 30; background: var(--salmon); transform-origin: 0 50%; transform: scaleX(0); }
+  .stripe { background-position: var(--sx, 0px) 0; }
+
+  /* efeitos de rolagem: só entram quando o JS roda e o visitante aceita movimento */
+  .js .rv { opacity: 0; transform: translateY(38px) rotate(var(--r, 0deg)) scale(.97); transition: opacity .7s ease, transform .85s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0ms); }
+  .js .rv.in { opacity: 1; transform: none; }
+  .js .bars.rv .fill { transform: scaleX(0); transform-origin: left; }
+  .js .bars.rv.in .fill { transform: scaleX(1); transition: transform 1.2s cubic-bezier(.2, .7, .2, 1) .25s; }
+
+  /* galeria em mosaico */
+  .mosaic { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 200px; gap: 14px; }
+  .tile { position: relative; display: block; padding: 0; border: 0; overflow: hidden; background: var(--wood); cursor: zoom-in; font: inherit; color: #fff; text-align: left; min-width: 0; }
+  .tile .ph { position: absolute; inset: -9% 0; transform: translate3d(0, var(--py, 0px), 0); }
+  .tile img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2, .7, .2, 1), filter .5s; filter: saturate(1.05); }
+  .tile:hover img, .tile:focus-visible img { transform: scale(1.09); filter: saturate(1.2) brightness(1.04); }
+  .tile .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 38px 16px 14px; background: linear-gradient(to top, rgba(15, 10, 7, .78), transparent); font-size: 14px; font-weight: 600; letter-spacing: .04em; display: flex; justify-content: space-between; align-items: end; gap: 10px; }
+  .tile .cap::after { content: "↗"; font-size: 17px; opacity: 0; transform: translate(-6px, 6px); transition: .35s; }
+  .tile:hover .cap::after, .tile:focus-visible .cap::after { opacity: 1; transform: none; }
+  .t-a { grid-column: 1 / 3; grid-row: 1 / 4; }
+  .t-b { grid-column: 3 / 5; grid-row: 1 / 3; }
+  .t-c { grid-column: 5 / 7; grid-row: 1 / 4; }
+  .t-d { grid-column: 3 / 5; grid-row: 3 / 5; }
+  .t-e { grid-column: 1 / 3; grid-row: 4; }
+  .t-f { grid-column: 5 / 7; grid-row: 4; }
+  .t-g { grid-column: 1 / 3; grid-row: 5 / 7; }
+  .t-h { grid-column: 3 / 5; grid-row: 5 / 7; }
+  .t-i { grid-column: 5 / 7; grid-row: 5 / 7; }
+
+  .lb { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: rgba(12, 8, 5, .93); padding: max(20px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(20px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+  .lb[hidden] { display: none; }
+  .lb figure { margin: 0; max-width: min(92vw, 900px); text-align: center; color: #f1e7df; }
+  .lb img { cursor: pointer; touch-action: pan-y; max-width: 100%; max-height: 78vh; border: 8px solid #f3f8fa; box-shadow: 10px 10px 0 var(--salmon); }
+  .lb figcaption { margin-top: 18px; font-family: var(--font-display); font-size: 22px; }
+  .lb button { position: absolute; width: 48px; height: 48px; border-radius: 50%; border: 2px solid #f1e7df; background: transparent; color: #f1e7df; font-size: 26px; line-height: 1; cursor: pointer; }
+  .lb button:hover { background: var(--accent); border-color: var(--accent); }
+  .lb-x { top: max(14px, env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); }
+  .lb-p { left: max(10px, env(safe-area-inset-left, 0px)); top: 50%; }
+  .lb-n { right: max(10px, env(safe-area-inset-right, 0px)); top: 50%; }
+
+  .proof { background: var(--wood); color: var(--wood-ink); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+  .proof .eyebrow { color: var(--salmon); }
+  .proof-top { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; margin-bottom: 44px; }
+  .big { font-family: var(--font-display); font-size: clamp(72px, 12vw, 120px); line-height: 1; }
+  .bars { display: grid; gap: 7px; font-size: 14px; font-variant-numeric: tabular-nums; max-width: 460px; }
+  .bar-row { display: grid; grid-template-columns: 30px 1fr 38px; align-items: center; gap: 10px; }
+  .track { height: 10px; background: color-mix(in srgb, var(--wood-ink) 18%, transparent); }
+  .fill { height: 100%; background: var(--salmon); }
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  blockquote { margin: 0; padding: 22px; border: 1px solid color-mix(in srgb, var(--wood-ink) 25%, transparent); min-width: 0; }
+  blockquote p { margin: 0 0 14px; font-size: 17px; }
+  blockquote cite { font-style: normal; font-size: 14px; color: var(--salmon); }
+  .reply { margin-top: 14px; padding-top: 12px; border-top: 1px dashed color-mix(in srgb, var(--wood-ink) 30%, transparent); font-size: 14px; color: color-mix(in srgb, var(--wood-ink) 78%, transparent); }
+  .src { margin-top: 26px; font-size: 13px; opacity: .7; }
+
+  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .card { background: var(--surface); border: 1px solid var(--line); padding: 28px; min-width: 0; }
+  .card h3 { font-size: 22px; margin-bottom: 16px; }
+  .hours { list-style: none; margin: 0; padding: 0; font-variant-numeric: tabular-nums; }
+  .hours li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .hours li.today { font-weight: 600; color: var(--accent); }
+  .hours .closed { color: var(--ink-soft); }
+  .status { display: inline-block; margin-bottom: 14px; padding: 4px 12px; font-size: 14px; font-weight: 600; background: var(--ink); color: var(--bg); }
+  .status.open { background: #2f7a4a; color: #fff; }
+  address { font-style: normal; margin-bottom: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .tags li { border: 1px solid var(--line); padding: 4px 12px; font-size: 14px; }
+  .copy { font: inherit; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+
+  .final { text-align: center; padding-block: 72px; }
+  .final h2 { margin-inline: auto; max-width: 18ch; }
+  .final .cta { justify-content: center; margin-top: 26px; }
+  footer { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); background: var(--wood); color: var(--wood-ink); padding: 28px max(16px, env(safe-area-inset-left, 0px)); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+  footer p { margin: 0; opacity: .8; }
+
+  @media (max-width: 820px) {
+    nav { display: none; }
+    .hero, .about, .info { grid-template-columns: 1fr; gap: 32px; }
+    .hero { padding-block: 36px; }
+    .proof-top { grid-template-columns: 1fr; gap: 20px; }
+    section { padding-block: 48px; }
+    .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 168px; gap: 10px; }
+    .mosaic .tile { grid-column: auto; grid-row: auto; }
+    .mosaic .tile:first-child { grid-column: span 2; grid-row: span 2; }
+    .mosaic .tile:last-child:nth-child(even) { grid-column: span 2; }
+    .hero img.stamp-unused { width: 104px; height: 104px; left: -6px; bottom: -28px; }
+    .lb-p, .lb-n { top: auto; bottom: max(14px, env(safe-area-inset-bottom, 0px)); }
+  }
+  @media (max-width: 460px) { .brand { font-size: 16px; } .svc { padding: 16px 14px; } .svc b { font-size: 18px; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  .seal { position: absolute; left: -22px; bottom: -34px; width: 124px; height: 124px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-content: center; text-align: center; border: 6px solid var(--surface); box-shadow: 0 6px 0 var(--salmon); transform: rotate(calc(-8deg + var(--spin, 0deg))); }
+  .seal b { font-family: var(--font-display); font-weight: 400; font-size: 38px; line-height: 1; }
+  .seal span { font: 600 11px/1.2 var(--font-body); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+  .about.one { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+  .info.single { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
+  .hero:not(:has(figure)) { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+  @media (max-width: 820px) { .seal { width: 96px; height: 96px; left: -6px; bottom: -26px; } .seal b { font-size: 28px; } .seal span { font-size: 9px; } }
+  
+  </style>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lb-x" id="lbx" type="button" aria-label="Fechar">×</button>
+  <button class="lb-p" id="lbp" type="button" aria-label="Foto anterior">‹</button>
+  <figure><img id="lbimg" src="" alt=""><figcaption id="lbcap"></figcaption></figure>
+  <button class="lb-n" id="lbn" type="button" aria-label="Próxima foto">›</button>
+</div>
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#topo">Mr. Dohms Barbearia</a>
+    <nav aria-label="Seções"><a href="#casa">Sobre</a><a href="#clientes">Clientes</a><a href="#horarios">Horários</a></nav>
+    <a class="btn" href="https://wa.me/5541984078766" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</header>
+
+<main id="topo" class="wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Barbearia · Mercês, Curitiba</p>
+      <h1>Mr. Dohms Barbearia</h1>
+      <p class="lede">Barbearia em Mercês. 247 clientes avaliaram no Google, com nota média 4,9.</p>
+      <div class="cta"><a class="btn" href="https://wa.me/5541984078766" target="_blank" rel="noopener">Chamar no WhatsApp</a><a class="btn ghost" href="https://www.instagram.com/mr.dohmsbarbearia" target="_blank" rel="noopener">Ver no Instagram</a></div>
+      <div class="score" aria-label="Nota 4,9 de 5 no Google, 247 avaliações">
+        <strong>4,9</strong>
+        <div><span class="stars" aria-hidden="true">★★★★★</span><br>247 avaliações no Google</div>
+      </div>
+    </div>
+    <figure><img src="img/hero.jpg" alt="Foto enviada por cliente de Mr. Dohms Barbearia" width="1050" height="1400"><div class="seal" id="stamp" aria-label="Nota 4,9 no Google"><b>4,9</b><span>no Google</span></div></figure>
+  </div>
+</main>
+<div class="stripe" aria-hidden="true"></div>
+
+<main class="wrap">
+  <section id="casa">
+    <div class="about">
+      <div>
+        <h2>Conheça Mr. Dohms Barbearia</h2>
+        <p>Mr. Dohms Barbearia fica em Mercês, Curitiba. Os clientes dão nota 4,9 em 247 avaliações no Google. Entre os pontos mais citados nas avaliações estão preço, corte, atendimento.</p>
+        <ul class="services"><li class="svc"><b>Preço</b><span>Preço justo e qualidade máxima</span></li><li class="svc"><b>Corte</b><span>Cortei com a Felipe a terceira vez, conhecimento e técnica bem acima da média.</span></li><li class="svc"><b>Atendimento</b><span>A melhor e mais top da região profissionais qualificados e atendimento o melhor…</span></li></ul><p class="sub" style="margin:14px 0 0;font-size:15px">Temas mais citados pelos clientes nas avaliações do Google.</p>
+      </div>
+      <p class="pull">“Ótimo atendimento , corte do cabelo do meu filho ficou lindo , parabéns pelo trabalho de vocês.”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">Thaynara S., em avaliação no Google</span></p>
+    </div>
+  </section>
+  
+</main>
+
+<div class="proof" id="clientes">
+  <div class="wrap">
+    <section>
+      <p class="eyebrow">Avaliações no Google</p>
+      <h2>O que os clientes dizem</h2>
+      <div class="proof-top">
+        <div class="big">4,9</div>
+        <div class="bars" role="img" aria-label="Distribuição das 247 avaliações por estrelas"><div class="bar-row"><span>5 ★</span><div class="track"><div class="fill" style="width:96.8%"></div></div><span>239</span></div><div class="bar-row"><span>4 ★</span><div class="track"><div class="fill" style="width:1.6%"></div></div><span>4</span></div><div class="bar-row"><span>3 ★</span><div class="track"><div class="fill" style="width:0.0%"></div></div><span>0</span></div><div class="bar-row"><span>2 ★</span><div class="track"><div class="fill" style="width:0.0%"></div></div><span>0</span></div><div class="bar-row"><span>1 ★</span><div class="track"><div class="fill" style="width:1.6%"></div></div><span>4</span></div></div>
+      </div>
+      <div class="quotes"><blockquote><p>Excelente profissional, com atendimento de qualidade, sem contar no preço justo e educação extrema do Felipe (o barbeiro). O local é super descontraído, tem até uma cervejinha para os dias quentes rsrs, ja virei cliente e vou voltar sempre! Sucesso</p><cite>gabriel G.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Obrigado Gabriel pelos elogios. Tento fazer sempre o melhor.</div></blockquote><blockquote><p>Muito bom mesmo e super recomendo, atendimento, resenha, atenção que o profissional tem com o cliente, não posso deixar de citar o cuidado e agilidade no serviço. Muito aprovado! ✅</p><cite>Vitor C.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> &quot;Olá, Vitor! Muito obrigado por dedicar um tempo para nos avaliar no Google. A sua opinião é essencial para continuarmos oferecendo um bom serviço. Até a próxima visita!&quot;</div></blockquote><blockquote><p>A melhor e mais top da região profissionais qualificados e atendimento o melhor…</p><cite>Eduardo H.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Obrigado Eduardo pela avaliação... Seja sempre bem vindo ;)</div></blockquote><blockquote><p>Ambiente sensacional e pessoas que se preocupam com a qualidade do serviço prestado aos clientes! Eu, meu irmão e sobrinhos frequentamos o local há muito tempo e sempre fomos muito bem atendidos!
+O Felipe, o Eduardo e o Junior são profissionais exemplares!! Sempre com um trabalho impecável!</p><cite>Fernando S.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Olá Fernando, obrigado por sua avaliação e elogios. Sempre nos esforçamos para que a experiência dos clientes seja a melhor possível. Sua avaliação nos ajuda também a manter a qualidade, melhorar noss</div></blockquote><blockquote><p>Melhor barbearia de Curitiba! O Felipe montou um espaço top demais. O atendimento do Júnior e do Renan é de primeira, caras super parceiros, prestativos e que estão sempre sorrindo e deixando o clima leve. Além da resenha ser boa, o serviço é extremamente profissional. Parabéns menines.</p><cite>Paulo R.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Olá Paulo, Muito obrigado por dedicar um tempo para nos avaliar no Google. A sua opinião é essencial para continuarmos oferecendo um bom serviço. Até a próxima visita!</div></blockquote></div>
+      <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
+    </section>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="horarios"><h2>Horários e endereço</h2><div class="info"><div class="card"><h3>Horário</h3><span class="status" id="status" hidden></span><ul class="hours" id="hours"><li data-d="1"><span>Segunda</span><span>9h às 19h</span></li><li data-d="2"><span>Terça</span><span>9h às 19h</span></li><li data-d="3"><span>Quarta</span><span>9h às 19h</span></li><li data-d="4"><span>Quinta</span><span>9h às 19h</span></li><li data-d="5"><span>Sexta</span><span>9h às 19h</span></li><li data-d="6"><span>Sábado</span><span>7h40 às 19h</span></li><li data-d="0"><span>Domingo</span><span class="closed">Fechado</span></li></ul><ul class="tags"><li>Banheiro</li><li>Necessário fazer agendamento</li><li>É recomendado marcar hora</li><li>Cartão de crédito</li><li>Cartão de débito</li><li>Pagamentos por dispositivo móvel via NFC</li></ul></div><div class="card"><h3>Onde estamos</h3><address>R. Jacarezinho, 1190 - Mercês, Curitiba - PR, 80810-130, Brasil</address><p style="margin:0 0 18px"><a href="https://www.google.com/maps/search/?api=1&amp;query=Mr.%20Dohms%20Barbearia&amp;query_place_id=ChIJM_NVdEHj3JQRYbURJ_lITik" target="_blank" rel="noopener">Abrir no Google Maps</a></p><h3 style="margin-top:26px">Contato</h3><p style="margin:0 0 6px">WhatsApp: <button class="copy" id="copy" type="button">(41) 98407-8766</button> <span id="copied" aria-live="polite" style="font-size:14px;color:var(--ink-soft)"></span></p><p style="margin:0"><a href="https://www.instagram.com/mr.dohmsbarbearia" target="_blank" rel="noopener">@mr.dohmsbarbearia</a> no Instagram</p></div></div></section>
+  <section class="final">
+    <h2>Sua cadeira está reservada?</h2>
+    <p class="sub" style="margin-inline:auto">Chame a equipe e marque o seu horário.</p>
+    <div class="cta"><a class="btn" href="https://wa.me/5541984078766" target="_blank" rel="noopener">Chamar no WhatsApp</a><a class="btn ghost" href="https://www.instagram.com/mr.dohmsbarbearia" target="_blank" rel="noopener">Ver no Instagram</a></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong style="font-family:var(--font-display);font-weight:400">Mr. Dohms Barbearia</strong>
+    <p>R. Jacarezinho, 1190 · Mercês · Curitiba</p>
+    <p style="flex-basis:100%;font-size:12px;opacity:.55">Fotos e avaliações públicas do Google Maps. Protótipo sujeito à autorização do estabelecimento.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var HOURS = {"3": [[540, 1140]], "4": [[540, 1140]], "5": [[540, 1140]], "6": [[460, 1140]], "0": [], "1": [[540, 1140]], "2": [[540, 1140]]};
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Sao_Paulo", weekday: "short", hour: "numeric", minute: "numeric", hour12: false }).formatToParts(new Date());
+  var get = function (t) { return parts.filter(function (p) { return p.type === t; })[0].value; };
+  var dow = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[get("weekday")];
+  var mins = (parseInt(get("hour"), 10) % 24) * 60 + parseInt(get("minute"), 10);
+  var li = document.querySelector('#hours li[data-d="' + dow + '"]');
+  if (li) li.classList.add("today");
+  var s = document.getElementById("status");
+  if (s && Object.keys(HOURS).length) {
+    var open = (HOURS[dow] || []).some(function (r) { return r[1] > r[0] ? mins >= r[0] && mins < r[1] : mins >= r[0]; }) ||
+      (HOURS[(dow + 6) % 7] || []).some(function (r) { return r[1] <= r[0] && mins < r[1]; });
+    s.hidden = false; s.textContent = open ? "Aberto agora" : "Fechado agora"; s.classList.toggle("open", open);
+  }
+  var btn = document.getElementById("copy"), out = document.getElementById("copied");
+  if (btn) btn.addEventListener("click", function () {
+    var ok = function () { out.textContent = "copiado"; setTimeout(function () { out.textContent = ""; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText("(41) 98407-8766").then(ok, function () {});
+  });
+})();
+</script>
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var tiles = [].slice.call(document.querySelectorAll(".tile"));
+
+  // ampliar fotos
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var lb = document.getElementById("lb"), img = document.getElementById("lbimg"), cap = document.getElementById("lbcap"), cur = 0, last = null;
+  var busy = false;
+  function show(i, dir) {
+    cur = (i + tiles.length) % tiles.length;
+    var t = tiles[cur].querySelector("img"), c = tiles[cur].querySelector(".cap").textContent;
+    var swap = function () { img.src = t.src; img.alt = t.alt; cap.textContent = c; };
+    if (!dir || reduceMotion || !img.animate) { swap(); return; }
+    busy = true;
+    img.animate([{ transform: "none", opacity: 1 }, { transform: "translateX(" + (-dir * 90) + "px)", opacity: 0 }], { duration: 170, easing: "ease-in" }).onfinish = function () {
+      swap();
+      var inn = img.animate([{ transform: "translateX(" + (dir * 90) + "px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 380, easing: "cubic-bezier(.2,.7,.2,1)" });
+      inn.onfinish = function () { busy = false; };
+    };
+    cap.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 150, fill: "backwards" });
+  }
+  function go(dir) { if (!busy) show(cur + dir, dir); }
+  function openLb(i) { last = document.activeElement; show(i); lb.hidden = false; document.getElementById("lbx").focus(); document.body.style.overflow = "hidden"; }
+  function closeLb() { lb.hidden = true; document.body.style.overflow = ""; if (last) last.focus(); }
+  tiles.forEach(function (t, i) { t.addEventListener("click", function () { openLb(i); }); });
+  document.getElementById("lbx").addEventListener("click", closeLb);
+  document.getElementById("lbp").addEventListener("click", function () { go(-1); });
+  document.getElementById("lbn").addEventListener("click", function () { go(1); });
+  // clicar na metade direita da foto avança, na esquerda volta; no toque, arrastar para o lado também troca
+  var px = null;
+  img.addEventListener("click", function (e) { if (lb.dataset.swiped === "1") return; var r = img.getBoundingClientRect(); go(e.clientX - r.left < r.width / 2 ? -1 : 1); });
+  lb.addEventListener("pointerdown", function (e) { if (e.pointerType === "touch") px = e.clientX; });
+  lb.addEventListener("pointerup", function (e) { if (px === null) return; var dx = e.clientX - px; px = null; if (Math.abs(dx) > 50) { go(dx < 0 ? 1 : -1); lb.dataset.swiped = "1"; setTimeout(function () { lb.dataset.swiped = "0"; }, 50); } });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener("keydown", function (e) {
+    if (lb.hidden) return;
+    if (e.key === "Escape") closeLb();
+    if (e.key === "ArrowLeft") go(-1);
+    if (e.key === "ArrowRight") go(1);
+  });
+
+  if (reduce) return;
+
+  // aparição ao rolar, com atraso escalonado
+  document.documentElement.classList.add("js");
+  var targets = [].slice.call(document.querySelectorAll(".tile, blockquote, .bars, .card, .pull, .svc, .final h2"));
+  targets.forEach(function (el, i) {
+    el.classList.add("rv");
+    el.style.setProperty("--d", (i % 3) * 110 + "ms");
+    if (el.classList.contains("tile")) el.style.setProperty("--r", (i % 2 ? 1.4 : -1.4) + "deg");
+  });
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }) : null;
+  targets.forEach(function (el) { io ? io.observe(el) : el.classList.add("in"); });
+  setTimeout(function () { targets.forEach(function (el) { el.classList.add("in"); }); }, 6000);
+
+  // profundidade nas fotos, barra de progresso, logo girando, listras andando
+  var bar = document.getElementById("progress"), stamp = document.getElementById("stamp"), root = document.documentElement, ticking = false;
+  var phs = [].slice.call(document.querySelectorAll(".tile .ph"));
+  function frame() {
+    ticking = false;
+    var y = window.pageYOffset || root.scrollTop, vh = window.innerHeight, max = Math.max(1, root.scrollHeight - vh);
+    bar.style.transform = "scaleX(" + Math.min(1, y / max) + ")";
+    if (stamp) stamp.style.setProperty("--spin", Math.min(40, y * 0.05) + "deg");
+    root.style.setProperty("--sx", (-y * 0.35) + "px");
+    phs.forEach(function (p) {
+      var r = p.parentNode.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      var d = (r.top + r.height / 2 - vh / 2) / vh;
+      p.style.setProperty("--py", Math.max(-1, Math.min(1, d)) * -26 + "px");
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  frame();
+})();
+</script>

@@ -1,0 +1,29 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Daiane Cristina da cruz",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Daiane Cristina da cruz",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Clodoaldo Arcanjo",
+  "aspect": 0.563,
+  "q": 1.0,
+  "faces": 0,
+  "w": 788,
+  "h": 1400
+ }
+]

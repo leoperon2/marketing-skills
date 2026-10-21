@@ -1,0 +1,29 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Luiz Henrique",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Ederson Bohn",
+  "aspect": 0.45,
+  "q": 0.756,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Ianca Ribeiro",
+  "aspect": 0.75,
+  "q": 0.715,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

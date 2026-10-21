@@ -1,0 +1,29 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Janaina M D S",
+  "aspect": 1.333,
+  "q": 0.761,
+  "faces": 0,
+  "w": 1400,
+  "h": 1050
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Janaina M D S",
+  "aspect": 0.75,
+  "q": 0.738,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "KarenRJBR",
+  "aspect": 0.75,
+  "q": 0.451,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

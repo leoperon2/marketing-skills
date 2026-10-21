@@ -1,0 +1,56 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Leka Silva",
+  "aspect": 0.45,
+  "q": 1.0,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Leka Silva",
+  "aspect": 0.45,
+  "q": 1.0,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Fabiana Alvarenga",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Patty Maionese",
+  "aspect": 0.75,
+  "q": 0.745,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Patty Maionese",
+  "aspect": 0.75,
+  "q": 0.577,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Patty Maionese",
+  "aspect": 0.75,
+  "q": 0.543,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

@@ -1,0 +1,56 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "William Rodrigues",
+  "aspect": 0.486,
+  "q": 1.0,
+  "faces": 0,
+  "w": 681,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Simone Balardim",
+  "aspect": 0.462,
+  "q": 1.0,
+  "faces": 0,
+  "w": 647,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Yasmin Ramos",
+  "aspect": 0.75,
+  "q": 0.874,
+  "faces": 0,
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Vitória Braga",
+  "aspect": 0.462,
+  "q": 0.816,
+  "faces": 0,
+  "w": 647,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Vitória Braga",
+  "aspect": 0.462,
+  "q": 0.718,
+  "faces": 0,
+  "w": 647,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Julie Soligo",
+  "aspect": 0.563,
+  "q": 0.299,
+  "faces": 0,
+  "w": 581,
+  "h": 1032
+ }
+]

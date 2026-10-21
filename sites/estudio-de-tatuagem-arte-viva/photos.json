@@ -1,0 +1,74 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Gabriella Marques",
+  "aspect": 1.002,
+  "q": 0.908,
+  "faces": 0,
+  "w": 1080,
+  "h": 1078
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Gabriella Marques",
+  "aspect": 1.018,
+  "q": 0.903,
+  "faces": 0,
+  "w": 1080,
+  "h": 1061
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Ana Dantas",
+  "aspect": 1.116,
+  "q": 0.743,
+  "faces": 0,
+  "w": 828,
+  "h": 742
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "allan jejÈ",
+  "aspect": 1.201,
+  "q": 0.651,
+  "faces": 0,
+  "w": 1280,
+  "h": 1066
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Karina Araujo",
+  "aspect": 0.881,
+  "q": 0.505,
+  "faces": 0,
+  "w": 720,
+  "h": 817
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Gabriella Marques",
+  "aspect": 1.333,
+  "q": 0.494,
+  "faces": 0,
+  "w": 1400,
+  "h": 1050
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Gabriella Marques",
+  "aspect": 0.801,
+  "q": 0.493,
+  "faces": 0,
+  "w": 1080,
+  "h": 1349
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Ana Dantas",
+  "aspect": 0.562,
+  "q": 0.322,
+  "faces": 0,
+  "w": 720,
+  "h": 1280
+ }
+]

@@ -1,0 +1,29 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Laiza Moresco",
+  "aspect": 0.75,
+  "q": 0.846,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Suelen Rodrigues Maciel",
+  "aspect": 0.75,
+  "q": 0.824,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Eduarda Moraes",
+  "aspect": 0.75,
+  "q": 0.787,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

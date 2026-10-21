@@ -1,0 +1,110 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Eli Schmidt",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Fernanda Macedo",
+  "aspect": 1.443,
+  "q": 0.877,
+  "faces": 0,
+  "w": 1400,
+  "h": 970
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "vera lucia silva",
+  "aspect": 1.333,
+  "q": 0.839,
+  "faces": 0,
+  "w": 1400,
+  "h": 1050
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "leila denise wendler",
+  "aspect": 0.562,
+  "q": 0.775,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Taynara Santana Facina",
+  "aspect": 0.563,
+  "q": 0.764,
+  "faces": 0,
+  "w": 788,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "leila denise wendler",
+  "aspect": 1.777,
+  "q": 0.721,
+  "faces": 0,
+  "w": 1400,
+  "h": 788
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "vera lucia silva",
+  "aspect": 0.562,
+  "q": 0.668,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Eli Schmidt",
+  "aspect": 0.75,
+  "q": 0.612,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "Marina Machado",
+  "aspect": 0.562,
+  "q": 0.58,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "Fernanda Macedo",
+  "aspect": 1.333,
+  "q": 0.558,
+  "faces": 0,
+  "w": 1400,
+  "h": 1050
+ },
+ {
+  "file": "img/p11.jpg",
+  "who": "Fernanda Macedo",
+  "aspect": 1.333,
+  "q": 0.554,
+  "faces": 0,
+  "w": 1400,
+  "h": 1050
+ },
+ {
+  "file": "img/p12.jpg",
+  "who": "Taynara Santana Facina",
+  "aspect": 0.563,
+  "q": 0.541,
+  "faces": 0,
+  "w": 788,
+  "h": 1400
+ }
+]

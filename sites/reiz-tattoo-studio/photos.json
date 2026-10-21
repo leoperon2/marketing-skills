@@ -1,0 +1,38 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Ingrid Fonseca",
+  "aspect": 0.562,
+  "q": 0.937,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Atila Rocha Lake",
+  "aspect": 1.007,
+  "q": 0.932,
+  "faces": 0,
+  "w": 1170,
+  "h": 1162
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Leonardo Alberto",
+  "aspect": 0.562,
+  "q": 0.726,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Gabriel Alves Silva",
+  "aspect": 0.75,
+  "q": 0.493,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

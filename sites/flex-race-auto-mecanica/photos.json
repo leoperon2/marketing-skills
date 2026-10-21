@@ -1,0 +1,20 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Robson Miguel",
+  "aspect": 1.777,
+  "q": 0.825,
+  "faces": 0,
+  "w": 1400,
+  "h": 788
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Robson Miguel",
+  "aspect": 1.777,
+  "q": 0.825,
+  "faces": 0,
+  "w": 1400,
+  "h": 788
+ }
+]

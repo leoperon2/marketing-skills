@@ -1,0 +1,74 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Lucas Ribas",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Leticia Stella",
+  "aspect": 0.45,
+  "q": 0.909,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Leticia Stella",
+  "aspect": 0.45,
+  "q": 0.909,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Leticia Stella",
+  "aspect": 0.45,
+  "q": 0.909,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Thiago Nunes",
+  "aspect": 1.777,
+  "q": 0.825,
+  "faces": 0,
+  "w": 1400,
+  "h": 788
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Fábio",
+  "aspect": 1.413,
+  "q": 0.821,
+  "faces": 0,
+  "w": 1280,
+  "h": 906
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Thiago Nunes",
+  "aspect": 1.777,
+  "q": 0.78,
+  "faces": 0,
+  "w": 1400,
+  "h": 788
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Lucas Ribas",
+  "aspect": 0.75,
+  "q": 0.762,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

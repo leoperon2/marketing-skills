@@ -1,0 +1,56 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "amanda da silva alves",
+  "aspect": 0.45,
+  "q": 0.806,
+  "faces": 0,
+  "w": 630,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "amanda da silva alves",
+  "aspect": 0.75,
+  "q": 0.586,
+  "faces": 0,
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "diego oliveira",
+  "aspect": 0.75,
+  "q": 0.555,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "amanda da silva alves",
+  "aspect": 0.75,
+  "q": 0.533,
+  "faces": 0,
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Hanna Kamilly soares",
+  "aspect": 0.75,
+  "q": 0.461,
+  "faces": 0,
+  "w": 960,
+  "h": 1280
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Geicianne Abreu",
+  "aspect": 0.75,
+  "q": 0.417,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

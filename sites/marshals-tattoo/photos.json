@@ -1,0 +1,110 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Rainara Souza",
+  "aspect": 0.563,
+  "q": 1.0,
+  "faces": 0,
+  "w": 788,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "jonjonbh",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Sérgio Júnio",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Daniela Santo",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Lucas Meireles",
+  "aspect": 0.461,
+  "q": 0.969,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Lucas Meireles",
+  "aspect": 0.461,
+  "q": 0.969,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Lucas Meireles",
+  "aspect": 0.461,
+  "q": 0.969,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Rayana Souza",
+  "aspect": 0.75,
+  "q": 0.943,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "Rayana Souza",
+  "aspect": 0.563,
+  "q": 0.896,
+  "faces": 0,
+  "w": 788,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "Wendel Adriano",
+  "aspect": 0.823,
+  "q": 0.854,
+  "faces": 0,
+  "w": 1088,
+  "h": 1322
+ },
+ {
+  "file": "img/p11.jpg",
+  "who": "Wendel Adriano",
+  "aspect": 0.562,
+  "q": 0.806,
+  "faces": 0,
+  "w": 720,
+  "h": 1280
+ },
+ {
+  "file": "img/p12.jpg",
+  "who": "Wendel Adriano",
+  "aspect": 0.562,
+  "q": 0.519,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ }
+]

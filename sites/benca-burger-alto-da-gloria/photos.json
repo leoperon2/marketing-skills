@@ -1,0 +1,110 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "André V. K.",
+  "aspect": 0.751,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1051,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "André V. K.",
+  "aspect": 0.751,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1051,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "André V. K.",
+  "aspect": 0.751,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1051,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Natalie Fronczak",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p05.jpg",
+  "who": "Andressa Soares Rocha",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p06.jpg",
+  "who": "Karin Mitsue",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p07.jpg",
+  "who": "Douglas Florenço",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p08.jpg",
+  "who": "Andressa Soares Rocha",
+  "aspect": 0.75,
+  "q": 0.968,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p09.jpg",
+  "who": "Lucas Henrique",
+  "aspect": 0.75,
+  "q": 0.914,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p10.jpg",
+  "who": "Luiz Anildo Santos",
+  "aspect": 0.461,
+  "q": 0.909,
+  "faces": 0,
+  "w": 646,
+  "h": 1400
+ },
+ {
+  "file": "img/p11.jpg",
+  "who": "Andressa Soares Rocha",
+  "aspect": 0.75,
+  "q": 0.881,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p12.jpg",
+  "who": "Andressa Soares Rocha",
+  "aspect": 0.462,
+  "q": 0.837,
+  "faces": 0,
+  "w": 647,
+  "h": 1400
+ }
+]

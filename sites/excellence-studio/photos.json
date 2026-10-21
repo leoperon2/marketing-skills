@@ -1,0 +1,20 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Vasques",
+  "aspect": 0.75,
+  "q": 0.971,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Vasques",
+  "aspect": 0.75,
+  "q": 0.635,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

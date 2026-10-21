@@ -1,0 +1,5 @@
+_data/
+_src/
+manifest*.json
+prospeccao.csv
+urls.json

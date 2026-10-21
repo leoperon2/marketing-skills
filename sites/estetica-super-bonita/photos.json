@@ -1,0 +1,38 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Anna Laura Chepp",
+  "aspect": 0.75,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "Vitória Abreu",
+  "aspect": 0.562,
+  "q": 1.0,
+  "faces": 0,
+  "w": 787,
+  "h": 1400
+ },
+ {
+  "file": "img/p03.jpg",
+  "who": "Daniele de Llano",
+  "aspect": 0.75,
+  "q": 0.734,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ },
+ {
+  "file": "img/p04.jpg",
+  "who": "Luíza Stier",
+  "aspect": 0.75,
+  "q": 0.493,
+  "faces": 0,
+  "w": 1050,
+  "h": 1400
+ }
+]

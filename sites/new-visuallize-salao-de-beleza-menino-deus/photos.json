@@ -1,0 +1,20 @@
+[
+ {
+  "file": "img/p01.jpg",
+  "who": "Mario Wieczorek",
+  "aspect": 1.0,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1400,
+  "h": 1400
+ },
+ {
+  "file": "img/p02.jpg",
+  "who": "GERMANO & RODRIGUES ADVOCACIA",
+  "aspect": 0.785,
+  "q": 1.0,
+  "faces": 0,
+  "w": 1099,
+  "h": 1400
+ }
+]
