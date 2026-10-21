@@ -3,7 +3,7 @@
 
 Uso:
   export APIFY_TOKEN=...
-  python3 scan_maps.py run   --niches "barbearia,oficina de motos" --cities "Curitiba PR,Londrina PR" --per-search 60
+  python3 scan_maps.py run   --niches "barbearia,oficina de motos" --cities "Curitiba/Paraná,Londrina/Paraná" --per-search 60
   python3 scan_maps.py rank  --dataset <datasetId> --top 50
 
 `run` imprime o datasetId; `rank` baixa, filtra, pontua e grava candidatos.csv e top50.csv.
@@ -33,7 +33,9 @@ def run(a):
     for city in cities:
         inp = {
             "searchStringsArray": niches,
-            "locationQuery": f"{city}, Brasil",
+            "city": city.split("/")[0],       # formato "Curitiba/Paraná"; evita polígono de 0 km²
+            "state": city.split("/")[1] if "/" in city else "",
+            "countryCode": "br",
             "maxCrawledPlacesPerSearch": a.per_search,
             "language": "pt-BR",
             "scrapeContacts": True,       # e-mail e redes sociais do site (add-on pago, confira o preço)
