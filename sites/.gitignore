@@ -3,3 +3,4 @@ _src/
 manifest*.json
 prospeccao.csv
 urls.json
+__pycache__/
