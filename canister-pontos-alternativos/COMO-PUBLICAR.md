@@ -22,3 +22,9 @@ Conteúdo: `index.html` + pasta `img/`. Mantenha os dois juntos, na mesma pasta.
 - As fontes (Bricolage Grotesque e DM Sans) carregam do Google Fonts. Sem internet, o navegador usa fontes parecidas do sistema.
 - Para trocar texto, edite o `index.html`. Para trocar imagem, substitua o arquivo em `img/` mantendo o mesmo nome.
 - Se publicar em um subdiretório, os caminhos (`img/...`) já são relativos e funcionam sem ajuste.
+
+## Imagem ao compartilhar no WhatsApp
+No `index.html`, a linha `og:image` precisa do endereço completo da imagem. Troque
+`https://SEU-DOMINIO.com.br/pontos-alternativos/img/og.jpg` pelo endereço real onde o site ficou.
+Exemplo no Netlify: `https://nome.netlify.app/img/og.jpg`.
+O WhatsApp guarda o resultado em cache. Para um link já compartilhado, teste com um endereço novo, por exemplo adicionando `?v=2` no final.
