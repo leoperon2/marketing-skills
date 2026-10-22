@@ -61,24 +61,25 @@ HERO.append("""html { overflow-x: clip; }
  IMG { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border: 0; box-shadow: none; outline: 0; filter: brightness(.92);
    transform: translate3d(0, calc(var(--hp) * 7%), 0) scale(calc(1.04 + var(--hp) * .1)); transform-origin: 50% 20%; will-change: transform;
    -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); }
- .hero > div:first-child { position: relative; z-index: 2; min-height: inherit; padding: clamp(56px, 10vh, 110px) max(16px, calc((100vw - 1080px) / 2)); display: flex; flex-direction: column; justify-content: flex-end; color: #fff;
+ .hero > div:first-child { position: relative; z-index: 2; min-height: inherit; padding: clamp(56px, 10vh, 110px) max(28px, 7vw, calc((100vw - 1080px) / 2)); display: flex; flex-direction: column; justify-content: flex-end; color: #fff;
    opacity: calc(1 - var(--hp) * 1.15); transform: translate3d(0, calc(var(--hp) * -56px), 0); }
- .hero > div:first-child > * { max-width: 620px; }
- .hero h1 { color: #fff; font-size: clamp(44px, 8vw, 96px); text-shadow: 0 2px 24px rgba(0,0,0,.45); } .hero .eyebrow, .hero .lede, .hero .score { color: rgba(255,255,255,.9); } .hero .score strong { color: #fff; } .hero .stars { color: var(--salmon); }
+ .hero > div:first-child > * { max-width: 700px; }
+ .hero h1 { color: #fff; font-size: clamp(50px, 9vw, 110px); text-shadow: 0 2px 24px rgba(0,0,0,.45); } .hero .eyebrow, .hero .lede, .hero .score { color: rgba(255,255,255,.9); } .hero .score strong { color: #fff; } .hero .stars { color: var(--salmon); }
  .hero .btn.ghost { color: #fff; border-color: #fff; }
- .hero img.logo-stamp, .hero .seal { left: auto; right: max(16px, calc((100vw - 1080px) / 2)); bottom: 44px; }
+ .hero .eyebrow { font-size: 13px; } .hero .lede { font-size: clamp(17px, 2.1vw, 21px); line-height: 1.5; } .hero .btn { min-height: 52px; padding: 0 26px; font-size: 17px; }
+ .hero img.logo-stamp, .hero .seal { left: auto; right: max(28px, 7vw, calc((100vw - 1080px) / 2)); bottom: 44px; }
  .stripe { display: none; }
  @media (max-width: 820px) {
    .hero { min-height: 590px; margin-bottom: -18px; } IMG { object-position: var(--foco, 50% 50%); -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); }
    main.wrap:has(#casa) > #fotos { padding-top: 6px !important; } main.wrap:has(#casa) > #casa { padding-top: 24px; }
    .hero > div:first-child { justify-content: flex-start; padding-top: 30px; padding-bottom: 0; }
    .hero > div:first-child > * { max-width: 100%; }
-   .hero .eyebrow { font-size: 10.5px; letter-spacing: .1em; opacity: .72; margin-bottom: 10px; text-wrap: balance; }
-   .hero h1 { font-size: clamp(46px, 14.5vw, 68px); line-height: 1; margin-bottom: 14px; }
-   .hero .lede { font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.78); max-width: 32ch; margin: 0 0 18px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+   .hero .eyebrow { font-size: 11px; letter-spacing: .1em; opacity: .72; margin-bottom: 10px; text-wrap: balance; }
+   .hero h1 { font-size: clamp(48px, 15.5vw, 76px); line-height: 1; margin-bottom: 14px; }
+   .hero .lede { font-size: 16.5px; line-height: 1.45; color: rgba(255,255,255,.78); max-width: 32ch; margin: 0 0 18px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
    .hero .cta { display: none; }
    .hero .score { margin-top: 4px; gap: 10px; font-size: 13px; } .hero .score strong { font-size: 24px; } .hero .stars { font-size: 13px; letter-spacing: 2px; }
-   .hero img.logo-stamp, .hero .seal { width: 100px; height: 100px; border-width: 4px; box-shadow: 0 4px 0 var(--salmon); bottom: 18px; right: 16px; }
+   .hero img.logo-stamp, .hero .seal { width: 100px; height: 100px; border-width: 4px; box-shadow: 0 4px 0 var(--salmon); bottom: 18px; right: 20px; }
  }
  @media (prefers-reduced-motion: reduce) { .hero > div:first-child { opacity: 1 !important; transform: none !important; } .hero > figure > img:first-child { transform: scale(1.04) !important; } }""".replace("IMG", IMG))
 SCRIPT_BLEED = """<script>(function(){function init(){var h=document.querySelector('.hero');if(!h)return;var t=0;function f(){t=0;var p=Math.min(Math.max(window.scrollY/Math.max(h.offsetHeight,1),0),1);h.style.setProperty('--hp',p.toFixed(3));}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>"""
@@ -106,6 +107,19 @@ GALLERY = [
  ".mosaic { gap: 18px; } .tile { outline: 5px solid var(--surface); outline-offset: -5px; box-shadow: 0 6px 0 var(--salmon); } @media (max-width: 820px) { .mosaic { gap: 12px; } }",
  ".mosaic { gap: 8px; } .tile img { filter: grayscale(.9) contrast(1.05); } .tile:hover img, .tile:focus-visible img { filter: none; } @media (max-width: 820px) { .tile img { filter: grayscale(.5); } }",
 ]
+
+GALLERY.append("""#fotos .sub { font-size: 18px; line-height: 1.55; color: var(--ink); opacity: .88; max-width: 52ch; }
+ #fotos h2 { font-size: clamp(34px, 6vw, 54px); }
+ .mosaic { gap: 10px; }
+ .tile { --g: 0; border-radius: 10px; isolation: isolate; box-shadow: 0 0 calc(4px + var(--g) * 34px) calc(var(--g) * 3px) rgb(var(--glow, 255 170 80) / calc(var(--g) * .55)); }
+ .tile:hover, .tile:focus-visible { --g: 1 !important; }
+ .tile img { filter: grayscale(.3) contrast(1.22) saturate(1.1) brightness(.9) sepia(.15); }
+ .tile:hover img, .tile:focus-visible img { filter: grayscale(0) contrast(1.15) saturate(1.2) brightness(1); }
+ .tile::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgb(var(--glow, 255 170 80)); mix-blend-mode: soft-light; opacity: .22; }
+ .tile::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
+   background: radial-gradient(130% 100% at 50% 35%, transparent 52%, rgba(8,5,3,.55) 100%), linear-gradient(to top, rgba(18,9,4,.38), transparent 45%);
+   box-shadow: inset 0 0 0 1px rgb(var(--glow, 255 170 80) / calc(.22 + var(--g) * .7)), inset 0 0 calc(10px + var(--g) * 26px) rgb(var(--glow, 255 170 80) / calc(.06 + var(--g) * .34)); }""")
+SCRIPT_GLOW = """<script>(function(){function init(){var t=[].slice.call(document.querySelectorAll('.tile'));if(!t.length)return;var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm){t.forEach(function(e){e.style.setProperty('--g','.3')});return;}var q=0;function f(){q=0;var vh=window.innerHeight;t.forEach(function(e){var r=e.getBoundingClientRect();if(r.bottom<-80||r.top>vh+80){e.style.setProperty('--g','0');return;}var d=Math.abs((r.top+r.bottom)/2-vh*0.5)/(vh*0.5);var g=Math.max(0,1-d);e.style.setProperty('--g',(g*g).toFixed(3));});}window.addEventListener('scroll',function(){if(!q)q=requestAnimationFrame(f);},{passive:true});window.addEventListener('resize',f);f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>"""
 
 HEADING = [
  "",
@@ -149,11 +163,11 @@ ANIM = [
 ]
 
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
-SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=len(GALLERY), heading=len(HEADING),
+SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=5, heading=len(HEADING),
             shape=len(SHAPE), proof=len(PROOF), stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
-OVERRIDE = {"charles-tattoo-piercing": {"hero": 6}}  # escolhas à mão (capa panorâmica escura)
+OVERRIDE = {"charles-tattoo-piercing": {"hero": 6, "gallery": 5}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
 FORCE_DARK = {"charles-tattoo-piercing"}  # sempre tema escuro, ignorando o tema do aparelho
 FOCO_MOBILE = {"charles-tattoo-piercing": "67.5% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
@@ -201,7 +215,10 @@ def block(kind, c, has_fig, slug=""):
     for lst, key in ((SHAPE, "shape"), (FRAME, "frame"), (None, None), (HEADER, "header"), (GALLERY, "gallery"), (HEADING, "heading"), (PROOF, "proof"), (STRIPE, "stripe"), (INFO, "info"), (ABOUT, "about"), (ORDER, "order"), (ANIM, "anim")):
         if lst is None: css.append(HERO[hero].replace("brightness(.5)", "brightness(.9)") if slug in CAPA_ESCURA else HERO[hero]); continue
         if lst[c[key]]: css.append(lst[c[key]])
-    extra = SCRIPT_BLEED if hero == 6 else ""
+    extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "")
+    if c["gallery"] == 5:
+        _a = ACCENTS[c["accent"]]; _h = (_a[1][0] if _a else "#ffaa50").lstrip("#")
+        css.insert(0, ":root { --glow: " + " ".join(str(int(_h[i:i + 2], 16)) for i in (0, 2, 4)) + "; }")
     if hero == 6 and slug in FOCO_MOBILE: css.insert(0, ":root { --foco: " + FOCO_MOBILE[slug] + "; }")
     return "<!--vary:start-->" + link + "<style>\n  /* variação: " + ",".join(f"{d}={c[d]}" for d in DIMS) + " */\n  " + "\n  ".join(css) + "\n</style>" + extra + "<!--vary:end-->"
 
