@@ -205,15 +205,15 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
 # título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
-GALERIA_TEXTO = {"don-alberttoni": ("Um corte, um café e boa conversa", "Cadeiras antigas, sinuca, violão e xadrez esperando por você.", "Toque numa foto para ampliar"),
+GALERIA_TEXTO = {"don-alberttoni": ("Cada canto tem uma história", "Cadeiras antigas, sinuca, violão, xadrez e um poodle de visita.", "Toque numa foto para ampliar"),
     "charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
 # seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
 SOBRE_TEXTO = {"don-alberttoni": dict(
-    h2="Aqui o corte vem com café, vinil e papo bom.",
-    paras=["Barbearia clássica no Bom Retiro, em Curitiba, desde 2015. Corte, barba e sobrancelha com hora marcada, numa casa cheia de detalhes: cadeira antiga, xadrez de pedra, violão e disco rodando.",
-           "Chega, senta e deixa o resto com a gente."],
+    h2="Barbearia old school, do jeito que o Vinícius gosta.",
+    paras=["Desde 2015 no Bom Retiro, em Curitiba: cadeira de couro, vinil rodando, xadrez no tabuleiro de pedra e violão encostado no canto. Aqui o corte vem com café e papo reto.",
+           "Chega, senta e deixa a gente cuidar do visual."],
     pull=("Ouvindo vinil, trocando ideia e ainda ir embora com um corte 10/10 é uma raridade.", "Daniel S., em avaliação no Google"),
-    cards=[("Corte de cabelo", "Do clássico ao estilo novo, do seu jeito."), ("Barba", "Aparada e desenhada com calma."),
+    cards=[("Corte de cabelo", "Do clássico ao estilo novo, do seu jeito."), ("Barba", "Aparada e desenhada com calma, do jeito antigo."),
            ("Sobrancelha", "O acabamento que completa o corte."), ("Corte infantil", "Com paciência para os pequenos.")],
     nota="Valores e profissionais disponíveis aparecem no agendamento online.", prova="Quem já sentou na cadeira conta"),
   "charles-tattoo-piercing": dict(
@@ -242,13 +242,17 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84
  #casa .services { gap: 14px; margin: 26px 0 0; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
-WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, pessoal da Don Alberttoni, tudo bom? Queria agendar um horário."}
+WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário."}
 AVAL_LINK = {"charles-tattoo-piercing", "don-alberttoni"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
 AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
  .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
  .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
  .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
+# textos da capa e do fechamento escritos à mão por site
+HERO_TEXTO = {"don-alberttoni": ("Barbearia old school desde 2015 · Bom Retiro, Curitiba",
+    "Corte, barba e sobrancelha no capricho. Café na mão, vinil rodando e uma casa pra quem curte estilo, moto e tinta na pele.")}
+FINAL_TEXTO = {"don-alberttoni": ("Sua cadeira tá te esperando", "Marque pelo agendamento online ou chame no WhatsApp. O resto é com a gente.")}
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
 INTRO = {"charles-tattoo-piercing", "don-alberttoni"}    # animação de entrada + pequeno scroll suave ao carregar
 
@@ -383,6 +387,13 @@ def run(only=None):
             link = f'<a class="rev-link" href="{url}" target="_blank" rel="noopener"><span class="rs" aria-hidden="true">\u2605\u2605\u2605\u2605\u2605</span><span class="rt">Veja as avaliações no Google</span></a>'
             html = re.sub(r'(id="clientes">.*?<p class="eyebrow">)(?:<a class="rev-link".*?</a>|[^<]*)(</p>)', lambda m: m.group(1) + link + m.group(2), html, count=1, flags=re.S)
             html = re.sub(r'<(?:div|a) class="score"( aria-label="[^"]*")?( href="[^"]*" target="_blank" rel="noopener")?>\s*(<strong>.*?</strong>\s*<div>.*?</div>)\s*</(?:div|a)>', lambda m: f'<a class="score" href="{url}" target="_blank" rel="noopener"{m.group(1) or ""}>{m.group(3)}</a>', html, count=1, flags=re.S)
+        if slug in HERO_TEXTO:
+            eb, ld = HERO_TEXTO[slug]
+            html = re.sub(r'(<div class="hero">\s*<div>\s*<p class="eyebrow">)[^<]*(</p>)', lambda m: m.group(1) + eb + m.group(2), html, count=1)
+            html = re.sub(r'(<p class="lede">)[^<]*(</p>)', lambda m: m.group(1) + ld + m.group(2), html, count=1)
+        if slug in FINAL_TEXTO:
+            ft, fs = FINAL_TEXTO[slug]
+            html = re.sub(r'(<section class="final">\s*<h2>)[^<]*(</h2>\s*<p class="sub"[^>]*>)[^<]*(</p>)', lambda m: m.group(1) + ft + m.group(2) + fs + m.group(3), html, count=1)
         kind, fig, pull = kind_and_info(html)
         if slug in PLANO_FIXO: kind = PLANO_FIXO[slug][0]
         if kind: pages[slug] = (f, html, kind, fig)
