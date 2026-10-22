@@ -100,6 +100,16 @@ h2{font-size:clamp(34px,5vw,60px);font-weight:800;max-width:18ch}
 .where{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .where li{font:500 14px/1.2 var(--f-body);border:1px solid var(--line);border-radius:99px;padding:7px 13px}
 
+.specs{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px;align-items:start}
+.spec{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;min-width:0}
+.spec img{width:100%;background:#e9e9ee}
+.spec figcaption{padding:clamp(20px,3vw,32px);display:grid;gap:14px}
+.spec h3{font-size:26px;font-weight:800}
+.spec dl{margin:0;display:grid;gap:0}
+.spec dl div{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding:9px 0;font-size:15.5px}
+.spec dt{color:var(--muted)}
+.spec dd{margin:0;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.note{margin-top:20px;color:var(--muted);font-size:14.5px}
 /* portfólio */
 .band{background:var(--surface)}
 .lines{display:grid;gap:18px}
@@ -143,7 +153,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 40px;color:var(--mute
 footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
 
 @media (max-width:900px){
-  .hero-grid,.fmt,.close-grid,.duo-args{grid-template-columns:1fr}
+  .hero-grid,.fmt,.close-grid,.duo-args,.specs{grid-template-columns:1fr}
   .fmt.flip .fmt-media{order:0}
   .line{grid-template-columns:1fr}
   .hero-img{max-width:440px}
@@ -171,11 +181,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
       <div class="pills">
         <span class="pill"><b>4</b> linhas de produto</span>
         <span class="pill"><b>2</b> públicos: cães e gatos</span>
-        <span class="pill"><b>3</b> formatos de exposição</span>
+        <span class="pill"><b>4</b> formatos de exposição</span>
       </div>
     </div>
     <div class="hero-img">
-      <img src="img/totem2.webp" alt="Totem de chão Canister vermelho com cachorro piscando, dentro de uma loja de conveniência de posto" width="1024" height="1536">
+      <img src="img/totem-prateleiras.jpg" alt="Totem de chão Canister vermelho com cachorro piscando, snacks pendurados na boca e três prateleiras de produtos, em loja de conveniência de posto" width="1024" height="1536">
       <div class="stamp">Cão que pisca, cliente que para.</div>
     </div>
   </div>
@@ -192,25 +202,37 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Como entra na loja</p>
-      <h2>Três formatos. Todos prontos para colocar e vender.</h2>
+      <h2>Quatro formatos. Todos prontos para colocar e vender.</h2>
       <p class="lead">Cada ponto da loja ganha o formato que cabe nele. Material pronto, marca forte, sem obra e sem ocupar o espaço de ninguém.</p>
     </div>
 
     <div class="formats">
       <article class="fmt">
-        <div class="fmt-media duo">
-          <img src="img/totem2.webp" alt="Totem de chão Canister na versão vermelha" loading="lazy" width="1024" height="1536">
-          <img src="img/1.jpg" alt="Totem de chão Canister na versão preta" loading="lazy" width="1024" height="1536">
+        <div class="fmt-media wide">
+          <img src="img/totem-prateleiras.jpg" alt="Totem de chão Canister com prateleiras, na loja" loading="lazy" width="1024" height="1536" style="aspect-ratio:4/5;object-fit:cover;object-position:top">
         </div>
         <div class="fmt-text">
-          <span class="kicker">Totem de chão</span>
+          <span class="kicker">Totem com prateleiras</span>
           <h3>O cachorro que segura o olhar.</h3>
-          <p>A boca do cachorro vira vitrine dos snacks. Abaixo, três andares organizam comidinha e molho gourmet, bifinho e ração por tamanho, do impulso ao abastecimento. Disponível em duas versões de cor.</p>
+          <p>Os snacks ficam pendurados em 8 ganchos na boca do cachorro, 4 em cima e 4 embaixo. Abaixo, três prateleiras organizam comidinha e molho gourmet, bifinho e ração, do impulso ao abastecimento.</p>
           <ul class="where"><li>Entrada da loja</li><li>Perto do caixa</li><li>Corredor central</li></ul>
         </div>
       </article>
 
       <article class="fmt flip">
+        <div class="fmt-media wide">
+          <img src="img/totem-compacto.jpg" alt="Totem compacto Canister na cabeça de uma gôndola de salgadinhos" loading="lazy" width="1536" height="1024">
+          <img src="img/totem-compacto-traseira.jpg" alt="Totem compacto Canister: frente com snacks nos ganchos e traseira aberta com estoque por sabor" loading="lazy" width="1536" height="1024">
+        </div>
+        <div class="fmt-text">
+          <span class="kicker">Totem compacto</span>
+          <h3>Na ponta da gôndola, ao lado dos salgadinhos.</h3>
+          <p>Versão baixa só de snacks. Oito ganchos na boca do cachorro e, atrás, uma abertura para guardar o estoque por sabor, com reposição sem desmontar nada.</p>
+          <ul class="where"><li>Cabeça de gôndola</li><li>Corredor de salgadinhos</li><li>Ao lado do caixa</li></ul>
+        </div>
+      </article>
+
+      <article class="fmt">
         <div class="fmt-media duo">
           <img src="img/2.jpg" alt="Tira de snacks Canister pendurada na gôndola de salgadinhos" loading="lazy" width="1024" height="1536">
           <img src="img/3.jpg" alt="Tira de snacks Canister pendurada ao lado das geladeiras de bebidas" loading="lazy" width="1024" height="1536">
@@ -223,7 +245,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
         </div>
       </article>
 
-      <article class="fmt">
+      <article class="fmt flip">
         <div class="fmt-media wide">
           <img src="img/4.jpg" alt="Expositor de balcão Canister ao lado da máquina de café" loading="lazy" width="1774" height="887">
           <img src="img/5.jpg" alt="Expositor de balcão Canister ao lado do caixa" loading="lazy" width="1774" height="887">
@@ -236,6 +258,49 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
         </div>
       </article>
     </div>
+  </div>
+</section>
+
+<section id="medidas">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Medidas</p>
+      <h2>Cabe no espaço que a loja já tem.</h2>
+      <p class="lead">Estudo preliminar das duas versões do totem, com medidas em milímetros. Os valores são propostas e serão validados com os produtos reais e com o fabricante.</p>
+    </div>
+    <div class="specs">
+      <figure class="spec">
+        <img src="img/medidas-prateleiras.jpg" alt="Estudo de medidas do totem com prateleiras: 1700 de altura, 600 de largura e 350 de profundidade, aproximadas" loading="lazy" width="1024" height="1536">
+        <figcaption>
+          <h3>Totem com prateleiras</h3>
+          <dl>
+            <div><dt>Altura</dt><dd>1700 mm aprox.</dd></div>
+            <div><dt>Largura</dt><dd>600 mm aprox.</dd></div>
+            <div><dt>Profundidade</dt><dd>350 mm aprox.</dd></div>
+            <div><dt>Cabeça</dt><dd>650 mm aprox.</dd></div>
+            <div><dt>Boca (área útil)</dt><dd>460 × 400 mm</dd></div>
+            <div><dt>Ganchos</dt><dd>8 (4 em cima, 4 embaixo)</dd></div>
+          </dl>
+        </figcaption>
+      </figure>
+      <figure class="spec">
+        <img src="img/medidas-compacto.jpg" alt="Estudo de medidas do totem compacto: 1400 de altura, 600 de largura e 300 de profundidade, com abertura traseira" loading="lazy" width="1536" height="1024">
+        <figcaption>
+          <h3>Totem compacto</h3>
+          <dl>
+            <div><dt>Altura</dt><dd>1400 mm</dd></div>
+            <div><dt>Largura</dt><dd>600 mm</dd></div>
+            <div><dt>Profundidade</dt><dd>300 mm</dd></div>
+            <div><dt>Cabeça</dt><dd>650 mm aprox.</dd></div>
+            <div><dt>Boca (área útil)</dt><dd>460 × 400 mm</dd></div>
+            <div><dt>Abertura traseira</dt><dd>540 × 600 mm aprox.</dd></div>
+            <div><dt>Ganchos</dt><dd>8, com 150 mm úteis</dd></div>
+            <div><dt>Entre eixos</dt><dd>110 mm na horizontal, 190 mm na vertical</dd></div>
+          </dl>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="note">Pacote de referência: 100 × 160 × 25 mm. Estudo visual, não é desenho de fabricação.</p>
   </div>
 </section>
 
@@ -284,7 +349,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
           <p class="size">Original, embalagem em kg</p>
           <p>A base da alimentação, ao alcance de quem esqueceu de comprar e passou pela loja.</p>
         </div>
-        <div class="shot"><img class="fit" src="img/racao.jpg" alt="Ração Canister Premium Original no totem de chão" loading="lazy" width="480" height="400"></div>
+        <div class="shot"><img class="fit" src="img/racao.jpg" alt="Ração Canister Premium Original na prateleira do totem" loading="lazy" width="480" height="400"></div>
       </article>
     </div>
     <p class="species"><b>Para cães e para gatos.</b> Cada linha tem embalagem e sabor próprios para cada espécie. Imagens ilustrativas.</p>
@@ -329,7 +394,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
       <h2 style="margin-top:18px">Comida boa tem sabor de <em>Canister</em>.</h2>
       <p class="lead">Vamos levar essa marca para lugares onde o pet ainda não tinha prateleira. Escolha o formato do seu ponto e fale com o seu representante Canister.</p>
     </div>
-    <img src="img/5.jpg" alt="Expositor Canister ao lado do caixa de uma loja de conveniência" loading="lazy" width="1774" height="887">
+    <img src="img/totem-compacto.jpg" alt="Totem compacto Canister na cabeça de uma gôndola de loja de conveniência" loading="lazy" width="1536" height="1024">
   </div>
 </section>
 
