@@ -69,7 +69,7 @@ HERO.append("""html { overflow-x: clip; }
  .hero img.logo-stamp, .hero .seal { left: auto; right: max(16px, calc((100vw - 1080px) / 2)); bottom: 44px; }
  .stripe { display: none; }
  @media (max-width: 820px) {
-   .hero { min-height: 640px; margin-bottom: -18px; } IMG { object-position: var(--foco, 50% 50%); -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); }
+   .hero { min-height: 590px; margin-bottom: -18px; } IMG { object-position: var(--foco, 50% 50%); -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); }
    main.wrap:has(#casa) > #fotos { padding-top: 6px !important; } main.wrap:has(#casa) > #casa { padding-top: 24px; }
    .hero > div:first-child { justify-content: flex-start; padding-top: 30px; padding-bottom: 0; }
    .hero > div:first-child > * { max-width: 100%; }
@@ -78,7 +78,7 @@ HERO.append("""html { overflow-x: clip; }
    .hero .lede { font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.78); max-width: 32ch; margin: 0 0 18px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
    .hero .cta { display: none; }
    .hero .score { margin-top: 4px; gap: 10px; font-size: 13px; } .hero .score strong { font-size: 24px; } .hero .stars { font-size: 13px; letter-spacing: 2px; }
-   .hero img.logo-stamp, .hero .seal { width: 64px; height: 64px; border-width: 3px; box-shadow: 0 3px 0 var(--salmon); bottom: 20px; right: 16px; }
+   .hero img.logo-stamp, .hero .seal { width: 100px; height: 100px; border-width: 4px; box-shadow: 0 4px 0 var(--salmon); bottom: 18px; right: 16px; }
  }
  @media (prefers-reduced-motion: reduce) { .hero > div:first-child { opacity: 1 !important; transform: none !important; } .hero > figure > img:first-child { transform: scale(1.04) !important; } }""".replace("IMG", IMG))
 SCRIPT_BLEED = """<script>(function(){function init(){var h=document.querySelector('.hero');if(!h)return;var t=0;function f(){t=0;var p=Math.min(Math.max(window.scrollY/Math.max(h.offsetHeight,1),0),1);h.style.setProperty('--hp',p.toFixed(3));}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>"""
@@ -155,7 +155,7 @@ SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len
 
 OVERRIDE = {"charles-tattoo-piercing": {"hero": 6}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
-FOCO_MOBILE = {"charles-tattoo-piercing": "67% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
+FOCO_MOBILE = {"charles-tattoo-piercing": "67.5% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
