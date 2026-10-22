@@ -25,6 +25,8 @@ for l in build.leads:
     if os.path.isdir(os.path.join(src, "img")): shutil.copytree(os.path.join(src, "img"), os.path.join(out, "img"))
     h = open(os.path.join(src, "index.html"), encoding="utf-8").read()
     h = re.sub(r"(<title>[^\n]*</title>\n)", r'\1<meta name="robots" content="noindex, nofollow">\n', h, count=1)
+    # fora do Artifact ninguém injeta o esqueleto: sem esta tag o celular renderiza a 980 px e encolhe tudo
+    h = '<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' + h
     open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(h)
     urls[l["key"]] = BASE + pasta + "/"
 open(os.path.join(DEST, "robots.txt"), "w").write("User-agent: *\nDisallow: /\n")

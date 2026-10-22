@@ -82,7 +82,7 @@ HERO.append("""html { overflow-x: clip; }
    .hero img.logo-stamp, .hero .seal { width: 100px; height: 100px; border-width: 4px; box-shadow: 0 4px 0 var(--salmon); bottom: 18px; right: 20px; }
  }
  @media (prefers-reduced-motion: reduce) { .hero > div:first-child { opacity: 1 !important; transform: none !important; } .hero > figure > img:first-child { transform: scale(1.04) !important; } }""".replace("IMG", IMG))
-SCRIPT_BLEED = """<script>(function(){function init(){var h=document.querySelector('.hero');if(!h)return;var t=0;function f(){t=0;var p=Math.min(Math.max(window.scrollY/Math.max(h.offsetHeight,1),0),1);h.style.setProperty('--hp',p.toFixed(3));}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>"""
+SCRIPT_BLEED = """<script>(function(){function init(){var h=document.querySelector('.hero');if(!h)return;var t=0;function f(){t=0;var p=Math.min(Math.max(window.scrollY/Math.max(h.getBoundingClientRect().height,1),0),1);h.style.setProperty('--hp',p.toFixed(3));}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>"""
 NEEDS_FIG = {1, 2, 3, 4, 5, 6}
 
 FRAME = [
@@ -225,6 +225,7 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 88
  #casa .pull::before { content: "\\201C"; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font: 400 120px/1 var(--font-display); color: var(--accent); opacity: .9; }
  #casa .svc { min-height: 140px; } #casa .svc b { font-size: clamp(21px, 2.6vw, 27px); } #casa .svc span { font-size: 16px; line-height: 1.45; color: var(--ink); opacity: .82; }
  #casa .services { gap: 14px; }"""
+DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
 INTRO = {"charles-tattoo-piercing"}    # animação de entrada + pequeno scroll suave ao carregar
 
@@ -237,6 +238,43 @@ OVERRIDE = {"charles-tattoo-piercing": {"hero": 6, "gallery": 5, "proof": 4, "ab
 CAPA_ESCURA = set()
 FORCE_DARK = {"charles-tattoo-piercing"}  # sempre tema escuro, ignorando o tema do aparelho
 FOCO_MOBILE = {"charles-tattoo-piercing": "67.5% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
+
+def _rules(inner):
+    return re.findall(r"([^{}]+)\{([^{}]*)\}", inner)
+
+def _scoped(inner, prefix):
+    out = []
+    for sel, dec in _rules(inner):
+        ss = [s.strip() for s in sel.split(",")]
+        out.append(",".join(prefix + s for s in ss) + "{" + dec + "}")
+    return "".join(out)
+
+def _media_blocks(css):
+    """[(condição, inner)] das @media de um nível, com contagem de chaves."""
+    res = []
+    for m in re.finditer(r"@media\s*([^{]+)\{", css):
+        i, depth = m.end(), 1
+        while i < len(css) and depth:
+            depth += {"{": 1, "}": -1}.get(css[i], 0); i += 1
+        res.append((m.group(1).strip(), css[m.end():i - 1]))
+    return res
+
+def modo_ampliado(page):
+    """Telas de toque que abrem a página em ~980 px (modo desktop do navegador do celular): usa o layout de celular ampliado.
+    vw/vh viram variáveis (valem 1vw/1vh normalmente e 1vw/zoom no modo ampliado); as @media de celular são espelhadas sob html.dm."""
+    def troca(m):
+        css = re.sub(r"(\d*\.?\d+)vw", r"calc(\1 * var(--vw))", m.group(2))
+        css = re.sub(r"(\d*\.?\d+)vh", r"calc(\1 * var(--vh))", css)
+        return m.group(1) + css + m.group(3)
+    page = re.sub(r"(<style>)(.*?)(</style>)", troca, page, flags=re.S)
+    css_all = "".join(re.findall(r"<style>(.*?)</style>", page, flags=re.S))
+    esp = "".join(_scoped(inner, "html.dm ") for cond, inner in _media_blocks(css_all)
+                  if (m := re.fullmatch(r"\(max-width:\s*(\d+)px\)", cond)) and 412 <= int(m.group(1)) <= 820)
+    base = ("<style>:root { --vw: 1vw; --vh: 1vh; } html.dm { zoom: var(--z); --vw: calc(1vw / var(--z)); --vh: calc(1vh / var(--z)); }</style>"
+            "<style>/* espelho das media de celular */" + esp + "</style>")
+    topo = ("<script>(function(){var d=document.documentElement,s=Math.min(screen.width,screen.height),w=window.innerWidth;"
+            "if(w>820&&s>0&&s<=700&&w/s>1.5){d.classList.add('dm');d.style.setProperty('--z',(w/s).toFixed(3));}})();</script>")
+    return page.replace("<!--vary:start-->", "<!--vary:start-->" + topo + base, 1)
 
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
@@ -282,7 +320,9 @@ def block(kind, c, has_fig, slug=""):
         if lst is None: css.append(HERO[hero].replace("brightness(.5)", "brightness(.9)") if slug in CAPA_ESCURA else HERO[hero]); continue
         if lst[c[key]]: css.append(lst[c[key]])
     extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "") + (SCRIPT_AV if c["proof"] == 4 else "")
-    if slug in LEGIVEL: css.append(LEGIVEL_CSS)
+    if slug in LEGIVEL:
+        _c, _in = _media_blocks(LEGIVEL_CSS)[0]
+        css.append("@media " + _c + " {" + _scoped(_in, "html:not(.dm) ") + "}")
     if slug in SOBRE_TEXTO: css.append(SOBRE_CSS)
     if slug in INTRO: css.append(INTRO_CSS); extra += SCRIPT_NUDGE
     if c["gallery"] == 5:
@@ -321,7 +361,9 @@ def run(only=None):
         if s in FORCE_DARK:  # reaplica as variáveis do tema escuro direto no :root (sem depender de prefers-color-scheme)
             dk = "".join(m.group(1) for m in re.finditer(r':root\[data-theme="dark"\] \{([^}]*)\}', html + b))
             b = b.replace("<!--vary:end-->", "<style>:root { " + dk + " }</style><!--vary:end-->")
-        open(f, "w", encoding="utf-8").write(html[:i] + "\n" + b + html[i:])
+        page = html[:i] + "\n" + b + html[i:]
+        if s in DM_SITES: page = modo_ampliado(page)
+        open(f, "w", encoding="utf-8").write(page)
     json.dump({s: dict(kind=pages[s][2], **plan[s]) for s in pages}, open(os.path.join(HERE, "variants.json"), "w"), indent=1, ensure_ascii=False)
     return plan
 
