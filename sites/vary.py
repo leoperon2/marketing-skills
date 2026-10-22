@@ -202,6 +202,29 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
+# título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
+GALERIA_TEXTO = {"charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui. Fotos de clientes, publicadas no Google Maps. Toque numa para ampliar.")}
+# seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
+SOBRE_TEXTO = {"charles-tattoo-piercing": dict(
+    h2="Tem uma ideia na cabeça? Bora tirar do papel.",
+    paras=["Mais de 10 anos de tatuagem, piercing e microdermal no Rodoviário. Estúdio limpo, ambiente acolhedor e um atendimento que deixa tranquilo até quem vai fazer a primeira tattoo.",
+           "Chega, conta a ideia e leva pra casa uma marca que é só sua."],
+    pull=("Fiz minhas primeiras tatuagens, que trabalho incrível, mão super leve.", "Agna C., em avaliação no Google"),
+    cards=[("Primeira vez? Fica tranquilo", "Tem cliente contando que foi bem acolhido e saiu tranquilo, mesmo sendo a primeira tattoo."),
+           ("Higiene e acolhimento", "Higiene, ambiente e muito acolhimento, nas palavras de quem já foi."),
+           ("Tattoo, piercing e micro", "Também faz piercing, até de bioflex, e microdermal."),
+           ("Porta aberta o dia todo", "Aberto todos os dias, das 7h às 21h.")],
+    nota="Baseado no que os clientes contam no Google e nas informações do perfil.",
+    prova="Quem já passou por aqui conta")}
+SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 88px; }
+ #casa::before { content: ""; position: absolute; inset: -30px calc(50% - 50vw); z-index: -1; pointer-events: none; background: radial-gradient(55% 55% at 22% 35%, rgb(var(--glow, 255 170 80) / .17), transparent 72%); }
+ #casa h2 { font-size: clamp(40px, 6.6vw, 70px); line-height: 1.02; margin-bottom: 22px; }
+ #casa .about > div > p { font-size: clamp(19px, 2.4vw, 24px); line-height: 1.5; max-width: 36ch; }
+ #casa .about > div > p:nth-of-type(2) { color: var(--accent); font-weight: 600; }
+ #casa .pull { font-size: clamp(30px, 5vw, 52px); line-height: 1.12; position: relative; padding-top: 30px; }
+ #casa .pull::before { content: "\\201C"; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font: 400 120px/1 var(--font-display); color: var(--accent); opacity: .9; }
+ #casa .svc { min-height: 140px; } #casa .svc b { font-size: clamp(21px, 2.6vw, 27px); } #casa .svc span { font-size: 16px; line-height: 1.45; color: var(--ink); opacity: .82; }
+ #casa .services { gap: 14px; }"""
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
 INTRO = {"charles-tattoo-piercing"}    # animação de entrada + pequeno scroll suave ao carregar
 
@@ -260,6 +283,7 @@ def block(kind, c, has_fig, slug=""):
         if lst[c[key]]: css.append(lst[c[key]])
     extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "") + (SCRIPT_AV if c["proof"] == 4 else "")
     if slug in LEGIVEL: css.append(LEGIVEL_CSS)
+    if slug in SOBRE_TEXTO: css.append(SOBRE_CSS)
     if slug in INTRO: css.append(INTRO_CSS); extra += SCRIPT_NUDGE
     if c["gallery"] == 5:
         _a = ACCENTS[c["accent"]]; _h = (_a[1][0] if _a else "#ffaa50").lstrip("#")
@@ -274,6 +298,15 @@ def run(only=None):
         slug = os.path.basename(os.path.dirname(f))
         if slug in SKIP: continue
         html = re.sub(r"\n*<!--vary:start-->.*?<!--vary:end-->", "", open(f, encoding="utf-8").read(), flags=re.S)
+        if slug in GALERIA_TEXTO:
+            t, sub = GALERIA_TEXTO[slug]
+            html = re.sub(r'(<section id="fotos"[^>]*>\s*<h2>)[^<]*(</h2>\s*<p class="sub">)[^<]*(</p>)', lambda m: m.group(1) + t + m.group(2) + sub + m.group(3), html, count=1)
+        if slug in SOBRE_TEXTO:
+            S = SOBRE_TEXTO[slug]; e = __import__("html").escape
+            novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc"><b>' + e(t) + "</b><span>" + e(s) + "</span></li>" for t, s in S["cards"]) + '</ul><p class="sub" style="margin:14px 0 0;font-size:15px">' + e(S["nota"]) + "</p>"
+            html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+<ul class="services">.*?</ul><p class="sub"[^>]*>.*?</p>', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
+            html = re.sub(r'<p class="pull">.*?</p>', lambda m: '<p class="pull">\u201c' + e(S["pull"][0]) + '\u201d<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">' + e(S["pull"][1]) + "</span></p>", html, count=1, flags=re.S)
+            html = re.sub(r'(id="clientes">.*?<h2>)[^<]*(</h2>)', lambda m: m.group(1) + e(S["prova"]) + m.group(2), html, count=1, flags=re.S)
         kind, fig, pull = kind_and_info(html)
         if kind: pages[slug] = (f, html, kind, fig)
     by_kind = {}

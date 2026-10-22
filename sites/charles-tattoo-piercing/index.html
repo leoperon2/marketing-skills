@@ -267,6 +267,15 @@
  blockquote { flex-basis: clamp(300px, 36vw, 420px); } blockquote p { font-size: 19px; } blockquote cite { font-size: 16px; }
  .score strong { font-size: 40px; } footer { font-size: 16px; } footer strong { font-size: 20px; }
 }
+  #casa { position: relative; isolation: isolate; padding-block: 88px; }
+ #casa::before { content: ""; position: absolute; inset: -30px calc(50% - 50vw); z-index: -1; pointer-events: none; background: radial-gradient(55% 55% at 22% 35%, rgb(var(--glow, 255 170 80) / .17), transparent 72%); }
+ #casa h2 { font-size: clamp(40px, 6.6vw, 70px); line-height: 1.02; margin-bottom: 22px; }
+ #casa .about > div > p { font-size: clamp(19px, 2.4vw, 24px); line-height: 1.5; max-width: 36ch; }
+ #casa .about > div > p:nth-of-type(2) { color: var(--accent); font-weight: 600; }
+ #casa .pull { font-size: clamp(30px, 5vw, 52px); line-height: 1.12; position: relative; padding-top: 30px; }
+ #casa .pull::before { content: "\201C"; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font: 400 120px/1 var(--font-display); color: var(--accent); opacity: .9; }
+ #casa .svc { min-height: 140px; } #casa .svc b { font-size: clamp(21px, 2.6vw, 27px); } #casa .svc span { font-size: 16px; line-height: 1.45; color: var(--ink); opacity: .82; }
+ #casa .services { gap: 14px; }
   @media (prefers-reduced-motion: no-preference) {
  header.bar { animation: introDown .8s cubic-bezier(.2, .7, .2, 1) both; }
  .hero { animation: introFade 1.3s ease both; }
@@ -324,16 +333,17 @@
   <section id="casa">
     <div class="about">
       <div>
-        <h2>Conheça Charles Tattoo &amp; Piercing</h2>
-        <p>Estúdio de Tatuagem, Piercing e Microdermal. Profissional Capacitado há mais de 10 anos no mercado.</p>
-        <ul class="services"><li class="svc"><b>Profissional</b><span>Ótimo profissional e bom atendimento,super recomendo, ..super recomendo</span></li><li class="svc"><b>Preço</b><span>citado em 9 avaliações</span></li><li class="svc"><b>Atendimento</b><span>Muito bom mesmo n senti dor nenhuma, e um ótimo atendimento .</span></li><li class="svc"><b>Ambiente</b><span>Higiene, ambiente, opções de escolha e muito acolhimento.</span></li></ul><p class="sub" style="margin:14px 0 0;font-size:15px">Temas mais citados pelos clientes nas avaliações do Google.</p>
+        <h2>Tem uma ideia na cabeça? Bora tirar do papel.</h2>
+        <p>Mais de 10 anos de tatuagem, piercing e microdermal no Rodoviário. Estúdio limpo, ambiente acolhedor e um atendimento que deixa tranquilo até quem vai fazer a primeira tattoo.</p>
+        <p>Chega, conta a ideia e leva pra casa uma marca que é só sua.</p>
+        <ul class="services"><li class="svc"><b>Primeira vez? Fica tranquilo</b><span>Tem cliente contando que foi bem acolhido e saiu tranquilo, mesmo sendo a primeira tattoo.</span></li><li class="svc"><b>Higiene e acolhimento</b><span>Higiene, ambiente e muito acolhimento, nas palavras de quem já foi.</span></li><li class="svc"><b>Tattoo, piercing e micro</b><span>Também faz piercing, até de bioflex, e microdermal.</span></li><li class="svc"><b>Porta aberta o dia todo</b><span>Aberto todos os dias, das 7h às 21h.</span></li></ul><p class="sub" style="margin:14px 0 0;font-size:15px">Baseado no que os clientes contam no Google e nas informações do perfil.</p>
       </div>
-      <p class="pull">“Muito bom mesmo n senti dor nenhuma, e um ótimo atendimento .”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">Silviane R., em avaliação no Google</span></p>
+      <p class="pull">“Fiz minhas primeiras tatuagens, que trabalho incrível, mão super leve.”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">Agna C., em avaliação no Google</span></p>
     </div>
   </section>
   <section id="fotos" style="padding-top:0">
-    <h2>Trabalhos</h2>
-    <p class="sub">Tatuagens e piercings enviados por clientes no Google Maps. Toque numa foto para ampliar e passe de uma para outra.</p>
+    <h2>Toda ideia merece virar pele</h2>
+    <p class="sub">Histórias, homenagens e inspirações que já ganharam traço aqui. Fotos de clientes, publicadas no Google Maps. Toque numa para ampliar.</p>
     <div class="mosaic" id="mosaic">
       <button class="tile b" type="button" aria-label="Ampliar foto 1"><span class="ph"><img src="img/g1.jpg" alt="Foto de Charles Tattoo &amp; Piercing" loading="lazy"></span><span class="cap"></span></button>
       <button class="tile s" type="button" aria-label="Ampliar foto 2"><span class="ph"><img src="img/g2.jpg" alt="Foto de Charles Tattoo &amp; Piercing" loading="lazy"></span><span class="cap"></span></button>
@@ -358,7 +368,7 @@
   <div class="wrap">
     <section>
       <p class="eyebrow">Avaliações no Google</p>
-      <h2>O que os clientes dizem</h2>
+      <h2>Quem já passou por aqui conta</h2>
       <div class="proof-top">
         <div class="big">4,9</div>
         <div class="bars" role="img" aria-label="Distribuição das 348 avaliações por estrelas"><div class="bar-row"><span>5 ★</span><div class="track"><div class="fill" style="width:97.4%"></div></div><span>339</span></div><div class="bar-row"><span>4 ★</span><div class="track"><div class="fill" style="width:0.9%"></div></div><span>3</span></div><div class="bar-row"><span>3 ★</span><div class="track"><div class="fill" style="width:0.3%"></div></div><span>1</span></div><div class="bar-row"><span>2 ★</span><div class="track"><div class="fill" style="width:0.6%"></div></div><span>2</span></div><div class="bar-row"><span>1 ★</span><div class="track"><div class="fill" style="width:0.9%"></div></div><span>3</span></div></div>
