@@ -233,9 +233,10 @@ DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a te
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
 WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo."}
 AVAL_LINK = {"charles-tattoo-piercing"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
-AVAL_CSS = """.rev-link { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); text-decoration: none; }
- .rev-link:hover span:nth-child(2), .rev-link:focus-visible span:nth-child(2) { text-decoration: underline; text-underline-offset: 4px; }
- .rev-link .rs { color: #e8c98b; letter-spacing: 3px; font-size: 1.15em; } .rev-link .go { opacity: .7; }
+AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
+ .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
+ .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
+ .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
 INTRO = {"charles-tattoo-piercing"}    # animação de entrada + pequeno scroll suave ao carregar
@@ -365,7 +366,7 @@ def run(only=None):
             html = re.sub(r'href="(https://wa\.me/\d+)(?:\?text=[^"]*)?"', lambda m: 'href="' + m.group(1) + "?text=" + q + '"', html)
         if slug in AVAL_LINK and (mp := re.search(r'query_place_id=([^"&]+)', html)):
             url = "https://search.google.com/local/reviews?placeid=" + mp.group(1)
-            link = f'<a class="rev-link" href="{url}" target="_blank" rel="noopener"><span class="rs" aria-hidden="true">\u2605\u2605\u2605\u2605\u2605</span><span>Avaliações no Google</span><span class="go" aria-hidden="true">\u2197</span></a>'
+            link = f'<a class="rev-link" href="{url}" target="_blank" rel="noopener"><span class="rs" aria-hidden="true">\u2605\u2605\u2605\u2605\u2605</span><span class="rt">Veja as avaliações no Google</span></a>'
             html = re.sub(r'(id="clientes">.*?<p class="eyebrow">)(?:<a class="rev-link".*?</a>|[^<]*)(</p>)', lambda m: m.group(1) + link + m.group(2), html, count=1, flags=re.S)
             html = re.sub(r'<(?:div|a) class="score"( aria-label="[^"]*")?( href="[^"]*" target="_blank" rel="noopener")?>\s*(<strong>.*?</strong>\s*<div>.*?</div>)\s*</(?:div|a)>', lambda m: f'<a class="score" href="{url}" target="_blank" rel="noopener"{m.group(1) or ""}>{m.group(3)}</a>', html, count=1, flags=re.S)
         kind, fig, pull = kind_and_info(html)

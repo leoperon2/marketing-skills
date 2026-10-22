@@ -266,9 +266,10 @@
  #casa .pull::before { content: "\201C"; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font: 400 120px/1 var(--font-display); color: var(--accent); opacity: .9; }
  #casa .svc { min-height: 140px; } #casa .svc b { font-size: clamp(21px, calc(2.6 * var(--vw)), 27px); } #casa .svc span { font-size: 16px; line-height: 1.45; color: var(--ink); opacity: .82; }
  #casa .services { gap: 14px; margin: 26px 0 0; }
-  .rev-link { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); text-decoration: none; }
- .rev-link:hover span:nth-child(2), .rev-link:focus-visible span:nth-child(2) { text-decoration: underline; text-underline-offset: 4px; }
- .rev-link .rs { color: #e8c98b; letter-spacing: 3px; font-size: 1.15em; } .rev-link .go { opacity: .7; }
+  .rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
+ .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
+ .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
+ .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }
   #fotos .sub { margin-bottom: 16px; }
  .gcta { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 auto 30px; font: 500 12.5px/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #e8c98b; }
@@ -362,7 +363,7 @@
 <div class="proof" id="clientes">
   <div class="wrap">
     <section>
-      <p class="eyebrow"><a class="rev-link" href="https://search.google.com/local/reviews?placeid=ChIJqzQSR271XpMRSu-_DxcHSW0" target="_blank" rel="noopener"><span class="rs" aria-hidden="true">★★★★★</span><span>Avaliações no Google</span><span class="go" aria-hidden="true">↗</span></a></p>
+      <p class="eyebrow"><a class="rev-link" href="https://search.google.com/local/reviews?placeid=ChIJqzQSR271XpMRSu-_DxcHSW0" target="_blank" rel="noopener"><span class="rs" aria-hidden="true">★★★★★</span><span class="rt">Veja as avaliações no Google</span></a></p>
       <h2>Quem já passou por aqui conta</h2>
       <div class="proof-top">
         <div class="big">4,9</div>
