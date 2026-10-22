@@ -7,7 +7,7 @@ Idempotente. Cada ramo (kind) sorteia combinações que maximizam a distância e
 import glob, json, os, random, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SKIP = {"don-alberttoni", "suzana-dias-studio", "marshals-tattoo", "win-hamburgueria", "pet-shop-agropal"}  # modelo e quem já tem site
+SKIP = {"suzana-dias-studio", "marshals-tattoo", "win-hamburgueria", "pet-shop-agropal"}  # modelo e quem já tem site
 G = "max(16px, env(safe-area-inset-left, 0px))"
 
 # ---------------------------------------------------------------- fontes de título (a 0 é a original do ramo)
@@ -66,8 +66,9 @@ HERO.append("""html { overflow-x: clip; }
  .hero > div:first-child > * { max-width: 700px; }
  .hero h1 { color: #fff; font-size: clamp(50px, 9vw, 110px); text-shadow: 0 2px 24px rgba(0,0,0,.45); } .hero .eyebrow, .hero .lede, .hero .score { color: rgba(255,255,255,.9); } .hero .score strong { color: #fff; } .hero .stars { color: var(--salmon); }
  .hero .btn.ghost { color: #fff; border-color: #fff; }
+ .hero .eyebrow, .hero .lede, .hero .score { text-shadow: 0 1px 16px rgba(0,0,0,.7); }
  .hero .eyebrow { font-size: 13px; } .hero .lede { font-size: clamp(17px, 2.1vw, 21px); line-height: 1.5; } .hero .btn { min-height: 52px; padding: 0 26px; font-size: 17px; }
- .hero img.logo-stamp, .hero .seal { left: auto; right: max(28px, 7vw, calc((100vw - 1080px) / 2)); bottom: 44px; }
+ .hero img.logo-stamp, .hero img.stamp, .hero .seal { left: auto; right: max(28px, 7vw, calc((100vw - 1080px) / 2)); bottom: 44px; }
  .stripe { display: none; }
  @media (max-width: 820px) {
    .hero { min-height: 590px; margin-bottom: -18px; } IMG { object-position: var(--foco, 50% 50%); -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); }
@@ -79,7 +80,7 @@ HERO.append("""html { overflow-x: clip; }
    .hero .lede { font-size: 16.5px; line-height: 1.45; color: rgba(255,255,255,.78); max-width: 32ch; margin: 0 0 18px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
    .hero .cta { display: none; }
    .hero .score { margin-top: 4px; gap: 10px; font-size: 13px; } .hero .score strong { font-size: 24px; } .hero .stars { font-size: 13px; letter-spacing: 2px; }
-   .hero img.logo-stamp, .hero .seal { width: 100px; height: 100px; border-width: 4px; box-shadow: 0 4px 0 var(--salmon); bottom: 18px; right: 20px; }
+   .hero img.logo-stamp, .hero img.stamp, .hero .seal { width: 100px; height: 100px; border-width: 4px; box-shadow: 0 4px 0 var(--salmon); bottom: 18px; right: 20px; }
  }
  @media (prefers-reduced-motion: reduce) { .hero > div:first-child { opacity: 1 !important; transform: none !important; } .hero > figure > img:first-child { transform: scale(1.04) !important; } }""".replace("IMG", IMG))
 SCRIPT_BLEED = """<script>(function(){function init(){var h=document.querySelector('.hero');if(!h)return;var t=0;function f(){t=0;var p=Math.min(Math.max(window.scrollY/Math.max(h.getBoundingClientRect().height,1),0),1);h.style.setProperty('--hp',p.toFixed(3));}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>"""
@@ -116,6 +117,7 @@ GALLERY.append("""#fotos .sub { font-size: 18px; line-height: 1.55; color: var(-
  .tile img { filter: grayscale(.3) contrast(1.22) saturate(1.1) brightness(.9) sepia(.15); }
  .tile:hover img, .tile:focus-visible img { filter: grayscale(0) contrast(1.15) saturate(1.2) brightness(1); }
  .tile::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgb(var(--glow, 255 170 80)); mix-blend-mode: soft-light; opacity: .22; }
+ .tile .cap { z-index: 3; }
  .tile::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
    background: radial-gradient(130% 100% at 50% 35%, transparent 52%, rgba(8,5,3,.55) 100%), linear-gradient(to top, rgba(18,9,4,.38), transparent 45%);
    box-shadow: inset 0 0 0 1px rgb(var(--glow, 255 170 80) / calc(.22 + var(--g) * .7)), inset 0 0 calc(10px + var(--g) * 26px) rgb(var(--glow, 255 170 80) / calc(.06 + var(--g) * .34)); }""")
@@ -203,9 +205,18 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
 # título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
-GALERIA_TEXTO = {"charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
+GALERIA_TEXTO = {"don-alberttoni": ("Um corte, um café e boa conversa", "Cadeiras antigas, sinuca, violão e xadrez esperando por você.", "Toque numa foto para ampliar"),
+    "charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
 # seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
-SOBRE_TEXTO = {"charles-tattoo-piercing": dict(
+SOBRE_TEXTO = {"don-alberttoni": dict(
+    h2="Aqui o corte vem com café, vinil e papo bom.",
+    paras=["Barbearia clássica no Bom Retiro, em Curitiba, desde 2015. Corte, barba e sobrancelha com hora marcada, numa casa cheia de detalhes: cadeira antiga, xadrez de pedra, violão e disco rodando.",
+           "Chega, senta e deixa o resto com a gente."],
+    pull=("Ouvindo vinil, trocando ideia e ainda ir embora com um corte 10/10 é uma raridade.", "Daniel S., em avaliação no Google"),
+    cards=[("Corte de cabelo", "Do clássico ao estilo novo, do seu jeito."), ("Barba", "Aparada e desenhada com calma."),
+           ("Sobrancelha", "O acabamento que completa o corte."), ("Corte infantil", "Com paciência para os pequenos.")],
+    nota="Valores e profissionais disponíveis aparecem no agendamento online.", prova="Quem já sentou na cadeira conta"),
+  "charles-tattoo-piercing": dict(
     h2="Tem uma ideia na cabeça? Bora tirar do papel.",
     paras=["Mais de 10 anos de tatuagem, piercing e microdermal no Rodoviário. Estúdio limpo, ambiente acolhedor e um atendimento que deixa tranquilo até quem vai fazer a primeira tattoo.",
            "Chega, conta a ideia e leva pra casa uma marca que é só sua."],
@@ -231,15 +242,15 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84
  #casa .services { gap: 14px; margin: 26px 0 0; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
-WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo."}
-AVAL_LINK = {"charles-tattoo-piercing"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
+WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, pessoal da Don Alberttoni, tudo bom? Queria agendar um horário."}
+AVAL_LINK = {"charles-tattoo-piercing", "don-alberttoni"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
 AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
  .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
  .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
  .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
-INTRO = {"charles-tattoo-piercing"}    # animação de entrada + pequeno scroll suave ao carregar
+INTRO = {"charles-tattoo-piercing", "don-alberttoni"}    # animação de entrada + pequeno scroll suave ao carregar
 
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
 SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=5, heading=len(HEADING),
@@ -248,8 +259,11 @@ SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len
 
 OVERRIDE = {"charles-tattoo-piercing": {"hero": 6, "gallery": 5, "proof": 4, "about": 3}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
-FORCE_DARK = {"charles-tattoo-piercing"}  # sempre tema escuro, ignorando o tema do aparelho
-FOCO_MOBILE = {"charles-tattoo-piercing": "67.5% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
+CAPA_CLARA = {"don-alberttoni"}  # foto de capa clara: escurece para o texto branco ler
+# sites feitos à mão: ramo e plano fixos (ficam fora do sorteio, para não mudar o layout dos outros do ramo)
+PLANO_FIXO = {"don-alberttoni": ("barber", dict(font=0, accent=0, hero=6, frame=0, header=0, gallery=5, heading=2, shape=0, proof=4, stripe=0, info=0, about=3, order=0, anim=1))}
+FORCE_DARK = {"charles-tattoo-piercing", "don-alberttoni"}  # sempre tema escuro, ignorando o tema do aparelho
+FOCO_MOBILE = {"charles-tattoo-piercing": "67.5% 50%", "don-alberttoni": "44% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def _rules(inner):
     return re.findall(r"([^{}]+)\{([^{}]*)\}", inner)
@@ -290,7 +304,7 @@ def modo_ampliado(page):
 
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
-    return (m.group(1) if m else None), ('<figure><img src="img/hero.jpg"' in html), ('id="casa"' in html and "class=\"pull\"" in html)
+    return (m.group(1) if m else None), ('<figure><img src="img/' in html), ('id="casa"' in html and "class=\"pull\"" in html)
 
 
 def assign(sites):
@@ -329,7 +343,7 @@ def block(kind, c, has_fig, slug=""):
     css.append("@media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }")
     css.append(":root { --hrad: 0px; }")  # SHAPE sobrescreve depois
     for lst, key in ((SHAPE, "shape"), (FRAME, "frame"), (None, None), (HEADER, "header"), (GALLERY, "gallery"), (HEADING, "heading"), (PROOF, "proof"), (STRIPE, "stripe"), (INFO, "info"), (ABOUT, "about"), (ORDER, "order"), (ANIM, "anim")):
-        if lst is None: css.append(HERO[hero].replace("brightness(.5)", "brightness(.9)") if slug in CAPA_ESCURA else HERO[hero]); continue
+        if lst is None: css.append(HERO[hero].replace("brightness(.92)", "brightness(.55) saturate(1.08)") if slug in CAPA_CLARA else HERO[hero]); continue
         if lst[c[key]]: css.append(lst[c[key]])
     extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "") + (SCRIPT_AV if c["proof"] == 4 else "")
     if slug in LEGIVEL:
@@ -357,8 +371,8 @@ def run(only=None):
             html = re.sub(r'(<section id="fotos"[^>]*>\s*<h2>)[^<]*(</h2>\s*<p class="sub">)[^<]*(</p>)(?:\s*<p class="gcta">[^<]*</p>)?', lambda m: m.group(1) + t + m.group(2) + sub + m.group(3) + '<p class="gcta">' + cta + "</p>", html, count=1)
         if slug in SOBRE_TEXTO:
             S = SOBRE_TEXTO[slug]; e = __import__("html").escape
-            novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc"><b>' + e(t) + "</b><span>" + e(s) + "</span></li>" for t, s in S["cards"]) + "</ul>"
-            html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+<ul class="services">.*?</ul>(?:<p class="sub"[^>]*>.*?</p>)?', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
+            novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc"><b>' + e(t) + "</b><span>" + e(s) + "</span></li>" for t, s in S["cards"]) + "</ul>" + ('<p class="sub" style="margin:14px 0 0;font-size:15px">' + e(S["nota"]) + "</p>" if S["nota"] else "")
+            html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+<ul class="services">.*?</ul>\s*(?:<p class="sub"[^>]*>.*?</p>)?', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
             html = re.sub(r'<p class="pull">.*?</p>', lambda m: '<p class="pull">\u201c' + e(S["pull"][0]) + '\u201d<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">' + e(S["pull"][1]) + "</span></p>", html, count=1, flags=re.S)
             html = re.sub(r'(id="clientes">.*?<h2>)[^<]*(</h2>)', lambda m: m.group(1) + e(S["prova"]) + m.group(2), html, count=1, flags=re.S)
         if slug in WA_TEXTO:
@@ -370,10 +384,14 @@ def run(only=None):
             html = re.sub(r'(id="clientes">.*?<p class="eyebrow">)(?:<a class="rev-link".*?</a>|[^<]*)(</p>)', lambda m: m.group(1) + link + m.group(2), html, count=1, flags=re.S)
             html = re.sub(r'<(?:div|a) class="score"( aria-label="[^"]*")?( href="[^"]*" target="_blank" rel="noopener")?>\s*(<strong>.*?</strong>\s*<div>.*?</div>)\s*</(?:div|a)>', lambda m: f'<a class="score" href="{url}" target="_blank" rel="noopener"{m.group(1) or ""}>{m.group(3)}</a>', html, count=1, flags=re.S)
         kind, fig, pull = kind_and_info(html)
+        if slug in PLANO_FIXO: kind = PLANO_FIXO[slug][0]
         if kind: pages[slug] = (f, html, kind, fig)
     by_kind = {}
-    for s, (_, _, k, _) in pages.items(): by_kind.setdefault(k, []).append(s)
+    for s, (_, _, k, _) in pages.items():
+        if s not in PLANO_FIXO: by_kind.setdefault(k, []).append(s)
     plan = assign(by_kind)
+    for s, (_k, p) in PLANO_FIXO.items():
+        if s in pages: plan[s] = dict(p)
     for s, o in OVERRIDE.items():
         if s in plan: plan[s].update(o)
     for s, (f, html, k, fig) in pages.items():

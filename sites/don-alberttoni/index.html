@@ -179,6 +179,103 @@
   @media (max-width: 460px) { .brand { font-size: 16px; } .svc { padding: 16px 14px; } .svc b { font-size: 18px; } }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
+<!--vary:start--><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet"><style>
+  /* variação: font=0,accent=0,hero=6,frame=0,header=0,gallery=5,heading=2,shape=0,proof=4,stripe=0,info=0,about=3,order=0,anim=1 */
+  :root { --foco: 44% 50%; }
+  :root { --glow: 255 170 80; }
+  @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
+  :root { --hrad: 0px; }
+  html { overflow-x: clip; }
+ .hero { position: relative; display: block; width: 100vw; margin: 0 calc(50% - 50vw); padding: 0; min-height: clamp(540px, min(84vh, 66vw), 800px); overflow: hidden; --hp: 0; }
+ .hero > figure { position: absolute; inset: 0; margin: 0; }
+ .hero > figure > img:first-child { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border: 0; box-shadow: none; outline: 0; filter: brightness(.55) saturate(1.08);
+   transform: translate3d(0, calc(var(--hp) * 7%), 0) scale(calc(1.04 + var(--hp) * .1)); transform-origin: 50% 20%; will-change: transform;
+   -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); }
+ .hero > div:first-child { position: relative; z-index: 2; min-height: inherit; padding: clamp(56px, 10vh, 110px) max(28px, 7vw, calc((100vw - 1080px) / 2)); display: flex; flex-direction: column; justify-content: flex-end; color: #fff;
+   opacity: calc(1 - var(--hp) * 1.15); transform: translate3d(0, calc(var(--hp) * -56px), 0); }
+ .hero > div:first-child > * { max-width: 700px; }
+ .hero h1 { color: #fff; font-size: clamp(50px, 9vw, 110px); text-shadow: 0 2px 24px rgba(0,0,0,.45); } .hero .eyebrow, .hero .lede, .hero .score { color: rgba(255,255,255,.9); } .hero .score strong { color: #fff; } .hero .stars { color: var(--salmon); }
+ .hero .btn.ghost { color: #fff; border-color: #fff; }
+ .hero .eyebrow, .hero .lede, .hero .score { text-shadow: 0 1px 16px rgba(0,0,0,.7); }
+ .hero .eyebrow { font-size: 13px; } .hero .lede { font-size: clamp(17px, 2.1vw, 21px); line-height: 1.5; } .hero .btn { min-height: 52px; padding: 0 26px; font-size: 17px; }
+ .hero img.logo-stamp, .hero img.stamp, .hero .seal { left: auto; right: max(28px, 7vw, calc((100vw - 1080px) / 2)); bottom: 44px; }
+ .stripe { display: none; }
+ @media (max-width: 820px) {
+   .hero { min-height: 590px; margin-bottom: -18px; } .hero > figure > img:first-child { object-position: var(--foco, 50% 50%); -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); }
+   main.wrap:has(#casa) > #fotos { padding-top: 6px !important; } main.wrap:has(#casa) > #casa { padding-top: 24px; }
+   .hero > div:first-child { justify-content: flex-start; padding-top: 30px; padding-bottom: 0; }
+   .hero > div:first-child > * { max-width: 100%; }
+   .hero .eyebrow { font-size: 11px; letter-spacing: .1em; opacity: .72; margin-bottom: 10px; text-wrap: balance; }
+   .hero h1 { font-size: clamp(48px, 15.5vw, 76px); line-height: 1; margin-bottom: 14px; }
+   .hero .lede { font-size: 16.5px; line-height: 1.45; color: rgba(255,255,255,.78); max-width: 32ch; margin: 0 0 18px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+   .hero .cta { display: none; }
+   .hero .score { margin-top: 4px; gap: 10px; font-size: 13px; } .hero .score strong { font-size: 24px; } .hero .stars { font-size: 13px; letter-spacing: 2px; }
+   .hero img.logo-stamp, .hero img.stamp, .hero .seal { width: 100px; height: 100px; border-width: 4px; box-shadow: 0 4px 0 var(--salmon); bottom: 18px; right: 20px; }
+ }
+ @media (prefers-reduced-motion: reduce) { .hero > div:first-child { opacity: 1 !important; transform: none !important; } .hero > figure > img:first-child { transform: scale(1.04) !important; } }
+  #fotos .sub { font-size: 18px; line-height: 1.55; color: var(--ink); opacity: .88; max-width: 52ch; }
+ #fotos h2 { font-size: clamp(34px, 6vw, 54px); }
+ .mosaic { gap: 10px; }
+ .tile { --g: 0; border-radius: 10px; isolation: isolate; box-shadow: 0 0 calc(4px + var(--g) * 34px) calc(var(--g) * 3px) rgb(var(--glow, 255 170 80) / calc(var(--g) * .55)); }
+ .tile:hover, .tile:focus-visible { --g: 1 !important; }
+ .tile img { filter: grayscale(.3) contrast(1.22) saturate(1.1) brightness(.9) sepia(.15); }
+ .tile:hover img, .tile:focus-visible img { filter: grayscale(0) contrast(1.15) saturate(1.2) brightness(1); }
+ .tile::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgb(var(--glow, 255 170 80)); mix-blend-mode: soft-light; opacity: .22; }
+ .tile .cap { z-index: 3; }
+ .tile::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
+   background: radial-gradient(130% 100% at 50% 35%, transparent 52%, rgba(8,5,3,.55) 100%), linear-gradient(to top, rgba(18,9,4,.38), transparent 45%);
+   box-shadow: inset 0 0 0 1px rgb(var(--glow, 255 170 80) / calc(.22 + var(--g) * .7)), inset 0 0 calc(10px + var(--g) * 26px) rgb(var(--glow, 255 170 80) / calc(.06 + var(--g) * .34)); }
+  #fotos h2, #fotos .sub, #horarios h2, .proof h2, .proof .eyebrow { text-align: center; margin-inline: auto; } #fotos h2::after, #horarios h2::after, .proof h2::after { content: ''; display: block; width: 48px; height: 3px; background: var(--accent); margin: 14px auto 0; } .proof-top { justify-content: center; }
+  #clientes .eyebrow { color: var(--accent); }
+ .proof { background: var(--surface); color: var(--ink); border-block: 1px solid var(--line); }
+ .proof-top { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 36px; margin-bottom: 26px; }
+ .big { font-size: clamp(64px, 10vw, 100px); }
+ .bars { flex: 1 1 260px; max-width: 440px; font-size: 15px; }
+ .fill { background: var(--accent); } .track { background: color-mix(in srgb, var(--ink) 14%, transparent); }
+ .quotes { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 4px 24px; margin-inline: -4px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; -webkit-overflow-scrolling: touch;
+   -webkit-mask-image: linear-gradient(to right, #000 90%, transparent); mask-image: linear-gradient(to right, #000 90%, transparent); }
+ blockquote { flex: 0 0 clamp(280px, 80vw, 390px); scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--line); border-radius: 18px; padding: 24px 22px 20px; background: var(--bg); position: relative; overflow: hidden; }
+ blockquote::before { content: "\201C"; position: absolute; right: 16px; top: -4px; font: 400 96px/1 var(--font-display); color: var(--accent); opacity: .28; }
+ blockquote p { margin: 0; font-size: 18px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+ blockquote cite { margin-top: auto; display: flex; align-items: center; gap: 12px; font-style: normal; font-weight: 600; font-size: 15px; color: var(--ink); }
+ blockquote cite::after { content: "Google"; margin-left: auto; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+ .av { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 700 17px var(--font-body); flex: none; }
+ .reply { font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .about:not(.one) { grid-template-columns: 1fr; } .about > .pull { order: -1; text-align: center; border: 0; padding: 0 0 8px; font-size: clamp(26px, 4vw, 40px); max-width: 24ch; margin-inline: auto; }
+  .js .rv { transform: scale(.92); }
+  #casa { position: relative; isolation: isolate; padding-block: 84px 44px; }
+ #casa::before { content: ""; position: absolute; inset: -30px calc(50% - 50vw); z-index: -1; pointer-events: none; background: radial-gradient(55% 55% at 22% 35%, rgb(var(--glow, 255 170 80) / .17), transparent 72%); }
+ #casa h2 { font-size: clamp(40px, 6.6vw, 70px); line-height: 1.02; margin-bottom: 22px; }
+ #casa .about > div > p { font-size: clamp(19px, 2.4vw, 24px); line-height: 1.5; max-width: 36ch; }
+ #casa .about > div > p:nth-of-type(2) { color: var(--accent); font-weight: 600; }
+ #casa .pull { font-size: clamp(30px, 5vw, 52px); line-height: 1.12; position: relative; padding-top: 30px; }
+ #casa .pull::before { content: "\201C"; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font: 400 120px/1 var(--font-display); color: var(--accent); opacity: .9; }
+ #casa .svc { min-height: 140px; } #casa .svc b { font-size: clamp(21px, 2.6vw, 27px); } #casa .svc span { font-size: 16px; line-height: 1.45; color: var(--ink); opacity: .82; }
+ #casa .services { gap: 14px; margin: 26px 0 0; }
+  .rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
+ .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
+ .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
+ .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
+ a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }
+  #fotos .sub { margin-bottom: 16px; }
+ .gcta { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 auto 30px; font: 500 12.5px/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #e8c98b; }
+ .gcta::before, .gcta::after { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .55; }
+  @media (prefers-reduced-motion: no-preference) {
+ header.bar { animation: introDown .8s cubic-bezier(.2, .7, .2, 1) both; }
+ .hero { animation: introFade 1.3s ease both; }
+ .hero > div:first-child > * { animation: introUp .95s cubic-bezier(.2, .7, .2, 1) both; }
+ .hero > div:first-child > :nth-child(1) { animation-delay: .25s; } .hero > div:first-child > :nth-child(2) { animation-delay: .38s; } .hero > div:first-child > :nth-child(3) { animation-delay: .5s; } .hero > div:first-child > :nth-child(4) { animation-delay: .62s; } .hero > div:first-child > :nth-child(5) { animation-delay: .74s; }
+ .hero img.logo-stamp, .hero .seal { animation: introPop 1s cubic-bezier(.2, .8, .2, 1.2) .8s both; }
+}
+@keyframes introDown { from { transform: translateY(-100%); } to { transform: none; } }
+@keyframes introFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes introUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }
+</style><script>(function(){function init(){var h=document.querySelector('.hero');if(!h)return;var t=0;function f(){t=0;var p=Math.min(Math.max(window.scrollY/Math.max(h.getBoundingClientRect().height,1),0),1);h.style.setProperty('--hp',p.toFixed(3));}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script><script>(function(){function init(){var t=[].slice.call(document.querySelectorAll('.tile'));if(!t.length)return;var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(rm){t.forEach(function(e){e.style.setProperty('--g','.3')});return;}var q=0;function f(){q=0;var vh=window.innerHeight;t.forEach(function(e){var r=e.getBoundingClientRect();if(r.bottom<-80||r.top>vh+80){e.style.setProperty('--g','0');return;}var d=Math.abs((r.top+r.bottom)/2-vh*0.5)/(vh*0.5);var g=Math.max(0,1-d);e.style.setProperty('--g',(g*g).toFixed(3));});}window.addEventListener('scroll',function(){if(!q)q=requestAnimationFrame(f);},{passive:true});window.addEventListener('resize',f);f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script><script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('blockquote cite').forEach(function(c){var n=(c.textContent||'').trim();if(!n)return;var s=document.createElement('span');s.className='av';s.textContent=n.charAt(0).toUpperCase();c.insertBefore(s,c.firstChild);});});</script><script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script><style>:root { 
+    --bg: #1b130f; --surface: #26190f; --ink: #f1e7df; --ink-soft: #c2b0a3;
+    --wood: #0f0a07; --wood-ink: #f1e7df; --accent: #e0654f; --accent-ink: #1b130f;
+    --salmon: #b9735f; --line: #4a3628; color-scheme: dark;
+   }</style><!--vary:end-->
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
@@ -205,12 +302,10 @@
       <p class="lede">Corte, barba e sobrancelha com hora marcada, café na mão, vinil rodando e xadrez no tabuleiro de pedra.</p>
       <div class="cta">
         <a class="btn" href="https://avec.app/barbeariadonalberttoni/" target="_blank" rel="noopener">Agendar online</a>
-        <a class="btn ghost" href="https://wa.me/5541988250519" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <a class="btn ghost" href="https://wa.me/5541988250519?text=Fala%2C%20pessoal%20da%20Don%20Alberttoni%2C%20tudo%20bom%3F%20Queria%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Chamar no WhatsApp</a>
       </div>
-      <div class="score" aria-label="Nota 4,8 de 5 no Google, 279 avaliações">
-        <strong>4,8</strong>
-        <div><span class="stars" aria-hidden="true">★★★★★</span><br>279 avaliações no Google</div>
-      </div>
+      <a class="score" href="https://search.google.com/local/reviews?placeid=ChIJ1YYK-Q3k3JQRNVvmybiaERk" target="_blank" rel="noopener" aria-label="Nota 4,8 de 5 no Google, 279 avaliações"><strong>4,8</strong>
+        <div><span class="stars" aria-hidden="true">★★★★★</span><br>279 avaliações no Google</div></a>
     </div>
     <figure><img src="img/salao.jpg" alt="Salão da Don Alberttoni com bancada de madeira, espelhos e cadeiras antigas de barbeiro" width="1200" height="900"><img class="stamp" id="stamp" src="img/logo.jpg" alt="Logo da Don Alberttoni Barbearia, desde 2015" width="136" height="136"></figure>
   </div>
@@ -221,24 +316,18 @@
   <section id="casa">
     <div class="about">
       <div>
-        <h2>Uma casa feita de detalhes</h2>
-        <p>A Don Alberttoni é uma barbearia clássica com atendimento personalizado e profissionais que amam o que fazem. O que oferecem, antes de tudo, é respeito pelo cliente e por um ambiente de trabalho onde os detalhes fazem a diferença.</p>
-        <p>Quem passa por aqui conta de corte de cabelo, barba e sobrancelha, e também de pai que leva o filho de 6 anos para cortar com paciência.</p>
-        <ul class="services">
-          <li class="svc"><b>Corte de cabelo</b><span>Do clássico ao estilo novo, do seu jeito.</span></li>
-          <li class="svc"><b>Barba</b><span>Aparada e desenhada com calma.</span></li>
-          <li class="svc"><b>Sobrancelha</b><span>O acabamento que completa o corte.</span></li>
-          <li class="svc"><b>Corte infantil</b><span>Com paciência para os pequenos.</span></li>
-        </ul>
-        <p class="sub" style="margin:14px 0 0;font-size:15px">Valores e profissionais disponíveis aparecem no agendamento online.</p>
+        <h2>Aqui o corte vem com café, vinil e papo bom.</h2>
+        <p>Barbearia clássica no Bom Retiro, em Curitiba, desde 2015. Corte, barba e sobrancelha com hora marcada, numa casa cheia de detalhes: cadeira antiga, xadrez de pedra, violão e disco rodando.</p>
+        <p>Chega, senta e deixa o resto com a gente.</p>
+        <ul class="services"><li class="svc"><b>Corte de cabelo</b><span>Do clássico ao estilo novo, do seu jeito.</span></li><li class="svc"><b>Barba</b><span>Aparada e desenhada com calma.</span></li><li class="svc"><b>Sobrancelha</b><span>O acabamento que completa o corte.</span></li><li class="svc"><b>Corte infantil</b><span>Com paciência para os pequenos.</span></li></ul><p class="sub" style="margin:14px 0 0;font-size:15px">Valores e profissionais disponíveis aparecem no agendamento online.</p>
       </div>
-      <p class="pull">“Não é só sobre cortar cabelo. É sobre entender a vontade do cliente.”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">Lucas, em avaliação no Google</span></p>
+      <p class="pull">“Ouvindo vinil, trocando ideia e ainda ir embora com um corte 10/10 é uma raridade.”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">Daniel S., em avaliação no Google</span></p>
     </div>
   </section>
 
   <section id="fotos" style="padding-top:0">
-    <h2>Por dentro</h2>
-    <p class="sub">Cadeiras antigas, sinuca, violão e um cafezinho esperando. Toque numa foto para ampliar e passe de uma para outra.</p>
+    <h2>Um corte, um café e boa conversa</h2>
+    <p class="sub">Cadeiras antigas, sinuca, violão e xadrez esperando por você.</p><p class="gcta">Toque numa foto para ampliar</p>
     <div class="mosaic" id="mosaic">
       <button class="tile t-a" type="button" aria-label="Ampliar foto: As cadeiras"><span class="ph"><img src="img/cadeiras.jpg" alt="Cadeiras de barbeiro de couro e metal azul diante dos espelhos" loading="lazy"></span><span class="cap">As cadeiras</span></button>
       <button class="tile t-b" type="button" aria-label="Ampliar foto: Mesa de sinuca"><span class="ph"><img src="img/sinuca.jpg" alt="Mesa de sinuca no salão, com quadros na parede" loading="lazy"></span><span class="cap">Mesa de sinuca</span></button>
@@ -256,8 +345,8 @@
 <div class="proof" id="clientes">
   <div class="wrap">
     <section>
-      <p class="eyebrow">Avaliações no Google</p>
-      <h2>O que os clientes dizem</h2>
+      <p class="eyebrow"><a class="rev-link" href="https://search.google.com/local/reviews?placeid=ChIJ1YYK-Q3k3JQRNVvmybiaERk" target="_blank" rel="noopener"><span class="rs" aria-hidden="true">★★★★★</span><span class="rt">Veja as avaliações no Google</span></a></p>
+      <h2>Quem já sentou na cadeira conta</h2>
       <div class="proof-top">
         <div class="big">4,8</div>
         <div class="bars" role="img" aria-label="258 avaliações de 5 estrelas, 11 de 4, 3 de 3, 1 de 2 e 6 de 1">
@@ -320,7 +409,7 @@
     <p class="sub" style="margin-inline:auto">Escolha o profissional e o horário no agendamento online ou fale com a equipe no WhatsApp.</p>
     <div class="cta">
       <a class="btn" href="https://avec.app/barbeariadonalberttoni/" target="_blank" rel="noopener">Agendar online</a>
-      <a class="btn ghost" href="https://wa.me/5541988250519" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      <a class="btn ghost" href="https://wa.me/5541988250519?text=Fala%2C%20pessoal%20da%20Don%20Alberttoni%2C%20tudo%20bom%3F%20Queria%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener">Chamar no WhatsApp</a>
     </div>
   </section>
 </main>
