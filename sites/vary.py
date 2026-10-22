@@ -144,7 +144,7 @@ SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len
 
 OVERRIDE = {"charles-tattoo-piercing": {"hero": 6}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
-FOCO_MOBILE = {"charles-tattoo-piercing": "68% 58%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
+FOCO_MOBILE = {"charles-tattoo-piercing": "76% 60%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
