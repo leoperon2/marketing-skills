@@ -142,6 +142,23 @@ PROOF = [
  ".quotes { grid-template-columns: 1fr; max-width: 760px; } blockquote { border: 0; border-left: 5px solid var(--salmon); padding: 6px 0 6px 22px; } blockquote p { font-size: 19px; }",
 ]
 
+PROOF.append("""#clientes .eyebrow { color: var(--accent); }
+ .proof { background: var(--surface); color: var(--ink); border-block: 1px solid var(--line); }
+ .proof-top { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 36px; margin-bottom: 26px; }
+ .big { font-size: clamp(64px, 10vw, 100px); }
+ .bars { flex: 1 1 260px; max-width: 440px; font-size: 15px; }
+ .fill { background: var(--accent); } .track { background: color-mix(in srgb, var(--ink) 14%, transparent); }
+ .quotes { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 4px 24px; margin-inline: -4px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; -webkit-overflow-scrolling: touch;
+   -webkit-mask-image: linear-gradient(to right, #000 90%, transparent); mask-image: linear-gradient(to right, #000 90%, transparent); }
+ blockquote { flex: 0 0 clamp(280px, 80vw, 390px); scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--line); border-radius: 18px; padding: 24px 22px 20px; background: var(--bg); position: relative; overflow: hidden; }
+ blockquote::before { content: "\\201C"; position: absolute; right: 16px; top: -4px; font: 400 96px/1 var(--font-display); color: var(--accent); opacity: .28; }
+ blockquote p { margin: 0; font-size: 18px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+ blockquote cite { margin-top: auto; display: flex; align-items: center; gap: 12px; font-style: normal; font-weight: 600; font-size: 15px; color: var(--ink); }
+ blockquote cite::after { content: "Google"; margin-left: auto; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
+ .av { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 700 17px var(--font-body); flex: none; }
+ .reply { font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }""")
+SCRIPT_AV = """<script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('blockquote cite').forEach(function(c){var n=(c.textContent||'').trim();if(!n)return;var s=document.createElement('span');s.className='av';s.textContent=n.charAt(0).toUpperCase();c.insertBefore(s,c.firstChild);});});</script>"""
+
 STRIPE = ["", ".stripe { height: 6px; }", ".stripe { display: none; }"]
 INFO = [
  "",
@@ -162,12 +179,38 @@ ANIM = [
  ".js .rv { transform: translateY(72px); filter: blur(8px); transition: opacity .8s ease, transform 1s cubic-bezier(.2, .7, .2, 1), filter .8s; } .js .rv.in { filter: none; }",
 ]
 
+LEGIVEL_CSS = """@media (min-width: 821px) and (max-width: 1279px) {
+ body { font-size: 19px; }
+ .brand { font-size: 22px; } nav { font-size: 17px; gap: 28px; } .bar .btn { min-height: 44px; font-size: 17px; }
+ h2 { font-size: clamp(38px, 5.6vw, 58px); } .sub { font-size: 19px; }
+ .about p { font-size: 19px; } .pull { font-size: clamp(28px, 3.8vw, 40px); }
+ .svc b { font-size: 25px; } .svc span { font-size: 16.5px; }
+ .card { padding: 34px; } .card h3 { font-size: 27px; } .hours li { padding: 11px 0; font-size: 19px; } address { font-size: 19px; } .tags li { font-size: 16px; padding: 6px 14px; } .status { font-size: 16px; }
+ .btn { min-height: 52px; font-size: 17px; } .final h2 { font-size: clamp(40px, 6vw, 64px); }
+ blockquote { flex-basis: clamp(300px, 36vw, 420px); } blockquote p { font-size: 19px; } blockquote cite { font-size: 16px; }
+ .score strong { font-size: 40px; } footer { font-size: 16px; } footer strong { font-size: 20px; }
+}"""
+INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
+ header.bar { animation: introDown .8s cubic-bezier(.2, .7, .2, 1) both; }
+ .hero { animation: introFade 1.3s ease both; }
+ .hero > div:first-child > * { animation: introUp .95s cubic-bezier(.2, .7, .2, 1) both; }
+ .hero > div:first-child > :nth-child(1) { animation-delay: .25s; } .hero > div:first-child > :nth-child(2) { animation-delay: .38s; } .hero > div:first-child > :nth-child(3) { animation-delay: .5s; } .hero > div:first-child > :nth-child(4) { animation-delay: .62s; } .hero > div:first-child > :nth-child(5) { animation-delay: .74s; }
+ .hero img.logo-stamp, .hero .seal { animation: introPop 1s cubic-bezier(.2, .8, .2, 1.2) .8s both; }
+}
+@keyframes introDown { from { transform: translateY(-100%); } to { transform: none; } }
+@keyframes introFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes introUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
+SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
+LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
+INTRO = {"charles-tattoo-piercing"}    # animação de entrada + pequeno scroll suave ao carregar
+
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
 SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=5, heading=len(HEADING),
-            shape=len(SHAPE), proof=len(PROOF), stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
+            shape=len(SHAPE), proof=4, stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
-OVERRIDE = {"charles-tattoo-piercing": {"hero": 6, "gallery": 5}}  # escolhas à mão (capa panorâmica escura)
+OVERRIDE = {"charles-tattoo-piercing": {"hero": 6, "gallery": 5, "proof": 4, "about": 3}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
 FORCE_DARK = {"charles-tattoo-piercing"}  # sempre tema escuro, ignorando o tema do aparelho
 FOCO_MOBILE = {"charles-tattoo-piercing": "67.5% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
@@ -215,7 +258,9 @@ def block(kind, c, has_fig, slug=""):
     for lst, key in ((SHAPE, "shape"), (FRAME, "frame"), (None, None), (HEADER, "header"), (GALLERY, "gallery"), (HEADING, "heading"), (PROOF, "proof"), (STRIPE, "stripe"), (INFO, "info"), (ABOUT, "about"), (ORDER, "order"), (ANIM, "anim")):
         if lst is None: css.append(HERO[hero].replace("brightness(.5)", "brightness(.9)") if slug in CAPA_ESCURA else HERO[hero]); continue
         if lst[c[key]]: css.append(lst[c[key]])
-    extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "")
+    extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "") + (SCRIPT_AV if c["proof"] == 4 else "")
+    if slug in LEGIVEL: css.append(LEGIVEL_CSS)
+    if slug in INTRO: css.append(INTRO_CSS); extra += SCRIPT_NUDGE
     if c["gallery"] == 5:
         _a = ACCENTS[c["accent"]]; _h = (_a[1][0] if _a else "#ffaa50").lstrip("#")
         css.insert(0, ":root { --glow: " + " ".join(str(int(_h[i:i + 2], 16)) for i in (0, 2, 4)) + "; }")

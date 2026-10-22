@@ -162,10 +162,10 @@
   "gallery": 5,
   "heading": 2,
   "shape": 2,
-  "proof": 2,
+  "proof": 4,
   "stripe": 0,
   "info": 0,
-  "about": 1,
+  "about": 3,
   "order": 1,
   "anim": 1
  },
