@@ -55,7 +55,23 @@ HERO = [  # 0 padrão (texto à esquerda, foto à direita)
  {IMG} {{ aspect-ratio: 4 / 5; max-height: 560px; {RESET} border-radius: 999px 999px 18px 18px; }}
  .hero img.logo-stamp, .hero .seal {{ left: auto; right: 6px; }}""",
 ]
-NEEDS_FIG = {1, 2, 3, 4, 5}
+HERO.append("""html { overflow-x: clip; }
+ .hero { position: relative; display: block; width: 100vw; margin: 0 calc(50% - 50vw); padding: 0; min-height: clamp(540px, 84vh, 800px); overflow: hidden; --hp: 0; }
+ .hero > figure { position: absolute; inset: 0; margin: 0; }
+ IMG { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border: 0; box-shadow: none; outline: 0; filter: brightness(.92);
+   transform: translate3d(0, calc(var(--hp) * 7%), 0) scale(calc(1.04 + var(--hp) * .1)); transform-origin: 50% 20%; will-change: transform;
+   -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); }
+ .hero > div:first-child { position: relative; z-index: 2; min-height: inherit; padding: clamp(56px, 10vh, 110px) max(16px, calc((100vw - 1080px) / 2)); display: flex; flex-direction: column; justify-content: flex-end; color: #fff;
+   opacity: calc(1 - var(--hp) * 1.15); transform: translate3d(0, calc(var(--hp) * -56px), 0); }
+ .hero > div:first-child > * { max-width: 620px; }
+ .hero h1 { color: #fff; font-size: clamp(44px, 8vw, 96px); text-shadow: 0 2px 24px rgba(0,0,0,.45); } .hero .eyebrow, .hero .lede, .hero .score { color: rgba(255,255,255,.9); } .hero .score strong { color: #fff; } .hero .stars { color: var(--salmon); }
+ .hero .btn.ghost { color: #fff; border-color: #fff; }
+ .hero img.logo-stamp, .hero .seal { left: auto; right: max(16px, calc((100vw - 1080px) / 2)); bottom: 44px; }
+ .stripe { display: none; }
+ @media (max-width: 820px) { .hero { min-height: 600px; } .hero > div:first-child { padding-bottom: 84px; } .hero img.logo-stamp, .hero .seal { bottom: 22px; right: 16px; } }
+ @media (prefers-reduced-motion: reduce) { .hero > div:first-child { opacity: 1 !important; transform: none !important; } .hero > figure > img:first-child { transform: scale(1.04) !important; } }""".replace("IMG", IMG))
+SCRIPT_BLEED = """<script>(function(){var h=document.querySelector('.hero');if(!h||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;var t=0;function f(){t=0;var p=Math.min(Math.max(window.scrollY/Math.max(h.offsetHeight,1),0),1);h.style.setProperty('--hp',p.toFixed(3));}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});f();})();</script>"""
+NEEDS_FIG = {1, 2, 3, 4, 5, 6}
 
 FRAME = [
  "",
@@ -122,12 +138,12 @@ ANIM = [
 ]
 
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
-SIZE = dict(font=None, accent=len(ACCENTS), hero=len(HERO), frame=len(FRAME), header=len(HEADER), gallery=len(GALLERY), heading=len(HEADING),
+SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=len(GALLERY), heading=len(HEADING),
             shape=len(SHAPE), proof=len(PROOF), stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
-OVERRIDE = {"charles-tattoo-piercing": {"hero": 2}}  # escolhas à mão (capa panorâmica escura)
-CAPA_ESCURA = {"charles-tattoo-piercing"}  # capa já escura: não escurecer mais no hero em tela cheia
+OVERRIDE = {"charles-tattoo-piercing": {"hero": 6}}  # escolhas à mão (capa panorâmica escura)
+CAPA_ESCURA = set()  # capa já escura: não escurecer mais no hero em tela cheia
 
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
@@ -154,7 +170,7 @@ def assign(sites):
 
 def block(kind, c, has_fig, slug=""):
     hero = c["hero"]
-    if hero in NEEDS_FIG and not has_fig: hero = 0 if hero != 2 else 3
+    if hero in NEEDS_FIG and not has_fig: hero = 0 if hero not in (2, 6) else 3
     css = []
     f = FONTS[kind][c["font"]]
     link = ""
@@ -172,7 +188,8 @@ def block(kind, c, has_fig, slug=""):
     for lst, key in ((SHAPE, "shape"), (FRAME, "frame"), (None, None), (HEADER, "header"), (GALLERY, "gallery"), (HEADING, "heading"), (PROOF, "proof"), (STRIPE, "stripe"), (INFO, "info"), (ABOUT, "about"), (ORDER, "order"), (ANIM, "anim")):
         if lst is None: css.append(HERO[hero].replace("brightness(.5)", "brightness(.9)") if slug in CAPA_ESCURA else HERO[hero]); continue
         if lst[c[key]]: css.append(lst[c[key]])
-    return "<!--vary:start-->" + link + "<style>\n  /* variação: " + ",".join(f"{d}={c[d]}" for d in DIMS) + " */\n  " + "\n  ".join(css) + "\n</style><!--vary:end-->"
+    extra = SCRIPT_BLEED if hero == 6 else ""
+    return "<!--vary:start-->" + link + "<style>\n  /* variação: " + ",".join(f"{d}={c[d]}" for d in DIMS) + " */\n  " + "\n  ".join(css) + "\n</style>" + extra + "<!--vary:end-->"
 
 
 def run(only=None):
@@ -180,7 +197,7 @@ def run(only=None):
     for f in sorted(glob.glob(os.path.join(HERE, "*", "index.html"))):
         slug = os.path.basename(os.path.dirname(f))
         if slug in SKIP: continue
-        html = re.sub(r"<!--vary:start-->.*?<!--vary:end-->", "", open(f, encoding="utf-8").read(), flags=re.S)
+        html = re.sub(r"\n*<!--vary:start-->.*?<!--vary:end-->", "", open(f, encoding="utf-8").read(), flags=re.S)
         kind, fig, pull = kind_and_info(html)
         if kind: pages[slug] = (f, html, kind, fig)
     by_kind = {}
