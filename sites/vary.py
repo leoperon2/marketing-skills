@@ -220,7 +220,7 @@ GCTA_CSS = """#fotos .sub { margin-bottom: 16px; }
  .gcta { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 auto 30px; font: 500 12.5px/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #e8c98b; }
  .gcta::before, .gcta::after { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .55; }"""
 GCTA_LINK = '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">'
-SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 88px; }
+SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84px 44px; }
  #casa::before { content: ""; position: absolute; inset: -30px calc(50% - 50vw); z-index: -1; pointer-events: none; background: radial-gradient(55% 55% at 22% 35%, rgb(var(--glow, 255 170 80) / .17), transparent 72%); }
  #casa h2 { font-size: clamp(40px, 6.6vw, 70px); line-height: 1.02; margin-bottom: 22px; }
  #casa .about > div > p { font-size: clamp(19px, 2.4vw, 24px); line-height: 1.5; max-width: 36ch; }
@@ -228,10 +228,15 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 88
  #casa .pull { font-size: clamp(30px, 5vw, 52px); line-height: 1.12; position: relative; padding-top: 30px; }
  #casa .pull::before { content: "\\201C"; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font: 400 120px/1 var(--font-display); color: var(--accent); opacity: .9; }
  #casa .svc { min-height: 140px; } #casa .svc b { font-size: clamp(21px, 2.6vw, 27px); } #casa .svc span { font-size: 16px; line-height: 1.45; color: var(--ink); opacity: .82; }
- #casa .services { gap: 14px; }"""
+ #casa .services { gap: 14px; margin: 26px 0 0; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
 WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo."}
+AVAL_LINK = {"charles-tattoo-piercing"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
+AVAL_CSS = """.rev-link { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); text-decoration: none; }
+ .rev-link:hover span:nth-child(2), .rev-link:focus-visible span:nth-child(2) { text-decoration: underline; text-underline-offset: 4px; }
+ .rev-link .rs { color: #e8c98b; letter-spacing: 3px; font-size: 1.15em; } .rev-link .go { opacity: .7; }
+ a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
 INTRO = {"charles-tattoo-piercing"}    # animação de entrada + pequeno scroll suave ao carregar
 
@@ -330,6 +335,7 @@ def block(kind, c, has_fig, slug=""):
         _c, _in = _media_blocks(LEGIVEL_CSS)[0]
         css.append("@media " + _c + " {" + _scoped(_in, "html:not(.dm) ") + "}")
     if slug in SOBRE_TEXTO: css.append(SOBRE_CSS)
+    if slug in AVAL_LINK: css.append(AVAL_CSS)
     if slug in GALERIA_TEXTO: css.append(GCTA_CSS); link += GCTA_LINK
     if slug in INTRO: css.append(INTRO_CSS); extra += SCRIPT_NUDGE
     if c["gallery"] == 5:
@@ -350,13 +356,18 @@ def run(only=None):
             html = re.sub(r'(<section id="fotos"[^>]*>\s*<h2>)[^<]*(</h2>\s*<p class="sub">)[^<]*(</p>)(?:\s*<p class="gcta">[^<]*</p>)?', lambda m: m.group(1) + t + m.group(2) + sub + m.group(3) + '<p class="gcta">' + cta + "</p>", html, count=1)
         if slug in SOBRE_TEXTO:
             S = SOBRE_TEXTO[slug]; e = __import__("html").escape
-            novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc"><b>' + e(t) + "</b><span>" + e(s) + "</span></li>" for t, s in S["cards"]) + '</ul><p class="sub" style="margin:14px 0 0;font-size:15px">' + e(S["nota"]) + "</p>"
-            html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+<ul class="services">.*?</ul><p class="sub"[^>]*>.*?</p>', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
+            novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc"><b>' + e(t) + "</b><span>" + e(s) + "</span></li>" for t, s in S["cards"]) + "</ul>"
+            html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+<ul class="services">.*?</ul>(?:<p class="sub"[^>]*>.*?</p>)?', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
             html = re.sub(r'<p class="pull">.*?</p>', lambda m: '<p class="pull">\u201c' + e(S["pull"][0]) + '\u201d<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">' + e(S["pull"][1]) + "</span></p>", html, count=1, flags=re.S)
             html = re.sub(r'(id="clientes">.*?<h2>)[^<]*(</h2>)', lambda m: m.group(1) + e(S["prova"]) + m.group(2), html, count=1, flags=re.S)
         if slug in WA_TEXTO:
             q = __import__("urllib.parse", fromlist=["quote"]).quote(WA_TEXTO[slug], safe="")
             html = re.sub(r'href="(https://wa\.me/\d+)(?:\?text=[^"]*)?"', lambda m: 'href="' + m.group(1) + "?text=" + q + '"', html)
+        if slug in AVAL_LINK and (mp := re.search(r'query_place_id=([^"&]+)', html)):
+            url = "https://search.google.com/local/reviews?placeid=" + mp.group(1)
+            link = f'<a class="rev-link" href="{url}" target="_blank" rel="noopener"><span class="rs" aria-hidden="true">\u2605\u2605\u2605\u2605\u2605</span><span>Avaliações no Google</span><span class="go" aria-hidden="true">\u2197</span></a>'
+            html = re.sub(r'(id="clientes">.*?<p class="eyebrow">)(?:<a class="rev-link".*?</a>|[^<]*)(</p>)', lambda m: m.group(1) + link + m.group(2), html, count=1, flags=re.S)
+            html = re.sub(r'<(?:div|a) class="score"( aria-label="[^"]*")?( href="[^"]*" target="_blank" rel="noopener")?>\s*(<strong>.*?</strong>\s*<div>.*?</div>)\s*</(?:div|a)>', lambda m: f'<a class="score" href="{url}" target="_blank" rel="noopener"{m.group(1) or ""}>{m.group(3)}</a>', html, count=1, flags=re.S)
         kind, fig, pull = kind_and_info(html)
         if kind: pages[slug] = (f, html, kind, fig)
     by_kind = {}

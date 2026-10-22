@@ -257,7 +257,7 @@
   main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
   .js .rv { transform: scale(.92); }
   @media (min-width: 821px) and (max-width: 1279px) {html:not(.dm) body{ font-size: 19px; }html:not(.dm) .brand{ font-size: 22px; }html:not(.dm) nav{ font-size: 17px; gap: 28px; }html:not(.dm) .bar .btn{ min-height: 44px; font-size: 17px; }html:not(.dm) h2{ font-size: clamp(38px, calc(5.6 * var(--vw)), 58px); }html:not(.dm) .sub{ font-size: 19px; }html:not(.dm) .about p{ font-size: 19px; }html:not(.dm) .pull{ font-size: clamp(28px, calc(3.8 * var(--vw)), 40px); }html:not(.dm) .svc b{ font-size: 25px; }html:not(.dm) .svc span{ font-size: 16.5px; }html:not(.dm) .card{ padding: 34px; }html:not(.dm) .card h3{ font-size: 27px; }html:not(.dm) .hours li{ padding: 11px 0; font-size: 19px; }html:not(.dm) address{ font-size: 19px; }html:not(.dm) .tags li{ font-size: 16px; padding: 6px 14px; }html:not(.dm) .status{ font-size: 16px; }html:not(.dm) .btn{ min-height: 52px; font-size: 17px; }html:not(.dm) .final h2{ font-size: clamp(40px, calc(6 * var(--vw)), 64px); }html:not(.dm) blockquote{ flex-basis: clamp(300px, calc(36 * var(--vw)), 420px); }html:not(.dm) blockquote p{ font-size: 19px; }html:not(.dm) blockquote cite{ font-size: 16px; }html:not(.dm) .score strong{ font-size: 40px; }html:not(.dm) footer{ font-size: 16px; }html:not(.dm) footer strong{ font-size: 20px; }}
-  #casa { position: relative; isolation: isolate; padding-block: 88px; }
+  #casa { position: relative; isolation: isolate; padding-block: 84px 44px; }
  #casa::before { content: ""; position: absolute; inset: -30px calc(50% - calc(50 * var(--vw))); z-index: -1; pointer-events: none; background: radial-gradient(55% 55% at 22% 35%, rgb(var(--glow, 255 170 80) / .17), transparent 72%); }
  #casa h2 { font-size: clamp(40px, calc(6.6 * var(--vw)), 70px); line-height: 1.02; margin-bottom: 22px; }
  #casa .about > div > p { font-size: clamp(19px, calc(2.4 * var(--vw)), 24px); line-height: 1.5; max-width: 36ch; }
@@ -265,7 +265,11 @@
  #casa .pull { font-size: clamp(30px, calc(5 * var(--vw)), 52px); line-height: 1.12; position: relative; padding-top: 30px; }
  #casa .pull::before { content: "\201C"; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font: 400 120px/1 var(--font-display); color: var(--accent); opacity: .9; }
  #casa .svc { min-height: 140px; } #casa .svc b { font-size: clamp(21px, calc(2.6 * var(--vw)), 27px); } #casa .svc span { font-size: 16px; line-height: 1.45; color: var(--ink); opacity: .82; }
- #casa .services { gap: 14px; }
+ #casa .services { gap: 14px; margin: 26px 0 0; }
+  .rev-link { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); text-decoration: none; }
+ .rev-link:hover span:nth-child(2), .rev-link:focus-visible span:nth-child(2) { text-decoration: underline; text-underline-offset: 4px; }
+ .rev-link .rs { color: #e8c98b; letter-spacing: 3px; font-size: 1.15em; } .rev-link .go { opacity: .7; }
+ a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }
   #fotos .sub { margin-bottom: 16px; }
  .gcta { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 auto 30px; font: 500 12.5px/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #e8c98b; }
  .gcta::before, .gcta::after { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .55; }
@@ -312,10 +316,8 @@
       <h1>Charles Tattoo &amp; Piercing</h1>
       <p class="lede">Estúdio de Tatuagem, Piercing e Microdermal. Profissional Capacitado há mais de 10 anos no mercado.</p>
       <div class="cta"><a class="btn" href="https://wa.me/5562994059714?text=Fala%2C%20Charles%2C%20tudo%20bom%3F%20Queria%20te%20pedir%20or%C3%A7amento%20de%20uma%20tattoo." target="_blank" rel="noopener">Pedir orçamento</a><a class="btn ghost" href="http://www.instagram.com/charles_tattooink" target="_blank" rel="noopener">Ver no Instagram</a></div>
-      <div class="score" aria-label="Nota 4,9 de 5 no Google, 348 avaliações">
-        <strong>4,9</strong>
-        <div><span class="stars" aria-hidden="true">★★★★★</span><br>348 avaliações no Google</div>
-      </div>
+      <a class="score" href="https://search.google.com/local/reviews?placeid=ChIJqzQSR271XpMRSu-_DxcHSW0" target="_blank" rel="noopener" aria-label="Nota 4,9 de 5 no Google, 348 avaliações"><strong>4,9</strong>
+        <div><span class="stars" aria-hidden="true">★★★★★</span><br>348 avaliações no Google</div></a>
     </div>
     <figure><img src="img/hero.jpg" alt="Foto de Charles Tattoo &amp; Piercing" width="1916" height="821"><img class="logo-stamp" id="stamp" src="img/logo.jpg" alt="Logo de Charles Tattoo &amp; Piercing" width="136" height="136"></figure>
   </div>
@@ -329,7 +331,7 @@
         <h2>Tem uma ideia na cabeça? Bora tirar do papel.</h2>
         <p>Mais de 10 anos de tatuagem, piercing e microdermal no Rodoviário. Estúdio limpo, ambiente acolhedor e um atendimento que deixa tranquilo até quem vai fazer a primeira tattoo.</p>
         <p>Chega, conta a ideia e leva pra casa uma marca que é só sua.</p>
-        <ul class="services"><li class="svc"><b>Primeira vez? Fica tranquilo</b><span>Tem cliente contando que foi bem acolhido e saiu tranquilo, mesmo sendo a primeira tattoo.</span></li><li class="svc"><b>Higiene e acolhimento</b><span>Higiene, ambiente e muito acolhimento, nas palavras de quem já foi.</span></li><li class="svc"><b>Tattoo, piercing e micro</b><span>Também faz piercing, até de bioflex, e microdermal.</span></li><li class="svc"><b>Porta aberta o dia todo</b><span>Aberto todos os dias, das 7h às 21h.</span></li></ul><p class="sub" style="margin:14px 0 0;font-size:15px">Baseado no que os clientes contam no Google e nas informações do perfil.</p>
+        <ul class="services"><li class="svc"><b>Primeira vez? Fica tranquilo</b><span>Tem cliente contando que foi bem acolhido e saiu tranquilo, mesmo sendo a primeira tattoo.</span></li><li class="svc"><b>Higiene e acolhimento</b><span>Higiene, ambiente e muito acolhimento, nas palavras de quem já foi.</span></li><li class="svc"><b>Tattoo, piercing e micro</b><span>Também faz piercing, até de bioflex, e microdermal.</span></li><li class="svc"><b>Porta aberta o dia todo</b><span>Aberto todos os dias, das 7h às 21h.</span></li></ul>
       </div>
       <p class="pull">“Fiz minhas primeiras tatuagens, que trabalho incrível, mão super leve.”<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">Agna C., em avaliação no Google</span></p>
     </div>
@@ -360,7 +362,7 @@
 <div class="proof" id="clientes">
   <div class="wrap">
     <section>
-      <p class="eyebrow">Avaliações no Google</p>
+      <p class="eyebrow"><a class="rev-link" href="https://search.google.com/local/reviews?placeid=ChIJqzQSR271XpMRSu-_DxcHSW0" target="_blank" rel="noopener"><span class="rs" aria-hidden="true">★★★★★</span><span>Avaliações no Google</span><span class="go" aria-hidden="true">↗</span></a></p>
       <h2>Quem já passou por aqui conta</h2>
       <div class="proof-top">
         <div class="big">4,9</div>
