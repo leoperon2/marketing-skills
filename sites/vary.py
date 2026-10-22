@@ -203,7 +203,7 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
 # título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
-GALERIA_TEXTO = {"charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui. Fotos de clientes, publicadas no Google Maps. Toque numa para ampliar.")}
+GALERIA_TEXTO = {"charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
 # seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
 SOBRE_TEXTO = {"charles-tattoo-piercing": dict(
     h2="Tem uma ideia na cabeça? Bora tirar do papel.",
@@ -216,6 +216,10 @@ SOBRE_TEXTO = {"charles-tattoo-piercing": dict(
            ("Porta aberta o dia todo", "Aberto todos os dias, das 7h às 21h.")],
     nota="Baseado no que os clientes contam no Google e nas informações do perfil.",
     prova="Quem já passou por aqui conta")}
+GCTA_CSS = """#fotos .sub { margin-bottom: 16px; }
+ .gcta { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 auto 30px; font: 500 12.5px/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #e8c98b; }
+ .gcta::before, .gcta::after { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .55; }"""
+GCTA_LINK = '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">'
 SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 88px; }
  #casa::before { content: ""; position: absolute; inset: -30px calc(50% - 50vw); z-index: -1; pointer-events: none; background: radial-gradient(55% 55% at 22% 35%, rgb(var(--glow, 255 170 80) / .17), transparent 72%); }
  #casa h2 { font-size: clamp(40px, 6.6vw, 70px); line-height: 1.02; margin-bottom: 22px; }
@@ -324,6 +328,7 @@ def block(kind, c, has_fig, slug=""):
         _c, _in = _media_blocks(LEGIVEL_CSS)[0]
         css.append("@media " + _c + " {" + _scoped(_in, "html:not(.dm) ") + "}")
     if slug in SOBRE_TEXTO: css.append(SOBRE_CSS)
+    if slug in GALERIA_TEXTO: css.append(GCTA_CSS); link += GCTA_LINK
     if slug in INTRO: css.append(INTRO_CSS); extra += SCRIPT_NUDGE
     if c["gallery"] == 5:
         _a = ACCENTS[c["accent"]]; _h = (_a[1][0] if _a else "#ffaa50").lstrip("#")
@@ -339,8 +344,8 @@ def run(only=None):
         if slug in SKIP: continue
         html = re.sub(r"\n*<!--vary:start-->.*?<!--vary:end-->", "", open(f, encoding="utf-8").read(), flags=re.S)
         if slug in GALERIA_TEXTO:
-            t, sub = GALERIA_TEXTO[slug]
-            html = re.sub(r'(<section id="fotos"[^>]*>\s*<h2>)[^<]*(</h2>\s*<p class="sub">)[^<]*(</p>)', lambda m: m.group(1) + t + m.group(2) + sub + m.group(3), html, count=1)
+            t, sub, cta = GALERIA_TEXTO[slug]
+            html = re.sub(r'(<section id="fotos"[^>]*>\s*<h2>)[^<]*(</h2>\s*<p class="sub">)[^<]*(</p>)(?:\s*<p class="gcta">[^<]*</p>)?', lambda m: m.group(1) + t + m.group(2) + sub + m.group(3) + '<p class="gcta">' + cta + "</p>", html, count=1)
         if slug in SOBRE_TEXTO:
             S = SOBRE_TEXTO[slug]; e = __import__("html").escape
             novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc"><b>' + e(t) + "</b><span>" + e(s) + "</span></li>" for t, s in S["cards"]) + '</ul><p class="sub" style="margin:14px 0 0;font-size:15px">' + e(S["nota"]) + "</p>"
