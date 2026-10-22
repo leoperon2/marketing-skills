@@ -43,7 +43,7 @@ HERO = [  # 0 padrão (texto à esquerda, foto à direita)
  .hero h1 {{ color: #fff; }} .hero .eyebrow, .hero .lede, .hero .score {{ color: rgba(255,255,255,.88); }} .hero .score strong {{ color: #fff; }} .hero .stars {{ color: var(--salmon); }}
  .hero .btn.ghost {{ color: #fff; border-color: #fff; }}
  .hero img.logo-stamp, .hero .seal {{ left: auto; right: 28px; bottom: -30px; }}
- @media (max-width: 820px) {{ .hero {{ min-height: 540px; }} .hero img.logo-stamp, .hero .seal {{ right: 14px; }} }}""",
+ @media (max-width: 820px) {{ .hero {{ min-height: 540px; }} .hero > div:first-child {{ padding-bottom: 76px; }} .hero img.logo-stamp, .hero .seal {{ right: 14px; }} }}""",
  f""".hero {{ grid-template-columns: 1fr; text-align: center; gap: 44px; padding-bottom: 76px; }}
  .hero > div:first-child {{ display: flex; flex-direction: column; align-items: center; }} .hero .lede {{ margin-inline: auto; }} .hero .cta, .hero .score {{ justify-content: center; }}
  {IMG} {{ aspect-ratio: 16 / 9; }}
@@ -126,6 +126,9 @@ SIZE = dict(font=None, accent=len(ACCENTS), hero=len(HERO), frame=len(FRAME), he
             shape=len(SHAPE), proof=len(PROOF), stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
+OVERRIDE = {"charles-tattoo-piercing": {"hero": 2}}  # escolhas à mão (capa panorâmica escura)
+CAPA_ESCURA = {"charles-tattoo-piercing"}  # capa já escura: não escurecer mais no hero em tela cheia
+
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
     return (m.group(1) if m else None), ('<figure><img src="img/hero.jpg"' in html), ('id="casa"' in html and "class=\"pull\"" in html)
@@ -149,7 +152,7 @@ def assign(sites):
     return out
 
 
-def block(kind, c, has_fig):
+def block(kind, c, has_fig, slug=""):
     hero = c["hero"]
     if hero in NEEDS_FIG and not has_fig: hero = 0 if hero != 2 else 3
     css = []
@@ -167,7 +170,7 @@ def block(kind, c, has_fig):
     css.append("@media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }")
     css.append(":root { --hrad: 0px; }")  # SHAPE sobrescreve depois
     for lst, key in ((SHAPE, "shape"), (FRAME, "frame"), (None, None), (HEADER, "header"), (GALLERY, "gallery"), (HEADING, "heading"), (PROOF, "proof"), (STRIPE, "stripe"), (INFO, "info"), (ABOUT, "about"), (ORDER, "order"), (ANIM, "anim")):
-        if lst is None: css.append(HERO[hero]); continue
+        if lst is None: css.append(HERO[hero].replace("brightness(.5)", "brightness(.9)") if slug in CAPA_ESCURA else HERO[hero]); continue
         if lst[c[key]]: css.append(lst[c[key]])
     return "<!--vary:start-->" + link + "<style>\n  /* variação: " + ",".join(f"{d}={c[d]}" for d in DIMS) + " */\n  " + "\n  ".join(css) + "\n</style><!--vary:end-->"
 
@@ -183,10 +186,12 @@ def run(only=None):
     by_kind = {}
     for s, (_, _, k, _) in pages.items(): by_kind.setdefault(k, []).append(s)
     plan = assign(by_kind)
+    for s, o in OVERRIDE.items():
+        if s in plan: plan[s].update(o)
     for s, (f, html, k, fig) in pages.items():
         if only and s not in only: continue
         i = html.index("</style>") + len("</style>")
-        open(f, "w", encoding="utf-8").write(html[:i] + "\n" + block(k, plan[s], fig) + html[i:])
+        open(f, "w", encoding="utf-8").write(html[:i] + "\n" + block(k, plan[s], fig, s) + html[i:])
     json.dump({s: dict(kind=pages[s][2], **plan[s]) for s in pages}, open(os.path.join(HERE, "variants.json"), "w"), indent=1, ensure_ascii=False)
     return plan
 
