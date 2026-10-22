@@ -155,6 +155,7 @@ SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len
 
 OVERRIDE = {"charles-tattoo-piercing": {"hero": 6}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
+FORCE_DARK = {"charles-tattoo-piercing"}  # sempre tema escuro, ignorando o tema do aparelho
 FOCO_MOBILE = {"charles-tattoo-piercing": "67.5% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def kind_and_info(html):
@@ -221,7 +222,11 @@ def run(only=None):
     for s, (f, html, k, fig) in pages.items():
         if only and s not in only: continue
         i = html.index("</style>") + len("</style>")
-        open(f, "w", encoding="utf-8").write(html[:i] + "\n" + block(k, plan[s], fig, s) + html[i:])
+        b = block(k, plan[s], fig, s)
+        if s in FORCE_DARK:  # reaplica as variáveis do tema escuro direto no :root (sem depender de prefers-color-scheme)
+            dk = "".join(m.group(1) for m in re.finditer(r':root\[data-theme="dark"\] \{([^}]*)\}', html + b))
+            b = b.replace("<!--vary:end-->", "<style>:root { " + dk + " }</style><!--vary:end-->")
+        open(f, "w", encoding="utf-8").write(html[:i] + "\n" + b + html[i:])
     json.dump({s: dict(kind=pages[s][2], **plan[s]) for s in pages}, open(os.path.join(HERE, "variants.json"), "w"), indent=1, ensure_ascii=False)
     return plan
 
