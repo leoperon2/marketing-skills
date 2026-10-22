@@ -230,6 +230,8 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 88
  #casa .svc { min-height: 140px; } #casa .svc b { font-size: clamp(21px, 2.6vw, 27px); } #casa .svc span { font-size: 16px; line-height: 1.45; color: var(--ink); opacity: .82; }
  #casa .services { gap: 14px; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
+# mensagem que já vem preenchida nos botões de WhatsApp (por site)
+WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo."}
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
 INTRO = {"charles-tattoo-piercing"}    # animação de entrada + pequeno scroll suave ao carregar
 
@@ -352,6 +354,9 @@ def run(only=None):
             html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+<ul class="services">.*?</ul><p class="sub"[^>]*>.*?</p>', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
             html = re.sub(r'<p class="pull">.*?</p>', lambda m: '<p class="pull">\u201c' + e(S["pull"][0]) + '\u201d<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">' + e(S["pull"][1]) + "</span></p>", html, count=1, flags=re.S)
             html = re.sub(r'(id="clientes">.*?<h2>)[^<]*(</h2>)', lambda m: m.group(1) + e(S["prova"]) + m.group(2), html, count=1, flags=re.S)
+        if slug in WA_TEXTO:
+            q = __import__("urllib.parse", fromlist=["quote"]).quote(WA_TEXTO[slug], safe="")
+            html = re.sub(r'href="(https://wa\.me/\d+)(?:\?text=[^"]*)?"', lambda m: 'href="' + m.group(1) + "?text=" + q + '"', html)
         kind, fig, pull = kind_and_info(html)
         if kind: pages[slug] = (f, html, kind, fig)
     by_kind = {}
