@@ -21,6 +21,15 @@ Estado em 2026-10-21. Branch `claude/zen-edison-lxvb0x`.
 ## Variação de layout (vary.py)
 Sites do mesmo ramo/cidade não podem parecer o mesmo. Cada site recebe uma combinação de 14 dimensões: fonte do título, cor de acento, hero (6 formas: texto/foto invertidos, foto de fundo, centralizado, banner, arco), moldura da foto, cabeçalho (escuro, claro, acento, marca centralizada), galeria (gaps, cantos, P&B no hover), títulos, formas de botão/cartão, prova social, faixa, ordem das seções, sobre e animação de rolagem. As combinações são sorteadas por ramo para maximizar a diferença entre vizinhos. Testado: sem rolagem horizontal em 390 e 1280 px, em todos os sites. `don-alberttoni` e quem já tem site ficam de fora.
 
+## Estado em 2026-10-22 (hospedagem pública e refinamento do Charles)
+- Demos públicas: repositório `leoperon2/demos` (GitHub Pages). `prospeccao/publish.py` copia cada site para uma pasta com código não adivinhável (sal em `prospeccao/.salt`, fora do git), injeta `<meta viewport>`/charset e `noindex`, e grava `prospeccao/urls.json` (fora do git). Clone de trabalho: `/home/user/demos` (git add/commit/push main). Pages leva ~1 min; cache do navegador ~10 min (testar com `?v=N`).
+- Sem a meta viewport os celulares renderizavam a 980 px e encolhiam tudo. O publicador agora injeta; no Artifact o esqueleto já traz.
+- `vary.py` guarda as variações por site e os ajustes feitos à mão por slug: `OVERRIDE` (hero 6 = capa em tela cheia com parallax, gallery 5 = filtro quente + brilho na rolagem, proof 4 = cards roláveis, about 3), `FOCO_MOBILE`, `FORCE_DARK`, `DM_SITES` (modo ampliado quando a tela de toque abre a ~980 px), `LEGIVEL`, `INTRO` (animação de entrada + scroll de poucos px), `GALERIA_TEXTO`, `SOBRE_TEXTO`, `WA_TEXTO` (mensagem pronta do WhatsApp), `AVAL_LINK`. Hoje tudo isso só vale para `charles-tattoo-piercing`; os outros sites seguem o sorteio por ramo.
+- `python3 vary.py [slug]` é idempotente (rodar duas vezes dá o mesmo arquivo). `python3 ../prospeccao/publish.py` regenera as pastas no clone de demos.
+- Página de prospecção (`prospeccao/`, `build.py` + `template.html`): artefato https://claude.ai/artifact/CCjCvVs4Ny7Va2txNvbzy3. Só republicar quando o usuário pedir. Os links "Ver site de demonstração" do artefato publicado ainda apontam para a versão antiga; rodar `build.py` e republicar atualiza para as URLs públicas.
+- Pendências: levar para os outros sites as melhorias do Charles (começar pelos de tatuagem); revisar capas com foto de cliente; trocar fotos com rosto e a foto com "Depois" na galeria do Charles; confirmar no celular se o scroll de entrada recolhe a barra do navegador.
+- Para gastar menos token: sessão nova partindo deste arquivo, ajustes em lote e conferir por medição, sem abrir capturas à toa.
+
 ## Decisões já tomadas
 - Foto de capa (hero): não pode ser foto de cliente/pessoas. Tem que ser comida, produto ou a marca. Trocado à mão no gordo-magro (g4, recorte 4:3); `gen.py` ainda escolhe o hero por qualidade, então rodar de novo desfaz a troca. Revisar a capa dos demais sites.
 - Galeria sem legenda nenhuma. Mosaico dinâmico: verticais, dobro do espaço, panorâmicas e pequenas.
