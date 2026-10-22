@@ -69,8 +69,8 @@ HERO.append("""html { overflow-x: clip; }
  .hero img.logo-stamp, .hero .seal { left: auto; right: max(16px, calc((100vw - 1080px) / 2)); bottom: 44px; }
  .stripe { display: none; }
  @media (max-width: 820px) {
-   .hero { min-height: 740px; } IMG { object-position: var(--foco, 50% 50%); position: relative; top: -30%; height: 130%; }
-   .hero > div:first-child { padding-bottom: 44px; }
+   .hero { min-height: 640px; } IMG { object-position: var(--foco, 50% 50%); }
+   .hero > div:first-child { justify-content: flex-start; padding-top: 30px; padding-bottom: 0; }
    .hero > div:first-child > * { max-width: 100%; }
    .hero .eyebrow { font-size: 10.5px; letter-spacing: .1em; opacity: .72; margin-bottom: 10px; text-wrap: balance; }
    .hero h1 { font-size: clamp(46px, 14.5vw, 68px); line-height: 1; margin-bottom: 14px; }
@@ -154,7 +154,7 @@ SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len
 
 OVERRIDE = {"charles-tattoo-piercing": {"hero": 6}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
-FOCO_MOBILE = {"charles-tattoo-piercing": "76% 60%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
+FOCO_MOBILE = {"charles-tattoo-piercing": "67% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
