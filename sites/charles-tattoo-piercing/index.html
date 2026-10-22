@@ -191,6 +191,7 @@
   </style>
 <!--vary:start--><style>
   /* variação: font=0,accent=4,hero=6,frame=1,header=0,gallery=4,heading=2,shape=2,proof=2,stripe=0,info=0,about=1,order=1,anim=1 */
+  :root { --foco: 68% 58%; }
   :root { --accent: #c2570c; --accent-ink: #ffffff; --salmon: #e9d27a; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #f2873a; --accent-ink: #1a0f06; --salmon: #b79a3a; } } :root[data-theme="dark"] { --accent: #f2873a; --accent-ink: #1a0f06; --salmon: #b79a3a; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
@@ -210,7 +211,7 @@
  .hero .btn.ghost { color: #fff; border-color: #fff; }
  .hero img.logo-stamp, .hero .seal { left: auto; right: max(16px, calc((100vw - 1080px) / 2)); bottom: 44px; }
  .stripe { display: none; }
- @media (max-width: 820px) { .hero { min-height: 600px; } .hero > div:first-child { padding-bottom: 84px; } .hero img.logo-stamp, .hero .seal { bottom: 22px; right: 16px; } }
+ @media (max-width: 820px) { .hero { min-height: 600px; } .hero > figure > img:first-child { object-position: var(--foco, 50% 50%); } .hero > div:first-child { padding-bottom: 84px; } .hero img.logo-stamp, .hero .seal { bottom: 22px; right: 16px; } }
  @media (prefers-reduced-motion: reduce) { .hero > div:first-child { opacity: 1 !important; transform: none !important; } .hero > figure > img:first-child { transform: scale(1.04) !important; } }
   .mosaic { gap: 8px; } .tile img { filter: grayscale(.9) contrast(1.05); } .tile:hover img, .tile:focus-visible img { filter: none; } @media (max-width: 820px) { .tile img { filter: grayscale(.5); } }
   #fotos h2, #fotos .sub, #horarios h2, .proof h2, .proof .eyebrow { text-align: center; margin-inline: auto; } #fotos h2::after, #horarios h2::after, .proof h2::after { content: ''; display: block; width: 48px; height: 3px; background: var(--accent); margin: 14px auto 0; } .proof-top { justify-content: center; }

@@ -68,7 +68,7 @@ HERO.append("""html { overflow-x: clip; }
  .hero .btn.ghost { color: #fff; border-color: #fff; }
  .hero img.logo-stamp, .hero .seal { left: auto; right: max(16px, calc((100vw - 1080px) / 2)); bottom: 44px; }
  .stripe { display: none; }
- @media (max-width: 820px) { .hero { min-height: 600px; } .hero > div:first-child { padding-bottom: 84px; } .hero img.logo-stamp, .hero .seal { bottom: 22px; right: 16px; } }
+ @media (max-width: 820px) { .hero { min-height: 600px; } IMG { object-position: var(--foco, 50% 50%); } .hero > div:first-child { padding-bottom: 84px; } .hero img.logo-stamp, .hero .seal { bottom: 22px; right: 16px; } }
  @media (prefers-reduced-motion: reduce) { .hero > div:first-child { opacity: 1 !important; transform: none !important; } .hero > figure > img:first-child { transform: scale(1.04) !important; } }""".replace("IMG", IMG))
 SCRIPT_BLEED = """<script>(function(){function init(){var h=document.querySelector('.hero');if(!h)return;var t=0;function f(){t=0;var p=Math.min(Math.max(window.scrollY/Math.max(h.offsetHeight,1),0),1);h.style.setProperty('--hp',p.toFixed(3));}window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});f();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();</script>"""
 NEEDS_FIG = {1, 2, 3, 4, 5, 6}
@@ -143,7 +143,8 @@ SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len
 
 
 OVERRIDE = {"charles-tattoo-piercing": {"hero": 6}}  # escolhas à mão (capa panorâmica escura)
-CAPA_ESCURA = set()  # capa já escura: não escurecer mais no hero em tela cheia
+CAPA_ESCURA = set()
+FOCO_MOBILE = {"charles-tattoo-piercing": "68% 58%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
@@ -189,6 +190,7 @@ def block(kind, c, has_fig, slug=""):
         if lst is None: css.append(HERO[hero].replace("brightness(.5)", "brightness(.9)") if slug in CAPA_ESCURA else HERO[hero]); continue
         if lst[c[key]]: css.append(lst[c[key]])
     extra = SCRIPT_BLEED if hero == 6 else ""
+    if hero == 6 and slug in FOCO_MOBILE: css.insert(0, ":root { --foco: " + FOCO_MOBILE[slug] + "; }")
     return "<!--vary:start-->" + link + "<style>\n  /* variação: " + ",".join(f"{d}={c[d]}" for d in DIMS) + " */\n  " + "\n  ".join(css) + "\n</style>" + extra + "<!--vary:end-->"
 
 
