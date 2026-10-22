@@ -22,7 +22,7 @@ Estado em 2026-10-21. Branch `claude/zen-edison-lxvb0x`.
 Sites do mesmo ramo/cidade não podem parecer o mesmo. Cada site recebe uma combinação de 14 dimensões: fonte do título, cor de acento, hero (6 formas: texto/foto invertidos, foto de fundo, centralizado, banner, arco), moldura da foto, cabeçalho (escuro, claro, acento, marca centralizada), galeria (gaps, cantos, P&B no hover), títulos, formas de botão/cartão, prova social, faixa, ordem das seções, sobre e animação de rolagem. As combinações são sorteadas por ramo para maximizar a diferença entre vizinhos. Testado: sem rolagem horizontal em 390 e 1280 px, em todos os sites. `don-alberttoni` e quem já tem site ficam de fora.
 
 ## Decisões já tomadas
-- Rostos podem aparecer (fotos públicas do próprio cliente). Não filtrar por rosto.
+- Foto de capa (hero): não pode ser foto de cliente/pessoas. Tem que ser comida, produto ou a marca. Trocado à mão no gordo-magro (g4, recorte 4:3); `gen.py` ainda escolhe o hero por qualidade, então rodar de novo desfaz a troca. Revisar a capa dos demais sites.
 - Galeria sem legenda nenhuma. Mosaico dinâmico: verticais, dobro do espaço, panorâmicas e pequenas.
 - Logo = foto de perfil do Instagram (cabeçalho, selo na foto principal e rodapé).
 - Link "Plano B do seu site" (página leosumiu) no rodapé de todos, só para mostrar que a função existe.
