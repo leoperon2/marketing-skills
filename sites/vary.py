@@ -56,7 +56,7 @@ HERO = [  # 0 padrão (texto à esquerda, foto à direita)
  .hero img.logo-stamp, .hero .seal {{ left: auto; right: 6px; }}""",
 ]
 HERO.append("""html { overflow-x: clip; }
- .hero { position: relative; display: block; width: 100vw; margin: 0 calc(50% - 50vw); padding: 0; min-height: clamp(540px, 84vh, 800px); overflow: hidden; --hp: 0; }
+ .hero { position: relative; display: block; width: 100vw; margin: 0 calc(50% - 50vw); padding: 0; min-height: clamp(540px, min(84vh, 66vw), 800px); overflow: hidden; --hp: 0; }
  .hero > figure { position: absolute; inset: 0; margin: 0; }
  IMG { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border: 0; box-shadow: none; outline: 0; filter: brightness(.92);
    transform: translate3d(0, calc(var(--hp) * 7%), 0) scale(calc(1.04 + var(--hp) * .1)); transform-origin: 50% 20%; will-change: transform;

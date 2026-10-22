@@ -200,7 +200,7 @@
   .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
   .hero > figure > img:first-child { border: 0; border-radius: 22px; box-shadow: 0 22px 44px -18px rgba(0,0,0,.45); }
   html { overflow-x: clip; }
- .hero { position: relative; display: block; width: 100vw; margin: 0 calc(50% - 50vw); padding: 0; min-height: clamp(540px, 84vh, 800px); overflow: hidden; --hp: 0; }
+ .hero { position: relative; display: block; width: 100vw; margin: 0 calc(50% - 50vw); padding: 0; min-height: clamp(540px, min(84vh, 66vw), 800px); overflow: hidden; --hp: 0; }
  .hero > figure { position: absolute; inset: 0; margin: 0; }
  .hero > figure > img:first-child { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border: 0; box-shadow: none; outline: 0; filter: brightness(.92);
    transform: translate3d(0, calc(var(--hp) * 7%), 0) scale(calc(1.04 + var(--hp) * .1)); transform-origin: 50% 20%; will-change: transform;
