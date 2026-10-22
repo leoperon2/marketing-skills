@@ -101,6 +101,8 @@ h2{font-size:clamp(34px,5vw,60px);font-weight:800;max-width:18ch}
 .where li{font:500 14px/1.2 var(--f-body);border:1px solid var(--line);border-radius:99px;padding:7px 13px}
 
 .specs{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px;align-items:start}
+.spec.wide{grid-column:1/-1}
+.spec.wide dl{grid-template-columns:1fr 1fr;column-gap:32px}
 .spec{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;min-width:0}
 .spec img{width:100%;background:#e9e9ee}
 .spec figcaption{padding:clamp(20px,3vw,32px);display:grid;gap:14px}
@@ -154,6 +156,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
 
 @media (max-width:900px){
   .hero-grid,.fmt,.close-grid,.duo-args,.specs{grid-template-columns:1fr}
+  .spec.wide dl{grid-template-columns:1fr}
   .fmt.flip .fmt-media{order:0}
   .line{grid-template-columns:1fr}
   .hero-img{max-width:440px}
@@ -266,7 +269,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
     <div class="head">
       <p class="eyebrow">Medidas</p>
       <h2>Cabe no espaço que a loja já tem.</h2>
-      <p class="lead">Estudo preliminar das duas versões do totem, com medidas em milímetros. Os valores são propostas e serão validados com os produtos reais e com o fabricante.</p>
+      <p class="lead">Estudo preliminar dos dois totens e do expositor de balcão, com medidas em milímetros. Os valores são propostas e serão validados com os produtos reais e com o fabricante.</p>
     </div>
     <div class="specs">
       <figure class="spec">
@@ -299,8 +302,25 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
           </dl>
         </figcaption>
       </figure>
+      <figure class="spec wide">
+        <img src="img/medidas-balcao.jpg" alt="Estudo de medidas do expositor de balcão: 340 de largura, 240 de profundidade e 360 de altura com header" loading="lazy" width="1536" height="1024">
+        <figcaption>
+          <h3>Expositor de balcão</h3>
+          <dl>
+            <div><dt>Altura total (com header)</dt><dd>360 mm</dd></div>
+            <div><dt>Largura total</dt><dd>340 mm</dd></div>
+            <div><dt>Profundidade total</dt><dd>240 mm</dd></div>
+            <div><dt>Profundidade útil da prateleira</dt><dd>210 mm</dd></div>
+            <div><dt>Prateleira superior, a partir da base</dt><dd>180 mm</dd></div>
+            <div><dt>Prateleira inferior, a partir da base</dt><dd>20 mm</dd></div>
+            <div><dt>Faixa frontal de retenção</dt><dd>30 mm</dd></div>
+            <div><dt>Caixinha Comidinha</dt><dd>90 × 80 × 45 mm</dd></div>
+            <div><dt>Caixinha Molho Gourmet</dt><dd>85 × 60 × 40 mm</dd></div>
+          </dl>
+        </figcaption>
+      </figure>
     </div>
-    <p class="note">Pacote de referência: 100 × 160 × 25 mm. Estudo visual, não é desenho de fabricação.</p>
+    <p class="note">Pacote de referência: 100 × 160 × 25 mm. Estudo visual, não é desenho de fabricação. Validar encaixes e resistência com o fabricante.</p>
   </div>
 </section>
 
