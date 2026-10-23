@@ -40,6 +40,26 @@ def cena(W, H, grande, pequenos, seed):
     rng = np.random.default_rng(seed); n = rng.normal(0, 5, (H, W, 1)).astype(np.float32)
     return Image.fromarray(np.clip(np.asarray(img.convert("RGB"), np.float32) + n, 0, 255).astype("uint8"))
 
+# Se existir a foto de capa fornecida (_fontes/tayz-hero.jpg), ela vira a capa; senão cai na capa de marca (espelhos + monograma) abaixo.
+FOTO = os.path.join(HERE, "_fontes", "tayz-hero.jpg")
+if os.path.exists(FOTO):
+    ph = Image.open(FOTO).convert("RGB"); w, h = ph.size
+    def escurece_esq(img, ate, forca):
+        a = np.asarray(img, np.float32); W = a.shape[1]; x = np.linspace(0, 1, W)[None, :, None]
+        f = 1 - forca * np.clip(1 - x / ate, 0, 1) ** 1.2; return Image.fromarray(np.clip(a * f, 0, 255).astype("uint8"))
+    escurece_esq(ph, .62, .52).save(os.path.join(D, "hero.jpg"), quality=90)
+    # celular (900x1300): recorte de trança e mãos, colado embaixo; o topo vira um degradê escuro para o texto
+    rec = ph.crop((700, 0, 1400, h)).resize((900, int(h * 900 / 700)), Image.LANCZOS)
+    cv = Image.new("RGB", (900, 1300), (14, 11, 9)); top = 1300 - rec.size[1]
+    topo = np.asarray(rec.crop((0, 0, 900, 4)).resize((900, 1)), np.float32).mean(axis=(0, 1))
+    g = np.linspace(0, 1, max(top, 1))[:, None, None]; faixa = (np.array([14, 11, 9], np.float32) * (1 - g) + topo * g) * np.ones((1, 900, 1), np.float32)
+    if top > 0: cv.paste(Image.fromarray(np.clip(faixa, 0, 255).astype("uint8")), (0, 0))
+    cv.paste(rec, (0, top))
+    a = np.asarray(cv, np.float32); y = np.linspace(0, 1, 1300)[:, None, None]
+    cv = Image.fromarray(np.clip(a * (1 - .45 * np.clip(1 - y / .55, 0, 1) ** 1.1), 0, 255).astype("uint8"))  # topo mais escuro: contraste do texto
+    cv.save(os.path.join(D, "hero-m.jpg"), quality=90)
+    print("ok (foto)"); raise SystemExit
+
 cena(1920, 900, (1400, 450, 270), [(1010, 700, 120), (1760, 190, 105)], 3).save(os.path.join(D, "hero.jpg"), quality=88)
 cena(900, 1300, (450, 960, 290), [(770, 760, 95), (120, 1170, 75)], 4).save(os.path.join(D, "hero-m.jpg"), quality=88)
 print("ok")

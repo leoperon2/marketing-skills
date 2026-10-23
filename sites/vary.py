@@ -317,7 +317,7 @@ CSS_EXTRA = {"nina-pet-shop": """.hero .seal, .hero img.logo-stamp { display: no
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
    .hero h1 { font-size: clamp(46px, 13vw, 64px); } .hero .lede { max-width: 30ch; } }""",
   "tayz-bessa-studio": """.hero img.logo-stamp { display: none; }
- .hero h1 { font-size: clamp(44px, 7vw, 90px); line-height: 1.04; letter-spacing: .035em; }
+ .hero h1 { font-size: clamp(42px, 5.8vw, 78px); line-height: 1.04; letter-spacing: .035em; }
  .hero .eyebrow { letter-spacing: .2em; } .hero .lede { max-width: 31em; }
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
    .hero h1 { font-size: clamp(40px, 11.5vw, 56px); } .hero .lede { max-width: 30ch; } }""",
