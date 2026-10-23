@@ -25,3 +25,7 @@ items = call("GET", f"/datasets/{d['defaultDatasetId']}/items", clean="true", fo
 json.dump(items, open(out, "w", encoding="utf-8"), ensure_ascii=False)
 print(d["status"], "lugares:", len(items), "custo US$", d.get("usageTotalUsd"),
       "fotos em avaliações:", sum(len(r.get("reviewImageUrls") or []) for p in items for r in p.get("reviews", [])))
+# O arquivo salvo guarda o item completo do Apify. Cada avaliação deve trazer "reviewUrl" (link direto para ela no Google Maps),
+# que o gen.py usa para linkar o card. Se vier 0 aqui, o campo não veio nesta coleta e vale refazer a coleta daquele negócio.
+_rv = [r for p in items for r in p.get("reviews", [])]
+print("avaliações:", len(_rv), "| com reviewUrl:", sum(1 for r in _rv if r.get("reviewUrl")))

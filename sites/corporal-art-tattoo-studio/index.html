@@ -194,7 +194,7 @@
   :root { --font-display: "Rye", Georgia, serif; } h1, h2, h3, .brand, .big, .svc b, .pull, .score strong, .seal b, footer strong { font-weight: 400 !important; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
+  .btn { border-radius: 10px; } .card, .svc, blockquote, .qmore { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
   .hero > figure > img:first-child { border: 0; box-shadow: -14px 14px 0 var(--accent); }
   .hero { position: relative; display: block; min-height: clamp(500px, 62vw, 640px); padding: 0; margin-top: 28px; }
  .hero > figure { position: absolute; inset: 0; margin: 0; border-radius: var(--hrad); }
@@ -210,6 +210,11 @@
   .proof { background: var(--surface); color: var(--ink); border-block: 1px solid var(--line); } .proof .eyebrow, blockquote cite { color: var(--accent); } .fill { background: var(--accent); } .track { background: var(--line); } blockquote { border-color: var(--line); background: var(--bg); } .reply { color: var(--ink-soft); border-color: var(--line); }
   .about:not(.one) { grid-template-columns: 1fr; } .about > .pull { order: -1; text-align: center; border: 0; padding: 0 0 8px; font-size: clamp(26px, 4vw, 40px); max-width: 24ch; margin-inline: auto; }
   .js .rv { transform: scale(.92); }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -300,7 +305,7 @@
       <div class="quotes"><blockquote><p>Maravitudo, pense num lugar onde vc é bem atendido, faz amigos de verdade e ainda realiza a arte que desejava. É este lugar.</p><cite>Juliana S.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigada 😀😀😀😷🙏 Que show este comentário 💙 Amamos</div></blockquote><blockquote><p>Atendimento e qualidade nota 10
 Voltarei outras vezes!!!
 Fernando e Carol são feras no que fazem.
-Parabéns!!!</p><cite>jooh C.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigada pela confiança. 😊💪😷🎨💉</div></blockquote><blockquote><p>Excelente local para tatuar, profissionalismo na arte de tatuar. Local limpo arejado e higiênico.</p><cite>Rodrigo D.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigada 🙏😷🙌</div></blockquote><blockquote><p>Adoro demais o trabalho da Carol é do ninja são profissionais de primeira .</p><cite>Daiane B.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigado Daiane. É sempre um prazer te receber. 🤗😷👍</div></blockquote><blockquote><p>Incrível, lugar show de bola e o pessoal tem um baita talento!</p><cite>Matheus M.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> 😀😀😀😀🙌🙌🙌obrigada</div></blockquote></div>
+Parabéns!!!</p><cite>jooh C.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigada pela confiança. 😊💪😷🎨💉</div></blockquote><blockquote><p>Excelente local para tatuar, profissionalismo na arte de tatuar. Local limpo arejado e higiênico.</p><cite>Rodrigo D.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigada 🙏😷🙌</div></blockquote><blockquote><p>Adoro demais o trabalho da Carol é do ninja são profissionais de primeira .</p><cite>Daiane B.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigado Daiane. É sempre um prazer te receber. 🤗😷👍</div></blockquote><blockquote><p>Incrível, lugar show de bola e o pessoal tem um baita talento!</p><cite>Matheus M.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> 😀😀😀😀🙌🙌🙌obrigada</div></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJhUJRmqODGZUReRysLa32OVA" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">51 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>

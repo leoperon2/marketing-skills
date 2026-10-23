@@ -194,7 +194,7 @@
   :root { --font-display: "Cormorant Garamond", Georgia, serif; } h1, h2, h3, .brand, .big, .svc b, .pull, .score strong, .seal b, footer strong { font-weight: 600 !important; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
+  .btn { border-radius: 10px; } .card, .svc, blockquote, .qmore { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
   .hero > figure > img:first-child { border: 0; box-shadow: none; outline: 3px solid var(--accent); outline-offset: 12px; }
   @media (min-width: 821px) { .hero { grid-template-columns: 1fr 1.05fr; } .hero > figure { order: -1; } }
   .bar-in { display: grid; grid-template-columns: 1fr auto 1fr; } nav { order: 1; justify-self: start; } .brand { order: 2; justify-self: center; } .bar .btn { order: 3; justify-self: end; } @media (max-width: 820px) { .bar-in { display: flex; } .brand { order: 0; } .bar .btn { order: 0; } }
@@ -205,6 +205,11 @@
   .card { border: 0; box-shadow: 0 14px 34px -16px rgba(0,0,0,.35); }
   main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
   .js .rv { transform: translateY(72px); filter: blur(8px); transition: opacity .8s ease, transform 1s cubic-bezier(.2, .7, .2, 1), filter .8s; } .js .rv.in { filter: none; }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -298,7 +303,7 @@ Ana Carolline, muito obrigada pelo seu carinho! 💛
 Fico feliz demais em saber que você se encontrou no seu corte de cabelo aqui no Tayz Bessa Studio. Nosso objetivo é justamente esse: valorizar sua </div></blockquote><blockquote><p>Tayz Bessa e simplesmente uma profissional incrível que transformou meu cabelo e minha autoestima e eu confio plenamente no trabalho dela e os produtos são ótimos para meu cabelo.
 E o melhor é no jardim Mariliza perto da minha casa.</p><cite>Missilene V.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Olá, Missilene! Que alegria ler o seu comentário! No Tayz Bessa Studio, nós acreditamos que o visagismo vai muito além da estética: trata-se de traduzir a sua identidade através do corte e da cor perf</div></blockquote><blockquote><p>Sempre maravilhoso  equipe excelente profissionais e com carinho e dedicação obrigada.
 
-Obrigadaaaa pelo cuidado,  sempre muitttoooo bom estar com vocês, sempre saímos transformadas,  mais leve bonita e confiante auto estima de pé</p><cite>Simone P.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Simone, agradecemos imensamente pelo seu feedback positivo! Ficamos felizes em atendê-la com carinho e dedicação.</div></blockquote><blockquote><p>Minha experiência foi incrível,  o atendimento é personalizado , as profissionais são atenciosas e vc se sente importante e linda. Obrigada pelo carinho e eu adorei meu cabelo.....Obrigada.</p><cite>sthefanye B.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Stefany, que alegria ler seu comentário! No Tayz Bessa Studio, nossa prioridade é justamente o atendimento personalizado, para que cada cliente se sinta única, importante e, claro, ainda mais linda. F</div></blockquote></div>
+Obrigadaaaa pelo cuidado,  sempre muitttoooo bom estar com vocês, sempre saímos transformadas,  mais leve bonita e confiante auto estima de pé</p><cite>Simone P.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Simone, agradecemos imensamente pelo seu feedback positivo! Ficamos felizes em atendê-la com carinho e dedicação.</div></blockquote><blockquote><p>Minha experiência foi incrível,  o atendimento é personalizado , as profissionais são atenciosas e vc se sente importante e linda. Obrigada pelo carinho e eu adorei meu cabelo.....Obrigada.</p><cite>sthefanye B.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Stefany, que alegria ler seu comentário! No Tayz Bessa Studio, nossa prioridade é justamente o atendimento personalizado, para que cada cliente se sinta única, importante e, claro, ainda mais linda. F</div></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJU-cWjRLwXpMRyVUv-l_FRVY" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">226 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>

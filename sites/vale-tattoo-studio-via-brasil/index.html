@@ -196,7 +196,7 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #ee6fba; --accent-ink: #1c0d16; --salmon: #a86190; } } :root[data-theme="dark"] { --accent: #ee6fba; --accent-ink: #1c0d16; --salmon: #a86190; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 999px; } .card, .svc, blockquote { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }
+  .btn { border-radius: 999px; } .card, .svc, blockquote, .qmore { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }
   .hero > figure > img:first-child { border: 10px solid #fff; border-bottom-width: 38px; box-shadow: 0 14px 30px -10px rgba(0,0,0,.4); transform: rotate(-2.2deg); }
   
   header.bar { background: var(--accent); color: var(--accent-ink); } body::before { background: var(--accent); } .bar .btn { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); } .brand img { border-color: var(--accent-ink); }
@@ -207,6 +207,11 @@
   .about:not(.one) > .pull { order: -1; }
   main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
   html { overflow-x: clip; } body { overflow-x: clip; } .js .rv { transform: translateX(calc(var(--dir, -1) * 48px)); } .js .rv:nth-child(even) { --dir: 1; }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -285,7 +290,7 @@
       <div class="quotes"><blockquote><p>Tatuador super profissional e competente, amei o resultado e indico de olhos fechados! Preço excelente!</p><cite>Nathália L.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong>  Ficamos felizes em saber que você gostou da sua tatuagem. Agradecemos sua recomendação e esperamos vê-la novamente em breve! </div></blockquote><blockquote><p>Coloquei meu piercing no nariz no Vale Tattoo Studio e amei a experiência! Fui muito bem atendida, me senti segura durante todo o procedimento e adorei o resultado.
 
 O espaço é organizado, o atendimento é cuidadoso e o trabalho é excelente. Recomendo muito!</p><cite>Lorrayne M.</cite></blockquote><blockquote><p>Depois que conheci o Fernando, só faço tatuagem com ele. Excelente profissional, sempre se atualizando e apresentando propostas que combinam com o estilo que gosto.
-Agora com o estúdio novo, a experiência está muito mais sensacional!!!</p><cite>Manuela L.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong>  Ficamos felizes em saber que você gostou da sua tatuagem. Agradecemos sua recomendação e esperamos vê-la novamente em breve! </div></blockquote><blockquote><p>Studio excelente! Desde o atendimento até a execução, tudo foi feito com muito cuidado, profissionalismo e atenção aos detalhes. O resultado ficou incrível e superou minhas expectativas. Recomendo de olhos fechados!</p><cite>kenia K.</cite></blockquote><blockquote><p>Amo esse Studio, além dos tatuadores serem muito talentosos e gente boa.  Tem ótimo atendimento além de ser um Studio completo, com todos os tipos de tatuagens e aplicação de piercings também.</p><cite>Tainá S.</cite></blockquote></div>
+Agora com o estúdio novo, a experiência está muito mais sensacional!!!</p><cite>Manuela L.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong>  Ficamos felizes em saber que você gostou da sua tatuagem. Agradecemos sua recomendação e esperamos vê-la novamente em breve! </div></blockquote><blockquote><p>Studio excelente! Desde o atendimento até a execução, tudo foi feito com muito cuidado, profissionalismo e atenção aos detalhes. O resultado ficou incrível e superou minhas expectativas. Recomendo de olhos fechados!</p><cite>kenia K.</cite></blockquote><blockquote><p>Amo esse Studio, além dos tatuadores serem muito talentosos e gente boa.  Tem ótimo atendimento além de ser um Studio completo, com todos os tipos de tatuagens e aplicação de piercings também.</p><cite>Tainá S.</cite></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJef-5EomPpgARxF7a1BF-ai8" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">43 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>

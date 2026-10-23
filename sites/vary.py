@@ -132,8 +132,8 @@ HEADING = [
 
 SHAPE = [
  "",
- ".btn { border-radius: 999px; } .card, .svc, blockquote { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }",
- ".btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }",
+ ".btn { border-radius: 999px; } .card, .svc, blockquote, .qmore { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }",
+ ".btn { border-radius: 10px; } .card, .svc, blockquote, .qmore { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }",
  ".btn { border-radius: 0; text-transform: uppercase; letter-spacing: .06em; font-size: 15px; } .card, .svc, blockquote { border-width: 2px; }",
 ]
 
@@ -152,7 +152,7 @@ PROOF.append("""#clientes .eyebrow { color: var(--accent); }
  .fill { background: var(--accent); } .track { background: color-mix(in srgb, var(--ink) 14%, transparent); }
  .quotes { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 4px 24px; margin-inline: -4px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; -webkit-overflow-scrolling: touch;
    -webkit-mask-image: linear-gradient(to right, #000 90%, transparent); mask-image: linear-gradient(to right, #000 90%, transparent); }
- blockquote { flex: 0 0 clamp(280px, 80vw, 390px); scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--line); border-radius: 18px; padding: 24px 22px 20px; background: var(--bg); position: relative; overflow: hidden; }
+ .qmore { border-radius: 18px; } blockquote { flex: 0 0 clamp(280px, 80vw, 390px); scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--line); border-radius: 18px; padding: 24px 22px 20px; background: var(--bg); position: relative; overflow: hidden; }
  blockquote::before { content: "\\201C"; position: absolute; right: 16px; top: -4px; font: 400 96px/1 var(--font-display); color: var(--accent); opacity: .28; }
  blockquote p { margin: 0; font-size: 18px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
  blockquote cite { margin-top: auto; display: flex; align-items: center; gap: 12px; font-style: normal; font-weight: 600; font-size: 15px; color: var(--ink); }
@@ -253,6 +253,23 @@ AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-it
 HERO_TEXTO = {"don-alberttoni": ("Barbearia old school desde 2015 · Bom Retiro, Curitiba",
     "Corte, barba e sobrancelha no capricho. Café na mão, vinil rodando e uma casa pra quem curte estilo, moto e tinta na pele.")}
 FINAL_TEXTO = {"don-alberttoni": ("Sua cadeira tá te esperando", "Marque pelo agendamento online ou chame no WhatsApp. O resto é com a gente.")}
+# último card da lista de avaliações: leva a todas as avaliações no Google (todos os sites)
+QMORE_CSS = """.quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }"""
+
+def add_qmore(html):
+    mp = re.search(r'query_place_id=([^"&]+)', html)
+    if not mp or '<div class="quotes">' not in html: return html
+    url = "https://search.google.com/local/reviews?placeid=" + mp.group(1)
+    mn = re.search(r"(\d[\d.]*) avaliações no Google", html)
+    sub = f"{mn.group(1)} avaliações de clientes" if mn else "Avaliações de clientes"
+    card = (f'<a class="qmore" href="{url}" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">\u2605\u2605\u2605\u2605\u2605</span>'
+            f'<span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">{sub}</span><span class="qm-a">Abrir no Google \u2197</span></a>')
+    return re.sub(r'(<div class="quotes">.*?)(?:<a class="qmore".*?</a>)?(</div>\s*<p class="src">)', lambda m: m.group(1) + card + m.group(2), html, count=1, flags=re.S)
+
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
 INTRO = {"charles-tattoo-piercing", "don-alberttoni"}    # animação de entrada + pequeno scroll suave ao carregar
 
@@ -350,6 +367,7 @@ def block(kind, c, has_fig, slug=""):
         if lst is None: css.append(HERO[hero].replace("brightness(.92)", "brightness(.55) saturate(1.08)") if slug in CAPA_CLARA else HERO[hero]); continue
         if lst[c[key]]: css.append(lst[c[key]])
     extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "") + (SCRIPT_AV if c["proof"] == 4 else "")
+    css.append(QMORE_CSS)
     if slug in LEGIVEL:
         _c, _in = _media_blocks(LEGIVEL_CSS)[0]
         css.append("@media " + _c + " {" + _scoped(_in, "html:not(.dm) ") + "}")
@@ -394,6 +412,7 @@ def run(only=None):
         if slug in FINAL_TEXTO:
             ft, fs = FINAL_TEXTO[slug]
             html = re.sub(r'(<section class="final">\s*<h2>)[^<]*(</h2>\s*<p class="sub"[^>]*>)[^<]*(</p>)', lambda m: m.group(1) + ft + m.group(2) + fs + m.group(3), html, count=1)
+        html = add_qmore(html)
         kind, fig, pull = kind_and_info(html)
         if slug in PLANO_FIXO: kind = PLANO_FIXO[slug][0]
         if kind: pages[slug] = (f, html, kind, fig)

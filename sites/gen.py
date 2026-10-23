@@ -399,7 +399,8 @@ def build(place, idx):
         for r in quotes:
             reply = r.get("responseFromOwnerText")
             rep = f'<div class="reply"><strong>Resposta do estabelecimento:</strong> {esc(reply[:200])}</div>' if reply and good_text(reply) else ""
-            qs += f'<blockquote><p>{esc(r["text"].strip())}</p><cite>{esc(short_name(r.get("name")))}</cite>{rep}</blockquote>'
+            go = f'<a class="rv-go" href="{esc(r["reviewUrl"])}" target="_blank" rel="noopener" aria-label="Ver esta avaliação no Google">Ver no Google ↗</a>' if r.get("reviewUrl") else ""
+            qs += f'<blockquote><p>{esc(r["text"].strip())}</p><cite>{esc(short_name(r.get("name")))}</cite>{go}{rep}</blockquote>'
         sec_proof = f'''<div class="proof" id="clientes">
   <div class="wrap">
     <section>

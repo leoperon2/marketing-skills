@@ -196,7 +196,7 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #8a9bff; --accent-ink: #0e1022; --salmon: #b8922e; } } :root[data-theme="dark"] { --accent: #8a9bff; --accent-ink: #0e1022; --salmon: #b8922e; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
+  .btn { border-radius: 10px; } .card, .svc, blockquote, .qmore { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
   .hero > figure > img:first-child { border: 10px solid #fff; border-bottom-width: 38px; box-shadow: 0 14px 30px -10px rgba(0,0,0,.4); transform: rotate(-2.2deg); }
   .hero { position: relative; display: block; min-height: clamp(500px, 62vw, 640px); padding: 0; margin-top: 28px; }
  .hero > figure { position: absolute; inset: 0; margin: 0; border-radius: var(--hrad); }
@@ -212,6 +212,11 @@
   .info:not(.single) { grid-template-columns: 1fr; max-width: 680px; margin-inline: auto; }
   .about:not(.one) > .pull { order: -1; }
   main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -289,7 +294,7 @@
         <div class="bars" role="img" aria-label="Distribuição das 193 avaliações por estrelas"><div class="bar-row"><span>5 ★</span><div class="track"><div class="fill" style="width:88.1%"></div></div><span>170</span></div><div class="bar-row"><span>4 ★</span><div class="track"><div class="fill" style="width:5.2%"></div></div><span>10</span></div><div class="bar-row"><span>3 ★</span><div class="track"><div class="fill" style="width:3.6%"></div></div><span>7</span></div><div class="bar-row"><span>2 ★</span><div class="track"><div class="fill" style="width:0.0%"></div></div><span>0</span></div><div class="bar-row"><span>1 ★</span><div class="track"><div class="fill" style="width:3.1%"></div></div><span>6</span></div></div>
       </div>
       <div class="quotes"><blockquote><p>Nossa está oficina está parabéns podem ir sem medo e levar sua moto olho fechado, dono atencioso e honesto e os mecânicos como o Marcão que manja muitoooo excelentes parabéns pela equipe todos serviço maravilhoso vc sai com sua moto perfeita 👏🏽👏🏽👏🏽</p><cite>alexandre M.</cite></blockquote><blockquote><p>Tinha uma pcx, e sempre me ajudaram, agora tenho uma nmax, e continuam me ajudando em tudo, são honestos e transparentes, difícil achar profissionais assim hoje em dia. RECOMENDO! 😍</p><cite>Jaqueline V.</cite></blockquote><blockquote><p>Ótimo atendimento e resolveu o problema  da Suzukinha com agilidade e profissionalismo.
-Parabéns para o pessoal da New motos.</p><cite>Valter I.</cite></blockquote><blockquote><p>Lá tem até engenheiro de marcenaria vai vendo top demais diminho e todos abraços brigado chama!</p><cite>Maximus46 V.</cite></blockquote><blockquote><p>Ótimo atendimento, levei minha moto e descobriram rapidamente o problema!</p><cite>Pedro R.</cite></blockquote></div>
+Parabéns para o pessoal da New motos.</p><cite>Valter I.</cite></blockquote><blockquote><p>Lá tem até engenheiro de marcenaria vai vendo top demais diminho e todos abraços brigado chama!</p><cite>Maximus46 V.</cite></blockquote><blockquote><p>Ótimo atendimento, levei minha moto e descobriram rapidamente o problema!</p><cite>Pedro R.</cite></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJM9S6UwdPzpQRGhzt5wl9H1U" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">193 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>

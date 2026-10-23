@@ -196,7 +196,7 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #f2873a; --accent-ink: #1a0f06; --salmon: #b79a3a; } } :root[data-theme="dark"] { --accent: #f2873a; --accent-ink: #1a0f06; --salmon: #b79a3a; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 999px; } .card, .svc, blockquote { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }
+  .btn { border-radius: 999px; } .card, .svc, blockquote, .qmore { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }
   .hero > figure > img:first-child { border: 0; border-radius: 22px; box-shadow: 0 22px 44px -18px rgba(0,0,0,.45); }
   @media (min-width: 821px) { .hero { grid-template-columns: 1.2fr .8fr; } }
  .hero > figure > img:first-child { aspect-ratio: 4 / 5; max-height: 560px; border:0; box-shadow:none; outline:0; transform:none; border-radius: 999px 999px 18px 18px; }
@@ -207,6 +207,11 @@
   .quotes { grid-template-columns: 1fr; max-width: 760px; } blockquote { border: 0; border-left: 5px solid var(--salmon); padding: 6px 0 6px 22px; } blockquote p { font-size: 19px; }
   .services { grid-template-columns: 1fr; } .svc { min-height: 0; flex-direction: row; align-items: center; border-top: 1px solid var(--line); border-left: 5px solid var(--accent); }
   html { overflow-x: clip; } body { overflow-x: clip; } .js .rv { transform: translateX(calc(var(--dir, -1) * 48px)); } .js .rv:nth-child(even) { --dir: 1; }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -298,7 +303,7 @@ Há três anos atrás, uma pequena barbearia abriu suas portas em um bairro movi
         <div class="bars" role="img" aria-label="Distribuição das 157 avaliações por estrelas"><div class="bar-row"><span>5 ★</span><div class="track"><div class="fill" style="width:93.0%"></div></div><span>146</span></div><div class="bar-row"><span>4 ★</span><div class="track"><div class="fill" style="width:3.8%"></div></div><span>6</span></div><div class="bar-row"><span>3 ★</span><div class="track"><div class="fill" style="width:0.6%"></div></div><span>1</span></div><div class="bar-row"><span>2 ★</span><div class="track"><div class="fill" style="width:0.6%"></div></div><span>1</span></div><div class="bar-row"><span>1 ★</span><div class="track"><div class="fill" style="width:1.9%"></div></div><span>3</span></div></div>
       </div>
       <div class="quotes"><blockquote><p>Me atenderam na maior simpatia durante o horário de almoço. Trabalho de qualidade e preço justo.</p><cite>Robson S.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Nossa equipe agradece sua avaliação amigo, obrigado por escolher a gente ! sempre que precisar dá aquela escapadinha para cortar o cabelo, pode contar conosco ! </div></blockquote><blockquote><p>LUGAR EXCELENTE, MELHOR BARBEARIA DE CWB, ÓTIMOS BARBEIROS E ATENDIMENTO EXTRAORDINÁRIO!</p><cite>Gustavo G.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> obrigado meu patrão, nossa equipe fica muito feliz com esse feedback e só temos a agradecer por termos clientes e amigos tão bons quanto você ! um forte abraço...</div></blockquote><blockquote><p>Dupla super profissional. O serviço é excelente, equipe simpática e preço super justo.</p><cite>Eduardo N.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Obrigado patrão e parceiro da barbearia Camões por confiar em nossos procedimentos 💈💈✂️✌🤙</div></blockquote><blockquote><p>Ótimos profissionais, atendimento excelente, voltaria com certeza!</p><cite>HENRIQUE G.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Muito obrigado 🙏 nós equipe barbearia Camões agradecemos pela preferência 💈💈✂️✂️</div></blockquote><blockquote><p>Sempre corto cabelo e barba aqui e recomendo, atendimento de 1*</p><cite>Guilherme K.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> Obrigado por confiar em nossos procedimentos patrão. 💈 💈✂️✂️✌️
-</div></blockquote></div>
+</div></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJI7Y7QAXl3JQRHvIa2v06A_s" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">157 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>

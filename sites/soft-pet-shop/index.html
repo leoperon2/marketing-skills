@@ -195,7 +195,7 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #3cc4b8; --accent-ink: #0d1514; --salmon: #c58a3f; } } :root[data-theme="dark"] { --accent: #3cc4b8; --accent-ink: #0d1514; --salmon: #c58a3f; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
+  .btn { border-radius: 10px; } .card, .svc, blockquote, .qmore { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
   
   header.bar { background: var(--accent); color: var(--accent-ink); } body::before { background: var(--accent); } .bar .btn { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); } .brand img { border-color: var(--accent-ink); }
   .mosaic { gap: 12px; grid-auto-rows: 220px; } .tile { border-radius: 18px; } @media (max-width: 820px) { .mosaic { gap: 8px; grid-auto-rows: 176px; } }
@@ -205,6 +205,11 @@
   .card { border: 0; box-shadow: 0 14px 34px -16px rgba(0,0,0,.35); }
   .services { grid-template-columns: 1fr; } .svc { min-height: 0; flex-direction: row; align-items: center; border-top: 1px solid var(--line); border-left: 5px solid var(--accent); }
   html { overflow-x: clip; } body { overflow-x: clip; } .js .rv { transform: translateX(calc(var(--dir, -1) * 48px)); } .js .rv:nth-child(even) { --dir: 1; }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -288,7 +293,7 @@
 - Íntegros;
 - São de Confiança;
 - Tratam nossos pet’s como se fossem deles.
-- Banho e Tosa Impecável.</p><cite>Danubio R.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> ♥️👊🏻</div></blockquote><blockquote><p>Melhor pet shop da região, Parabéns pelo atendimento e serviço de banho e tosa</p><cite>Mateus S.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> ♥️👊🏻</div></blockquote><blockquote><p>Equipe muito bem atenciosos,cuidadosos, super profissionais super indico!!❤️😍</p><cite>dione M.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> ❤️</div></blockquote><blockquote><p>Atendimento diferenciado, profissionais qualificados, e ótimos preços.</p><cite>Wesley M.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> 👊🏻♥️</div></blockquote><blockquote><p>Excelente atendimento e prestam atendimento de qualidade 🤝😍</p><cite>Luiz P.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> ♥️👊🏻</div></blockquote></div>
+- Banho e Tosa Impecável.</p><cite>Danubio R.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> ♥️👊🏻</div></blockquote><blockquote><p>Melhor pet shop da região, Parabéns pelo atendimento e serviço de banho e tosa</p><cite>Mateus S.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> ♥️👊🏻</div></blockquote><blockquote><p>Equipe muito bem atenciosos,cuidadosos, super profissionais super indico!!❤️😍</p><cite>dione M.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> ❤️</div></blockquote><blockquote><p>Atendimento diferenciado, profissionais qualificados, e ótimos preços.</p><cite>Wesley M.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> 👊🏻♥️</div></blockquote><blockquote><p>Excelente atendimento e prestam atendimento de qualidade 🤝😍</p><cite>Luiz P.</cite><div class="reply"><strong>Resposta do estabelecimento:</strong> ♥️👊🏻</div></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJnxm3Sk_3XpMRqkr26SOstHU" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">70 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>

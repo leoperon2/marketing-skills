@@ -196,7 +196,7 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #3cc4b8; --accent-ink: #0d1514; --salmon: #c58a3f; } } :root[data-theme="dark"] { --accent: #3cc4b8; --accent-ink: #0d1514; --salmon: #c58a3f; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 999px; } .card, .svc, blockquote { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }
+  .btn { border-radius: 999px; } .card, .svc, blockquote, .qmore { border-radius: 24px; } .status, .tags li { border-radius: 999px; } :root { --hrad: 30px; }
   .hero > figure > img:first-child { border: 10px solid #fff; border-bottom-width: 38px; box-shadow: 0 14px 30px -10px rgba(0,0,0,.4); transform: rotate(-2.2deg); }
   .hero { grid-template-columns: 1fr; gap: 56px; padding-top: 28px; } .hero > figure { order: -1; margin-bottom: 8px; }
  .hero > figure > img:first-child { aspect-ratio: 21 / 9; } @media (max-width: 820px) { .hero > figure > img:first-child { aspect-ratio: 4 / 3; } }
@@ -209,6 +209,11 @@
   .services { grid-template-columns: 1fr; } .svc { min-height: 0; flex-direction: row; align-items: center; border-top: 1px solid var(--line); border-left: 5px solid var(--accent); }
   main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
   html { overflow-x: clip; } body { overflow-x: clip; } .js .rv { transform: translateX(calc(var(--dir, -1) * 48px)); } .js .rv:nth-child(even) { --dir: 1; }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -292,7 +297,7 @@
 A praticidade para lidar com corte infantil a paciência, ambiente agradável super recomendo
 Voltarei com certeza 🙂😉</p><cite>Elaine A.</cite></blockquote><blockquote><p>Atendimento excelente,os meninos são legais e atenciosos,o serviço deles é muito bom ,super indico 😊</p><cite>Tatiana N.</cite></blockquote><blockquote><p>Ambiente e atendimento excelentes! Serviço de qualidade e preço justo. Recomendo demais!</p><cite>Leonardo S.</cite></blockquote><blockquote><p>Melhor barbearia da zona norte de Curitiba, atendimento diferenciado e personalizado… Profissionais sempre atualizados e com propostas inovadoras de beleza para o mundo masculino! Sem contar no atendimento impecável da recepção e a gama vasta de produtos para cabelo e barba disponíveis aos clientes!</p><cite>Leonardo C.</cite></blockquote><blockquote><p>Barbearia muito boa, ambiente da hora e atendimento excelente. O Enzo mandou muito bem no corte, foi gente boa, atencioso e acertou exatamente o que eu queria. Dá pra ver que ele faz tudo com muito capricho.
 
-Com certeza vou voltar e recomendo demais a Barbearia Vidal, principalmente o Enzo!</p><cite>Alex E.</cite></blockquote></div>
+Com certeza vou voltar e recomendo demais a Barbearia Vidal, principalmente o Enzo!</p><cite>Alex E.</cite></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJXT-_ckDn3JQRtLobOHnT09I" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">642 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>

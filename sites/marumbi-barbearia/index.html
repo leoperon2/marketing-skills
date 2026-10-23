@@ -196,13 +196,18 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #3cc4b8; --accent-ink: #0d1514; --salmon: #c58a3f; } } :root[data-theme="dark"] { --accent: #3cc4b8; --accent-ink: #0d1514; --salmon: #c58a3f; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
+  .btn { border-radius: 10px; } .card, .svc, blockquote, .qmore { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
   .hero > figure > img:first-child { border: 0; box-shadow: -14px 14px 0 var(--accent); }
   @media (min-width: 821px) { .hero { grid-template-columns: 1fr 1.05fr; } .hero > figure { order: -1; } }
   header.bar { background: var(--accent); color: var(--accent-ink); } body::before { background: var(--accent); } .bar .btn { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); } .brand img { border-color: var(--accent-ink); }
   .proof { background: var(--accent); color: var(--accent-ink); } .proof .eyebrow, blockquote cite { color: var(--accent-ink); opacity: .85; } .fill { background: var(--accent-ink); } .reply { color: var(--accent-ink); }
   .about:not(.one) > .pull { order: -1; }
   .js .rv { transform: translateY(72px); filter: blur(8px); transition: opacity .8s ease, transform 1s cubic-bezier(.2, .7, .2, 1), filter .8s; } .js .rv.in { filter: none; }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -287,7 +292,7 @@ Prezando pela higiene e cuidados necessários.</p>
       <div class="quotes"><blockquote><p>Excelentes atendimento, preço justo, ótimos profissionais de vdd. É a primeira vez que utilizo os serviços e já parecia que frequentava a casa a tempos.</p><cite>Marcus V.</cite></blockquote><blockquote><p>Ótimo serviço e com preço muito justo!
 E a cerveja é GELADA!</p><cite>Wellington B.</cite></blockquote><blockquote><p>Ótimo atendimento. Ambiente agradável. Recomendo!</p><cite>NEO P.</cite></blockquote><blockquote><p>⭐⭐⭐⭐⭐
 
-Excelente atendimento na Barbearia Marumbi! O corte ficou muito bom, exatamente como eu queria, e o atendimento foi atencioso e profissional. Ambiente agradável, serviço caprichado e feito com bastante cuidado pelo André. Com certeza voltarei e recomendo a barbearia!</p><cite>marcelo D.</cite></blockquote><blockquote><p>Atendimento excepcional e corte excelente. Sempre erravam o corte do meu filho em outras barbearias, mas nessa acertaram de primeira! Além de eu me sentir, como mãe, bem recepcionada, rapazes educados e profissionais, não ficam falando besteiras no local.</p><cite>Ka M.</cite></blockquote></div>
+Excelente atendimento na Barbearia Marumbi! O corte ficou muito bom, exatamente como eu queria, e o atendimento foi atencioso e profissional. Ambiente agradável, serviço caprichado e feito com bastante cuidado pelo André. Com certeza voltarei e recomendo a barbearia!</p><cite>marcelo D.</cite></blockquote><blockquote><p>Atendimento excepcional e corte excelente. Sempre erravam o corte do meu filho em outras barbearias, mas nessa acertaram de primeira! Além de eu me sentir, como mãe, bem recepcionada, rapazes educados e profissionais, não ficam falando besteiras no local.</p><cite>Ka M.</cite></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJseeUETvk3JQR7MZOh86jBsM" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">223 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>

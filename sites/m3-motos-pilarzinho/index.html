@@ -194,13 +194,18 @@
   :root { --font-display: "Russo One", Impact, sans-serif; } h1, h2, h3, .brand, .big, .svc b, .pull, .score strong, .seal b, footer strong { font-weight: 400 !important; }
   @media (max-width: 460px) { .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; } .bar .btn { padding: 0 12px; font-size: 13px; flex-shrink: 0; } }
   :root { --hrad: 0px; }
-  .btn { border-radius: 10px; } .card, .svc, blockquote { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
+  .btn { border-radius: 10px; } .card, .svc, blockquote, .qmore { border-radius: 12px; } .tags li { border-radius: 8px; } .status { border-radius: 6px; } :root { --hrad: 14px; }
   @media (min-width: 821px) { .hero { grid-template-columns: 1fr 1.05fr; } .hero > figure { order: -1; } }
   header.bar { background: var(--accent); color: var(--accent-ink); } body::before { background: var(--accent); } .bar .btn { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); } .brand img { border-color: var(--accent-ink); }
   .mosaic { gap: 8px; } .tile img { filter: grayscale(.9) contrast(1.05); } .tile:hover img, .tile:focus-visible img { filter: none; } @media (max-width: 820px) { .tile img { filter: grayscale(.5); } }
   h2::before { content: ''; display: block; width: 56px; height: 6px; background: var(--accent); margin-bottom: 14px; } .final h2::before { margin-inline: auto; }
   .stripe { height: 6px; }
   .js .rv { transform: translateY(72px); filter: blur(8px); transition: opacity .8s ease, transform 1s cubic-bezier(.2, .7, .2, 1), filter .8s; } .js .rv.in { filter: none; }
+  .quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
+ .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
+ .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
+ .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
+ .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style><!--vary:end-->
 
 
@@ -294,7 +299,7 @@ A equipe oferece um atendimento excelente, com profissionais comprometidos e ded
 
 Além disso, cumprem rigorosamente o prazo combinado para a entrega dos serviços.
 
-Vale a pena conhecer!</p><cite>Mauricio A.</cite></blockquote><blockquote><p>A melhor oficina de Curitiba, já sofri muito procurando um lugar ideal pra consertar a minha moto, agora eu largo a moto lá e confio de olhos fechados no que falam e fazem. Parceria pra sempre !!!</p><cite>Mauro S.</cite></blockquote></div>
+Vale a pena conhecer!</p><cite>Mauricio A.</cite></blockquote><blockquote><p>A melhor oficina de Curitiba, já sofri muito procurando um lugar ideal pra consertar a minha moto, agora eu largo a moto lá e confio de olhos fechados no que falam e fazem. Parceria pra sempre !!!</p><cite>Mauro S.</cite></blockquote><a class="qmore" href="https://search.google.com/local/reviews?placeid=ChIJnchrwNzh3JQRiFd7G7y1_Sg" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">★★★★★</span><span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">239 avaliações de clientes</span><span class="qm-a">Abrir no Google ↗</span></a></div>
       <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>
