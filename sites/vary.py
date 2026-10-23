@@ -205,7 +205,8 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
 # título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
-GALERIA_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": ("Visual novo, autoestima nas alturas", "Loiros, morenas, cortes e maquiagem, direto do salão.", "Toque numa foto para ampliar"),
+GALERIA_TEXTO = {"m3-motos-pilarzinho": ("Na bancada da M3", "Motor aberto, peça nova e moto no capricho, direto da oficina.", "Toque numa foto para ampliar"),
+    "new-visuallize-salao-de-beleza-menino-deus": ("Visual novo, autoestima nas alturas", "Loiros, morenas, cortes e maquiagem, direto do salão.", "Toque numa foto para ampliar"),
     "barbearia-los-chicanos": ("Aqui é onde o estilo acontece", "Cortes, barba, bigode e o clima da casa.", "Toque numa foto para ampliar"),
     "excellence-studio": ("Beleza que renova a autoestima", "Cabelos, unhas e muito cuidado, direto do salão.", "Toque numa foto para ampliar"),
     "aure-art-studio-tattoo-piercing-em-goiania": ("Cada traço conta uma história", "Tatuagens e piercings feitos aqui, do traço fino ao colorido.", "Toque numa foto para ampliar"),
@@ -215,7 +216,15 @@ GALERIA_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": ("Visual novo, au
     "don-alberttoni": ("Cada canto tem uma história", "Cadeiras antigas, sinuca, violão, xadrez e um poodle de visita.", "Toque numa foto para ampliar"),
     "charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
 # seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
-SOBRE_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": dict(
+SOBRE_TEXTO = {"m3-motos-pilarzinho": dict(
+    h2="Sua moto na mão de quem entende de moto.",
+    paras=["Oficina, peças e acessórios em Curitiba, com duas unidades: Uberaba e Pilarzinho. Atendimento de quem conversa, explica o que a moto precisa e resolve.",
+           "Chega, conta o problema e deixa a moto com a gente."],
+    pull=("A melhor oficina de Curitiba.", "Avaliação no Google"),
+    cards=[("Oficina", "Manutenção e reparo para a sua moto."), ("Peças", "Peças para manter a moto rodando."),
+           ("Acessórios", "Tudo para equipar a sua moto."), ("Duas unidades", "Pilarzinho e Uberaba, em Curitiba.")],
+    nota="", prova="Quem já deixou a moto aqui conta"),
+  "new-visuallize-salao-de-beleza-menino-deus": dict(
     h2="Estilo e talento, do jeito que você imagina.",
     paras=["Salão de beleza completo no Menino Deus, em Porto Alegre. Cabelo, coloração, mechas, unhas, sobrancelha e maquiagem, com uma equipe talentosa que se dedica a entender o que você quer.",
            "Chega, relaxa e deixa a gente transformar o seu visual."],
@@ -312,15 +321,16 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84
  #casa .services { gap: 14px; margin: 26px 0 0; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
-WA_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": "Oi, tudo bem? Queria agendar um horário no NVZ.", "barbearia-los-chicanos": "Fala, pessoal da Los Chicanos, tudo bom? Queria agendar um horário.", "excellence-studio": "Oi, tudo bem? Queria agendar um horário no Excellence.", "aure-art-studio-tattoo-piercing-em-goiania": "Oi, tudo bem? Queria pedir um orçamento de tatuagem.", "nina-pet-shop": "Oi, tudo bem? Queria agendar um banho e tosa para o meu pet.", "tayz-bessa-studio": "Oi, Tayz, tudo bem? Queria agendar um horário.", "charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
-AVAL_LINK = {"new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "excellence-studio", "aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
+WA_TEXTO = {"m3-motos-pilarzinho": "Fala, M3 Motos, tudo bom? Queria agendar um serviço pra minha moto.", "new-visuallize-salao-de-beleza-menino-deus": "Oi, tudo bem? Queria agendar um horário no NVZ.", "barbearia-los-chicanos": "Fala, pessoal da Los Chicanos, tudo bom? Queria agendar um horário.", "excellence-studio": "Oi, tudo bem? Queria agendar um horário no Excellence.", "aure-art-studio-tattoo-piercing-em-goiania": "Oi, tudo bem? Queria pedir um orçamento de tatuagem.", "nina-pet-shop": "Oi, tudo bem? Queria agendar um banho e tosa para o meu pet.", "tayz-bessa-studio": "Oi, Tayz, tudo bem? Queria agendar um horário.", "charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
+AVAL_LINK = {"m3-motos-pilarzinho", "new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "excellence-studio", "aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
 AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
  .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
  .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
  .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
 # textos da capa e do fechamento escritos à mão por site
-HERO_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": ("Salão de beleza · Menino Deus, Porto Alegre", "Transformando o seu visual com estilo e talento. Cabelo, unhas, maquiagem e muito cuidado, com uma equipe que escuta o que você quer.", "NVZ"),
+HERO_TEXTO = {"m3-motos-pilarzinho": ("Oficina e peças de moto · Curitiba", "Cuide da sua moto com quem entende. Oficina, peças e acessórios, em duas unidades: Pilarzinho e Uberaba.", "M3 MOTOS"),
+    "new-visuallize-salao-de-beleza-menino-deus": ("Salão de beleza · Menino Deus, Porto Alegre", "Transformando o seu visual com estilo e talento. Cabelo, unhas, maquiagem e muito cuidado, com uma equipe que escuta o que você quer.", "NVZ"),
     "barbearia-los-chicanos": ("Barbearia · Boa Vista, Curitiba", "Corte, barba e bigode do jeito que você pede. Atendimento de quem entende, num ambiente de respeito e estilo.", "LOS CHICANOS"),
     "excellence-studio": ("Salão de beleza · Menino Deus, Porto Alegre", "Especialistas em elevar a sua autoestima. Cabelo, unhas, maquiagem, depilação e estética, com profissionais experientes."),
     "aure-art-studio-tattoo-piercing-em-goiania": ("Tattoo e piercing · Shopping Passeio das Águas, Goiânia", "Tatuagem e piercing num estúdio dentro do shopping, com uma equipe de tatuadores e piercers. Chega, escolhe o seu estilo e sai com a sua marca.", "AURE ART STUDIO"),
@@ -329,7 +339,8 @@ HERO_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": ("Salão de beleza �
     "jennifer-benke-tattoo-studio": ("Tattoo fine line · Cristal, Porto Alegre", "Tatuagens delicadas que valorizam a sua pele. Linhas finas, elegantes e atemporais, desde 2016. 8x premiada."),
     "don-alberttoni": ("Barbearia old school desde 2015 · Bom Retiro, Curitiba",
     "Corte, barba e sobrancelha no capricho. Café na mão, vinil rodando e uma casa pra quem curte estilo, moto e tinta na pele.")}
-FINAL_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": ("Bora transformar o visual?", "Chame no WhatsApp e escolha o seu horário."),
+FINAL_TEXTO = {"m3-motos-pilarzinho": ("Sua moto está pedindo oficina?", "Chame no WhatsApp e fale com quem entende de moto."),
+    "new-visuallize-salao-de-beleza-menino-deus": ("Bora transformar o visual?", "Chame no WhatsApp e escolha o seu horário."),
     "barbearia-los-chicanos": ("Bora ficar na régua?", "Chame no WhatsApp e escolha o seu horário."),
     "excellence-studio": ("Seu horário de beleza espera por você", "Chame no WhatsApp e escolha o melhor horário."),
     "aure-art-studio-tattoo-piercing-em-goiania": ("Qual é a sua marca?", "Chame no WhatsApp, conte a ideia e peça seu orçamento."),
@@ -358,13 +369,20 @@ def add_qmore(html):
     return re.sub(r'(<div class="quotes">.*?)(?:<a class="qmore".*?</a>)?(</div>\s*</section>)', lambda m: m.group(1) + card + m.group(2), html, count=1, flags=re.S)
 
 # fonte, paleta e ajustes de CSS feitos à mão por site
-FONTE_CUSTOM = {"new-visuallize-salao-de-beleza-menino-deus": ("Outfit:wght@400;500;600;700", "Outfit", "Arial, sans-serif", 600), "barbearia-los-chicanos": ("Oswald:wght@500;600;700", "Oswald", "Impact, sans-serif", 600), "excellence-studio": ("Marcellus", "Marcellus", "Georgia, serif", 400), "aure-art-studio-tattoo-piercing-em-goiania": ("Josefin+Sans:wght@400;600;700", "Josefin Sans", "Arial, sans-serif", 600), "tayz-bessa-studio": ("Playfair+Display:wght@500;600;700", "Playfair Display", "Georgia, serif", 600), "jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
+FONTE_CUSTOM = {"m3-motos-pilarzinho": ("Teko:wght@500;600;700", "Teko", "Impact, sans-serif", 600), "new-visuallize-salao-de-beleza-menino-deus": ("Outfit:wght@400;500;600;700", "Outfit", "Arial, sans-serif", 600), "barbearia-los-chicanos": ("Oswald:wght@500;600;700", "Oswald", "Impact, sans-serif", 600), "excellence-studio": ("Marcellus", "Marcellus", "Georgia, serif", 400), "aure-art-studio-tattoo-piercing-em-goiania": ("Josefin+Sans:wght@400;600;700", "Josefin Sans", "Arial, sans-serif", 600), "tayz-bessa-studio": ("Playfair+Display:wght@500;600;700", "Playfair Display", "Georgia, serif", 600), "jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
 # paleta clara por site (vence o modo escuro do aparelho)
 TEMA_LIGHT = {"excellence-studio": "--bg: #fbf7ef; --surface: #fffdf8; --ink: #2a2113; --ink-soft: #5a4d37; --wood: #1b1812; --wood-ink: #f8f1e2; --accent: #8f6300; --accent-ink: #ffffff; --salmon: #d9b25a; --line: #e6dcc6;", "nina-pet-shop": "--bg: #fbf5ea; --surface: #fffdf8; --ink: #14215a; --ink-soft: #3a4780; --wood: #1f45b5; --wood-ink: #ffffff; --accent: #c72d73; --accent-ink: #ffffff; --salmon: #ffb3d1; --line: #e6d9c4;"}
 LOGO_INJECT = {"nina-pet-shop"}  # coloca o logo (img/logo.jpg) no cabeçalho e no rodapé
-TEMA_CUSTOM = {"new-visuallize-salao-de-beleza-menino-deus": "--bg: #131115; --surface: #1d1a20; --ink: #f6f1f3; --ink-soft: #bfb4ba; --wood: #0e0c10; --wood-ink: #f6f1f3; --accent: #e04a8a; --accent-ink: #1a0a12; --salmon: #f3a3c4; --line: #38303a; --glow: 224 74 138;", "barbearia-los-chicanos": "--bg: #0b0a09; --surface: #15120f; --ink: #f5eee2; --ink-soft: #bdb09c; --wood: #17110c; --wood-ink: #f5eee2; --accent: #d8a548; --accent-ink: #14100a; --salmon: #f0cd86; --line: #32281d; --glow: 216 165 72;", "aure-art-studio-tattoo-piercing-em-goiania": "--bg: #0c0a08; --surface: #16120e; --ink: #f6efe4; --ink-soft: #bcb09e; --wood: #1a130d; --wood-ink: #f6efe4; --accent: #e0a85e; --accent-ink: #14100a; --salmon: #f1d08f; --line: #33291e; --glow: 224 168 94;", "tayz-bessa-studio": "--bg: #0b0a08; --surface: #14120e; --ink: #f4ede0; --ink-soft: #b9ae98; --wood: #14241a; --wood-ink: #f4ede0; --accent: #cfa95e; --accent-ink: #15110a; --salmon: #e3c887; --line: #2e2a20; --glow: 207 169 94;", "jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
-GALERIA_FILTRO = {"new-visuallize-salao-de-beleza-menino-deus": "contrast(1.06) saturate(1.04) brightness(.98)", "barbearia-los-chicanos": "contrast(1.1) saturate(1.05) brightness(.97)", "aure-art-studio-tattoo-piercing-em-goiania": "contrast(1.1) saturate(1.04) brightness(.96)", "tayz-bessa-studio": "contrast(1.06) saturate(1.06) brightness(.98)", "jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
-CSS_EXTRA = {"new-visuallize-salao-de-beleza-menino-deus": """.hero img.logo-stamp, .hero .seal { display: none; }
+TEMA_CUSTOM = {"m3-motos-pilarzinho": "--bg: #0a0b09; --surface: #141612; --ink: #f1f3ec; --ink-soft: #b4baa6; --wood: #0d0f0b; --wood-ink: #f1f3ec; --accent: #a6d03c; --accent-ink: #10150a; --salmon: #cfe88a; --line: #2c3024; --glow: 166 208 60;", "new-visuallize-salao-de-beleza-menino-deus": "--bg: #131115; --surface: #1d1a20; --ink: #f6f1f3; --ink-soft: #bfb4ba; --wood: #0e0c10; --wood-ink: #f6f1f3; --accent: #e04a8a; --accent-ink: #1a0a12; --salmon: #f3a3c4; --line: #38303a; --glow: 224 74 138;", "barbearia-los-chicanos": "--bg: #0b0a09; --surface: #15120f; --ink: #f5eee2; --ink-soft: #bdb09c; --wood: #17110c; --wood-ink: #f5eee2; --accent: #d8a548; --accent-ink: #14100a; --salmon: #f0cd86; --line: #32281d; --glow: 216 165 72;", "aure-art-studio-tattoo-piercing-em-goiania": "--bg: #0c0a08; --surface: #16120e; --ink: #f6efe4; --ink-soft: #bcb09e; --wood: #1a130d; --wood-ink: #f6efe4; --accent: #e0a85e; --accent-ink: #14100a; --salmon: #f1d08f; --line: #33291e; --glow: 224 168 94;", "tayz-bessa-studio": "--bg: #0b0a08; --surface: #14120e; --ink: #f4ede0; --ink-soft: #b9ae98; --wood: #14241a; --wood-ink: #f4ede0; --accent: #cfa95e; --accent-ink: #15110a; --salmon: #e3c887; --line: #2e2a20; --glow: 207 169 94;", "jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
+GALERIA_FILTRO = {"m3-motos-pilarzinho": "contrast(1.1) saturate(1.06) brightness(.97)", "new-visuallize-salao-de-beleza-menino-deus": "contrast(1.06) saturate(1.04) brightness(.98)", "barbearia-los-chicanos": "contrast(1.1) saturate(1.05) brightness(.97)", "aure-art-studio-tattoo-piercing-em-goiania": "contrast(1.1) saturate(1.04) brightness(.96)", "tayz-bessa-studio": "contrast(1.06) saturate(1.06) brightness(.98)", "jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
+CSS_EXTRA = {"m3-motos-pilarzinho": """.hero img.logo-stamp, .hero .seal { display: none; }
+ .hero h1 { text-transform: uppercase; letter-spacing: .05em; font-size: clamp(56px, 8.4vw, 124px); line-height: .96; }
+ .hero .eyebrow { letter-spacing: .16em; } .hero > div:first-child > .lede { max-width: 24em; }
+ .hero .btn, .btn { text-transform: uppercase; letter-spacing: .06em; }
+ @media (min-width: 821px) { .hero > div:first-child { max-width: 52%; } }
+ @media (max-width: 820px) { .hero { min-height: 640px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
+   .hero h1 { font-size: clamp(54px, 16vw, 80px); } .hero .lede { max-width: 30ch; } }""",
+  "new-visuallize-salao-de-beleza-menino-deus": """.hero img.logo-stamp, .hero .seal { display: none; }
  .hero h1 { text-transform: uppercase; letter-spacing: .12em; font-size: clamp(54px, 8vw, 112px); line-height: 1; }
  .hero .eyebrow { letter-spacing: .16em; } .hero > div:first-child > .lede { max-width: 25em; }
  @media (min-width: 821px) { .hero > div:first-child { max-width: 52%; } }
@@ -434,16 +452,17 @@ CSS_EXTRA = {"new-visuallize-salao-de-beleza-menino-deus": """.hero img.logo-sta
  .hero .eyebrow { letter-spacing: .2em; }
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
    .hero h1 { font-size: clamp(52px, 15.5vw, 72px); line-height: 1; } .hero .lede { max-width: 30ch; } }"""}
-BRAND_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": "New Visuallize"}  # nome curto no cabeçalho
+BRAND_TEXTO = {"m3-motos-pilarzinho": "M3 Motos", "new-visuallize-salao-de-beleza-menino-deus": "New Visuallize"}  # nome curto no cabeçalho
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
-INTRO = {"new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "excellence-studio", "aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
+INTRO = {"m3-motos-pilarzinho", "new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "excellence-studio", "aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
 
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
 SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=5, heading=len(HEADING),
             shape=len(SHAPE), proof=4, stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
-OVERRIDE = {"new-visuallize-salao-de-beleza-menino-deus": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 1},
+OVERRIDE = {"m3-motos-pilarzinho": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 3},
+            "new-visuallize-salao-de-beleza-menino-deus": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 1},
             "barbearia-los-chicanos": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
             "excellence-studio": {"hero": 6, "gallery": 2, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 2},
             "aure-art-studio-tattoo-piercing-em-goiania": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
@@ -455,7 +474,7 @@ CAPA_ESCURA = set()
 CAPA_CLARA = {"don-alberttoni"}  # foto de capa clara: escurece para o texto branco ler
 # sites feitos à mão: ramo e plano fixos (ficam fora do sorteio, para não mudar o layout dos outros do ramo)
 PLANO_FIXO = {"don-alberttoni": ("barber", dict(font=0, accent=0, hero=6, frame=0, header=0, gallery=5, heading=2, shape=0, proof=4, stripe=0, info=0, about=3, order=0, anim=1))}
-FORCE_DARK = {"new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "aure-art-studio-tattoo-piercing-em-goiania", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # sempre tema escuro, ignorando o tema do aparelho
+FORCE_DARK = {"m3-motos-pilarzinho", "new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "aure-art-studio-tattoo-piercing-em-goiania", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # sempre tema escuro, ignorando o tema do aparelho
 FOCO_MOBILE = {"jennifer-benke-tattoo-studio": "50% 50%", "charles-tattoo-piercing": "67.5% 50%", "don-alberttoni": "44% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def _rules(inner):
