@@ -216,8 +216,8 @@ SOBRE_TEXTO = {"nina-pet-shop": dict(
     paras=["Banho e tosa, hotel, táxi dog, rações e acessórios em Belo Horizonte. Aqui o seu pet é tratado com dedicação e carinho, como se fosse da família.",
            "Chega, traz o seu pet e deixa com a gente."],
     pull=("Não tenho palavras para descrever o quanto estou feliz.", "Avaliação no Google"),
-    cards=[("Banho e tosa", "O seu pet cheiroso, bonito e bem cuidado."), ("Táxi dog", "A gente busca e entrega o seu pet."),
-           ("Hotel", "Um lugar de confiança para o seu pet ficar."), ("Rações e acessórios", "Tudo o que o seu pet precisa, na loja.")],
+    cards=[("Banho e tosa", "O seu pet cheiroso, bonito e bem cuidado.", "banho"), ("Táxi dog", "A gente busca e entrega o seu pet.", "taxi"),
+           ("Hotel", "Um lugar de confiança para o seu pet ficar.", "hotel"), ("Rações e acessórios", "Tudo o que o seu pet precisa, na loja.", "loja")],
     nota="", prova="Quem leva o pet pro Nina conta"),
   "tayz-bessa-studio": dict(
     h2="Cuidado que devolve autoestima.",
@@ -258,6 +258,13 @@ GCTA_CSS = """#fotos .sub { margin-bottom: 16px; }
  .gcta { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 auto 30px; font: 500 12.5px/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #e8c98b; }
  .gcta::before, .gcta::after { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .55; }"""
 GCTA_LINK = '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">'
+ICONES = {
+ "banho": '<svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15h24v2.5a7 7 0 0 1-7 7H11a7 7 0 0 1-7-7z"/><path d="M8 15V9.5a3 3 0 0 1 6 0"/><circle cx="20" cy="8" r="1.4"/><circle cx="24" cy="11" r="1.1"/><path d="M9 28l1.5-3.5M23 28l-1.5-3.5"/></svg>',
+ "taxi": '<svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-4l2.2-6.2A3 3 0 0 1 9 9h14a3 3 0 0 1 2.8 1.8L28 17v4z"/><path d="M4 17h24"/><circle cx="10" cy="23.5" r="2.5"/><circle cx="22" cy="23.5" r="2.5"/><path d="M13 5h6"/></svg>',
+ "hotel": '<svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15 16 5l12 10"/><path d="M7 13v14h18V13"/><path d="M13 27v-7a3 3 0 0 1 6 0v7"/></svg>',
+ "loja": '<svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 10h19l-1.6 17H8.1z"/><path d="M11 10a5 5 0 0 1 10 0"/><circle cx="12.5" cy="17" r="1.3"/><circle cx="19.5" cy="17" r="1.3"/><path d="M12.5 22.5c1 1.4 2.2 2 3.5 2s2.5-.6 3.5-2"/></svg>'}
+ICONES_CSS = """.svc .ic { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 13%, transparent); color: var(--accent); flex: none; }
+ .svc .ic svg { display: block; }"""
 SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84px 44px; }
  #casa::before { content: ""; position: absolute; inset: -30px calc(50% - 50vw); z-index: -1; pointer-events: none; background: radial-gradient(55% 55% at 22% 35%, rgb(var(--glow, 255 170 80) / .17), transparent 72%); }
  #casa h2 { font-size: clamp(40px, 6.6vw, 70px); line-height: 1.02; margin-bottom: 22px; }
@@ -306,16 +313,32 @@ def add_qmore(html):
 # fonte, paleta e ajustes de CSS feitos à mão por site
 FONTE_CUSTOM = {"tayz-bessa-studio": ("Playfair+Display:wght@500;600;700", "Playfair Display", "Georgia, serif", 600), "jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
 # paleta clara por site (vence o modo escuro do aparelho)
-TEMA_LIGHT = {"nina-pet-shop": "--bg: #eef3ff; --surface: #ffffff; --ink: #15235f; --ink-soft: #4b5a92; --wood: #1f45b5; --wood-ink: #ffffff; --accent: #d93a7e; --accent-ink: #ffffff; --salmon: #ffb3d1; --line: #cdd8f5;"}
+TEMA_LIGHT = {"nina-pet-shop": "--bg: #fbf5ea; --surface: #fffdf8; --ink: #14215a; --ink-soft: #3a4780; --wood: #1f45b5; --wood-ink: #ffffff; --accent: #c72d73; --accent-ink: #ffffff; --salmon: #ffb3d1; --line: #e6d9c4;"}
 LOGO_INJECT = {"nina-pet-shop"}  # coloca o logo (img/logo.jpg) no cabeçalho e no rodapé
 TEMA_CUSTOM = {"tayz-bessa-studio": "--bg: #0b0a08; --surface: #14120e; --ink: #f4ede0; --ink-soft: #b9ae98; --wood: #14241a; --wood-ink: #f4ede0; --accent: #cfa95e; --accent-ink: #15110a; --salmon: #e3c887; --line: #2e2a20; --glow: 207 169 94;", "jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
 GALERIA_FILTRO = {"tayz-bessa-studio": "contrast(1.06) saturate(1.06) brightness(.98)", "jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
 CSS_EXTRA = {"nina-pet-shop": """.hero .seal, .hero img.logo-stamp { display: none; }
- .gcta { color: var(--accent); } .rev-link .rs { color: #e5a72b; }
- .hero .eyebrow { letter-spacing: .14em; } .hero h1 { font-size: clamp(48px, 8vw, 100px); }
- .hero > div:first-child > .lede { max-width: 23em; } .hero > figure > img:first-child { -webkit-mask-image: linear-gradient(to bottom, #000 91%, transparent 100%); mask-image: linear-gradient(to bottom, #000 91%, transparent 100%); }
- @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
-   .hero h1 { font-size: clamp(46px, 13vw, 64px); } .hero .lede { max-width: 30ch; } }""",
+ #fotos .gcta { color: #a3225f; } #clientes .rev-link .rs { color: #a86200; }
+ .hero .eyebrow { color: #fff; font-size: 12px; } .hero .score, .hero .score > div { color: #fff; } .hero .stars { color: #fff1b8; }
+ footer p, footer p a { opacity: 1 !important; color: rgba(255, 255, 255, .92); }
+ .hero { --d: min(78vw, 330px); min-height: 0; padding: 36px 0 1px; margin-bottom: calc(var(--d) * .44 + 18px); z-index: 3; overflow: visible; }
+ .hero > figure { overflow: hidden; }
+ .hero > figure > img:first-child { -webkit-mask-image: none; mask-image: none; content: url("img/hero-m.jpg"); object-position: 50% 50%; }
+ .hero > div:first-child { min-height: 0; justify-content: flex-start; padding: 0 max(24px, 7vw); }
+ .hero h1 { font-size: clamp(46px, 13vw, 64px); }
+ .hero .eyebrow { letter-spacing: .12em; opacity: 1; }
+ .hero .lede { color: #fff; opacity: .96; max-width: 30ch; }
+ .hero::after { content: ""; display: block; position: relative; z-index: 3; width: var(--d); height: var(--d); margin: 36px auto calc(var(--d) / -2); background: url("img/pet.webp") center / contain no-repeat; filter: drop-shadow(0 14px 22px rgba(10, 24, 90, .38)); }
+ .hero::before { content: ""; position: absolute; z-index: 4; width: calc(var(--d) * .4); height: calc(var(--d) * .4); border-radius: 50%; background: #fff url("img/logo.jpg") center / cover; border: 4px solid #fff; box-shadow: 0 8px 18px rgba(10, 24, 90, .38); left: calc(50% - var(--d) * .6); bottom: calc(var(--d) * -.42); }
+ @media (min-width: 821px) {
+   .hero { --d: min(34vw, 440px); padding: 0 0 1px; }
+   .hero > figure > img:first-child { content: url("img/hero.jpg"); }
+   .hero > div:first-child { padding: 84px max(28px, 7vw) 96px; max-width: 62%; justify-content: center; }
+   .hero h1 { font-size: clamp(54px, 6.4vw, 96px); } .hero .lede { max-width: 24em; font-size: clamp(18px, 1.7vw, 22px); }
+   .hero::after { position: absolute; right: max(28px, 8vw); bottom: calc(var(--d) / -2); margin: 0; }
+   .hero::before { left: auto; right: calc(max(28px, 8vw) + var(--d) * .8); bottom: calc(var(--d) * -.5); }
+ }""",
+
   "tayz-bessa-studio": """.hero img.logo-stamp { display: none; }
  .hero h1 { font-size: clamp(42px, 5.8vw, 78px); line-height: 1.04; letter-spacing: .035em; }
  .hero .eyebrow { letter-spacing: .2em; } .hero .lede { max-width: 31em; }
@@ -433,6 +456,7 @@ def block(kind, c, has_fig, slug=""):
         _c, _in = _media_blocks(LEGIVEL_CSS)[0]
         css.append("@media " + _c + " {" + _scoped(_in, "html:not(.dm) ") + "}")
     if slug in SOBRE_TEXTO: css.append(SOBRE_CSS)
+    if slug in SOBRE_TEXTO and any(len(c) > 2 for c in SOBRE_TEXTO[slug]["cards"]): css.append(ICONES_CSS)
     if slug in AVAL_LINK: css.append(AVAL_CSS)
     if slug in GALERIA_TEXTO: css.append(GCTA_CSS); link += GCTA_LINK
     if slug in INTRO: css.append(INTRO_CSS); extra += SCRIPT_NUDGE
@@ -454,7 +478,7 @@ def run(only=None):
             html = re.sub(r'(<section id="fotos"[^>]*>\s*<h2>)[^<]*(</h2>\s*<p class="sub">)[^<]*(</p>)(?:\s*<p class="gcta">[^<]*</p>)?', lambda m: m.group(1) + t + m.group(2) + sub + m.group(3) + '<p class="gcta">' + cta + "</p>", html, count=1)
         if slug in SOBRE_TEXTO:
             S = SOBRE_TEXTO[slug]; e = __import__("html").escape
-            novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc"><b>' + e(t) + "</b><span>" + e(s) + "</span></li>" for t, s in S["cards"]) + "</ul>" + ('<p class="sub" style="margin:14px 0 0;font-size:15px">' + e(S["nota"]) + "</p>" if S["nota"] else "")
+            novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc">' + (f'<i class="ic" aria-hidden="true">{ICONES[c[2]]}</i>' if len(c) > 2 else "") + "<b>" + e(c[0]) + "</b><span>" + e(c[1]) + "</span></li>" for c in S["cards"]) + "</ul>" + ('<p class="sub" style="margin:14px 0 0;font-size:15px">' + e(S["nota"]) + "</p>" if S["nota"] else "")
             html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+(?:<ul class="services">.*?</ul>\s*(?:<p class="sub"[^>]*>.*?</p>)?)?', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
             html = re.sub(r'<p class="pull">.*?</p>', lambda m: '<p class="pull">\u201c' + e(S["pull"][0]) + '\u201d<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">' + e(S["pull"][1]) + "</span></p>", html, count=1, flags=re.S)
             html = re.sub(r'(id="clientes">.*?<h2>)[^<]*(</h2>)', lambda m: m.group(1) + e(S["prova"]) + m.group(2), html, count=1, flags=re.S)
