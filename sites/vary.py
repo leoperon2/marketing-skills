@@ -279,7 +279,7 @@ def add_qmore(html):
     sub = f"{mn.group(1)} avaliações de clientes" if mn else "Avaliações de clientes"
     card = (f'<a class="qmore" href="{url}" target="_blank" rel="noopener"><span class="qm-st" aria-hidden="true">\u2605\u2605\u2605\u2605\u2605</span>'
             f'<span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">{sub}</span><span class="qm-a">Abrir no Google \u2197</span></a>')
-    return re.sub(r'(<div class="quotes">.*?)(?:<a class="qmore".*?</a>)?(</div>\s*<p class="src">)', lambda m: m.group(1) + card + m.group(2), html, count=1, flags=re.S)
+    return re.sub(r'(<div class="quotes">.*?)(?:<a class="qmore".*?</a>)?(</div>\s*</section>)', lambda m: m.group(1) + card + m.group(2), html, count=1, flags=re.S)
 
 # fonte, paleta e ajustes de CSS feitos à mão por site
 FONTE_CUSTOM = {"jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
@@ -435,6 +435,7 @@ def run(only=None):
         if slug in FINAL_TEXTO:
             ft, fs = FINAL_TEXTO[slug]
             html = re.sub(r'(<section class="final">\s*<h2>)[^<]*(</h2>\s*<p class="sub"[^>]*>)[^<]*(</p>)', lambda m: m.group(1) + ft + m.group(2) + fs + m.group(3), html, count=1)
+        html = re.sub(r'\s*<p class="src">.*?</p>', "", html, flags=re.S)  # nunca mostrar a nota "Trechos de avaliações públicas..."
         html = add_qmore(html)
         kind, fig, pull = kind_and_info(html)
         if slug in PLANO_FIXO: kind = PLANO_FIXO[slug][0]

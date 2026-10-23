@@ -411,7 +411,6 @@ def build(place, idx):
         <div class="bars" role="img" aria-label="Distribuição das {total} avaliações por estrelas">{bars}</div>
       </div>
       <div class="quotes">{qs}</div>
-      <p class="src">Trechos de avaliações públicas no Google Maps. Nota e contagem de outubro de 2026.</p>
     </section>
   </div>
 </div>'''
