@@ -205,12 +205,21 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
 # título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
-GALERIA_TEXTO = {"tayz-bessa-studio": ("Sai daqui se sentindo ainda mais você", "Cabelos, mechas e escovas que viram autoestima.", "Toque numa foto para ampliar"),
+GALERIA_TEXTO = {"nina-pet-shop": ("Cada pet sai daqui mais lindo e mais feliz", "Alguns dos nossos clientes de quatro patas.", "Toque numa foto para ampliar"),
+    "tayz-bessa-studio": ("Sai daqui se sentindo ainda mais você", "Cabelos, mechas e escovas que viram autoestima.", "Toque numa foto para ampliar"),
     "jennifer-benke-tattoo-studio": ("Arte que valoriza a sua pele", "Linhas finas, delicadas e feitas para durar.", "Toque numa foto para ampliar"),
     "don-alberttoni": ("Cada canto tem uma história", "Cadeiras antigas, sinuca, violão, xadrez e um poodle de visita.", "Toque numa foto para ampliar"),
     "charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
 # seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
-SOBRE_TEXTO = {"tayz-bessa-studio": dict(
+SOBRE_TEXTO = {"nina-pet-shop": dict(
+    h2="Seu pet em boas patas.",
+    paras=["Banho e tosa, hotel, táxi dog, rações e acessórios em Belo Horizonte. Aqui o seu pet é tratado com dedicação e carinho, como se fosse da família.",
+           "Chega, traz o seu pet e deixa com a gente."],
+    pull=("Não tenho palavras para descrever o quanto estou feliz.", "Avaliação no Google"),
+    cards=[("Banho e tosa", "O seu pet cheiroso, bonito e bem cuidado."), ("Táxi dog", "A gente busca e entrega o seu pet."),
+           ("Hotel", "Um lugar de confiança para o seu pet ficar."), ("Rações e acessórios", "Tudo o que o seu pet precisa, na loja.")],
+    nota="", prova="Quem leva o pet pro Nina conta"),
+  "tayz-bessa-studio": dict(
     h2="Cuidado que devolve autoestima.",
     paras=["Em Goiânia, a Tayz Bessa transforma cabelo e desperta autoestima. Visagismo, coloração, mechas, escovas e unhas, num estúdio onde dá vontade de ficar.",
            "Chega, relaxa e deixa o resto com a gente."],
@@ -260,19 +269,21 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84
  #casa .services { gap: 14px; margin: 26px 0 0; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
-WA_TEXTO = {"tayz-bessa-studio": "Oi, Tayz, tudo bem? Queria agendar um horário.", "charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
-AVAL_LINK = {"tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
+WA_TEXTO = {"nina-pet-shop": "Oi, tudo bem? Queria agendar um banho e tosa para o meu pet.", "tayz-bessa-studio": "Oi, Tayz, tudo bem? Queria agendar um horário.", "charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
+AVAL_LINK = {"nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
 AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
  .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
  .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
  .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
 # textos da capa e do fechamento escritos à mão por site
-HERO_TEXTO = {"tayz-bessa-studio": ("Cabelo & unhas · Jardim Mariliza, Goiânia", "Visagismo, cabelo e unhas num estúdio de espelhos dourados e muito verde. Aqui o cuidado vira autoestima."),
+HERO_TEXTO = {"nina-pet-shop": ("Banho, tosa e carinho · Candelária, Belo Horizonte", "Banho e tosa, hotel e táxi dog com a dedicação e o carinho que o seu pet merece."),
+    "tayz-bessa-studio": ("Cabelo & unhas · Jardim Mariliza, Goiânia", "Visagismo, cabelo e unhas num estúdio de espelhos dourados e muito verde. Aqui o cuidado vira autoestima."),
     "jennifer-benke-tattoo-studio": ("Tattoo fine line · Cristal, Porto Alegre", "Tatuagens delicadas que valorizam a sua pele. Linhas finas, elegantes e atemporais, desde 2016. 8x premiada."),
     "don-alberttoni": ("Barbearia old school desde 2015 · Bom Retiro, Curitiba",
     "Corte, barba e sobrancelha no capricho. Café na mão, vinil rodando e uma casa pra quem curte estilo, moto e tinta na pele.")}
-FINAL_TEXTO = {"tayz-bessa-studio": ("Seu momento começa aqui", "Agende pelo WhatsApp e escolha o melhor horário."),
+FINAL_TEXTO = {"nina-pet-shop": ("Seu pet merece esse carinho", "Agende o banho e tosa pelo WhatsApp e escolha o melhor horário."),
+    "tayz-bessa-studio": ("Seu momento começa aqui", "Agende pelo WhatsApp e escolha o melhor horário."),
     "jennifer-benke-tattoo-studio": ("Agenda aberta. Qual é a sua ideia?", "Chame no WhatsApp, conte o que você imagina e peça seu orçamento."),
     "don-alberttoni": ("Sua cadeira tá te esperando", "Marque pelo agendamento online ou chame no WhatsApp. O resto é com a gente.")}
 # último card da lista de avaliações: leva a todas as avaliações no Google (todos os sites)
@@ -294,9 +305,18 @@ def add_qmore(html):
 
 # fonte, paleta e ajustes de CSS feitos à mão por site
 FONTE_CUSTOM = {"tayz-bessa-studio": ("Playfair+Display:wght@500;600;700", "Playfair Display", "Georgia, serif", 600), "jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
+# paleta clara por site (vence o modo escuro do aparelho)
+TEMA_LIGHT = {"nina-pet-shop": "--bg: #eef3ff; --surface: #ffffff; --ink: #15235f; --ink-soft: #4b5a92; --wood: #1f45b5; --wood-ink: #ffffff; --accent: #d93a7e; --accent-ink: #ffffff; --salmon: #ffb3d1; --line: #cdd8f5;"}
+LOGO_INJECT = {"nina-pet-shop"}  # coloca o logo (img/logo.jpg) no cabeçalho e no rodapé
 TEMA_CUSTOM = {"tayz-bessa-studio": "--bg: #0b0a08; --surface: #14120e; --ink: #f4ede0; --ink-soft: #b9ae98; --wood: #14241a; --wood-ink: #f4ede0; --accent: #cfa95e; --accent-ink: #15110a; --salmon: #e3c887; --line: #2e2a20; --glow: 207 169 94;", "jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
 GALERIA_FILTRO = {"tayz-bessa-studio": "contrast(1.06) saturate(1.06) brightness(.98)", "jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
-CSS_EXTRA = {"tayz-bessa-studio": """.hero img.logo-stamp { display: none; }
+CSS_EXTRA = {"nina-pet-shop": """.hero .seal, .hero img.logo-stamp { display: none; }
+ .gcta { color: var(--accent); } .rev-link .rs { color: #e5a72b; }
+ .hero .eyebrow { letter-spacing: .14em; } .hero h1 { font-size: clamp(48px, 8vw, 100px); }
+ .hero > div:first-child > .lede { max-width: 23em; } .hero > figure > img:first-child { -webkit-mask-image: linear-gradient(to bottom, #000 91%, transparent 100%); mask-image: linear-gradient(to bottom, #000 91%, transparent 100%); }
+ @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
+   .hero h1 { font-size: clamp(46px, 13vw, 64px); } .hero .lede { max-width: 30ch; } }""",
+  "tayz-bessa-studio": """.hero img.logo-stamp { display: none; }
  .hero h1 { font-size: clamp(44px, 7vw, 90px); line-height: 1.04; letter-spacing: .035em; }
  .hero .eyebrow { letter-spacing: .2em; } .hero .lede { max-width: 31em; }
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
@@ -307,14 +327,15 @@ CSS_EXTRA = {"tayz-bessa-studio": """.hero img.logo-stamp { display: none; }
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
    .hero h1 { font-size: clamp(42px, 12vw, 58px); } .hero .lede { max-width: 30ch; } }"""}
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
-INTRO = {"tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
+INTRO = {"nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
 
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
 SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=5, heading=len(HEADING),
             shape=len(SHAPE), proof=4, stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
-OVERRIDE = {"tayz-bessa-studio": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
+OVERRIDE = {"nina-pet-shop": {"hero": 6, "gallery": 2, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 1, "accent": 0},
+            "tayz-bessa-studio": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
             "jennifer-benke-tattoo-studio": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1},
             "charles-tattoo-piercing": {"hero": 6, "gallery": 5, "proof": 4, "about": 3}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
@@ -453,6 +474,9 @@ def run(only=None):
             ft, fs = FINAL_TEXTO[slug]
             html = re.sub(r'(<section class="final">\s*<h2>)[^<]*(</h2>\s*<p class="sub"[^>]*>)[^<]*(</p>)', lambda m: m.group(1) + ft + m.group(2) + fs + m.group(3), html, count=1)
         html = re.sub(r'\s*<p class="src">.*?</p>', "", html, flags=re.S)  # nunca mostrar a nota "Trechos de avaliações públicas..."
+        if slug in LOGO_INJECT and os.path.exists(os.path.join(HERE, slug, "img", "logo.jpg")):
+            html = re.sub(r'(<a class="brand" href="#topo">)(?!<img)', lambda m: m.group(1) + '<img src="img/logo.jpg" alt="" width="40" height="40">', html, count=1)
+            html = re.sub(r'(<span style="display:flex;align-items:center;gap:12px">)(?!<img)(<strong)', lambda m: m.group(1) + '<img src="img/logo.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--salmon)">' + m.group(2), html, count=1)
         html = add_qmore(html)
         kind, fig, pull = kind_and_info(html)
         if slug in PLANO_FIXO: kind = PLANO_FIXO[slug][0]
@@ -472,6 +496,7 @@ def run(only=None):
         if s in FORCE_DARK:  # reaplica as variáveis do tema escuro direto no :root (sem depender de prefers-color-scheme)
             dk = "".join(m.group(1) for m in re.finditer(r':root\[data-theme="dark"\] \{([^}]*)\}', html + b))
             b = b.replace("<!--vary:end-->", "<style>:root { " + dk + " }</style><!--vary:end-->")
+        if s in TEMA_LIGHT: b = b.replace("<!--vary:end-->", "<style>html:root:root { " + TEMA_LIGHT[s] + " color-scheme: light; }</style><!--vary:end-->")
         if s in TEMA_CUSTOM: b = b.replace("<!--vary:end-->", "<style>:root { " + TEMA_CUSTOM[s] + " }</style><!--vary:end-->")
         page = html[:i] + "\n" + b + html[i:]
         if s in DM_SITES: page = modo_ampliado(page)

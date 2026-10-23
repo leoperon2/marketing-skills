@@ -563,19 +563,19 @@
  "nina-pet-shop": {
   "kind": "pet",
   "font": 0,
-  "accent": 5,
-  "hero": 2,
+  "accent": 0,
+  "hero": 6,
   "frame": 4,
   "header": 0,
-  "gallery": 4,
-  "heading": 0,
-  "shape": 0,
-  "proof": 3,
+  "gallery": 2,
+  "heading": 2,
+  "shape": 1,
+  "proof": 4,
   "stripe": 2,
   "info": 1,
   "about": 3,
   "order": 1,
-  "anim": 2
+  "anim": 1
  },
  "performas-studio-beleza-estilo": {
   "kind": "salon",
