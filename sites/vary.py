@@ -476,6 +476,18 @@ def modo_ampliado(page):
             "if(w>820&&s>0&&s<=700&&w/s>1.5){d.classList.add('dm');d.style.setProperty('--z',(w/s).toFixed(3));}})();</script>")
     return page.replace("<!--vary:start-->", "<!--vary:start-->" + topo + base, 1)
 
+INSTA = json.load(open(os.path.join(HERE, "instagram.json"))) if os.path.exists(os.path.join(HERE, "instagram.json")) else {}
+
+def add_insta(html, slug):
+    """Garante o link do Instagram na seção de contato e no rodapé (vem de instagram.json, a partir da lista de prospecção)."""
+    if re.search(r'href="https://(www\.)?instagram\.com/[\w.]+', html) or slug not in INSTA: return html
+    url = INSTA[slug].replace("http://", "https://").replace("https://instagram.com", "https://www.instagram.com").rstrip("/") + "/"
+    user = url.rstrip("/").rsplit("/", 1)[1]
+    p = f'<p style="margin:{"10px" if "Contato</h3>" in html else "0"} 0 0"><a href="{url}" target="_blank" rel="noopener">@{user}</a> no Instagram</p>'
+    html = re.sub(r'(Contato</h3>.*?)(</div>)', lambda m: m.group(1) + p + m.group(2), html, count=1, flags=re.S)
+    html = re.sub(r'(<footer>.*?<p>[^<]*</p>)', lambda m: m.group(1) + f'\n    <p><a href="{url}" target="_blank" rel="noopener">Instagram @{user}</a></p>', html, count=1, flags=re.S)
+    return html
+
 def kind_and_info(html):
     m = re.search(r"/\* (\w+): identidade", html)
     return (m.group(1) if m else None), ('<figure><img src="img/' in html), ('id="casa"' in html and "class=\"pull\"" in html)
@@ -574,6 +586,7 @@ def run(only=None):
         if slug in LOGO_INJECT and os.path.exists(os.path.join(HERE, slug, "img", "logo.jpg")):
             html = re.sub(r'(<a class="brand" href="#topo">)(?!<img)', lambda m: m.group(1) + '<img src="img/logo.jpg" alt="" width="40" height="40">', html, count=1)
             html = re.sub(r'(<span style="display:flex;align-items:center;gap:12px">)(?!<img)(<strong)', lambda m: m.group(1) + '<img src="img/logo.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--salmon)">' + m.group(2), html, count=1)
+        html = add_insta(html, slug)
         html = add_qmore(html)
         kind, fig, pull = kind_and_info(html)
         if slug in PLANO_FIXO: kind = PLANO_FIXO[slug][0]
