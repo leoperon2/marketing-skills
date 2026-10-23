@@ -345,10 +345,10 @@ CSS_EXTRA = {"nina-pet-shop": """.hero .seal, .hero img.logo-stamp { display: no
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
    .hero h1 { font-size: clamp(40px, 11.5vw, 56px); } .hero .lede { max-width: 30ch; } }""",
   "jennifer-benke-tattoo-studio": """.hero img.logo-stamp { display: none; }
- .hero h1 { font-size: clamp(46px, 7vw, 92px); line-height: 1.02; font-style: italic; }
+ .hero h1 { font-size: clamp(52px, 8vw, 108px); line-height: 1.02; font-style: italic; }
  .hero .eyebrow { letter-spacing: .2em; }
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
-   .hero h1 { font-size: clamp(42px, 12vw, 58px); } .hero .lede { max-width: 30ch; } }"""}
+   .hero h1 { font-size: clamp(52px, 15.5vw, 72px); line-height: 1; } .hero .lede { max-width: 30ch; } }"""}
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
 INTRO = {"nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
 
