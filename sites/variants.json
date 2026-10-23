@@ -547,18 +547,18 @@
   "kind": "salon",
   "font": 2,
   "accent": 6,
-  "hero": 5,
+  "hero": 6,
   "frame": 3,
   "header": 0,
-  "gallery": 4,
+  "gallery": 5,
   "heading": 2,
   "shape": 1,
-  "proof": 1,
+  "proof": 4,
   "stripe": 2,
   "info": 0,
   "about": 3,
   "order": 0,
-  "anim": 3
+  "anim": 1
  },
  "nina-pet-shop": {
   "kind": "pet",

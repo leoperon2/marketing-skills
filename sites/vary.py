@@ -205,7 +205,8 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
 # título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
-GALERIA_TEXTO = {"barbearia-los-chicanos": ("Aqui é onde o estilo acontece", "Cortes, barba, bigode e o clima da casa.", "Toque numa foto para ampliar"),
+GALERIA_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": ("Visual novo, autoestima nas alturas", "Loiros, morenas, cortes e maquiagem, direto do salão.", "Toque numa foto para ampliar"),
+    "barbearia-los-chicanos": ("Aqui é onde o estilo acontece", "Cortes, barba, bigode e o clima da casa.", "Toque numa foto para ampliar"),
     "excellence-studio": ("Beleza que renova a autoestima", "Cabelos, unhas e muito cuidado, direto do salão.", "Toque numa foto para ampliar"),
     "aure-art-studio-tattoo-piercing-em-goiania": ("Cada traço conta uma história", "Tatuagens e piercings feitos aqui, do traço fino ao colorido.", "Toque numa foto para ampliar"),
     "nina-pet-shop": ("Cada pet sai daqui mais lindo e mais feliz", "Alguns dos nossos clientes de quatro patas.", "Toque numa foto para ampliar"),
@@ -214,7 +215,15 @@ GALERIA_TEXTO = {"barbearia-los-chicanos": ("Aqui é onde o estilo acontece", "C
     "don-alberttoni": ("Cada canto tem uma história", "Cadeiras antigas, sinuca, violão, xadrez e um poodle de visita.", "Toque numa foto para ampliar"),
     "charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
 # seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
-SOBRE_TEXTO = {"barbearia-los-chicanos": dict(
+SOBRE_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": dict(
+    h2="Estilo e talento, do jeito que você imagina.",
+    paras=["Salão de beleza completo no Menino Deus, em Porto Alegre. Cabelo, coloração, mechas, unhas, sobrancelha e maquiagem, com uma equipe talentosa que se dedica a entender o que você quer.",
+           "Chega, relaxa e deixa a gente transformar o seu visual."],
+    pull=("Os profissionais são atenciosos, talentosos e realmente se dedicam a entender o que o cliente deseja.", "Avaliação no Google"),
+    cards=[("Cabelo", "Cortes, coloração, mechas, progressiva e tratamentos."), ("Unhas", "Manicure e pedicure com capricho."),
+           ("Maquiagem", "Para todas as ocasiões."), ("Sobrancelha", "Design que valoriza o seu olhar.")],
+    nota="", prova="Quem já passou pelo NVZ conta"),
+  "barbearia-los-chicanos": dict(
     h2="Corte, barba e bigode, do jeito que você pede.",
     paras=["Barbearia especializada no tratamento de barba e cabelo, na Boa Vista, em Curitiba. Atendimento de primeira, ambiente com personalidade e a família Los Chicanos esperando por você.",
            "Chega, senta e sai na régua."],
@@ -303,15 +312,16 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84
  #casa .services { gap: 14px; margin: 26px 0 0; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
-WA_TEXTO = {"barbearia-los-chicanos": "Fala, pessoal da Los Chicanos, tudo bom? Queria agendar um horário.", "excellence-studio": "Oi, tudo bem? Queria agendar um horário no Excellence.", "aure-art-studio-tattoo-piercing-em-goiania": "Oi, tudo bem? Queria pedir um orçamento de tatuagem.", "nina-pet-shop": "Oi, tudo bem? Queria agendar um banho e tosa para o meu pet.", "tayz-bessa-studio": "Oi, Tayz, tudo bem? Queria agendar um horário.", "charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
-AVAL_LINK = {"barbearia-los-chicanos", "excellence-studio", "aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
+WA_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": "Oi, tudo bem? Queria agendar um horário no NVZ.", "barbearia-los-chicanos": "Fala, pessoal da Los Chicanos, tudo bom? Queria agendar um horário.", "excellence-studio": "Oi, tudo bem? Queria agendar um horário no Excellence.", "aure-art-studio-tattoo-piercing-em-goiania": "Oi, tudo bem? Queria pedir um orçamento de tatuagem.", "nina-pet-shop": "Oi, tudo bem? Queria agendar um banho e tosa para o meu pet.", "tayz-bessa-studio": "Oi, Tayz, tudo bem? Queria agendar um horário.", "charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
+AVAL_LINK = {"new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "excellence-studio", "aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
 AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
  .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
  .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
  .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
 # textos da capa e do fechamento escritos à mão por site
-HERO_TEXTO = {"barbearia-los-chicanos": ("Barbearia · Boa Vista, Curitiba", "Corte, barba e bigode do jeito que você pede. Atendimento de quem entende, num ambiente de respeito e estilo.", "LOS CHICANOS"),
+HERO_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": ("Salão de beleza · Menino Deus, Porto Alegre", "Transformando o seu visual com estilo e talento. Cabelo, unhas, maquiagem e muito cuidado, com uma equipe que escuta o que você quer.", "NVZ"),
+    "barbearia-los-chicanos": ("Barbearia · Boa Vista, Curitiba", "Corte, barba e bigode do jeito que você pede. Atendimento de quem entende, num ambiente de respeito e estilo.", "LOS CHICANOS"),
     "excellence-studio": ("Salão de beleza · Menino Deus, Porto Alegre", "Especialistas em elevar a sua autoestima. Cabelo, unhas, maquiagem, depilação e estética, com profissionais experientes."),
     "aure-art-studio-tattoo-piercing-em-goiania": ("Tattoo e piercing · Shopping Passeio das Águas, Goiânia", "Tatuagem e piercing num estúdio dentro do shopping, com uma equipe de tatuadores e piercers. Chega, escolhe o seu estilo e sai com a sua marca.", "AURE ART STUDIO"),
     "nina-pet-shop": ("Banho, tosa e carinho · Candelária, Belo Horizonte", "Banho e tosa, hotel e táxi dog com a dedicação e o carinho que o seu pet merece."),
@@ -319,7 +329,8 @@ HERO_TEXTO = {"barbearia-los-chicanos": ("Barbearia · Boa Vista, Curitiba", "Co
     "jennifer-benke-tattoo-studio": ("Tattoo fine line · Cristal, Porto Alegre", "Tatuagens delicadas que valorizam a sua pele. Linhas finas, elegantes e atemporais, desde 2016. 8x premiada."),
     "don-alberttoni": ("Barbearia old school desde 2015 · Bom Retiro, Curitiba",
     "Corte, barba e sobrancelha no capricho. Café na mão, vinil rodando e uma casa pra quem curte estilo, moto e tinta na pele.")}
-FINAL_TEXTO = {"barbearia-los-chicanos": ("Bora ficar na régua?", "Chame no WhatsApp e escolha o seu horário."),
+FINAL_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": ("Bora transformar o visual?", "Chame no WhatsApp e escolha o seu horário."),
+    "barbearia-los-chicanos": ("Bora ficar na régua?", "Chame no WhatsApp e escolha o seu horário."),
     "excellence-studio": ("Seu horário de beleza espera por você", "Chame no WhatsApp e escolha o melhor horário."),
     "aure-art-studio-tattoo-piercing-em-goiania": ("Qual é a sua marca?", "Chame no WhatsApp, conte a ideia e peça seu orçamento."),
     "nina-pet-shop": ("Seu pet merece esse carinho", "Agende o banho e tosa pelo WhatsApp e escolha o melhor horário."),
@@ -347,13 +358,19 @@ def add_qmore(html):
     return re.sub(r'(<div class="quotes">.*?)(?:<a class="qmore".*?</a>)?(</div>\s*</section>)', lambda m: m.group(1) + card + m.group(2), html, count=1, flags=re.S)
 
 # fonte, paleta e ajustes de CSS feitos à mão por site
-FONTE_CUSTOM = {"barbearia-los-chicanos": ("Oswald:wght@500;600;700", "Oswald", "Impact, sans-serif", 600), "excellence-studio": ("Marcellus", "Marcellus", "Georgia, serif", 400), "aure-art-studio-tattoo-piercing-em-goiania": ("Josefin+Sans:wght@400;600;700", "Josefin Sans", "Arial, sans-serif", 600), "tayz-bessa-studio": ("Playfair+Display:wght@500;600;700", "Playfair Display", "Georgia, serif", 600), "jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
+FONTE_CUSTOM = {"new-visuallize-salao-de-beleza-menino-deus": ("Outfit:wght@400;500;600;700", "Outfit", "Arial, sans-serif", 600), "barbearia-los-chicanos": ("Oswald:wght@500;600;700", "Oswald", "Impact, sans-serif", 600), "excellence-studio": ("Marcellus", "Marcellus", "Georgia, serif", 400), "aure-art-studio-tattoo-piercing-em-goiania": ("Josefin+Sans:wght@400;600;700", "Josefin Sans", "Arial, sans-serif", 600), "tayz-bessa-studio": ("Playfair+Display:wght@500;600;700", "Playfair Display", "Georgia, serif", 600), "jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
 # paleta clara por site (vence o modo escuro do aparelho)
 TEMA_LIGHT = {"excellence-studio": "--bg: #fbf7ef; --surface: #fffdf8; --ink: #2a2113; --ink-soft: #5a4d37; --wood: #1b1812; --wood-ink: #f8f1e2; --accent: #8f6300; --accent-ink: #ffffff; --salmon: #d9b25a; --line: #e6dcc6;", "nina-pet-shop": "--bg: #fbf5ea; --surface: #fffdf8; --ink: #14215a; --ink-soft: #3a4780; --wood: #1f45b5; --wood-ink: #ffffff; --accent: #c72d73; --accent-ink: #ffffff; --salmon: #ffb3d1; --line: #e6d9c4;"}
 LOGO_INJECT = {"nina-pet-shop"}  # coloca o logo (img/logo.jpg) no cabeçalho e no rodapé
-TEMA_CUSTOM = {"barbearia-los-chicanos": "--bg: #0b0a09; --surface: #15120f; --ink: #f5eee2; --ink-soft: #bdb09c; --wood: #17110c; --wood-ink: #f5eee2; --accent: #d8a548; --accent-ink: #14100a; --salmon: #f0cd86; --line: #32281d; --glow: 216 165 72;", "aure-art-studio-tattoo-piercing-em-goiania": "--bg: #0c0a08; --surface: #16120e; --ink: #f6efe4; --ink-soft: #bcb09e; --wood: #1a130d; --wood-ink: #f6efe4; --accent: #e0a85e; --accent-ink: #14100a; --salmon: #f1d08f; --line: #33291e; --glow: 224 168 94;", "tayz-bessa-studio": "--bg: #0b0a08; --surface: #14120e; --ink: #f4ede0; --ink-soft: #b9ae98; --wood: #14241a; --wood-ink: #f4ede0; --accent: #cfa95e; --accent-ink: #15110a; --salmon: #e3c887; --line: #2e2a20; --glow: 207 169 94;", "jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
-GALERIA_FILTRO = {"barbearia-los-chicanos": "contrast(1.1) saturate(1.05) brightness(.97)", "aure-art-studio-tattoo-piercing-em-goiania": "contrast(1.1) saturate(1.04) brightness(.96)", "tayz-bessa-studio": "contrast(1.06) saturate(1.06) brightness(.98)", "jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
-CSS_EXTRA = {"barbearia-los-chicanos": """.hero img.logo-stamp, .hero .seal { display: none; }
+TEMA_CUSTOM = {"new-visuallize-salao-de-beleza-menino-deus": "--bg: #131115; --surface: #1d1a20; --ink: #f6f1f3; --ink-soft: #bfb4ba; --wood: #0e0c10; --wood-ink: #f6f1f3; --accent: #e04a8a; --accent-ink: #1a0a12; --salmon: #f3a3c4; --line: #38303a; --glow: 224 74 138;", "barbearia-los-chicanos": "--bg: #0b0a09; --surface: #15120f; --ink: #f5eee2; --ink-soft: #bdb09c; --wood: #17110c; --wood-ink: #f5eee2; --accent: #d8a548; --accent-ink: #14100a; --salmon: #f0cd86; --line: #32281d; --glow: 216 165 72;", "aure-art-studio-tattoo-piercing-em-goiania": "--bg: #0c0a08; --surface: #16120e; --ink: #f6efe4; --ink-soft: #bcb09e; --wood: #1a130d; --wood-ink: #f6efe4; --accent: #e0a85e; --accent-ink: #14100a; --salmon: #f1d08f; --line: #33291e; --glow: 224 168 94;", "tayz-bessa-studio": "--bg: #0b0a08; --surface: #14120e; --ink: #f4ede0; --ink-soft: #b9ae98; --wood: #14241a; --wood-ink: #f4ede0; --accent: #cfa95e; --accent-ink: #15110a; --salmon: #e3c887; --line: #2e2a20; --glow: 207 169 94;", "jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
+GALERIA_FILTRO = {"new-visuallize-salao-de-beleza-menino-deus": "contrast(1.06) saturate(1.04) brightness(.98)", "barbearia-los-chicanos": "contrast(1.1) saturate(1.05) brightness(.97)", "aure-art-studio-tattoo-piercing-em-goiania": "contrast(1.1) saturate(1.04) brightness(.96)", "tayz-bessa-studio": "contrast(1.06) saturate(1.06) brightness(.98)", "jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
+CSS_EXTRA = {"new-visuallize-salao-de-beleza-menino-deus": """.hero img.logo-stamp, .hero .seal { display: none; }
+ .hero h1 { text-transform: uppercase; letter-spacing: .12em; font-size: clamp(54px, 8vw, 112px); line-height: 1; }
+ .hero .eyebrow { letter-spacing: .16em; } .hero > div:first-child > .lede { max-width: 25em; }
+ @media (min-width: 821px) { .hero > div:first-child { max-width: 52%; } }
+ @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
+   .hero h1 { font-size: clamp(54px, 17vw, 84px); } .hero .lede { max-width: 30ch; } }""",
+  "barbearia-los-chicanos": """.hero img.logo-stamp, .hero .seal { display: none; }
  .hero h1 { text-transform: uppercase; letter-spacing: .06em; font-size: clamp(44px, 6.4vw, 92px); line-height: 1.02; }
  .hero .eyebrow { letter-spacing: .18em; } .hero > div:first-child > .lede { max-width: 25em; }
  @media (min-width: 821px) { .hero > div:first-child { max-width: 52%; } }
@@ -417,15 +434,17 @@ CSS_EXTRA = {"barbearia-los-chicanos": """.hero img.logo-stamp, .hero .seal { di
  .hero .eyebrow { letter-spacing: .2em; }
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
    .hero h1 { font-size: clamp(52px, 15.5vw, 72px); line-height: 1; } .hero .lede { max-width: 30ch; } }"""}
+BRAND_TEXTO = {"new-visuallize-salao-de-beleza-menino-deus": "New Visuallize"}  # nome curto no cabeçalho
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
-INTRO = {"barbearia-los-chicanos", "excellence-studio", "aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
+INTRO = {"new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "excellence-studio", "aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
 
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
 SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=5, heading=len(HEADING),
             shape=len(SHAPE), proof=4, stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
-OVERRIDE = {"barbearia-los-chicanos": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
+OVERRIDE = {"new-visuallize-salao-de-beleza-menino-deus": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 1},
+            "barbearia-los-chicanos": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
             "excellence-studio": {"hero": 6, "gallery": 2, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 2},
             "aure-art-studio-tattoo-piercing-em-goiania": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
             "nina-pet-shop": {"hero": 6, "gallery": 2, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 1, "accent": 0},
@@ -436,7 +455,7 @@ CAPA_ESCURA = set()
 CAPA_CLARA = {"don-alberttoni"}  # foto de capa clara: escurece para o texto branco ler
 # sites feitos à mão: ramo e plano fixos (ficam fora do sorteio, para não mudar o layout dos outros do ramo)
 PLANO_FIXO = {"don-alberttoni": ("barber", dict(font=0, accent=0, hero=6, frame=0, header=0, gallery=5, heading=2, shape=0, proof=4, stripe=0, info=0, about=3, order=0, anim=1))}
-FORCE_DARK = {"barbearia-los-chicanos", "aure-art-studio-tattoo-piercing-em-goiania", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # sempre tema escuro, ignorando o tema do aparelho
+FORCE_DARK = {"new-visuallize-salao-de-beleza-menino-deus", "barbearia-los-chicanos", "aure-art-studio-tattoo-piercing-em-goiania", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # sempre tema escuro, ignorando o tema do aparelho
 FOCO_MOBILE = {"jennifer-benke-tattoo-studio": "50% 50%", "charles-tattoo-piercing": "67.5% 50%", "don-alberttoni": "44% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def _rules(inner):
@@ -586,6 +605,7 @@ def run(only=None):
         if slug in LOGO_INJECT and os.path.exists(os.path.join(HERE, slug, "img", "logo.jpg")):
             html = re.sub(r'(<a class="brand" href="#topo">)(?!<img)', lambda m: m.group(1) + '<img src="img/logo.jpg" alt="" width="40" height="40">', html, count=1)
             html = re.sub(r'(<span style="display:flex;align-items:center;gap:12px">)(?!<img)(<strong)', lambda m: m.group(1) + '<img src="img/logo.jpg" alt="" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--salmon)">' + m.group(2), html, count=1)
+        if slug in BRAND_TEXTO: html = re.sub(r'(<a class="brand" href="#topo">(?:<img[^>]*>)?)[^<]*(</a>)', lambda m: m.group(1) + BRAND_TEXTO[slug] + m.group(2), html, count=1)
         html = add_insta(html, slug)
         html = add_qmore(html)
         kind, fig, pull = kind_and_info(html)
