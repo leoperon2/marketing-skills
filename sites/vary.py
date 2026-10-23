@@ -205,10 +205,19 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
 # título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
-GALERIA_TEXTO = {"don-alberttoni": ("Cada canto tem uma história", "Cadeiras antigas, sinuca, violão, xadrez e um poodle de visita.", "Toque numa foto para ampliar"),
+GALERIA_TEXTO = {"jennifer-benke-tattoo-studio": ("Arte que valoriza a sua pele", "Linhas finas, delicadas e feitas para durar.", "Toque numa foto para ampliar"),
+    "don-alberttoni": ("Cada canto tem uma história", "Cadeiras antigas, sinuca, violão, xadrez e um poodle de visita.", "Toque numa foto para ampliar"),
     "charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
 # seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
-SOBRE_TEXTO = {"don-alberttoni": dict(
+SOBRE_TEXTO = {"jennifer-benke-tattoo-studio": dict(
+    h2="Delicadeza que fica pra sempre.",
+    paras=["Tatuagens delicadas que valorizam a sua pele, em linhas finas, elegantes e atemporais. Estúdio em Porto Alegre desde 2016, com uma tatuadora premiada 8 vezes.",
+           "Conta a sua ideia. O resto é traço."],
+    pull=("O traço mais fino e mais lindo é o dela.", "Avaliação no Google"),
+    cards=[("Fine line e minimalismo", "O traço fino que ela faz, do jeito que você imaginou."), ("Coberturas e reformas", "Dá nova vida pra uma tattoo antiga."),
+           ("Cuidados", "Orientação para a sua tattoo cicatrizar bem."), ("Agenda aberta", "Peça o orçamento pelo WhatsApp.")],
+    nota="", prova="Quem já passou por aqui conta"),
+  "don-alberttoni": dict(
     h2="Barbearia old school, do jeito que o Vinícius gosta.",
     paras=["Desde 2015 no Bom Retiro, em Curitiba: cadeira de couro, vinil rodando, xadrez no tabuleiro de pedra e violão encostado no canto. Aqui o corte vem com café e papo reto.",
            "Chega, senta e deixa a gente cuidar do visual."],
@@ -242,17 +251,19 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84
  #casa .services { gap: 14px; margin: 26px 0 0; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
-WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário."}
-AVAL_LINK = {"charles-tattoo-piercing", "don-alberttoni"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
+WA_TEXTO = {"charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
+AVAL_LINK = {"charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
 AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
  .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
  .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
  .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
 # textos da capa e do fechamento escritos à mão por site
-HERO_TEXTO = {"don-alberttoni": ("Barbearia old school desde 2015 · Bom Retiro, Curitiba",
+HERO_TEXTO = {"jennifer-benke-tattoo-studio": ("Tattoo fine line · Cristal, Porto Alegre", "Tatuagens delicadas que valorizam a sua pele. Linhas finas, elegantes e atemporais, desde 2016. 8x premiada."),
+    "don-alberttoni": ("Barbearia old school desde 2015 · Bom Retiro, Curitiba",
     "Corte, barba e sobrancelha no capricho. Café na mão, vinil rodando e uma casa pra quem curte estilo, moto e tinta na pele.")}
-FINAL_TEXTO = {"don-alberttoni": ("Sua cadeira tá te esperando", "Marque pelo agendamento online ou chame no WhatsApp. O resto é com a gente.")}
+FINAL_TEXTO = {"jennifer-benke-tattoo-studio": ("Agenda aberta. Qual é a sua ideia?", "Chame no WhatsApp, conte o que você imagina e peça seu orçamento."),
+    "don-alberttoni": ("Sua cadeira tá te esperando", "Marque pelo agendamento online ou chame no WhatsApp. O resto é com a gente.")}
 # último card da lista de avaliações: leva a todas as avaliações no Google (todos os sites)
 QMORE_CSS = """.quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
  .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
@@ -270,21 +281,31 @@ def add_qmore(html):
             f'<span class="qm-t">Veja todas as avaliações no Google</span><span class="qm-s">{sub}</span><span class="qm-a">Abrir no Google \u2197</span></a>')
     return re.sub(r'(<div class="quotes">.*?)(?:<a class="qmore".*?</a>)?(</div>\s*<p class="src">)', lambda m: m.group(1) + card + m.group(2), html, count=1, flags=re.S)
 
+# fonte, paleta e ajustes de CSS feitos à mão por site
+FONTE_CUSTOM = {"jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
+TEMA_CUSTOM = {"jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
+GALERIA_FILTRO = {"jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
+CSS_EXTRA = {"jennifer-benke-tattoo-studio": """.hero img.logo-stamp { display: none; }
+ .hero h1 { font-size: clamp(46px, 7vw, 92px); line-height: 1.02; font-style: italic; }
+ .hero .eyebrow { letter-spacing: .2em; }
+ @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
+   .hero h1 { font-size: clamp(42px, 12vw, 58px); } .hero .lede { max-width: 30ch; } }"""}
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
-INTRO = {"charles-tattoo-piercing", "don-alberttoni"}    # animação de entrada + pequeno scroll suave ao carregar
+INTRO = {"charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
 
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
 SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=5, heading=len(HEADING),
             shape=len(SHAPE), proof=4, stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
-OVERRIDE = {"charles-tattoo-piercing": {"hero": 6, "gallery": 5, "proof": 4, "about": 3}}  # escolhas à mão (capa panorâmica escura)
+OVERRIDE = {"jennifer-benke-tattoo-studio": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1},
+            "charles-tattoo-piercing": {"hero": 6, "gallery": 5, "proof": 4, "about": 3}}  # escolhas à mão (capa panorâmica escura)
 CAPA_ESCURA = set()
 CAPA_CLARA = {"don-alberttoni"}  # foto de capa clara: escurece para o texto branco ler
 # sites feitos à mão: ramo e plano fixos (ficam fora do sorteio, para não mudar o layout dos outros do ramo)
 PLANO_FIXO = {"don-alberttoni": ("barber", dict(font=0, accent=0, hero=6, frame=0, header=0, gallery=5, heading=2, shape=0, proof=4, stripe=0, info=0, about=3, order=0, anim=1))}
-FORCE_DARK = {"charles-tattoo-piercing", "don-alberttoni"}  # sempre tema escuro, ignorando o tema do aparelho
-FOCO_MOBILE = {"charles-tattoo-piercing": "67.5% 50%", "don-alberttoni": "44% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
+FORCE_DARK = {"charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # sempre tema escuro, ignorando o tema do aparelho
+FOCO_MOBILE = {"jennifer-benke-tattoo-studio": "50% 50%", "charles-tattoo-piercing": "67.5% 50%", "don-alberttoni": "44% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def _rules(inner):
     return re.findall(r"([^{}]+)\{([^{}]*)\}", inner)
@@ -350,7 +371,7 @@ def block(kind, c, has_fig, slug=""):
     hero = c["hero"]
     if hero in NEEDS_FIG and not has_fig: hero = 0 if hero not in (2, 6) else 3
     css = []
-    f = FONTS[kind][c["font"]]
+    f = FONTE_CUSTOM.get(slug) or FONTS[kind][c["font"]]
     link = ""
     if f:
         link = f'<link href="https://fonts.googleapis.com/css2?family={f[0]}&display=swap" rel="stylesheet">'
@@ -368,6 +389,8 @@ def block(kind, c, has_fig, slug=""):
         if lst[c[key]]: css.append(lst[c[key]])
     extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "") + (SCRIPT_AV if c["proof"] == 4 else "")
     css.append(QMORE_CSS)
+    if slug in GALERIA_FILTRO: css.append(".tile img { filter: " + GALERIA_FILTRO[slug] + "; }")
+    if slug in CSS_EXTRA: css.append(CSS_EXTRA[slug])
     if slug in LEGIVEL:
         _c, _in = _media_blocks(LEGIVEL_CSS)[0]
         css.append("@media " + _c + " {" + _scoped(_in, "html:not(.dm) ") + "}")
@@ -394,7 +417,7 @@ def run(only=None):
         if slug in SOBRE_TEXTO:
             S = SOBRE_TEXTO[slug]; e = __import__("html").escape
             novo = e(S["h2"]) + "</h2>\n        " + "\n        ".join("<p>" + e(p) + "</p>" for p in S["paras"]) + '\n        <ul class="services">' + "".join('<li class="svc"><b>' + e(t) + "</b><span>" + e(s) + "</span></li>" for t, s in S["cards"]) + "</ul>" + ('<p class="sub" style="margin:14px 0 0;font-size:15px">' + e(S["nota"]) + "</p>" if S["nota"] else "")
-            html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+<ul class="services">.*?</ul>\s*(?:<p class="sub"[^>]*>.*?</p>)?', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
+            html = re.sub(r'(<section id="casa">\s*<div class="about[^"]*">\s*<div>\s*<h2>).*?</h2>\s*(?:<p>.*?</p>\s*)+(?:<ul class="services">.*?</ul>\s*(?:<p class="sub"[^>]*>.*?</p>)?)?', lambda m: m.group(1) + novo, html, count=1, flags=re.S)
             html = re.sub(r'<p class="pull">.*?</p>', lambda m: '<p class="pull">\u201c' + e(S["pull"][0]) + '\u201d<br><span style="font:500 15px var(--font-body);color:var(--ink-soft)">' + e(S["pull"][1]) + "</span></p>", html, count=1, flags=re.S)
             html = re.sub(r'(id="clientes">.*?<h2>)[^<]*(</h2>)', lambda m: m.group(1) + e(S["prova"]) + m.group(2), html, count=1, flags=re.S)
         if slug in WA_TEXTO:
@@ -431,6 +454,7 @@ def run(only=None):
         if s in FORCE_DARK:  # reaplica as variáveis do tema escuro direto no :root (sem depender de prefers-color-scheme)
             dk = "".join(m.group(1) for m in re.finditer(r':root\[data-theme="dark"\] \{([^}]*)\}', html + b))
             b = b.replace("<!--vary:end-->", "<style>:root { " + dk + " }</style><!--vary:end-->")
+        if s in TEMA_CUSTOM: b = b.replace("<!--vary:end-->", "<style>:root { " + TEMA_CUSTOM[s] + " }</style><!--vary:end-->")
         page = html[:i] + "\n" + b + html[i:]
         if s in DM_SITES: page = modo_ampliado(page)
         open(f, "w", encoding="utf-8").write(page)
