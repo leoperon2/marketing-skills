@@ -31,6 +31,12 @@ for l in build.leads:
         f = os.path.join(out, m.group(1))
         return m.group(1) + "?v=" + hashlib.md5(open(f, "rb").read()).hexdigest()[:8] if os.path.exists(f) else m.group(0)
     h = re.sub(r"(img/[\w.-]+\.(?:jpg|jpeg|png|webp))(?![\w?])", _v, h)
+    # carimbo da versão + autoatualização: se o servidor tem uma versão mais nova da página, recarrega uma vez (ignora o cache de 10 min do GitHub Pages)
+    bld = hashlib.md5(h.encode()).hexdigest()[:10]
+    boot = ('<meta name="build" content="' + bld + '">\n<script>(function(){try{var m=document.querySelector(\'meta[name=build]\').content;'
+            'fetch(location.pathname+"?_="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){var x=t.match(/name="build" content="([a-f0-9]+)"/);'
+            'if(x&&x[1]!==m){var k="rl-"+x[1];if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,"1");location.replace(location.pathname+"?b="+x[1]);}}}).catch(function(){});}catch(e){}})();</script>\n')
+    h = h.replace("<title>", boot + "<title>", 1)
     open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(h)
     urls[l["key"]] = BASE + pasta + "/"
 open(os.path.join(DEST, "robots.txt"), "w").write("User-agent: *\nDisallow: /\n")
