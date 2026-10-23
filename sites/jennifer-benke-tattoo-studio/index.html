@@ -253,7 +253,7 @@
  blockquote cite { margin-top: auto; display: flex; align-items: center; gap: 12px; font-style: normal; font-weight: 600; font-size: 15px; color: var(--ink); }
  blockquote cite::after { content: "Google"; margin-left: auto; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
  .av { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 700 17px var(--font-body); flex: none; }
- .reply { font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+ .reply { font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--ink-soft); border-top-color: var(--line); } .reply strong { color: var(--ink); }
   .stripe { height: 6px; }
   .about:not(.one) { grid-template-columns: 1fr; } .about > .pull { order: -1; text-align: center; border: 0; padding: 0 0 8px; font-size: clamp(26px, 4vw, 40px); max-width: 24ch; margin-inline: auto; }
   main.wrap:has(#casa) { display: flex; flex-direction: column; } main.wrap:has(#casa) > #fotos { order: -1; padding-top: 48px !important; }
@@ -263,6 +263,8 @@
  .qmore .qm-a { margin-top: 6px; font-weight: 600; font-size: 15px; } .qmore:hover .qm-a, .qmore:focus-visible .qm-a { text-decoration: underline; text-underline-offset: 4px; }
  .rv-go { display: inline-block; align-self: flex-start; margin-top: 8px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); }
  .rv-go:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .hours li.today { color: color-mix(in srgb, var(--accent) 62%, var(--ink)); font-weight: 700; }
+ footer p, footer p a { opacity: 1 !important; color: color-mix(in srgb, var(--wood-ink) 90%, transparent); }
   .tile img { filter: contrast(1.08) saturate(1.05) brightness(.97); }
   .hero img.logo-stamp { display: none; }
  .hero h1 { font-size: clamp(52px, 8vw, 108px); line-height: 1.02; font-style: italic; }

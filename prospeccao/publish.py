@@ -27,6 +27,10 @@ for l in build.leads:
     h = re.sub(r"(<title>[^\n]*</title>\n)", r'\1<meta name="robots" content="noindex, nofollow">\n', h, count=1)
     # fora do Artifact ninguém injeta o esqueleto: sem esta tag o celular renderiza a 980 px e encolhe tudo
     h = '<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' + h
+    def _v(m):  # ?v=<hash do arquivo>: o navegador só reaproveita a imagem se o conteúdo for o mesmo
+        f = os.path.join(out, m.group(1))
+        return m.group(1) + "?v=" + hashlib.md5(open(f, "rb").read()).hexdigest()[:8] if os.path.exists(f) else m.group(0)
+    h = re.sub(r"(img/[\w.-]+\.(?:jpg|jpeg|png|webp))(?![\w?])", _v, h)
     open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(h)
     urls[l["key"]] = BASE + pasta + "/"
 open(os.path.join(DEST, "robots.txt"), "w").write("User-agent: *\nDisallow: /\n")

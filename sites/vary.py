@@ -158,7 +158,7 @@ PROOF.append("""#clientes .eyebrow { color: var(--accent); }
  blockquote cite { margin-top: auto; display: flex; align-items: center; gap: 12px; font-style: normal; font-weight: 600; font-size: 15px; color: var(--ink); }
  blockquote cite::after { content: "Google"; margin-left: auto; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
  .av { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 700 17px var(--font-body); flex: none; }
- .reply { font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }""")
+ .reply { font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--ink-soft); border-top-color: var(--line); } .reply strong { color: var(--ink); }""")
 SCRIPT_AV = """<script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('blockquote cite').forEach(function(c){var n=(c.textContent||'').trim();if(!n)return;var s=document.createElement('span');s.className='av';s.textContent=n.charAt(0).toUpperCase();c.insertBefore(s,c.firstChild);});});</script>"""
 
 STRIPE = ["", ".stripe { height: 6px; }", ".stripe { display: none; }"]
@@ -205,13 +205,22 @@ INTRO_CSS = """@media (prefers-reduced-motion: no-preference) {
 @keyframes introPop { from { opacity: 0; transform: scale(.7) rotate(-14deg); } to { opacity: 1; } }"""
 SCRIPT_NUDGE = """<script>(function(){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function nudge(){if(rm||location.hash||window.scrollY>2)return;var dy=Math.round(Math.min(84,Math.max(52,window.innerHeight*0.09))),t0=null,stop=false,dur=1200;function cancel(){stop=true;}['touchstart','wheel','keydown','mousedown'].forEach(function(e){window.addEventListener(e,cancel,{once:true,passive:true});});function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}function step(ts){if(stop)return;if(t0===null)t0=ts;var p=Math.min((ts-t0)/dur,1);window.scrollTo({top:Math.round(dy*ease(p)),behavior:'instant'});if(p<1)requestAnimationFrame(step);}setTimeout(function(){requestAnimationFrame(step);},450);}if(document.readyState==='complete')nudge();else window.addEventListener('load',nudge);})();</script>"""
 # título e subtítulo da galeria escritos à mão por site (regex: troca só dentro de #fotos; idempotente)
-GALERIA_TEXTO = {"nina-pet-shop": ("Cada pet sai daqui mais lindo e mais feliz", "Alguns dos nossos clientes de quatro patas.", "Toque numa foto para ampliar"),
+GALERIA_TEXTO = {"aure-art-studio-tattoo-piercing-em-goiania": ("Cada traço conta uma história", "Tatuagens e piercings feitos aqui, do traço fino ao colorido.", "Toque numa foto para ampliar"),
+    "nina-pet-shop": ("Cada pet sai daqui mais lindo e mais feliz", "Alguns dos nossos clientes de quatro patas.", "Toque numa foto para ampliar"),
     "tayz-bessa-studio": ("Sai daqui se sentindo ainda mais você", "Cabelos, mechas e escovas que viram autoestima.", "Toque numa foto para ampliar"),
     "jennifer-benke-tattoo-studio": ("Arte que valoriza a sua pele", "Linhas finas, delicadas e feitas para durar.", "Toque numa foto para ampliar"),
     "don-alberttoni": ("Cada canto tem uma história", "Cadeiras antigas, sinuca, violão, xadrez e um poodle de visita.", "Toque numa foto para ampliar"),
     "charles-tattoo-piercing": ("Toda ideia merece virar pele", "Histórias, homenagens e inspirações que já ganharam traço aqui.", "Toque numa foto para ampliar")}
 # seção "sobre" e título das avaliações escritos à mão (só com fatos do perfil e das avaliações; idempotente)
-SOBRE_TEXTO = {"nina-pet-shop": dict(
+SOBRE_TEXTO = {"aure-art-studio-tattoo-piercing-em-goiania": dict(
+    h2="Tinta, metal e estilo, dentro do shopping.",
+    paras=["Estúdio de tatuagem e piercing em Goiânia, no Shopping Passeio das Águas. Procedimentos seguros, atendimento personalizado e uma equipe de tatuadores e piercers.",
+           "Conta a ideia. A gente cuida do resto."],
+    pull=("Os furos que fiz com ele foram os primeiros em que a dor foi praticamente zero.", "Avaliação no Google"),
+    cards=[("Tatuagem em todos os estilos", "Blackwork, fine line, old school, realismo, ornamental e oriental, além de flash tattoo."), ("Piercing", "Perfurações tradicionais e exóticas, com segurança."),
+           ("Lóbulo e cicatrização", "Lóbuloplastia química e laserterapia de apoio à cicatrização."), ("Sala de espera", "Sofás, neon e quadros, para esperar com estilo.")],
+    nota="", prova="Quem já passou por aqui conta"),
+  "nina-pet-shop": dict(
     h2="Seu pet em boas patas.",
     paras=["Banho e tosa, hotel, táxi dog, rações e acessórios em Belo Horizonte. Aqui o seu pet é tratado com dedicação e carinho, como se fosse da família.",
            "Chega, traz o seu pet e deixa com a gente."],
@@ -276,23 +285,28 @@ SOBRE_CSS = """#casa { position: relative; isolation: isolate; padding-block: 84
  #casa .services { gap: 14px; margin: 26px 0 0; }"""
 DM_SITES = {"charles-tattoo-piercing"}  # layout de celular ampliado quando a tela de toque abre a página em ~980 px
 # mensagem que já vem preenchida nos botões de WhatsApp (por site)
-WA_TEXTO = {"nina-pet-shop": "Oi, tudo bem? Queria agendar um banho e tosa para o meu pet.", "tayz-bessa-studio": "Oi, Tayz, tudo bem? Queria agendar um horário.", "charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
-AVAL_LINK = {"nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
+WA_TEXTO = {"aure-art-studio-tattoo-piercing-em-goiania": "Oi, tudo bem? Queria pedir um orçamento de tatuagem.", "nina-pet-shop": "Oi, tudo bem? Queria agendar um banho e tosa para o meu pet.", "tayz-bessa-studio": "Oi, Tayz, tudo bem? Queria agendar um horário.", "charles-tattoo-piercing": "Fala, Charles, tudo bom? Queria te pedir orçamento de uma tattoo.", "don-alberttoni": "Fala, Vinícius, tudo bom? Queria agendar um horário.", "jennifer-benke-tattoo-studio": "Oi, Jennifer, tudo bem? Queria pedir um orçamento de uma tattoo."}
+AVAL_LINK = {"aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # "Avaliações no Google" com estrelas e link para as avaliações no Google
 AVAL_CSS = """.rev-link { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; color: var(--accent); text-decoration: none; }
  .rev-link .rs { color: #e8c98b; letter-spacing: 4px; font-size: 12px; line-height: 1; }
  .rev-link:hover .rt, .rev-link:focus-visible .rt { text-decoration: underline; text-underline-offset: 5px; }
  .proof-top { justify-content: center; text-align: center; } .proof .bars { text-align: left; }
  a.score { text-decoration: none; color: inherit; } a.score:hover > div, a.score:focus-visible > div { text-decoration: underline; text-underline-offset: 4px; }"""
 # textos da capa e do fechamento escritos à mão por site
-HERO_TEXTO = {"nina-pet-shop": ("Banho, tosa e carinho · Candelária, Belo Horizonte", "Banho e tosa, hotel e táxi dog com a dedicação e o carinho que o seu pet merece."),
+HERO_TEXTO = {"aure-art-studio-tattoo-piercing-em-goiania": ("Tattoo e piercing · Shopping Passeio das Águas, Goiânia", "Tatuagem e piercing num estúdio dentro do shopping, com uma equipe de tatuadores e piercers. Chega, escolhe o seu estilo e sai com a sua marca.", "AURE ART STUDIO"),
+    "nina-pet-shop": ("Banho, tosa e carinho · Candelária, Belo Horizonte", "Banho e tosa, hotel e táxi dog com a dedicação e o carinho que o seu pet merece."),
     "tayz-bessa-studio": ("Cabelo & unhas · Jardim Mariliza, Goiânia", "Visagismo, cabelo e unhas num estúdio de espelhos dourados e muito verde. Aqui o cuidado vira autoestima."),
     "jennifer-benke-tattoo-studio": ("Tattoo fine line · Cristal, Porto Alegre", "Tatuagens delicadas que valorizam a sua pele. Linhas finas, elegantes e atemporais, desde 2016. 8x premiada."),
     "don-alberttoni": ("Barbearia old school desde 2015 · Bom Retiro, Curitiba",
     "Corte, barba e sobrancelha no capricho. Café na mão, vinil rodando e uma casa pra quem curte estilo, moto e tinta na pele.")}
-FINAL_TEXTO = {"nina-pet-shop": ("Seu pet merece esse carinho", "Agende o banho e tosa pelo WhatsApp e escolha o melhor horário."),
+FINAL_TEXTO = {"aure-art-studio-tattoo-piercing-em-goiania": ("Qual é a sua marca?", "Chame no WhatsApp, conte a ideia e peça seu orçamento."),
+    "nina-pet-shop": ("Seu pet merece esse carinho", "Agende o banho e tosa pelo WhatsApp e escolha o melhor horário."),
     "tayz-bessa-studio": ("Seu momento começa aqui", "Agende pelo WhatsApp e escolha o melhor horário."),
     "jennifer-benke-tattoo-studio": ("Agenda aberta. Qual é a sua ideia?", "Chame no WhatsApp, conte o que você imagina e peça seu orçamento."),
     "don-alberttoni": ("Sua cadeira tá te esperando", "Marque pelo agendamento online ou chame no WhatsApp. O resto é com a gente.")}
+# contraste mínimo em todos os sites (texto miúdo do rodapé e dia de hoje nos horários)
+CONTRASTE_CSS = """.hours li.today { color: color-mix(in srgb, var(--accent) 62%, var(--ink)); font-weight: 700; }
+ footer p, footer p a { opacity: 1 !important; color: color-mix(in srgb, var(--wood-ink) 90%, transparent); }"""
 # último card da lista de avaliações: leva a todas as avaliações no Google (todos os sites)
 QMORE_CSS = """.quotes .qmore { display: flex; flex-direction: column; justify-content: center; gap: 10px; flex: 0 0 clamp(250px, 72vw, 330px); scroll-snap-align: start; min-width: 0; padding: 22px; border: 1px solid currentColor; text-decoration: none; color: inherit; }
  .qmore .qm-st { letter-spacing: 3px; font-size: 13px; opacity: .9; } .qmore .qm-t { font-family: var(--font-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.1; } .qmore .qm-s { font-size: 14px; opacity: .8; }
@@ -311,13 +325,20 @@ def add_qmore(html):
     return re.sub(r'(<div class="quotes">.*?)(?:<a class="qmore".*?</a>)?(</div>\s*</section>)', lambda m: m.group(1) + card + m.group(2), html, count=1, flags=re.S)
 
 # fonte, paleta e ajustes de CSS feitos à mão por site
-FONTE_CUSTOM = {"tayz-bessa-studio": ("Playfair+Display:wght@500;600;700", "Playfair Display", "Georgia, serif", 600), "jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
+FONTE_CUSTOM = {"aure-art-studio-tattoo-piercing-em-goiania": ("Josefin+Sans:wght@400;600;700", "Josefin Sans", "Arial, sans-serif", 600), "tayz-bessa-studio": ("Playfair+Display:wght@500;600;700", "Playfair Display", "Georgia, serif", 600), "jennifer-benke-tattoo-studio": ("Cormorant+Garamond:ital,wght@0,600;0,700;1,600", "Cormorant Garamond", "Georgia, serif", 700)}
 # paleta clara por site (vence o modo escuro do aparelho)
 TEMA_LIGHT = {"nina-pet-shop": "--bg: #fbf5ea; --surface: #fffdf8; --ink: #14215a; --ink-soft: #3a4780; --wood: #1f45b5; --wood-ink: #ffffff; --accent: #c72d73; --accent-ink: #ffffff; --salmon: #ffb3d1; --line: #e6d9c4;"}
 LOGO_INJECT = {"nina-pet-shop"}  # coloca o logo (img/logo.jpg) no cabeçalho e no rodapé
-TEMA_CUSTOM = {"tayz-bessa-studio": "--bg: #0b0a08; --surface: #14120e; --ink: #f4ede0; --ink-soft: #b9ae98; --wood: #14241a; --wood-ink: #f4ede0; --accent: #cfa95e; --accent-ink: #15110a; --salmon: #e3c887; --line: #2e2a20; --glow: 207 169 94;", "jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
-GALERIA_FILTRO = {"tayz-bessa-studio": "contrast(1.06) saturate(1.06) brightness(.98)", "jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
-CSS_EXTRA = {"nina-pet-shop": """.hero .seal, .hero img.logo-stamp { display: none; }
+TEMA_CUSTOM = {"aure-art-studio-tattoo-piercing-em-goiania": "--bg: #0c0a08; --surface: #16120e; --ink: #f6efe4; --ink-soft: #bcb09e; --wood: #1a130d; --wood-ink: #f6efe4; --accent: #e0a85e; --accent-ink: #14100a; --salmon: #f1d08f; --line: #33291e; --glow: 224 168 94;", "tayz-bessa-studio": "--bg: #0b0a08; --surface: #14120e; --ink: #f4ede0; --ink-soft: #b9ae98; --wood: #14241a; --wood-ink: #f4ede0; --accent: #cfa95e; --accent-ink: #15110a; --salmon: #e3c887; --line: #2e2a20; --glow: 207 169 94;", "jennifer-benke-tattoo-studio": "--bg: #120d11; --surface: #1c1419; --ink: #f4eaee; --ink-soft: #bfa9b3; --wood: #0a0609; --wood-ink: #f4eaee; --accent: #e59ab0; --accent-ink: #1a0c12; --salmon: #c9a27e; --line: #3a2a32; --glow: 229 154 176;"}
+GALERIA_FILTRO = {"aure-art-studio-tattoo-piercing-em-goiania": "contrast(1.1) saturate(1.04) brightness(.96)", "tayz-bessa-studio": "contrast(1.06) saturate(1.06) brightness(.98)", "jennifer-benke-tattoo-studio": "contrast(1.08) saturate(1.05) brightness(.97)"}
+CSS_EXTRA = {"aure-art-studio-tattoo-piercing-em-goiania": """.hero img.logo-stamp, .hero .seal { display: none; }
+ .hero h1 { text-transform: uppercase; letter-spacing: .09em; font-size: clamp(38px, 5.6vw, 76px); line-height: 1.06; }
+ .hero .eyebrow { letter-spacing: .18em; }
+ .hero > div:first-child > .lede { max-width: 26em; }
+ @media (min-width: 821px) { .hero > div:first-child { max-width: 52%; } }
+ @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
+   .hero h1 { font-size: clamp(34px, 9.6vw, 48px); } .hero .lede { max-width: 30ch; } }""",
+  "nina-pet-shop": """.hero .seal, .hero img.logo-stamp { display: none; }
  #fotos .gcta { color: #a3225f; } #clientes .rev-link .rs { color: #a86200; }
  .hero .eyebrow { color: #fff; font-size: 12px; } .hero .score, .hero .score > div { color: #fff; } .hero .stars { color: #fff1b8; }
  footer p, footer p a { opacity: 1 !important; color: rgba(255, 255, 255, .92); }
@@ -350,14 +371,15 @@ CSS_EXTRA = {"nina-pet-shop": """.hero .seal, .hero img.logo-stamp { display: no
  @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
    .hero h1 { font-size: clamp(52px, 15.5vw, 72px); line-height: 1; } .hero .lede { max-width: 30ch; } }"""}
 LEGIVEL = {"charles-tattoo-piercing"}  # tipografia maior em telas de 821 a 1279 px
-INTRO = {"nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
+INTRO = {"aure-art-studio-tattoo-piercing-em-goiania", "nina-pet-shop", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}    # animação de entrada + pequeno scroll suave ao carregar
 
 DIMS = ["font", "accent", "hero", "frame", "header", "gallery", "heading", "shape", "proof", "stripe", "info", "about", "order", "anim"]
 SIZE = dict(font=None, accent=len(ACCENTS), hero=6, frame=len(FRAME), header=len(HEADER), gallery=5, heading=len(HEADING),
             shape=len(SHAPE), proof=4, stripe=len(STRIPE), info=len(INFO), about=len(ABOUT), order=len(ORDER), anim=len(ANIM))
 
 
-OVERRIDE = {"nina-pet-shop": {"hero": 6, "gallery": 2, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 1, "accent": 0},
+OVERRIDE = {"aure-art-studio-tattoo-piercing-em-goiania": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
+            "nina-pet-shop": {"hero": 6, "gallery": 2, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 1, "accent": 0},
             "tayz-bessa-studio": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1, "header": 0, "shape": 0},
             "jennifer-benke-tattoo-studio": {"hero": 6, "gallery": 5, "proof": 4, "about": 3, "heading": 2, "anim": 1},
             "charles-tattoo-piercing": {"hero": 6, "gallery": 5, "proof": 4, "about": 3}}  # escolhas à mão (capa panorâmica escura)
@@ -365,7 +387,7 @@ CAPA_ESCURA = set()
 CAPA_CLARA = {"don-alberttoni"}  # foto de capa clara: escurece para o texto branco ler
 # sites feitos à mão: ramo e plano fixos (ficam fora do sorteio, para não mudar o layout dos outros do ramo)
 PLANO_FIXO = {"don-alberttoni": ("barber", dict(font=0, accent=0, hero=6, frame=0, header=0, gallery=5, heading=2, shape=0, proof=4, stripe=0, info=0, about=3, order=0, anim=1))}
-FORCE_DARK = {"tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # sempre tema escuro, ignorando o tema do aparelho
+FORCE_DARK = {"aure-art-studio-tattoo-piercing-em-goiania", "tayz-bessa-studio", "charles-tattoo-piercing", "don-alberttoni", "jennifer-benke-tattoo-studio"}  # sempre tema escuro, ignorando o tema do aparelho
 FOCO_MOBILE = {"jennifer-benke-tattoo-studio": "50% 50%", "charles-tattoo-piercing": "67.5% 50%", "don-alberttoni": "44% 50%"}  # ponto de interesse da capa no celular (object-position)  # capa já escura: não escurecer mais no hero em tela cheia
 
 def _rules(inner):
@@ -450,6 +472,7 @@ def block(kind, c, has_fig, slug=""):
         if lst[c[key]]: css.append(lst[c[key]])
     extra = (SCRIPT_BLEED if hero == 6 else "") + (SCRIPT_GLOW if c["gallery"] == 5 else "") + (SCRIPT_AV if c["proof"] == 4 else "")
     css.append(QMORE_CSS)
+    css.append(CONTRASTE_CSS)
     if slug in GALERIA_FILTRO: css.append(".tile img { filter: " + GALERIA_FILTRO[slug] + "; }")
     if slug in CSS_EXTRA: css.append(CSS_EXTRA[slug])
     if slug in LEGIVEL:
@@ -491,7 +514,8 @@ def run(only=None):
             html = re.sub(r'(id="clientes">.*?<p class="eyebrow">)(?:<a class="rev-link".*?</a>|[^<]*)(</p>)', lambda m: m.group(1) + link + m.group(2), html, count=1, flags=re.S)
             html = re.sub(r'<(?:div|a) class="score"( aria-label="[^"]*")?( href="[^"]*" target="_blank" rel="noopener")?>\s*(<strong>.*?</strong>\s*<div>.*?</div>)\s*</(?:div|a)>', lambda m: f'<a class="score" href="{url}" target="_blank" rel="noopener"{m.group(1) or ""}>{m.group(3)}</a>', html, count=1, flags=re.S)
         if slug in HERO_TEXTO:
-            eb, ld = HERO_TEXTO[slug]
+            eb, ld, *h1t = HERO_TEXTO[slug]
+            if h1t: html = re.sub(r"(<h1>)[^<]*(</h1>)", lambda m: m.group(1) + h1t[0] + m.group(2), html, count=1)
             html = re.sub(r'(<div class="hero">\s*<div>\s*<p class="eyebrow">)[^<]*(</p>)', lambda m: m.group(1) + eb + m.group(2), html, count=1)
             html = re.sub(r'(<p class="lede">)[^<]*(</p>)', lambda m: m.group(1) + ld + m.group(2), html, count=1)
         if slug in FINAL_TEXTO:
