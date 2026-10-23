@@ -73,7 +73,7 @@ HERO.append("""html { overflow-x: clip; }
  @media (max-width: 820px) {
    .hero { min-height: 590px; margin-bottom: -18px; } IMG { object-position: var(--foco, 50% 50%); -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); }
    main.wrap:has(#casa) > #fotos { padding-top: 6px !important; } main.wrap:has(#casa) > #casa { padding-top: 24px; }
-   .hero > div:first-child { justify-content: flex-start; padding-top: 30px; padding-bottom: 0; }
+   .hero > div:first-child { justify-content: flex-start; padding-top: 150px; padding-bottom: 0; }
    .hero > div:first-child > * { max-width: 100%; }
    .hero .eyebrow { font-size: 11px; letter-spacing: .1em; opacity: .72; margin-bottom: 10px; text-wrap: balance; }
    .hero h1 { font-size: clamp(48px, 15.5vw, 76px); line-height: 1; margin-bottom: 14px; }
@@ -386,7 +386,7 @@ CSS_EXTRA = {"m3-motos-pilarzinho": """.hero img.logo-stamp, .hero .seal { displ
  .hero h1 { text-transform: uppercase; letter-spacing: .12em; font-size: clamp(54px, 8vw, 112px); line-height: 1; }
  .hero .eyebrow { letter-spacing: .16em; } .hero > div:first-child > .lede { max-width: 25em; }
  @media (min-width: 821px) { .hero > div:first-child { max-width: 52%; } }
- @media (max-width: 820px) { .hero { min-height: 700px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
+ @media (max-width: 820px) { .hero { min-height: 960px; } .hero > figure > img:first-child { content: url("img/hero-m.jpg"); object-position: 50% 100%; }
    .hero h1 { font-size: clamp(54px, 17vw, 84px); } .hero .lede { max-width: 30ch; } }""",
   "barbearia-los-chicanos": """.hero img.logo-stamp, .hero .seal { display: none; }
  .hero h1 { text-transform: uppercase; letter-spacing: .06em; font-size: clamp(44px, 6.4vw, 92px); line-height: 1.02; }
