@@ -158,7 +158,9 @@ Na página da fábrica, adicionar também `FAQPage` com as perguntas acima (depo
 
 ## 6. CORREÇÕES TÉCNICAS (checklist)
 
-- [ ] **robots.txt:** linha de sitemap aponta para `/sitemaps.xml`. Corrigir para `Sitemap: https://brazilianpetfoods.com.br/sitemap.xml` e enviar no Search Console.
+- [x] **robots.txt:** verificado, `/sitemaps.xml` responde 200. Nenhuma correção necessária; apenas enviar o sitemap no Search Console.
+- [ ] **Páginas que não devem estar no sitemap nem no índice (`noindex` + remover do sitemap):** `/painel/`, `/login/`, `/cart-2/`, `/downloads/`, `/imagens/`, `/pdv/`, `/kit-vendas/`, `/kitvendas-canister/`, `/evercompare/`, `/compare/`, `/snowdogflores/`, `/fotos-tecnicas/`, `/atendimento/` (se duplicar `/fale-conosco-sac/`). Confirmar uma a uma antes: se alguma for página comercial útil, mantenha.
+- [ ] **Páginas existentes a otimizar (já indexadas):** `/sobre-nos/` (incluir "fábrica de ração", história desde 1992), `/marcas/` (um bloco por marca com link), `/lista-de-produtos/` e `/catalogo2026/` (versão em texto HTML, não só PDF).
 - [ ] **Open Graph:** trocar `og:image` (logo 150 px) por imagem 1200×630 px; `twitter:card` = `summary_large_image`.
 - [ ] **Schema:** preencher o `name` vazio da Organization (item 4).
 - [ ] **noindex:** `/login/`, resultados de busca interna, tags sem conteúdo.
