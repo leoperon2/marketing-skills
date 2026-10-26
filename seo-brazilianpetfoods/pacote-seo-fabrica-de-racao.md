@@ -42,7 +42,7 @@ Slug: `fabrica-de-racao` · Título da página (H1): **Fábrica de Ração para 
 
 # Fábrica de Ração para Cães e Gatos
 
-A Brazilian Pet Foods é uma fábrica de ração para cães e gatos em [CIDADE/UF], operando desde 1992. Da formulação à embalagem, cada etapa é controlada para entregar alimentos seguros, palatáveis e nutricionalmente completos.
+A Brazilian Pet Foods é uma fábrica de ração para cães e gatos em Arapongas/PR, operando desde 1992. Da formulação à embalagem, cada etapa é controlada para entregar alimentos seguros, palatáveis e nutricionalmente completos.
 
 ## Nossa fábrica em números
 - Fundada em 1992
@@ -112,9 +112,9 @@ Em Yoast/Rank Math: nome da organização preenchido nas configurações. Ou col
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "[RUA, Nº]",
-        "addressLocality": "[CIDADE]",
-        "addressRegion": "[UF]",
-        "postalCode": "[CEP]",
+        "addressLocality": "Arapongas",
+        "addressRegion": "PR",
+        "postalCode": "86703-070",
         "addressCountry": "BR"
       },
       "contactPoint": {
