@@ -69,7 +69,11 @@ Canister, Péddy, Snow Dog e Snow Cat.
 
 ---
 
-## Ajuste da home (H1 e parágrafo)
-**H1:** `Fábrica de ração para pets desde 1992`
-**Subtítulo (manter a frase de marca):** `Há mais de 30 anos, alimentando momentos`
-**Link no parágrafo existente:** transformar "Nossa fábrica" em link para `/fabrica-de-racao/`.
+## Ajuste da home (SEM trocar o H1)
+O H1 "Há mais de 30 anos, alimentando momentos" permanece.
+
+1. **Parágrafo logo abaixo do H1:** `Somos uma fábrica de ração para cães, gatos, peixes e roedores em Arapongas, no Paraná, desde 1992. Conheça nossas marcas Canister, Péddy, Snow Dog e Snow Cat.`
+2. **Seção H2 mais abaixo:** `Fábrica de ração em Arapongas, PR` + 3 a 4 linhas + botão "Conheça nossa fábrica" → `/fabrica-de-racao/`. Ou incluir "fábrica de ração" no H2 existente "Soluções completas em alimentação pet".
+3. **Link:** transformar "Nossa fábrica" no texto atual em link para `/fabrica-de-racao/`.
+4. **alt da imagem principal:** `Fábrica de ração Brazilian Pet Foods em Arapongas`.
+5. **Menu e rodapé:** "Nossa Fábrica" → `/fabrica-de-racao/`.
