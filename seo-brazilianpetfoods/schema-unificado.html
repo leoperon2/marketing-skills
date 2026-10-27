@@ -1,0 +1,44 @@
+<!-- Substituir os dois blocos JSON-LD atuais (Organization e LocalBusiness) por este.
+     Preencher sameAs, openingHours e latitude/longitude com dados reais; remova campos sem dado. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://brazilianpetfoods.com.br/#organization",
+      "name": "Brazilian Pet Foods",
+      "url": "https://brazilianpetfoods.com.br/",
+      "description": "Fábrica de ração para cães e gatos em Arapongas, PR, desde 1992. Marcas Canister, Péddy, Snow Dog e Snow Cat.",
+      "foundingDate": "1992",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://brazilianpetfoods.com.br/wp-content/uploads/2025/08/cropped-favicon-bpf.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://brazilianpetfoods.com.br/wp-content/uploads/2025/08/cropped-favicon-bpf.png",
+      "telephone": "+55 43 99864-0088",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "R. Jurutau, 1800 - Parque Industrial II",
+        "addressLocality": "Arapongas",
+        "addressRegion": "PR",
+        "postalCode": "86703-070",
+        "addressCountry": "BR"
+      },
+      "areaServed": "BR",
+      "sameAs": ["[URL INSTAGRAM]", "[URL FACEBOOK]", "[URL LINKEDIN]", "[URL YOUTUBE]"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://brazilianpetfoods.com.br/#website",
+      "url": "https://brazilianpetfoods.com.br/",
+      "name": "Brazilian Pet Foods",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://brazilianpetfoods.com.br/#organization" }
+    }
+  ]
+}
+</script>
