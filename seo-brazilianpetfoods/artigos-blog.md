@@ -18,7 +18,7 @@ Quem abre um pacote de ração raramente imagina o caminho que ele percorreu at�
 Tudo começa antes da produção. Proteínas, cereais, gorduras, vitaminas e minerais são conferidos a cada lote recebido. Ingredientes fora do padrão não entram na linha.
 
 ## 2. Formulação
-A receita define a quantidade de proteína, gordura, fibras, vitaminas e minerais para cada fase da vida (filhote, adulto, sênior) e porte do cão. [Descrever quem formula: nutricionista/médico-veterinário.]
+A receita define a quantidade de proteína, gordura, fibras, vitaminas e minerais para cada fase da vida (filhote, adulto, sênior) e porte do cão. As receitas são desenvolvidas por profissionais de nutrição pet.
 
 ## 3. Moagem e mistura
 Os ingredientes são moídos e misturados em proporções exatas. Partículas uniformes garantem que cada grão tenha a mesma composição nutricional.
@@ -27,13 +27,13 @@ Os ingredientes são moídos e misturados em proporções exatas. Partículas un
 A massa é cozida sob pressão e temperatura controladas e passa por uma matriz que dá o formato ao grão. A extrusão melhora a digestibilidade do amido e ajuda a eliminar microrganismos.
 
 ## 5. Secagem, cobertura e resfriamento
-O grão é seco para atingir a umidade segura para armazenamento. Em seguida recebe a cobertura de gorduras e palatabilizantes e é resfriado. [Ajustar conforme o processo real.]
+O grão é seco para atingir a umidade segura para armazenamento. Em seguida recebe a cobertura de gorduras e palatabilizantes e é resfriado. [Etapa genérica: ajustar conforme o processo real.]
 
 ## 6. Embalagem e rastreabilidade
 A ração é embalada e cada lote recebe identificação, o que permite rastrear a origem de qualquer ingrediente.
 
 ## 7. Controle de qualidade
-Amostras de cada lote passam por análises [físico-químicas e microbiológicas] antes da liberação. [Citar registro no MAPA e certificações reais.]
+Cada produto traz composição básica e níveis de garantia no rótulo (umidade, proteína, extrato etéreo, fibra, matéria mineral, cálcio, fósforo e energia metabolizável), e há controle microbiológico na produção. [Citar registro no MAPA e certificações reais.]
 
 ## Por que isso importa para o seu cão
 Um processo controlado significa alimento mais seguro e nutrição consistente de um pacote para o outro.
@@ -76,7 +76,7 @@ Veja como funciona uma [fábrica de ração para cães e gatos](/fabrica-de-raca
 
 **FAQ:**
 - *Ração extrusada faz mal?* [RESPONDER com base técnica, sem promessa de saúde]
-- *Posso misturar ração extrusada com alimento natural?* [RESPONDER]
+- *Posso misturar ração com alimento úmido?* Sim. A linha Snow Flores tem sachês e caixinhas prontos para misturar com a ração, para dar sabor ao dia a dia do pet.
 
 ---
 

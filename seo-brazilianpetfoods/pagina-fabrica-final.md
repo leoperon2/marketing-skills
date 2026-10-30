@@ -31,13 +31,13 @@ Desde 1992, desenvolvemos soluções completas de nutrição animal, com linhas 
 
 ## Como fabricamos nossas rações
 1. **Seleção e recebimento de ingredientes** com conferência de cada lote.
-2. **Formulação** por linha e fase de vida.
+2. **Formulação** por linha e fase de vida, com receitas desenvolvidas por profissionais de nutrição pet.
 3. **Moagem e mistura** com dosagem precisa.
-4. **Extrusão** com temperatura e pressão controladas.
+4. **Cozimento e extrusão** em processo de alta tecnologia, com seleção criteriosa de ingredientes.
 5. **Secagem, cobertura e resfriamento.**
 6. **Embalagem e rastreabilidade** por lote.
-7. **Controle de qualidade** antes da liberação.
-[Ajustar cada etapa ao processo real da planta]
+7. **Controle de qualidade**, incluindo controle microbiológico na produção.
+[Etapas 3, 5 e 6 são genéricas; ajustar ao processo real da planta. As etapas 2, 4 e 7 têm base nos catálogos.]
 
 ## Nossas marcas
 - **Canister** — linha premium para cães, com receita desenvolvida por profissionais de nutrição pet e sabor caseiro (Almôndega, Kibe, Parrilla, Bife com Vegetais, Galeto, Frango com Milho, Original e outras). → /marcas/
@@ -47,7 +47,7 @@ Desde 1992, desenvolvemos soluções completas de nutrição animal, com linhas 
 
 ## Qualidade e certificações
 [Registro no MAPA: Nº] · [Certificações, se houver] (não constam nos catálogos)
-Todos os produtos trazem composição básica e níveis de garantia no rótulo. Embalagens das linhas Snow são 100% recicláveis, com parceria com a Eureciclo (logística reversa).
+Cada produto traz composição básica e níveis de garantia, e as linhas Natural são livres de corantes e aromatizantes artificiais. Embalagens das linhas Snow são 100% recicláveis, com parceria com a Eureciclo (logística reversa).
 Satisfação garantida: conheça nossa [política](/satisfacao-garantida/).
 
 ## Seja revendedor
