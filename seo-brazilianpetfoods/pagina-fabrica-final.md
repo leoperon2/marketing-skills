@@ -15,18 +15,19 @@ A Brazilian Pet Foods é uma fábrica de ração para cães e gatos sediada em A
 
 **Visite ou fale com a fábrica:**
 R. Jurutau, 1800 – Parque Industrial II, Arapongas – PR, CEP 86703-070
-WhatsApp/telefone: +55 43 99864-0088
+WhatsApp: +55 43 99864-0088 · Telefone: (43) 3172-3030
+Razão social nos catálogos: Brazilian Pet Foods S.A.
 [BOTÃO: Falar com o time comercial → /fale-conosco-sac/]
 
 ## Quem somos
 Desde 1992, desenvolvemos soluções completas de nutrição animal, com linhas que vão de acessíveis a super premium. Somos uma das principais indústrias brasileiras do segmento.
 
 ## O que produzimos
-- Ração para cães
-- Ração para gatos
-- Alimentos úmidos
-- Alimentos para peixes e roedores
-[Confirmar a lista com o time de produto]
+- Ração para cães (filhotes, adultos, por porte)
+- Ração para gatos (filhotes, adultos e castrados)
+- Alimentos úmidos (sachês e caixinhas para misturar com a ração)
+- Areia higiênica para gatos
+- Alimentos para peixes e roedores [confirmar com o time de produto; não aparecem nos catálogos enviados]
 
 ## Como fabricamos nossas rações
 1. **Seleção e recebimento de ingredientes** com conferência de cada lote.
@@ -39,13 +40,14 @@ Desde 1992, desenvolvemos soluções completas de nutrição animal, com linhas 
 [Ajustar cada etapa ao processo real da planta]
 
 ## Nossas marcas
-- **Canister** — [1 linha] → /marcas/
-- **Péddy** — [1 linha] → /marcas/
-- **Snow Dog** — [1 linha] → /marcas/
-- **Snow Cat** — [1 linha] → /marcas/
+- **Canister** — linha premium para cães, com receita desenvolvida por profissionais de nutrição pet e sabor caseiro (Almôndega, Kibe, Parrilla, Bife com Vegetais, Galeto, Frango com Milho, Original e outras). → /marcas/
+- **Péddy** — [1 linha; não consta nos catálogos enviados] → /marcas/
+- **Snow Dog** — linhas Natural (sem corantes e aromatizantes artificiais, com antioxidantes naturais) e Flores (alimentos naturais para longevidade, cuidado da pele, ansiedade e performance). → /snowdogflores/
+- **Snow Cat** — rações e areia higiênica para gatos filhotes, adultos e castrados, nas linhas Natural e Flores. → /marcas/
 
 ## Qualidade e certificações
-[Registro no MAPA: Nº] · [Certificações, se houver]
+[Registro no MAPA: Nº] · [Certificações, se houver] (não constam nos catálogos)
+Todos os produtos trazem composição básica e níveis de garantia no rótulo. Embalagens das linhas Snow são 100% recicláveis, com parceria com a Eureciclo (logística reversa).
 Satisfação garantida: conheça nossa [política](/satisfacao-garantida/).
 
 ## Seja revendedor

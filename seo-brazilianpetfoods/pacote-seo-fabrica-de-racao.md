@@ -177,3 +177,15 @@ Na página da fábrica, adicionar também `FAQPage` com as perguntas acima (depo
 2. Página /fabrica-de-racao/ (item 2), linkada no menu
 3. Correções técnicas rápidas (item 6)
 4. Artigos 1–2, depois 3–6 (um por semana)
+
+---
+
+## 8. Dados extraídos dos catálogos (Canister 15T, Snow Flores 2026, Snow Natural 2026)
+- Razão social: Brazilian Pet Foods S.A. · R. Jurutau, 1800, Parque Industrial II, Arapongas/PR, 86703-070 · (43) 3172-3030
+- Instagram: @snowdogbr_ (conta da marca Snow Dog; confirmar se há conta institucional)
+- Canister Premium (cães): Almôndega, Kibe, Kibe Edição Especial, Parrilla, Bife com Vegetais, Galeto, Carne/Leite/Cereais, Frango com Milho, Peixe com Vegetais, Carne com Batata, Frango com Espinafre, Original Adulto, Original RPM, Original Filhote. Embalagens de 1 a 25 kg.
+- Snow Dog/Snow Cat Natural: cães filhotes, adultos, porte médio, pequeno e mini; gatos filhotes, adultos, castrados; areia higiênica.
+- Snow Flores: cães e gatos de todas as idades; foco em longevidade, pele, ansiedade e performance; sachês/caixinhas "para misturar com a ração".
+- Sustentabilidade: embalagens 100% recicláveis, parceria Eureciclo.
+- NÃO constam nos catálogos: registro MAPA, certificações, capacidade produtiva, marca Péddy, peixes e roedores.
+- Oportunidade SEO: cada produto vira uma página HTML (nome, indicação, composição, níveis de garantia, tamanhos), hoje só existem em PDF.
