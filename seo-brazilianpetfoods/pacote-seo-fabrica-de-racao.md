@@ -189,3 +189,12 @@ Na página da fábrica, adicionar também `FAQPage` com as perguntas acima (depo
 - Sustentabilidade: embalagens 100% recicláveis, parceria Eureciclo.
 - NÃO constam nos catálogos: registro MAPA, certificações, capacidade produtiva, marca Péddy, peixes e roedores.
 - Oportunidade SEO: cada produto vira uma página HTML (nome, indicação, composição, níveis de garantia, tamanhos), hoje só existem em PDF.
+
+## 9. Níveis de garantia: onde já existem em HTML
+As páginas de produto Snow já publicam composição e níveis de garantia em HTML em **movimentosnow.com.br** (ex.: `/produto/racao-de-carne-brocolis-e-mandioca/`, linha Snow Dog Natural, cães adultos: proteína 22% mín., extrato etéreo 10% mín., fibra 3,5% máx., umidade 10% máx., matéria mineral 9% máx., cálcio 1% mín./2,2% máx., fósforo 0,8% mín., energia metabolizável 3.700 kcal/kg mín.).
+
+Recomendações (sem criar páginas novas):
+- Não copiar esse conteúdo para brazilianpetfoods.com.br (conteúdo duplicado entre domínios). Linkar para o produto em movimentosnow.com.br a partir de `/marcas/` e do texto da fábrica, com âncora descritiva ("ver composição e níveis de garantia").
+- Na página da fábrica, manter apenas a menção genérica aos níveis de garantia (já incluída).
+- Verificar se os dois sites têm o mesmo responsável e se movimentosnow.com.br está indexado; definir qual domínio deve ranquear para cada marca (Snow lá, institucional/fábrica aqui).
+- Para Canister (sem equivalente online encontrado), os níveis de garantia continuam só no PDF.
