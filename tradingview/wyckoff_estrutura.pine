@@ -1,4 +1,4 @@
-//@version=5
+//@version=6
 // Wyckoff Estrutura - indicador original baseado no método Wyckoff (domínio público).
 // Detecta clímax (SC/BC), range (AR), Spring/UTAD, Teste, SOS/SOW e LPS/LPSY,
 // desenha a caixa da estrutura, o stop e um painel com a fase atual.
