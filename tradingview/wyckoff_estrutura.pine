@@ -3,7 +3,7 @@
 // Detecta climax (SC/BC), range (AR), Spring/UTAD, Teste, SOS/SOW e LPS/LPSY,
 // desenha a caixa da estrutura, o stop e um painel com a fase atual.
 // Ferramenta de leitura: nao garante resultado.
-indicator("Wyckoff Estrutura", shorttitle="Wyckoff", overlay=true, force_overlay=true, max_boxes_count=100, max_labels_count=300, max_lines_count=100)
+indicator("Wyckoff Estrutura", shorttitle="Wyckoff", overlay=true, max_boxes_count=100, max_labels_count=300, max_lines_count=100)
 
 // ----- Inputs -----
 lookback   = input.int(60, "Janela do climax (barras)", minval=20, group="Deteccao")
@@ -58,7 +58,7 @@ bool evLps    = false
 bool evLpsy   = false
 
 lbl(txt, x, y, below, col) =>
-    label.new(x, y, txt, style = below ? label.style_label_up : label.style_label_down, color = col, textcolor = color.white, size = size.small)
+    label.new(x, y, txt, style = below ? label.style_label_up : label.style_label_down, color = col, textcolor = color.white, size = size.small, force_overlay = true)
 
 // ----- Logica -----
 if isSC and not (mode == 1 and stage != 2)
@@ -92,7 +92,7 @@ else if mode == 1
             if arHigh - rLo > atr * 2
                 rHi := arHigh
                 stage := 2
-                rBox := box.new(cBar, rHi, bar_index, rLo, border_color = color.new(#16c47f, 40), bgcolor = accCol)
+                rBox := box.new(cBar, rHi, bar_index, rLo, border_color = color.new(#16c47f, 40), bgcolor = accCol, force_overlay = true)
                 if showLabels
                     lbl("AR", bar_index + arHighOf, rHi, false, color.new(#636e72, 0))
             else
@@ -105,7 +105,7 @@ else if mode == 1
             testOk := false
             evSpring := true
             line.delete(stopLn)
-            stopLn := line.new(bar_index, ext - 0.2 * atr, bar_index + 1, ext - 0.2 * atr, extend = extend.right, color = color.new(#ff5252, 0), style = line.style_dashed)
+            stopLn := line.new(bar_index, ext - 0.2 * atr, bar_index + 1, ext - 0.2 * atr, extend = extend.right, color = color.new(#ff5252, 0), style = line.style_dashed, force_overlay = true)
             if showLabels
                 lbl("Spring", bar_index, low, true, color.new(#0ea769, 0))
         else if close > rHi and volume > volMa
@@ -152,7 +152,7 @@ else if mode == -1
             if rHi - arLow > atr * 2
                 rLo := arLow
                 stage := 2
-                rBox := box.new(cBar, rHi, bar_index, rLo, border_color = color.new(#ff5252, 40), bgcolor = disCol)
+                rBox := box.new(cBar, rHi, bar_index, rLo, border_color = color.new(#ff5252, 40), bgcolor = disCol, force_overlay = true)
                 if showLabels
                     lbl("AR", bar_index + arLowOf, rLo, true, color.new(#636e72, 0))
             else
@@ -165,7 +165,7 @@ else if mode == -1
             testOk := false
             evUtad := true
             line.delete(stopLn)
-            stopLn := line.new(bar_index, ext + 0.2 * atr, bar_index + 1, ext + 0.2 * atr, extend = extend.right, color = color.new(#ff5252, 0), style = line.style_dashed)
+            stopLn := line.new(bar_index, ext + 0.2 * atr, bar_index + 1, ext + 0.2 * atr, extend = extend.right, color = color.new(#ff5252, 0), style = line.style_dashed, force_overlay = true)
             if showLabels
                 lbl("UTAD", bar_index, high, false, color.new(#d63031, 0))
         else if close < rLo and volume > volMa
@@ -257,5 +257,5 @@ alertcondition(evLps,    "LPS",    "Wyckoff: LPS (entrada de acumulacao)")
 alertcondition(evLpsy,   "LPSY",   "Wyckoff: LPSY (entrada de distribuicao)")
 
 // ----- Linhas do range -----
-plot(mode != 0 and stage >= 2 ? rHi : na, "Topo do range", color = mode == 1 ? #16c47f : #ff5252, style = plot.style_linebr)
-plot(mode != 0 and stage >= 2 ? rLo : na, "Fundo do range", color = mode == 1 ? #16c47f : #ff5252, style = plot.style_linebr)
+plot(mode != 0 and stage >= 2 ? rHi : na, "Topo do range", color = mode == 1 ? #16c47f : #ff5252, style = plot.style_linebr, force_overlay = true)
+plot(mode != 0 and stage >= 2 ? rLo : na, "Fundo do range", color = mode == 1 ? #16c47f : #ff5252, style = plot.style_linebr, force_overlay = true)
