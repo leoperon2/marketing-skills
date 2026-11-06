@@ -61,7 +61,7 @@ lbl(txt, x, y, below, col) =>
     label.new(x, y, txt, style = below ? label.style_label_up : label.style_label_down, color = col, textcolor = color.white, size = size.small)
 
 // ----- Lógica -----
-if isSC and not (mode == 1 and stage >= 3)
+if isSC and not (mode == 1 and stage != 2)
     mode := 1
     stage := 1
     cBar := bar_index
@@ -73,7 +73,7 @@ if isSC and not (mode == 1 and stage >= 3)
     if showLabels
         lbl("SC", bar_index, low, true, color.new(#0ea769, 0))
 
-else if isBC and not (mode == -1 and stage >= 3)
+else if isBC and not (mode == -1 and stage != 2)
     mode := -1
     stage := 1
     cBar := bar_index
@@ -104,6 +104,7 @@ else if mode == 1
             extBar := bar_index
             testOk := false
             evSpring := true
+            line.delete(stopLn)
             stopLn := line.new(bar_index, ext - 0.2 * atr, bar_index + 1, ext - 0.2 * atr, extend = extend.right, color = color.new(#ff5252, 0), style = line.style_dashed)
             if showLabels
                 lbl("Spring", bar_index, low, true, color.new(#0ea769, 0))
@@ -163,6 +164,7 @@ else if mode == -1
             extBar := bar_index
             testOk := false
             evUtad := true
+            line.delete(stopLn)
             stopLn := line.new(bar_index, ext + 0.2 * atr, bar_index + 1, ext + 0.2 * atr, extend = extend.right, color = color.new(#ff5252, 0), style = line.style_dashed)
             if showLabels
                 lbl("UTAD", bar_index, high, false, color.new(#d63031, 0))
