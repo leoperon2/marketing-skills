@@ -3,7 +3,7 @@
 // Detecta clímax (SC/BC), range (AR), Spring/UTAD, Teste, SOS/SOW e LPS/LPSY,
 // desenha a caixa da estrutura, o stop e um painel com a fase atual.
 // Ferramenta de leitura: não garante resultado.
-indicator("Wyckoff Estrutura", shorttitle="Wyckoff", overlay=true, max_boxes_count=100, max_labels_count=300, max_lines_count=100)
+indicator("Wyckoff Estrutura", shorttitle="Wyckoff", overlay=true, force_overlay=true, max_boxes_count=100, max_labels_count=300, max_lines_count=100)
 
 // ----- Inputs -----
 lookback   = input.int(60, "Janela do clímax (barras)", minval=20, group="Detecção")
