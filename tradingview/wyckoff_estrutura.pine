@@ -5,7 +5,7 @@
 // Ferramenta de leitura: não garante resultado.
 indicator("Wyckoff Estrutura", shorttitle="Wyckoff", overlay=true, max_boxes_count=100, max_labels_count=300, max_lines_count=100)
 
-// ───────── Inputs ─────────
+// ----- Inputs -----
 lookback   = input.int(60, "Janela do clímax (barras)", minval=20, group="Detecção")
 volLen     = input.int(20, "Média de volume", minval=5, group="Detecção")
 volMult    = input.float(1.8, "Volume de clímax (x média)", step=0.1, group="Detecção")
@@ -17,7 +17,7 @@ showPanel  = input.bool(true, "Mostrar painel Radar", group="Visual")
 accCol     = input.color(color.new(#16c47f, 85), "Cor acumulação", group="Visual")
 disCol     = input.color(color.new(#ff5252, 85), "Cor distribuição", group="Visual")
 
-// ───────── Base ─────────
+// ----- Base -----
 atr      = ta.atr(14)
 volMa    = ta.sma(volume, volLen)
 trend    = ta.sma(close, 50)
@@ -33,7 +33,7 @@ arLowOf  = ta.lowestbars(low, arBars)
 isSC = hiVol and wide and low <= lowestN and close < trend
 isBC = hiVol and wide and high >= highestN and close > trend
 
-// ───────── Estado ─────────
+// ----- Estado -----
 // mode: 1 = acumulação, -1 = distribuição, 0 = nenhuma
 // stage: 1=A (clímax) 2=B (range) 3=C (Spring/UTAD) 4=D (SOS/SOW) 5=E (tendência)
 var int   mode    = 0
@@ -60,7 +60,7 @@ bool evLpsy   = false
 lbl(txt, x, y, below, col) =>
     label.new(x, y, txt, style = below ? label.style_label_up : label.style_label_down, color = col, textcolor = color.white, size = size.small)
 
-// ───────── Lógica ─────────
+// ----- Lógica -----
 if isSC and not (mode == 1 and stage >= 3)
     mode := 1
     stage := 1
@@ -207,7 +207,7 @@ else if mode == -1
 if mode != 0 and not na(rBox)
     box.set_right(rBox, bar_index)
 
-// ───────── Painel Radar ─────────
+// ----- Painel Radar -----
 var table panel = table.new(position.top_right, 2, 4, bgcolor = color.new(#0a0f1a, 10), border_width = 1, border_color = color.new(#22314d, 0))
 if showPanel and barstate.islast
     phase = switch stage
@@ -218,7 +218,7 @@ if showPanel and barstate.islast
         5 => "E"
         => "-"
     structTxt = mode == 1 ? "Acumulação" : mode == -1 ? "Distribuição" : "Sem estrutura"
-    rangeTxt = mode != 0 and stage >= 2 ? str.tostring(rLo, format.mintick) + " – " + str.tostring(rHi, format.mintick) : "-"
+    rangeTxt = mode != 0 and stage >= 2 ? str.tostring(rLo, format.mintick) + " - " + str.tostring(rHi, format.mintick) : "-"
     nextTxt = "Aguardando clímax (SC/BC)"
     if mode == 1
         nextTxt := switch stage
@@ -246,7 +246,7 @@ if showPanel and barstate.islast
     table.cell(panel, 0, 3, "Próximo", text_color = tc, text_halign = text.align_left)
     table.cell(panel, 1, 3, nextTxt, text_color = #f5b942, text_halign = text.align_left)
 
-// ───────── Alertas ─────────
+// ----- Alertas -----
 alertcondition(evSpring, "Spring", "Wyckoff: Spring detectado")
 alertcondition(evUtad,   "UTAD",   "Wyckoff: UTAD detectado")
 alertcondition(evSos,    "SOS",    "Wyckoff: SOS (sinal de força)")
@@ -254,6 +254,6 @@ alertcondition(evSow,    "SOW",    "Wyckoff: SOW (sinal de fraqueza)")
 alertcondition(evLps,    "LPS",    "Wyckoff: LPS (entrada de acumulação)")
 alertcondition(evLpsy,   "LPSY",   "Wyckoff: LPSY (entrada de distribuição)")
 
-// ───────── Linhas do range ─────────
+// ----- Linhas do range -----
 plot(mode != 0 and stage >= 2 ? rHi : na, "Topo do range", color = mode == 1 ? #16c47f : #ff5252, style = plot.style_linebr)
 plot(mode != 0 and stage >= 2 ? rLo : na, "Fundo do range", color = mode == 1 ? #16c47f : #ff5252, style = plot.style_linebr)
