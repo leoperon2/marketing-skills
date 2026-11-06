@@ -253,3 +253,7 @@ alertcondition(evSos,    "SOS",    "Wyckoff: SOS (sinal de força)")
 alertcondition(evSow,    "SOW",    "Wyckoff: SOW (sinal de fraqueza)")
 alertcondition(evLps,    "LPS",    "Wyckoff: LPS (entrada de acumulação)")
 alertcondition(evLpsy,   "LPSY",   "Wyckoff: LPSY (entrada de distribuição)")
+
+// ───────── Linhas do range ─────────
+plot(mode != 0 and stage >= 2 ? rHi : na, "Topo do range", color = mode == 1 ? #16c47f : #ff5252, style = plot.style_linebr)
+plot(mode != 0 and stage >= 2 ? rLo : na, "Fundo do range", color = mode == 1 ? #16c47f : #ff5252, style = plot.style_linebr)
