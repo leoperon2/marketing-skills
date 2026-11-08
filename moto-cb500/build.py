@@ -12,7 +12,7 @@ W, H, FPS = 1080, 1920, 30
 MUSICA = UP + "086e2356-adeus_macbook.mp4"   # trilha do VT do MacBook (troque se quiser)
 
 # ---- dados do anúncio (edite) ----
-ANUNCIO = ["HONDA CB500 · 1998", "+24 MIL KM", "R$ ______", "(__) _____-____"]
+ANUNCIO = ["HONDA CB500 · 1998", "+24 MIL KM", "CHAMA NO WHATSAPP"]
 
 IMG = {i: UP + f for i, f in enumerate("""082c8b46 d3825ebd f742e4f1 591ef5e7 cf700bf0 db8b4092
 849f57eb a57691ce f7b03197 f6cd01e2 f99b9937""".split(), 1)}
