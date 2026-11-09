@@ -42,6 +42,17 @@ add_action( 'template_redirect', function () {
         'Sign In' => 'Entrar',
         'Login Account' => 'Entrar na conta',
         'Enter your credentials to access your account' => 'Informe suas credenciais para acessar sua conta',
+        '<label form=\'log\'>Login ID</label>' => '<label form=\'log\'>Usuário ou e-mail</label>',
+        'Sorry. There are no posts to display' => 'Nenhum post para exibir.',
+        '<title>Shopping Cart - ' => '<title>Carrinho - ',
+        'No products added to the compare' => 'Nenhum produto adicionado para comparar',
+        'Your email address will not be published. Required fields are marked *' => 'Seu endereço de e-mail não será publicado. Os campos obrigatórios estão marcados com *',
+        'Cancel reply' => 'Cancelar resposta',
+        'Leave a Reply' => 'Deixe um comentário',
+        'placeholder="Name *"' => 'placeholder="Nome *"',
+        'placeholder="Email *"' => 'placeholder="E-mail *"',
+        'placeholder="Your comment *"' => 'placeholder="Seu comentário *"',
+        'aria-label="Close"' => 'aria-label="Fechar"',
         'data-dismiss="modal">Close</button>' => 'data-dismiss="modal">Fechar</button>'
             );
             $map = array();
