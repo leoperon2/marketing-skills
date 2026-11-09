@@ -198,3 +198,6 @@ Recomendações (sem criar páginas novas):
 - Na página da fábrica, manter apenas a menção genérica aos níveis de garantia (já incluída).
 - Verificar se os dois sites têm o mesmo responsável e se movimentosnow.com.br está indexado; definir qual domínio deve ranquear para cada marca (Snow lá, institucional/fábrica aqui).
 - Para Canister (sem equivalente online encontrado), os níveis de garantia continuam só no PDF.
+
+## 10. Correção importante: /marcas/ é restrita
+`/marcas/` não é a página pública de marcas. É um hub de download do painel restrito (botões para kits de marca, com "Voltar" ao painel) e exige login. Onde este pacote e os artigos linkam para `/marcas/`, usar `/lista-de-produtos/` (pública). O hub restrito (painel, marcas, downloads, imagens, pdv, kit-vendas, fotos-técnicas, atendimento) não deve ser indexado nem listado no sitemap.
